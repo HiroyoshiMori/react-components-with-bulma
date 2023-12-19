@@ -10,8 +10,10 @@
     "index.tsx",
     "babel.config.js",
     "babel-plugin-macros.config.js",
+    "src",
     "tsconfig.json",
     "vite.config.js",
+    ".storybook",
     "storybook-static",
     "README.md",
     "LICENSE"
