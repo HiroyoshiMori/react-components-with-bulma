@@ -2,6 +2,8 @@
 
 This modules is set of react components which uses Bulma CSS Framework and Font Awesome Free.
 
+![Github](https://img.shields.io/github/v/release/HiroyoshiMori/react-component-bulma)
+
 ** note **
 - Bulma is a **modern CSS framework** based on [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes).
 - Font Awesome is the internet's icon library and toolkit.
@@ -48,6 +50,6 @@ The documentation resides in the [storybook-static](storybook-static) directory,
 - [Bulma](https://bulma.io)
 - [Font Awesome](https://fontawesome.com/)
 
-## Copyright and license
+## Copyright and license ![Github](https://img.shields.io/github/license/HiroyoshiMori/react-components-bulma?logo=Github)
 
-Copyright 2023 Hiroyoshi Mori - Script Laboratory.
+Copyright 2023 Hiroyoshi Mori / Script Laboratory.

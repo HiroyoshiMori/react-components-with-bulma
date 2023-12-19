@@ -67,5 +67,14 @@
     "storybook": "^7.6.5",
     "vite-plugin-babel-macros": "^1.0.6"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiroyoshiMori/react-components-bulma.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "component"
+  ],
   "license": "MPL-2.0"
 }
