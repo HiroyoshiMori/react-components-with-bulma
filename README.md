@@ -2,7 +2,7 @@
 
 This modules is set of react components which uses Bulma CSS Framework and Font Awesome Free.
 
-![Github](https://img.shields.io/github/v/release/HiroyoshiMori/react-component-bulma)
+![Github](https://img.shields.io/github/v/release/HiroyoshiMori/react-components-bulma)
 
 ** note **
 - Bulma is a **modern CSS framework** based on [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes).
