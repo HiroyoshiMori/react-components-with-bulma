@@ -1,7 +1,6 @@
 {
-  "name": "react-components-bulma",
+  "name": "@hiroyoshi-mori/react-components-bulma",
   "version": "0.0.1",
-  "private": true,
   "author": {
     "name": "Hiroyoshi Mori",
     "email": "mori@scriptlab.tokyo"
