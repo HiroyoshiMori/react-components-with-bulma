@@ -1,7 +1,16 @@
-import React, {ChangeEvent, Fragment} from "react";
+import React, {ChangeEvent, Fragment, InputHTMLAttributes} from "react";
 
-import {COLOR_TYPES, ColorTypes, CommonStyleCLasses, SIZES, SizeTypes, STATES, StateTypes} from "../../@types";
-import {ArrayRegexIncludes} from "../../../utils";
+import {
+    COLOR_TYPES,
+    ColorTypes,
+    CommonDataSet,
+    CommonStyleClasses,
+    SIZES,
+    SizeTypes,
+    STATES,
+    StateTypes
+} from "../../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 export type InputProps = {
     fieldName: string;
@@ -11,7 +20,9 @@ export type InputProps = {
     colorType?: ColorTypes;
     state?: StateTypes;
     size?: SizeTypes;
-} & CommonStyleCLasses;
+    attributes?: InputHTMLAttributes<HTMLInputElement>;
+    datasets?: CommonDataSet;
+} & CommonStyleClasses;
 
 export const TextBox = (props: InputProps) => {
     const {
@@ -20,10 +31,11 @@ export const TextBox = (props: InputProps) => {
         onChange,
         classes = [],
         placeholder = '',
+        attributes,
+        datasets = new Map(),
     } = {...props};
-    if (!classes.includes('input')) {
-        classes.push('input');
-    }
+
+    // Initialize if undefined
     (['colorType', 'state', 'size'] as Array<keyof InputProps>).forEach((v: keyof InputProps) => {
         if (props[v]) {
             let pattern = null;
@@ -43,6 +55,12 @@ export const TextBox = (props: InputProps) => {
             }
         }
     });
+    // Set default values if not already set
+    if (!classes.includes('input')) {
+        classes.push('input');
+    }
+    const dataShown = convertDataSet(datasets as CommonDataSet);
+
     return (
         <Fragment>
             <input
@@ -52,6 +70,8 @@ export const TextBox = (props: InputProps) => {
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+                {...attributes}
+                {...dataShown}
             />
         </Fragment>
     );

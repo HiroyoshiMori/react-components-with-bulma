@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextBox} from "../../../../components/mui/input";
+import {TextBox} from "../../../../components";
 
 export default {
     component: TextBox,
@@ -106,5 +106,21 @@ export const PrimaryWithClasses = {
         value: 'Color will be Info',
         colorType: 'primary',
         classes: ['is-info']
+    },
+};
+export const WithAttribute = {
+    ...Primary,
+    args: {
+        attributes: {
+            'aria-label': 'Text Box',
+        },
+    },
+};
+export const WithDatasets = {
+    ...Primary,
+    args: {
+        datasets: new Map([
+            ['id', 'text-box'], ['name', 'Text Box']
+        ]),
     },
 };

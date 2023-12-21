@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from "../../../../components/mui/label";
+import { Label } from "../../../../components";
 import {Fragment} from "react";
 
 export default {
@@ -47,5 +47,19 @@ export const HasLabelChildren = {
                 <span>Has Label/ Children - Children</span>
             </Fragment>
         )
+    },
+};
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {'aria-label': 'Label'},
+    },
+};
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'label'], ['name', 'Label']
+        ]),
     },
 };

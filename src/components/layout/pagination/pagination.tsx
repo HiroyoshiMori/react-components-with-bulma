@@ -1,19 +1,15 @@
-import React, {Fragment, ReactNode} from "react";
+import React, {Fragment} from "react";
 import {
-    HORIZONTAL_POSITIONS,
-    PaginationClasses,
+    CommonDataSet,
+    HORIZONTAL_POSITIONS, PaginationAttributes,
+    PaginationClasses, PaginationDatasets, PaginationLabels,
     PositionTypes,
     SIZES,
     SizeTypes,
 } from "../../@types";
 import {sprintf} from "sprintf-js";
-import {ArrayRegexIncludes} from "../../../utils";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
-type PaginationLabels = {
-    previous?: ReactNode;
-    next?: ReactNode;
-    ellipsis?: ReactNode;
-};
 type PaginationProps = {
     itemTotal: number;
     current?: number;
@@ -22,6 +18,8 @@ type PaginationProps = {
     position?: PositionTypes;
     size?: SizeTypes,
     classes?: PaginationClasses;
+    attributes?: PaginationAttributes;
+    datasets?: PaginationDatasets;
 } & ({
     link: string;
     onClick?: (e: React.MouseEvent<HTMLAnchorElement>, page: number) => void;
@@ -31,7 +29,9 @@ type PaginationProps = {
 });
 
 export const Pagination = (
-    {
+    props: PaginationProps
+) => {
+    const {
         itemTotal,
         current = 1,
         labels = {},
@@ -41,8 +41,10 @@ export const Pagination = (
         size,
         classes = {},
         onClick,
-    }: PaginationProps
-) => {
+        attributes = {},
+        datasets = {},
+    } = {...props};
+    // Initialize if undefined and set default values if not already set
     (['previous', 'next', 'ellipsis'] as Array<keyof PaginationLabels>)
         .forEach((k: keyof PaginationLabels) => {
             let defaultValue;
@@ -55,12 +57,26 @@ export const Pagination = (
                 labels[k] = defaultValue;
             }
         });
+    // Initialize if undefined
     (['wrap', 'previous', 'next', 'list', 'link', 'ellipsis'] as Array<keyof PaginationClasses>)
         .forEach((k: keyof PaginationClasses) => {
             if (classes[k] === undefined) {
                 classes[k] = [];
             }
         });
+    (['wrap', 'list'] as Array<keyof PaginationAttributes>)
+        .forEach((k: keyof PaginationAttributes) => {
+            if (attributes[k] === undefined) {
+                attributes[k] = {};
+            }
+        });
+    (['wrap', 'list'] as Array<keyof PaginationDatasets>)
+        .forEach((k: keyof PaginationDatasets) => {
+            if (datasets[k] === undefined) {
+                datasets[k] = new Map();
+            }
+        });
+    // Set default values if not already set
     if (classes.wrap) {
         if (!classes.wrap.includes('pagination')) {
             classes.wrap.push('pagination');
@@ -104,6 +120,14 @@ export const Pagination = (
     if (classes.ellipsis && !classes.ellipsis.includes('pagination-ellipsis')) {
         classes.ellipsis.push('pagination-ellipsis');
     }
+
+    if (attributes.wrap && (!Object.hasOwn(attributes.wrap, 'role') || attributes.wrap.role === '')) {
+        attributes.wrap.role = 'navigation';
+    }
+    if (attributes.wrap && (!Object.hasOwn(attributes.wrap, 'aria-label') || attributes.wrap["aria-label"] === '')) {
+        attributes.wrap["aria-label"] = 'navigation';
+    }
+
     const previousDisabled = current <= 1;
     const nextDisabled = current >= itemTotal;
     if (previousDisabled) {
@@ -112,9 +136,25 @@ export const Pagination = (
     if (nextDisabled) {
         classes.next?.push('is-disabled');
     }
+
+    let datasetShown = {} as any;
+    (['wrap', 'list'] as Array<keyof PaginationDatasets>)
+        .forEach((k: keyof PaginationDatasets) => {
+            if (datasetShown[k] === undefined) {
+                datasetShown[k] = [];
+            }
+            if (datasets[k]) {
+                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
+            }
+        });
+
     return (
         <Fragment>
-            <nav className={classes.wrap?.join(' ')} role="navigation" aria-label="pagination">
+            <nav
+                className={classes.wrap?.join(' ')}
+                {...attributes.wrap}
+                {...datasetShown.wrap}
+            >
                 <Fragment>
                     {
                         previousDisabled ? (
@@ -128,6 +168,7 @@ export const Pagination = (
                                 className={classes.previous?.join(' ')}
                                 href={link ? sprintf(link, current - 1) : undefined}
                                 onClick={onClick ? (e: React.MouseEvent<HTMLAnchorElement>) => onClick(e, current - 1) : undefined}
+                                aria-label={"Pagination Link. Jump to previous page"}
                             >
                                 {labels.previous}
                             </a>
@@ -147,13 +188,18 @@ export const Pagination = (
                                 className={classes?.next?.join(' ')}
                                 href={link ? sprintf(link, current + 1) : undefined}
                                 onClick={onClick ? (e: React.MouseEvent<HTMLAnchorElement>) => onClick(e, current + 1) : undefined}
+                                aria-label={"Pagination Link. Jump to next page"}
                             >
                                 {labels.next}
                             </a>
                         )
                     }
                 </Fragment>
-                <ul className={classes.list?.join(' ')}>
+                <ul
+                    className={classes.list?.join(' ')}
+                    {...attributes.list}
+                    {...datasetShown.list}
+                >
                     {
                         (function () {
                             const linkList: JSX.Element[] = [];
@@ -166,6 +212,7 @@ export const Pagination = (
                                                 className={classes.link?.join(' ')}
                                                 href={link ? sprintf(link, 1) : undefined}
                                                 onClick={onClick ? (e: React.MouseEvent<HTMLAnchorElement>) => onClick(e, 1) : undefined}
+                                                aria-label={"Pagination Link. Jump to page " + 1}
                                             >
                                                 1
                                             </a>
@@ -190,6 +237,7 @@ export const Pagination = (
                                                 className={classes.link?.join(' ')}
                                                 href={link ? sprintf(link, current - 1) : undefined}
                                                 onClick={onClick ? (e: React.MouseEvent<HTMLAnchorElement>) => onClick(e, current - 1) : undefined}
+                                                aria-label={"Pagination Link. Jump to page " + (current - 1)}
                                             >
                                                 {current - 1}
                                             </a>
@@ -216,6 +264,7 @@ export const Pagination = (
                                                 className={classes.link?.join(' ')}
                                                 href={link ? sprintf(link, current + 1) : undefined}
                                                 onClick={onClick ? (e: React.MouseEvent<HTMLAnchorElement>) => onClick(e, current + 1) : undefined}
+                                                aria-label={"Pagination Link. Jump to page " + (current + 1)}
                                             >
                                                 {current + 1}
                                             </a>
@@ -240,6 +289,7 @@ export const Pagination = (
                                                 className={classes.link?.join(' ')}
                                                 href={link ? sprintf(link, itemTotal) : undefined}
                                                 onClick={onClick ? (e: React.MouseEvent<HTMLAnchorElement>) => onClick(e, itemTotal) : undefined}
+                                                aria-label={"Pagination Link. Jump to last page"}
                                             >
                                                 {itemTotal}
                                             </a>

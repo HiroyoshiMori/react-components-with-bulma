@@ -1,6 +1,6 @@
 import React, {Fragment, ReactNode} from "react";
-import {DialogClasses} from "../../@types";
-import {ArrayRegexIncludes} from "../../../utils";
+import {CommonDataSet, DialogAttributes, DialogClasses, DialogDatasets} from "../../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {Header} from "./header";
 import {Footer} from "./footer";
 
@@ -11,21 +11,43 @@ type DialogBoxProps = {
     noFooter?: boolean;
     buttonLabel?: ReactNode;
     classes?: DialogClasses;
+    attributes?: DialogAttributes;
+    datasets?: DialogDatasets;
     children?: ReactNode;
 };
 
-export const Dialog = (
-    {
+export const Dialog = (props: DialogBoxProps) => {
+    const {
         isActive,
         title,
         onClose,
         noFooter = false,
         buttonLabel,
         classes = {},
+        attributes = {},
+        datasets = {},
         children
-    }: DialogBoxProps
-) => {
+    } = {...props};
+
     // Initialize if undefined
+    (['wrap', 'card', 'header', 'content', 'footer'] as Array<keyof DialogAttributes>)
+        .forEach((k: keyof DialogAttributes) => {
+        if (attributes[k] === undefined) {
+            attributes[k] = {};
+        }
+    });
+    (['wrap', 'card', 'header', 'content', 'footer'] as Array<keyof DialogDatasets>)
+        .forEach((k: keyof DialogDatasets) => {
+        if (datasets[k] === undefined) {
+            switch (k) {
+                case 'header': case 'footer':
+                    datasets[k] = {};
+                    break;
+                default:
+                    datasets[k] = new Map();
+            }
+        }
+    });
     (['wrap', 'content'] as Array<keyof DialogClasses>).forEach((k) => {
         if (classes[k] === undefined) {
             classes[k] = [];
@@ -41,6 +63,7 @@ export const Dialog = (
             wrap: [], button: [],
         };
     }
+    // Set default values if not already set
     if (classes.wrap) {
         if (!classes.wrap.includes('modal')) {
             classes.wrap.push('modal');
@@ -68,24 +91,55 @@ export const Dialog = (
             classes.footer.wrap.push('is-justify-content-flex-end');
         }
     }
+    let datasetShown = {} as any;
+    (['wrap', 'card', 'content'] as Array<keyof DialogDatasets>)
+        .forEach((k: keyof DialogDatasets) => {
+            if (datasetShown[k] === undefined) {
+                datasetShown[k] = [];
+            }
+            if (datasets[k]) {
+                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
+            }
+        });
+
     return (
         <Fragment>
-            <div className={classes.wrap?.join(' ')}>
+            <div
+                className={classes.wrap?.join(' ')}
+                {...attributes.wrap}
+                {...datasetShown.wrap}
+            >
                 <div className="modal-background"></div>
-                <div className="modal-card">
+                <div
+                    className="modal-card"
+                    {...attributes.card}
+                    {...datasetShown.card}
+                >
                     <Header
                         title={title}
                         onClose={onClose}
                         classes={classes.header}
+                        attributes={attributes?.header}
+                        datasets={datasets.header}
                     />
-                    <section className={classes?.content?.join(' ')}>
+                    <section
+                        className={classes?.content?.join(' ')}
+                        {...attributes?.content}
+                        {...datasetShown.content}
+                    >
                         {children}
                     </section>
-                    <Footer
-                        buttonLabel={buttonLabel ?? 'OK'}
-                        onClose={onClose}
-                        classes={classes.footer}
-                    />
+                    {
+                        !noFooter && (
+                            <Footer
+                                buttonLabel={buttonLabel ?? 'OK'}
+                                onClose={onClose}
+                                classes={classes.footer}
+                                attributes={attributes.footer}
+                                datasets={datasets.footer}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </Fragment>

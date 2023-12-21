@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {Pagination} from "../../../../components/layout/pagination";
+import {Pagination} from "../../../../components";
 
 export default {
     component: Pagination,
@@ -10,7 +10,7 @@ export const Default = {
         itemTotal={1}
         current={1}
         link={'#link%d'}
-        onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {}}
+        onClick={() => {}}
         {...args}
     />,
 };
@@ -202,5 +202,31 @@ export const Labels = {
             next: <Fragment>&#187;</Fragment>,
             ellipsis: <Fragment>&sim;</Fragment>
         }
+    },
+};
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {
+            wrap: {
+                'aria-label': 'Pagination Wrap',
+            },
+            list: {
+                'aria-label': 'Pagination List',
+            },
+        },
+    },
+};
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: {
+            wrap: new Map([
+                ['id', 'pagination-wrap'], ['name', 'Pagination wrap'],
+            ]),
+            list: new Map([
+                ['id', 'pagination-list'], ['name', 'Pagination list'],
+            ]),
+        },
     },
 };

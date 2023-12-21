@@ -1,11 +1,11 @@
-import React, {Fragment} from "react";
+import React, {Fragment, HTMLAttributes} from "react";
 import {
     BreadcrumbClasses,
-    BreadcrumbItemFields,
+    BreadcrumbItemFields, CommonDataSet,
     HORIZONTAL_POSITIONS,
     PositionTypes, SEPARATORS, SeparatorsTypes, SIZES, SizeTypes
 } from "../../@types";
-import {ArrayRegexIncludes} from "../../../utils";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 type BreadcrumbProps = {
     items: BreadcrumbItemFields[]
@@ -14,6 +14,8 @@ type BreadcrumbProps = {
     size?: SizeTypes,
     classes?: BreadcrumbClasses;
     onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    attributes?: HTMLAttributes<HTMLDivElement>;
+    dataset?: CommonDataSet;
 };
 
 export const Breadcrumbs = (props: BreadcrumbProps) => {
@@ -21,18 +23,25 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
         items,
         position = 'centered',
         classes = {},
-        onClick
+        onClick,
+        attributes = {},
+        datasets = new Map(),
     } = {...props};
-    (['wrap', 'item'] as Array<keyof BreadcrumbClasses>).forEach((k) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-    });
+
+    // Initialize if undefined
+    (['wrap', 'item'] as Array<keyof BreadcrumbClasses>)
+        .forEach((k: keyof BreadcrumbClasses) => {
+            if (classes[k] === undefined) {
+                classes[k] = [];
+            }
+        });
+    // Set default values if not already set
     if (classes.wrap) {
         if (!classes.wrap.includes('breadcrumb')) {
             classes.wrap.push('breadcrumb');
         }
-        (['position', 'separator', 'size'] as Array<keyof BreadcrumbProps>).forEach((k: keyof BreadcrumbProps) => {
+        (['position', 'separator', 'size'] as Array<keyof BreadcrumbProps>)
+            .forEach((k: keyof BreadcrumbProps) => {
             if (classes.wrap) {
                 let pattern: string;
                 let reg: string = '';
@@ -62,22 +71,38 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
             }
         });
     }
+    if (!Object.hasOwn(attributes, 'aria-label')) {
+        attributes['aria-label'] = 'breadcrumbs';
+    }
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
+
+
     return (
         <Fragment>
-            <div className={classes.wrap?.join(' ')} aria-label="breadcrumbs">
+            <div
+                className={classes.wrap?.join(' ')}
+                {...attributes}
+                {...datasetShown}
+            >
                 <ul>
                     {
                         items && items.map((item: BreadcrumbItemFields, idx: number) => {
+                            // Initialize if undefined
+                            item.attributes = item.attributes ?? {};
+                            item.datasets = item.datasets ?? new Map();
                             const itemClasses: string[] = classes.item ?
                                 classes.item?.concat(item.classes ?? []) : (item.classes ?? []);
                             if (item.isActive) {
                                 itemClasses.push('is-active');
                             }
+                            const itemDatasetsShown = convertDataSet(item.datasets as CommonDataSet);
                             return (
                                 <Fragment key={"breadcrumb-item-" + idx}>
                                     <li
                                         className={itemClasses.join(' ')}
                                         onClick={onClick}
+                                        {...item.attributes}
+                                        {...itemDatasetsShown}
                                     >
                                         {item.label}
                                     </li>

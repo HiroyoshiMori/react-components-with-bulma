@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from "../../../../components/mui/label";
+import { Heading } from "../../../../components";
 
 export default {
     component: Heading,
@@ -76,5 +76,19 @@ export const WithSizeClasses = {
     args: {
         size: 1,
         classes: ['is-6']
+    },
+};
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {'aria-label': 'Heading'},
+    },
+};
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'heading'], ['name', 'Heading'],
+        ]),
     },
 };

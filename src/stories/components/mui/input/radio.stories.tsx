@@ -1,5 +1,5 @@
 import React from 'react';
-import {Radio} from "../../../../components/mui/input";
+import {Radio} from "../../../../components";
 
 export default {
     component: Radio,
@@ -14,7 +14,7 @@ export const Default = {
             label: 'Radio',
         }}
         currentValue="curValue"
-        onChange={(e) => {return;}}
+        onChange={() => {return;}}
         {...args}
     />,
 };
@@ -60,5 +60,37 @@ export const MR5 = {
         classes: {
             input: ['mr-5'],
         },
+    },
+};
+export const WithAttribute = {
+    ...Default,
+    args: {
+        attributes: {
+            wrap: {
+                "aria-label": "Radio",
+            },
+            label: {
+                "aria-label": "Radio Label",
+            },
+            input: {
+                "aria-label": "Radio Input",
+            },
+        },
+    },
+};
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: {
+            wrap: new Map([
+                ['id', 'radio-wrap'], ['name', 'Radio Wrap']
+            ]),
+            label: new Map([
+                ['id', 'radio-label'], ['name', 'Radio Label']
+            ]),
+            input: new Map([
+                ['id', 'radio-input'], ['name', 'Radio Input']
+            ]),
+        }
     },
 };

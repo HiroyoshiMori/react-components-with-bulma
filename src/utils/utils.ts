@@ -31,7 +31,7 @@ export function getFormattedDate(date: Date, format: string) {
     return formatted.replace(/(y+)/g, (v) =>
         date.getFullYear().toString().slice(-v.length)
     );
-};
+}
 
 /**
  * Check value in array with Regex.
@@ -48,4 +48,17 @@ export function ArrayRegexIncludes(arr: Array<string|number>, regex: RegExp) {
         }
     }
     return false;
+}
+
+/**
+ * Convert Map to Object for dataset of HTML elements which as key of 'data-*'
+ * @param dataSet
+ */
+export function convertDataSet(dataSet: Map<string, any>) {
+    let props = {} as any;
+    for (const key of dataSet.keys()) {
+        const attributeKey = `data-${key}`;
+        props[attributeKey] = dataSet.get(key);
+    }
+    return props;
 }

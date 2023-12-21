@@ -1,7 +1,6 @@
-import React, {Fragment, ReactNode} from "react";
-import { NavbarClasses, NavbarItemFields } from "../../@types";
-import {ArrayRegexIncludes} from "../../../utils";
-
+import React, {Fragment, HTMLAttributes, ReactNode} from "react";
+import {CommonDataSet, NavbarAttributes, NavbarClasses, NavbarDatasets, NavbarItemFields} from "../../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 type NavbarProps = {
     ariaLabel: string;
@@ -16,10 +15,14 @@ type NavbarProps = {
     };
     fixed?: "top" | "bottom";
     classes?: NavbarClasses;
+    attributes?: NavbarAttributes;
+    datasets?: NavbarDatasets;
 };
 
 export const Navbar = (
-    {
+    props: NavbarProps
+) => {
+    const {
         ariaLabel = '',
         menuId,
         menus = {
@@ -28,58 +31,140 @@ export const Navbar = (
         },
         brand,
         fixed,
-        classes = {}
-    }: NavbarProps
-) => {
-    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd', 'link', 'item','dropdown', 'divider'] as Array<keyof NavbarClasses>).forEach((k) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-        if (classes[k]) {
-            let checkClass;
-            switch (k) {
-                case 'wrap':
-                    checkClass = 'navbar'; break;
-                case 'brand':
-                    checkClass = 'navbar-brand'; break;
-                case 'burger':
-                    checkClass = 'navbar-burger'; break;
-                case 'menu':
-                    checkClass = 'navbar-menu'; break;
-                case 'menuStart':
-                    checkClass = 'navbar-start'; break;
-                case 'menuEnd':
-                    checkClass = 'navbar-end'; break;
-                case 'link':
-                    checkClass = 'navbar-link'; break;
-                case 'item':
-                    checkClass = 'navbar-item'; break;
-                case 'dropdown':
-                    checkClass = 'navbar-dropdown'; break;
-                case 'divider':
-                    checkClass = 'navbar-divider'; break;
+        classes = {},
+        attributes = {},
+        datasets = {},
+    } = {...props};
+
+    // Initialize if undefined
+    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarAttributes>)
+        .forEach((k: keyof NavbarAttributes) => {
+            if (attributes[k] === undefined) {
+                attributes[k] = {};
             }
-            if (checkClass && !classes[k]?.includes(checkClass)) {
-                classes[k]?.push(checkClass);
+        });
+    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarDatasets>)
+        .forEach((k: keyof NavbarDatasets) => {
+            if (datasets[k] === undefined) {
+                datasets[k] = new Map();
             }
-        }
-    });
+        });
+    // Initialize if undefined and set default values if not already set
+    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd', 'link', 'item','dropdown', 'divider'] as Array<keyof NavbarClasses>)
+        .forEach((k: keyof NavbarClasses) => {
+            if (classes[k] === undefined) {
+                classes[k] = [];
+            }
+            if (classes[k]) {
+                let checkClass;
+                switch (k) {
+                    case 'wrap':
+                        checkClass = 'navbar'; break;
+                    case 'brand':
+                        checkClass = 'navbar-brand'; break;
+                    case 'burger':
+                        checkClass = 'navbar-burger'; break;
+                    case 'menu':
+                        checkClass = 'navbar-menu'; break;
+                    case 'menuStart':
+                        checkClass = 'navbar-start'; break;
+                    case 'menuEnd':
+                        checkClass = 'navbar-end'; break;
+                    case 'link':
+                        checkClass = 'navbar-link'; break;
+                    case 'item':
+                        checkClass = 'navbar-item'; break;
+                    case 'dropdown':
+                        checkClass = 'navbar-dropdown'; break;
+                    case 'divider':
+                        checkClass = 'navbar-divider'; break;
+                }
+                if (checkClass && !classes[k]?.includes(checkClass)) {
+                    classes[k]?.push(checkClass);
+                }
+            }
+        });
+    // Set default values if not already set
     if (fixed && classes.wrap && !ArrayRegexIncludes(classes.wrap, /^is-fixed-(top|bottom)$/)) {
         classes.wrap?.push('is-fixed-' + fixed);
     }
+    if (attributes.wrap) {
+        (['aria-label', 'role'] as Array<keyof HTMLAttributes<HTMLElement>>)
+            .forEach((k: keyof HTMLAttributes<HTMLElement>) => {
+                let defaultValue;
+                switch (k) {
+                    case 'aria-label':
+                        defaultValue = ariaLabel; break;
+                    case 'role':
+                        defaultValue = 'navigation'; break;
+                }
+                if (attributes.wrap && !Object.hasOwn(attributes.wrap, k as PropertyKey)) {
+                    attributes.wrap[k] = defaultValue;
+                }
+            });
+    }
+    if (attributes.burger) {
+        (['aria-label', 'aria-expanded', 'role'] as Array<keyof HTMLAttributes<HTMLAnchorElement>>)
+            .forEach((k: keyof HTMLAttributes<HTMLAnchorElement>) => {
+            let defaultValue;
+            switch (k) {
+                case 'aria-label':
+                    defaultValue = 'menu'; break;
+                case 'aria-expanded':
+                    defaultValue = 'false'; break;
+                case 'role':
+                    defaultValue = 'button'; break;
+            }
+            if (attributes.burger && !Object.hasOwn(attributes.burger, k as PropertyKey)) {
+                attributes.burger[k] = defaultValue;
+            }
+        });
+    }
+    if (datasets.burger) {
+        if (!datasets.burger.has('target')) {
+            datasets.burger.set('target', menuId);
+        }
+    }
+    let datasetShown = {} as any;
+    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarDatasets>)
+        .forEach((k: keyof NavbarDatasets) => {
+            if (datasetShown[k] === undefined) {
+                datasetShown[k] = [];
+            }
+            if (datasets[k]) {
+                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
+            }
+        });
 
+    /**
+     * Recursive function to render items
+     * @param item Navbar Items
+     * @param hierarchy # of hierarchy
+     */
     const renderItem = (item: NavbarItemFields, hierarchy: number = 0) => {
+        item.attributes = item.attributes ?? {};
+        item.datasets = item.datasets ?? new Map();
         const itemClasses = classes.item ?
             classes.item.concat(item.classes ?? []) : (item.classes ?? []);
+        const itemDataShown = convertDataSet(item.datasets);
         if (item.isDivider) {
+            // Render divider if isDivider is true
             return (
-                <hr className={classes.divider?.join(' ')}/>
+                <hr className={classes.divider?.join(' ')} {...item.attributes} />
             );
         } else if (hierarchy < 1 && item.children && item.children.length > 0) {
+            // Render item and call this function to render children
             return (
                 <Fragment>
-                    <div className={itemClasses.concat(['has-dropdown', 'is-hoverable']).join(' ')}>
-                        <a className={classes.link?.join(' ')} href={item.href} onClick={item.onClick}>
+                    <div
+                        className={itemClasses.concat(['has-dropdown', 'is-hoverable']).join(' ')}
+                    >
+                        <a
+                            className={classes.link?.join(' ')}
+                            href={item.href} onClick={item.onClick}
+                            {...item.attributes}
+                            {...itemDataShown}
+                        >
                             {item.label}
                         </a>
                         <div className={classes?.dropdown?.join(' ')}>
@@ -95,9 +180,14 @@ export const Navbar = (
                 </Fragment>
             )
         } else {
+            // Render item
             return (
                 <Fragment>
-                    <a className={itemClasses.join(' ')} href={item.href} onClick={item.onClick}>
+                    <a
+                        className={itemClasses.join(' ')} href={item.href} onClick={item.onClick}
+                        {...item.attributes}
+                        {...itemDataShown}
+                    >
                         {item.label}
                     </a>
                 </Fragment>
@@ -107,11 +197,19 @@ export const Navbar = (
 
     return (
         <Fragment>
-            <nav className={classes.wrap?.join(' ')} role="navigation" aria-label={ariaLabel}>
+            <nav
+                className={classes.wrap?.join(' ')}
+                {...attributes.wrap}
+                {...datasetShown.wrap}
+            >
                 {
                     brand && (
                         <Fragment>
-                            <div className={classes.brand?.join(' ')}>
+                            <div
+                                className={classes.brand?.join(' ')}
+                                {...attributes.brand}
+                                {...datasetShown.brand}
+                            >
                                 <a className={classes.item?.join(' ')} href={brand?.href}>
                                     {brand.item}
                                 </a>
@@ -119,11 +217,9 @@ export const Navbar = (
                                     ((menus.start && menus.start.length > 0) || (menus.end && menus.end.length > 0)) && (
                                         <Fragment>
                                             <a
-                                                role="button"
                                                 className={classes.burger?.join(' ')}
-                                                aria-label="menu"
-                                                aria-expanded="false"
-                                                data-target={menuId}
+                                                {...attributes.burger}
+                                                {...datasetShown.burger}
                                             >
                                                 <span aria-hidden="true"></span>
                                                 <span aria-hidden="true"></span>
@@ -136,11 +232,20 @@ export const Navbar = (
                         </Fragment>
                     )
                 }
-                <div id={menuId} className={classes.menu?.join(' ')}>
+                <div
+                    id={menuId}
+                    className={classes.menu?.join(' ')}
+                    {...attributes.menu}
+                    {...datasetShown.menu}
+                >
                     {
                         (menus.start && menus.start.length > 0) && (
                             <Fragment>
-                                <div className={classes?.menuStart?.join(' ')}>
+                                <div
+                                    className={classes?.menuStart?.join(' ')}
+                                    {...attributes.menuStart}
+                                    {...datasetShown.menuStart}
+                                >
                                     {
                                         menus.start.map((item: NavbarItemFields, idx: number) => (
                                             <Fragment key={"navbar-item-" + idx}>
@@ -155,7 +260,11 @@ export const Navbar = (
                     {
                         (menus.end && menus.end.length > 0) && (
                             <Fragment>
-                                <div className={classes.menuEnd?.join(' ')}>
+                                <div
+                                    className={classes.menuEnd?.join(' ')}
+                                    {...attributes.menuEnd}
+                                    {...datasetShown.menuEnd}
+                                >
                                     {
                                         menus.end.map((item: NavbarItemFields, idx: number) => (
                                             <Fragment key={"menu-item-" + idx}>

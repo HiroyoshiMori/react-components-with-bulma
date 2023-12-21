@@ -1,6 +1,6 @@
 {
   "name": "@hiroyoshi-mori/react-components-bulma",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Hiroyoshi Mori",
     "email": "mori@scriptlab.tokyo"
@@ -9,7 +9,6 @@
     "package.json",
     "index.tsx",
     "src",
-    "storybook-static",
     "README.md",
     "LICENSE"
   ],

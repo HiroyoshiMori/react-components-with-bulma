@@ -1,6 +1,6 @@
-import React, {Fragment, ReactNode} from "react";
-import {COLOR_TYPES, ColorTypes, CommonStyleCLasses, SIZES, SizeTypes} from "../../@types";
-import {ArrayRegexIncludes} from "../../../utils";
+import React, {Fragment, ReactNode, ButtonHTMLAttributes} from "react";
+import {COLOR_TYPES, ColorTypes, CommonDataSet, CommonStyleClasses, SIZES, SizeTypes} from "../../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 
@@ -13,7 +13,9 @@ export type ButtonProps = {
     disabled?: boolean;
     awesomeIcon?: IconDefinition; //icon({name: 'check'}),
     iconPosition?: "left" | "right";
-} & CommonStyleCLasses;
+    attributes?: ButtonHTMLAttributes<HTMLButtonElement>;
+    datasets?: CommonDataSet;
+} & CommonStyleClasses;
 
 export const Button = (props: ButtonProps) => {
     const {
@@ -23,12 +25,11 @@ export const Button = (props: ButtonProps) => {
         colorLight = false,
         disabled = false,
         awesomeIcon,
-        iconPosition = 'left'
+        iconPosition = 'left',
+        attributes= {},
+        datasets = new Map(),
     } = {...props};
-    if (classes.length === 0) {
-        classes.push('button');
-        classes.push('is-responsive');
-    }
+    // Initialize if undefined
     (["type", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {
         if (props[v]) {
             let pattern: string | null = null;
@@ -46,15 +47,26 @@ export const Button = (props: ButtonProps) => {
             }
         }
     });
+    // Set default values if not already set
+    if (!classes.includes('button')) {
+        classes.push('button');
+    }
+    if (!classes.includes('is-responsive')) {
+        classes.push('is-responsive');
+    }
     if (colorLight && !classes.includes('is-light')) {
         classes.push('is-light');
     }
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
+
     return (
         <Fragment>
             <button
                 className={classes.join(' ')}
                 onClick={onClick}
                 disabled={disabled}
+                {...attributes}
+                {...datasetShown}
             >
                 {
                     awesomeIcon && iconPosition === 'left' && (

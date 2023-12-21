@@ -1,5 +1,5 @@
 import React from "react";
-import {Breadcrumbs} from "../../../../components/layout/breadcrumb";
+import {Breadcrumbs} from "../../../../components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
@@ -89,5 +89,43 @@ export const WithIcons = {
             {label: <a><span className="icon is-small"><FontAwesomeIcon icon={icon({name: 'puzzle-piece'})}/></span><span>Components</span></a>},
             {label: <a><span className="icon is-small"><FontAwesomeIcon icon={icon({name: 'file'})}/></span><span>Breadcrumb</span></a>},
         ]
+    },
+};
+export const WithAttributes = {
+    ...Default,
+    args: {
+        items: [
+            {label: 'AAA', attributes: {'aria-label': 'Breadcrumb item'}},
+            {label: 'BBB', attributes: {'aria-label': 'Breadcrumb item'}},
+            {label: 'CCC', attributes: {'aria-label': 'Breadcrumb item'}},
+            {label: 'DDD', attributes: {'aria-label': 'Breadcrumb item'}},
+            {label: 'EEE', attributes: {'aria-label': 'Breadcrumb item'}},
+            {label: 'FFF', attributes: {'aria-label': 'Breadcrumb item'}},
+        ],
+        attributes: {
+            'aria-label': 'Breadcrumbs',
+        },
+    },
+};
+export const WithDatasets = {
+    ...Default,
+    args: {
+        items: [
+            {label: 'AAA', datasets: new Map([
+                ['id', 'data-id1'], ['name', 'data-name1'],
+            ])},
+            {label: 'BBB', datasets: new Map([
+                    ['id', 'data-id2'], ['name', 'data-name2'],
+                ])},
+            {label: 'CCC', datasets: new Map([
+                    ['id', 'data-id3'], ['name', 'data-name3'],
+                ])},
+            {label: 'DDD', datasets: new Map([
+                    ['id', 'data-id4'], ['name', 'data-name4'],
+                ])},
+        ],
+        datasets: new Map([
+            ['id', 'data-id'], ['name', 'data-name'],
+        ]),
     },
 };

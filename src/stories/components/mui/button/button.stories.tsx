@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from "../../../../components/mui/button";
+import { Button } from "../../../../components";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default {
@@ -145,5 +145,22 @@ export const WithIconRight = {
     args: {
         awesomeIcon: icon({name: 'check', style: 'solid'}),
         iconPosition: 'right',
+    },
+};
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {
+            "aria-haspop": true,
+            "aria-controls": "dropdown-menu",
+        },
+    },
+};
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'button'], ['name', 'Button']
+        ]),
     },
 };

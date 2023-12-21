@@ -1,6 +1,8 @@
 import React, {Fragment} from "react";
 import {sprintf} from "sprintf-js";
-import { Dialog } from "./index";
+import {Dialog} from "./index";
+import {CommonDataSet, ProgressBarAttributes, ProgressBarDatasets} from "../../@types";
+import {convertDataSet} from "../../../utils";
 
 export type ProgressBarProps = {
     isActive: boolean;
@@ -8,16 +10,40 @@ export type ProgressBarProps = {
     value: number;
     max: number;
     onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    attributes?: ProgressBarAttributes;
+    datasets?: ProgressBarDatasets;
 };
 export const ProgressBar = (
-    {
+    props: ProgressBarProps
+) => {
+    const {
         isActive,
         title,
         value,
         max,
-        onClose
-    }: ProgressBarProps
-) => {
+        onClose,
+        attributes = {},
+        datasets = {},
+    } = {...props};
+
+    // Set default values if not already set
+    (['dialog', 'progressbar'] as Array<keyof ProgressBarAttributes>)
+        .forEach((k: keyof ProgressBarAttributes) => {
+        if (attributes[k] === undefined) {
+            attributes[k] = {};
+        }
+    });
+    (['dialog', 'progressbar'] as Array<keyof ProgressBarDatasets>)
+        .forEach((k: keyof ProgressBarDatasets) => {
+        if (datasets[k] === undefined) {
+            switch (k) {
+                case 'dialog': datasets[k] = {}; break;
+                case 'progressbar': datasets[k] = new Map(); break;
+            }
+        }
+    });
+    const datasetsShown = convertDataSet(datasets.progressbar as CommonDataSet);
+
     return (
         <Fragment>
             <Dialog
@@ -36,11 +62,15 @@ export const ProgressBar = (
                         wrap: ['is-justify-content-flex-end', 'p-3'],
                     },
                 }}
+                attributes={attributes?.dialog}
+                datasets={datasets.dialog}
             >
                 <progress
                     className="progress is-info"
                     value={value}
                     max={max}
+                    {...attributes?.progressbar}
+                    {...datasetsShown}
                 ></progress>
                 <span>
                 {
@@ -51,32 +81,6 @@ export const ProgressBar = (
                 }% ({value}/{max})
                 </span>
             </Dialog>
-            {/*<div*/}
-            {/*    className={"modal" + (isActive ? " is-active" : "")}*/}
-            {/*>*/}
-            {/*    <div className="modal-background"></div>*/}
-            {/*    <div className="modal-card">*/}
-            {/*        <header className="modal-card-head">*/}
-            {/*            <p className="modal-card-title is-size-6">*/}
-            {/*                {title}*/}
-            {/*            </p>*/}
-            {/*            <button className="delete" aria-label="close" onClick={onClose}></button>*/}
-            {/*        </header>*/}
-            {/*        <section className="modal-card-body p-5">*/}
-            {/*            <progress*/}
-            {/*                className="progress is-info"*/}
-            {/*                value={value}*/}
-            {/*                max={max}*/}
-            {/*            ></progress>*/}
-            {/*            {*/}
-            {/*                sprintf(*/}
-            {/*                    "%d",*/}
-            {/*                    (max > 0) ? value/max*100 : 0*/}
-            {/*                )*/}
-            {/*            }% ({value}/{max})*/}
-            {/*        </section>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </Fragment>
     )
 };
