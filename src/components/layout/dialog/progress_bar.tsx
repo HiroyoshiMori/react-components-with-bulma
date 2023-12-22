@@ -1,18 +1,14 @@
 import React, {Fragment} from "react";
 import {sprintf} from "sprintf-js";
+import {
+    CommonDataSet,
+    ProgressBarAttributes,
+    ProgressBarDatasets,
+    ProgressBarProps,
+} from "../../@types";
 import {Dialog} from "./index";
-import {CommonDataSet, ProgressBarAttributes, ProgressBarDatasets} from "../../@types";
 import {convertDataSet} from "../../../utils";
 
-export type ProgressBarProps = {
-    isActive: boolean;
-    title: string;
-    value: number;
-    max: number;
-    onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    attributes?: ProgressBarAttributes;
-    datasets?: ProgressBarDatasets;
-};
 export const ProgressBar = (
     props: ProgressBarProps
 ) => {

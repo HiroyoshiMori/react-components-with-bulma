@@ -1,23 +1,13 @@
-import React, {ChangeEvent, Fragment} from "react";
+import React, {Fragment} from "react";
 import {
     CommonDataSet,
     RadioAttributes,
     RadioClasses,
     RadioDatasets,
-    RadioGroupFields
+    RadioProps,
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {Label} from "../label";
-
-export type RadioProps = {
-    field: { name: string } & RadioGroupFields;
-    currentValue: string | number;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    prefix?: string;
-    classes?: RadioClasses;
-    attributes?: RadioAttributes;
-    datasets?: RadioDatasets;
-};
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 export const Radio = (props: RadioProps) => {
     const {

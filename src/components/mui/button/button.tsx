@@ -1,21 +1,12 @@
-import React, {Fragment, ReactNode, ButtonHTMLAttributes} from "react";
-import {COLOR_TYPES, ColorTypes, CommonDataSet, CommonStyleClasses, SIZES, SizeTypes} from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import React, {Fragment} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconDefinition} from "@fortawesome/fontawesome-common-types";
-
-export type ButtonProps = {
-    label: ReactNode;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    type?: ColorTypes;
-    colorLight?: boolean;
-    size?: SizeTypes;
-    disabled?: boolean;
-    awesomeIcon?: IconDefinition; //icon({name: 'check'}),
-    iconPosition?: "left" | "right";
-    attributes?: ButtonHTMLAttributes<HTMLButtonElement>;
-    datasets?: CommonDataSet;
-} & CommonStyleClasses;
+import {
+    CommonDataSet,
+    COLOR_TYPES,
+    SIZES,
+    ButtonProps,
+} from "../../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 export const Button = (props: ButtonProps) => {
     const {
@@ -29,6 +20,7 @@ export const Button = (props: ButtonProps) => {
         attributes= {},
         datasets = new Map(),
     } = {...props};
+
     // Initialize if undefined
     (["type", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {
         if (props[v]) {

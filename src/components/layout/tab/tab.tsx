@@ -1,14 +1,12 @@
-import React, {Fragment, HTMLAttributes} from "react";
-import {CommonDataSet, HORIZONTAL_POSITIONS, PositionTypes, TabsClasses, TabsItemFields} from "../../@types";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    HORIZONTAL_POSITIONS,
+    TabsClasses,
+    TabsItemFields,
+    TabsProps,
+} from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-
-type TabsProps = {
-    items: TabsItemFields[],
-    position?: PositionTypes,
-    classes?: TabsClasses;
-    attributes?: HTMLAttributes<HTMLDivElement>;
-    datasets?: CommonDataSet;
-};
 
 export const Tab = (
     props: TabsProps

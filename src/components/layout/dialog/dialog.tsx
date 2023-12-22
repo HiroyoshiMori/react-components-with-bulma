@@ -1,20 +1,14 @@
-import React, {Fragment, ReactNode} from "react";
-import {CommonDataSet, DialogAttributes, DialogClasses, DialogDatasets} from "../../@types";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    DialogAttributes,
+    DialogBoxProps,
+    DialogClasses,
+    DialogDatasets,
+} from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {Header} from "./header";
 import {Footer} from "./footer";
-
-type DialogBoxProps = {
-    isActive: boolean;
-    title: ReactNode;
-    onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    noFooter?: boolean;
-    buttonLabel?: ReactNode;
-    classes?: DialogClasses;
-    attributes?: DialogAttributes;
-    datasets?: DialogDatasets;
-    children?: ReactNode;
-};
 
 export const Dialog = (props: DialogBoxProps) => {
     const {

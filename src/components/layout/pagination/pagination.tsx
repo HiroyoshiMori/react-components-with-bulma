@@ -1,32 +1,16 @@
 import React, {Fragment} from "react";
+import {sprintf} from "sprintf-js";
 import {
     CommonDataSet,
-    HORIZONTAL_POSITIONS, PaginationAttributes,
-    PaginationClasses, PaginationDatasets, PaginationLabels,
-    PositionTypes,
+    HORIZONTAL_POSITIONS,
     SIZES,
-    SizeTypes,
+    PaginationAttributes,
+    PaginationClasses,
+    PaginationDatasets,
+    PaginationLabels,
+    PaginationProps,
 } from "../../@types";
-import {sprintf} from "sprintf-js";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-
-type PaginationProps = {
-    itemTotal: number;
-    current?: number;
-    labels?: PaginationLabels;
-    style?: "rounded";
-    position?: PositionTypes;
-    size?: SizeTypes,
-    classes?: PaginationClasses;
-    attributes?: PaginationAttributes;
-    datasets?: PaginationDatasets;
-} & ({
-    link: string;
-    onClick?: (e: React.MouseEvent<HTMLAnchorElement>, page: number) => void;
-} | {
-    link?: string;
-    onClick: (e: React.MouseEvent<HTMLAnchorElement>, page: number) => void;
-});
 
 export const Pagination = (
     props: PaginationProps

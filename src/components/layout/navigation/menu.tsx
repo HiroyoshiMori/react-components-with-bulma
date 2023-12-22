@@ -1,13 +1,14 @@
-import React, {Fragment, HTMLAttributes} from "react";
-import {CommonDataSet, MenuAttributes, MenuClasses, MenuDatasets, MenuFields, MenuItemFields} from "../../@types";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    MenuAttributes,
+    MenuClasses,
+    MenuDatasets,
+    MenuFields,
+    MenuItemFields,
+    MenuProps,
+} from "../../@types";
 import {convertDataSet} from "../../../utils";
-
-export type MenuProps = {
-    menus: MenuFields[];
-    classes?: MenuClasses;
-    attributes?: HTMLAttributes<HTMLAreaElement>;
-    datasets?: CommonDataSet;
-};
 
 export const Menu = (
     props: MenuProps

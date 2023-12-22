@@ -1,24 +1,15 @@
-import {Fragment, HTMLAttributes} from "react";
-import {ListColumnFields, ListClasses, ListAttributes, ListDatasets, CommonDataSet} from '../../@types';
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    ListColumnFields,
+    ListClasses,
+    ListAttributes,
+    ListDatasets,
+    ListProps,
+} from '../../@types';
 import {ListHeader} from "./header";
 import {ListDetail} from "./detail";
-import React from "react";
 import {convertDataSet} from "../../../utils";
-
-type ListProps = {
-    items: {
-        data: {
-            columns: ListColumnFields[],
-            attributes?: HTMLAttributes<HTMLDivElement>,
-            datasets?: CommonDataSet,
-        }[],
-        type?: string,
-    };
-    headers?: ListColumnFields[];
-    classes?: ListClasses;
-    attributes?: ListAttributes;
-    datasets?: ListDatasets;
-};
 
 export const List = (
     props: ListProps

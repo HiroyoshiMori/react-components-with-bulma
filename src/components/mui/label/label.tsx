@@ -1,10 +1,9 @@
-import React, {Fragment, ReactNode} from "react";
-import {CommonDataSet, LabelFields} from "../../@types";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    LabelProps,
+} from "../../@types";
 import {convertDataSet} from "../../../utils";
-
-type LabelProps =
-    LabelFields & Partial<{children: ReactNode}> |
-    Partial<LabelFields> & {children: ReactNode};
 
 export const Label = (props: LabelProps) => {
     const {

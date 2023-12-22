@@ -1,16 +1,14 @@
-import {Fragment, HTMLAttributes} from "react";
-import {CommonDataSet, ListColumnFields, ListRowClasses} from "../../@types";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    ListHeaderProps,
+    ListColumnFields,
+    ListRowClasses,
+} from "../../@types";
 import {convertDataSet} from "../../../utils";
 
-type HeaderProps = {
-    items: ListColumnFields[];
-    classes?: ListRowClasses;
-    attributes?: HTMLAttributes<HTMLDivElement>;
-    datasets?: CommonDataSet;
-};
-
 export const ListHeader = (
-    props: HeaderProps
+    props: ListHeaderProps
 ) => {
     const {
         items,
@@ -20,11 +18,12 @@ export const ListHeader = (
     } = {...props};
 
     // Initialize if undefined
-    (['wrap', 'column'] as Array<keyof ListRowClasses>).forEach((k) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-    });
+    (['wrap', 'column'] as Array<keyof ListRowClasses>)
+        .forEach((k: keyof ListRowClasses) => {
+            if (classes[k] === undefined) {
+                classes[k] = [];
+            }
+        });
     // Set default values if not already set
     if (classes.wrap && !classes.wrap.includes('columns')) {
         classes.wrap.push('columns');

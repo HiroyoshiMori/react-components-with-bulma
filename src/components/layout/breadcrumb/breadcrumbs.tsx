@@ -1,22 +1,14 @@
-import React, {Fragment, HTMLAttributes} from "react";
+import React, {Fragment} from "react";
 import {
-    BreadcrumbClasses,
-    BreadcrumbItemFields, CommonDataSet,
     HORIZONTAL_POSITIONS,
-    PositionTypes, SEPARATORS, SeparatorsTypes, SIZES, SizeTypes
+    SEPARATORS,
+    SIZES,
+    CommonDataSet,
+    BreadcrumbClasses,
+    BreadcrumbItemFields,
+    BreadcrumbProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-
-type BreadcrumbProps = {
-    items: BreadcrumbItemFields[]
-    position?: PositionTypes,
-    separator?: SeparatorsTypes,
-    size?: SizeTypes,
-    classes?: BreadcrumbClasses;
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-    attributes?: HTMLAttributes<HTMLDivElement>;
-    dataset?: CommonDataSet;
-};
 
 export const Breadcrumbs = (props: BreadcrumbProps) => {
     const {

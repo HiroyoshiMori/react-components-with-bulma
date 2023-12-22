@@ -1,28 +1,12 @@
-import React, {ChangeEvent, Fragment, InputHTMLAttributes} from "react";
-
+import React, {Fragment} from "react";
 import {
-    COLOR_TYPES,
-    ColorTypes,
     CommonDataSet,
-    CommonStyleClasses,
+    COLOR_TYPES,
     SIZES,
-    SizeTypes,
     STATES,
-    StateTypes
+    InputProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-
-export type InputProps = {
-    fieldName: string;
-    value: string|number;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    placeholder?: string;
-    colorType?: ColorTypes;
-    state?: StateTypes;
-    size?: SizeTypes;
-    attributes?: InputHTMLAttributes<HTMLInputElement>;
-    datasets?: CommonDataSet;
-} & CommonStyleClasses;
 
 export const TextBox = (props: InputProps) => {
     const {

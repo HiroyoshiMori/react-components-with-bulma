@@ -1,10 +1,9 @@
-import React, {Fragment, ReactNode} from "react";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    HeadingProps,
+} from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-import {CommonDataSet, HeadingFields} from "../../@types";
-
-type HeadingProps =
-    HeadingFields & Partial<{children: ReactNode}> |
-    Partial<HeadingFields> & {children: ReactNode};
 
 export const Heading = (props: HeadingProps) => {
     const {

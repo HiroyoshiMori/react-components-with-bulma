@@ -1,22 +1,15 @@
-import React, {Fragment, ReactNode} from "react";
+import React, {Fragment} from "react";
 import {
     CommonDataSet,
     DialogHeaderAttributes,
     DialogHeaderClasses,
-    DialogHeaderDatasets
+    DialogHeaderDatasets,
+    DialogHeaderProps,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {Button} from "../../mui";
 
-export type HeaderProps = {
-    title: ReactNode;
-    onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    classes?: DialogHeaderClasses;
-    attributes?: DialogHeaderAttributes;
-    datasets?: DialogHeaderDatasets;
-};
-
-export const Header = (props: HeaderProps) => {
+export const Header = (props: DialogHeaderProps) => {
     const {
         title,
         onClose,

@@ -1,23 +1,13 @@
-import React, {Fragment, HTMLAttributes, ReactNode} from "react";
-import {CommonDataSet, NavbarAttributes, NavbarClasses, NavbarDatasets, NavbarItemFields} from "../../@types";
+import React, {Fragment, HTMLAttributes} from "react";
+import {
+    CommonDataSet,
+    NavbarAttributes,
+    NavbarClasses,
+    NavbarDatasets,
+    NavbarItemFields,
+    NavbarProps,
+} from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-
-type NavbarProps = {
-    ariaLabel: string;
-    menuId: string;
-    menus: {
-        start?: NavbarItemFields[],
-        end?: NavbarItemFields[],
-    };
-    brand?: {
-        item: ReactNode,
-        href?: string,
-    };
-    fixed?: "top" | "bottom";
-    classes?: NavbarClasses;
-    attributes?: NavbarAttributes;
-    datasets?: NavbarDatasets;
-};
 
 export const Navbar = (
     props: NavbarProps

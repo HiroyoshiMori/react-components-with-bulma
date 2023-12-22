@@ -1,22 +1,15 @@
-import React, {Fragment, ReactNode} from "react";
+import React, {Fragment} from "react";
 import {
     CommonDataSet,
     DialogFooterAttributes,
     DialogFooterClasses,
     DialogFooterDatasets,
+    DialogFooterProps,
 } from "../../@types";
 import {Button} from "../../mui";
 import {convertDataSet} from "../../../utils";
 
-export type FooterProps = {
-    buttonLabel: ReactNode;
-    onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    classes?: DialogFooterClasses;
-    attributes?: DialogFooterAttributes;
-    datasets?: DialogFooterDatasets;
-};
-
-export const Footer = (props: FooterProps) => {
+export const Footer = (props: DialogFooterProps) => {
     const {
         buttonLabel,
         onClose,

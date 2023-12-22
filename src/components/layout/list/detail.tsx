@@ -1,10 +1,10 @@
-import {Fragment} from "react";
-import {CommonDataSet, CommonStyleClasses, ListColumnFields} from "../../@types";
+import React, {Fragment} from "react";
+import {
+    CommonDataSet,
+    ListColumnFields,
+    ListDetailProps,
+} from "../../@types";
 import {convertDataSet} from "../../../utils";
-
-type ListDetailProps = {
-    item: ListColumnFields[];
-} & CommonStyleClasses;
 
 export const ListDetail = (
     props: ListDetailProps

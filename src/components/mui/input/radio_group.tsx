@@ -1,25 +1,15 @@
-import React, {ChangeEvent, Fragment, HTMLAttributes} from "react";
+import React, {Fragment} from "react";
 import {
     CommonDataSet,
     RadioAttributes,
     RadioClasses,
     RadioDatasets,
     RadioGroupClasses,
-    RadioGroupFields
+    RadioGroupFields,
+    RadioGroupProps
 } from "../../@types";
 import {Radio} from "./radio";
 import {convertDataSet} from "../../../utils";
-
-export type RadioGroupProps = {
-    fieldName: string;
-    fields: RadioGroupFields[];
-    currentValue: string|number;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    prefix?: string;
-    classes?: RadioGroupClasses,
-    attributes?: HTMLAttributes<HTMLDivElement>;
-    datasets?: CommonDataSet;
-};
 
 export const RadioGroup = (props: RadioGroupProps) => {
     const {
