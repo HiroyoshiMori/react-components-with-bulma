@@ -45,7 +45,7 @@ export const Footer = (props: DialogFooterProps) => {
     (['wrap', 'button'] as Array<keyof DialogFooterDatasets>)
         .forEach((k: keyof DialogFooterDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);

@@ -53,7 +53,7 @@ export const Header = (props: DialogHeaderProps) => {
     (['wrap', 'title', 'button'] as Array<keyof DialogHeaderDatasets>)
         .forEach((k: keyof DialogHeaderDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);

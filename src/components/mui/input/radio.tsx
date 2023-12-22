@@ -53,7 +53,7 @@ export const Radio = (props: RadioProps) => {
     (['wrap', 'input'] as Array<keyof RadioDatasets>)
         .forEach((k: keyof RadioDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);

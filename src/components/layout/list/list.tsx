@@ -55,7 +55,7 @@ export const List = (
     (['wrap', 'header'] as Array<keyof ListDatasets>)
         .forEach((k: keyof ListDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);

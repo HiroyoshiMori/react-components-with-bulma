@@ -38,7 +38,7 @@ export const ProgressBar = (
             }
         }
     });
-    const datasetsShown = convertDataSet(datasets.progressbar as CommonDataSet);
+    const datasetShown = convertDataSet(datasets.progressbar as CommonDataSet);
 
     return (
         <Fragment>
@@ -66,7 +66,7 @@ export const ProgressBar = (
                     value={value}
                     max={max}
                     {...attributes?.progressbar}
-                    {...datasetsShown}
+                    {...datasetShown}
                 ></progress>
                 <span>
                 {

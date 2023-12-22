@@ -89,7 +89,7 @@ export const Dialog = (props: DialogBoxProps) => {
     (['wrap', 'card', 'content'] as Array<keyof DialogDatasets>)
         .forEach((k: keyof DialogDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);

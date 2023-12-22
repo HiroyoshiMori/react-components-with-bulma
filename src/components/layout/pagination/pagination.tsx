@@ -125,7 +125,7 @@ export const Pagination = (
     (['wrap', 'list'] as Array<keyof PaginationDatasets>)
         .forEach((k: keyof PaginationDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);

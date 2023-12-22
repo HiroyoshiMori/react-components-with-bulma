@@ -15,6 +15,7 @@ export type ButtonProps = {
     colorLight?: boolean;
     size?: SizeTypes;
     disabled?: boolean;
+    noDefaultClasses?: boolean;
     awesomeIcon?: IconDefinition; //icon({name: 'check'}),
     iconPosition?: "left" | "right";
     attributes?: ButtonHTMLAttributes<HTMLButtonElement>;

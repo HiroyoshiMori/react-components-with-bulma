@@ -15,6 +15,7 @@ export const Button = (props: ButtonProps) => {
         classes = [],
         colorLight = false,
         disabled = false,
+        noDefaultClasses = false,
         awesomeIcon,
         iconPosition = 'left',
         attributes= {},
@@ -40,11 +41,13 @@ export const Button = (props: ButtonProps) => {
         }
     });
     // Set default values if not already set
-    if (!classes.includes('button')) {
-        classes.push('button');
-    }
-    if (!classes.includes('is-responsive')) {
-        classes.push('is-responsive');
+    if (!noDefaultClasses) {
+        if (!classes.includes('button')) {
+            classes.push('button');
+        }
+        if (!classes.includes('is-responsive')) {
+            classes.push('is-responsive');
+        }
     }
     if (colorLight && !classes.includes('is-light')) {
         classes.push('is-light');

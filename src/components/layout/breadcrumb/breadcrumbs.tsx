@@ -87,14 +87,14 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
                             if (item.isActive) {
                                 itemClasses.push('is-active');
                             }
-                            const itemDatasetsShown = convertDataSet(item.datasets as CommonDataSet);
+                            const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);
                             return (
                                 <Fragment key={"breadcrumb-item-" + idx}>
                                     <li
                                         className={itemClasses.join(' ')}
                                         onClick={onClick}
                                         {...item.attributes}
-                                        {...itemDatasetsShown}
+                                        {...itemDatasetShown}
                                     >
                                         {item.label}
                                     </li>

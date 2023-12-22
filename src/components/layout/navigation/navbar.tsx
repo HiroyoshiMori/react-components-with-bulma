@@ -119,7 +119,7 @@ export const Navbar = (
     (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarDatasets>)
         .forEach((k: keyof NavbarDatasets) => {
             if (datasetShown[k] === undefined) {
-                datasetShown[k] = [];
+                datasetShown[k] = {};
             }
             if (datasets[k]) {
                 datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
@@ -183,7 +183,7 @@ export const Navbar = (
                 </Fragment>
             );
         }
-    }
+    };
 
     return (
         <Fragment>

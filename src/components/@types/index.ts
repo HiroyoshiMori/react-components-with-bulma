@@ -46,9 +46,11 @@ export * from './label.d';
 export * from './list.d';
 export * from './menu.d';
 export * from './navbar.d';
+export * from './notifications.d';
 export * from './pagination.d';
 export * from './progressbar.d';
 export * from './radio.d';
+export * from './table.d';
 export * from './tabs.d';
 export * from './text_box.d';
 
