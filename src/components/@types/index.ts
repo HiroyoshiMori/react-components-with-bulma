@@ -37,18 +37,18 @@ export type CommonStyleClasses = {
 };
 export type CommonDataSet = Map<string, any>;
 
-export * from './breadcrumb';
-export * from './button';
-export * from './dialog';
-export * from './dropdown';
-export * from './heading';
-export * from './label';
-export * from './list';
-export * from './menu';
-export * from './navbar';
-export * from './pagination';
-export * from './progressbar';
-export * from './radio';
-export * from './tabs';
-export * from './text_box';
+export * from './breadcrumb.d';
+export * from './button.d';
+export * from './dialog.d';
+export * from './dropdown.d';
+export * from './heading.d';
+export * from './label.d';
+export * from './list.d';
+export * from './menu.d';
+export * from './navbar.d';
+export * from './pagination.d';
+export * from './progressbar.d';
+export * from './radio.d';
+export * from './tabs.d';
+export * from './text_box.d';
 
