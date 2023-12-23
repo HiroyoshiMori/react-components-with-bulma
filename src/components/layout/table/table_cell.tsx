@@ -5,8 +5,8 @@ import {convertDataSet} from "../../../utils";
 export const TableCell = (props: TableCellProps) => {
     const {
         value,
-        colSpan = 1,
-        rowSpan = 1,
+        colSpan,
+        rowSpan,
         isHeaderCell = false,
         classes = [],
         attributes = {},

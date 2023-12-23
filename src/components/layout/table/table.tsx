@@ -9,18 +9,22 @@ import {
     TableHeaderClasses,
     TableHeaderProps,
     TableFooterClasses,
-    TableFooterProps,
+    TableFooterProps, CaptionProps, ColGroupProps,
 } from "../../@types";
 import {TableHeader} from "./table_header";
 import {TableFooter} from "./table_footer";
 import {TableBody} from "./table_body";
 import {convertDataSet} from "../../../utils";
+import {Caption} from "./caption";
+import {ColGroup} from "./col_group";
 
 export const Table = (props: TableProps) => {
     const {
         body,
         headers,
         footers,
+        caption,
+        colgroup,
         isBordered = false,
         isStriped = false,
         isNarrow = false,
@@ -89,9 +93,15 @@ export const Table = (props: TableProps) => {
                     <div
                         className={classes.container?.join(' ')}
                     >
-                        {renderTable(body, headers, footers, classes, attributes, datasetShown)}
+                        {renderTable(
+                            body, headers, footers, caption, colgroup,
+                            classes, attributes, datasetShown
+                        )}
                     </div>
-                ) : (renderTable(body, headers, footers, classes, attributes, datasetShown))
+                ) : (renderTable(
+                    body, headers, footers, caption, colgroup,
+                    classes, attributes, datasetShown
+                ))
             }
         </Fragment>
     );
@@ -103,12 +113,15 @@ export const Table = (props: TableProps) => {
  * @param body Data for table body
  * @param headers Data for table header
  * @param footers Data for table footer
+ * @param caption Data for caption
+ * @param colgroup Data for colgroup
  * @param classes classNames for table
  * @param attributes attributes for table
  * @param datasetShown datasets for table
  */
 function renderTable(
     body: TableBodyProps, headers: TableHeaderProps | undefined, footers: TableFooterProps | undefined,
+    caption: CaptionProps | undefined, colgroup: ColGroupProps | undefined,
     classes: TableClasses, attributes: TableAttributes, datasetShown: any
 ) {
     return (
@@ -118,6 +131,8 @@ function renderTable(
                 {...attributes.wrap}
                 {...datasetShown.wrap}
             >
+                { caption && (<Caption {...caption} />) }
+                { colgroup && (<ColGroup {...colgroup} />) }
                 {
                     // Render Table Header
                     headers && (
