@@ -39,6 +39,7 @@ export type CommonDataSet = Map<string, any>;
 
 export * from './breadcrumb.d';
 export * from './button.d';
+export * from './card.d';
 export * from './dialog.d';
 export * from './dropdown.d';
 export * from './heading.d';
@@ -52,5 +53,6 @@ export * from './progressbar.d';
 export * from './radio.d';
 export * from './table.d';
 export * from './tabs.d';
+export * from './tag.d';
 export * from './text_box.d';
 

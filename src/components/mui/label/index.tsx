@@ -1,2 +1,3 @@
-export * from "./label";
-export * from "./heading";
+export * from './heading';
+export * from './label';
+export * from './tag';
