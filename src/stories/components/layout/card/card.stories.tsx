@@ -1,6 +1,5 @@
 import {Card} from "../../../../components/layout/card";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
-import {Fragment, ReactNode} from "react";
 
 export default {
     component: Card,

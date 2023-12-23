@@ -1,11 +1,4 @@
 // List of horizontal positions
-import React, {
-    AnchorHTMLAttributes,
-    HTMLAttributes,
-    InputHTMLAttributes,
-    LabelHTMLAttributes,
-    ReactNode
-} from "react";
 
 export const HORIZONTAL_POSITIONS = ["centered", "right"];
 // List of vertical positions
