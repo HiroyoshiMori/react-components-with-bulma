@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -o ./docs",
     "chromatic": "npx chromatic --project-token=%YOUR_PROJECT_TOKEN%"
   },
   "browserslist": {
@@ -89,6 +89,6 @@
   "bugs": {
     "url": "https://github.com/HiroyoshiMori/react-components-bulma/issues"
   },
-  "readme": "ERROR: No README data found!",
+  "readme": "README.md",
   "_id": "@hiroyoshi-mori/react-components-bulma@0.0.8"
 }
