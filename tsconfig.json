@@ -21,6 +21,6 @@
     "jsx": "react-jsx",
   },
   "include": [
-    "src", "types/keyword_search/index.ts", "public"
+    "src", "public"
   ]
 }

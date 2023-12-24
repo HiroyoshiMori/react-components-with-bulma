@@ -1,6 +1,8 @@
+/build
 /node_modules
 
 /.idea
 
+build-storybook.log
 package-lock.json
 storybook.log

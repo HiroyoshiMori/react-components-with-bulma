@@ -43,7 +43,7 @@ Because Bulma uses [autoprefixer](https://github.com/postcss/autoprefixer) to ma
 
 ## Documentation
 
-The documentation resides in the [storybook-static](storybook-static) directory, and is built with [Storybook](https://storybook.js.org/).
+The documentation resides in the [Storybook in Chromatic](https://www.chromatic.com/library?appId=6587ab3a10c9fcd11f02370d&inviteToken=chpi_8d7395661d904538880cee3c123f9f29) directory, and is built with [Storybook](https://storybook.js.org/).
 
 ## Thanks
 
