@@ -1,9 +1,93 @@
 import React from 'react';
-import {Notifications} from "../../../../components";
+import {COLOR_TYPES, Notifications} from "../../../../components";
 
 export default {
+    title: 'React Component/Layout/Notifications',
     component: Notifications,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Notifications Box',
+        docs: {
+            description: {
+                component: "This component shows notification box.<br>In Bulma doc: https://bulma.io/documentation/elements/notification/",
+            },
+        },
+    },
+    argTypes: {
+        children: {
+            control: 'text',
+            description: 'Notification message',
+            table: {
+                type: {
+                    summary: 'ReactNode',
+                },
+            },
+        },
+        color: {
+            control: 'select',
+            options: (['default']).concat(COLOR_TYPES),
+            mapping: {
+                Default: '',
+            },
+            description: 'Color of notification box',
+            table: {
+                type: {
+                    summary: COLOR_TYPES.join('|'),
+                },
+            },
+        },
+        isLightColor: {
+            control: 'boolean',
+            description: 'Use lighter color',
+            table: {
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style classes for radio',
+            table: {
+                type: {
+                    summary: '{wrap?: string[], button?: string[]}'
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'Additional attributes for radio',
+            table: {
+                type: {
+                    summary: '{'
+                        + '  wrap?: HTMLAttributes<HTMLDivElement>, '
+                        + '  button?: ButtonHTMLAttributes<HTMLButtonElement> '
+                        + '}',
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'Dataset for radio',
+            table: {
+                type: {
+                    summary: '{'
+                        + '  wrap?: Map<string, string>, '
+                        + '  button?: Map<string, string> '
+                        + '}'
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <Notifications {...args}>Notification</Notifications>,

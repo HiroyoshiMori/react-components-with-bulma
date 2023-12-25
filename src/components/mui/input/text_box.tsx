@@ -11,6 +11,7 @@ import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 export const TextBox = (props: InputProps) => {
     const {
         fieldName,
+        fieldType = 'text',
         value,
         onChange,
         classes = [],
@@ -49,7 +50,7 @@ export const TextBox = (props: InputProps) => {
         <Fragment>
             <input
                 className={classes.join(' ')}
-                type="text"
+                type={fieldType}
                 name={fieldName}
                 placeholder={placeholder}
                 value={value}

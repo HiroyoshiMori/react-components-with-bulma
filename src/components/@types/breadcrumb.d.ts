@@ -27,7 +27,6 @@ export type BreadcrumbProps = {
     separator?: SeparatorsTypes,
     size?: SizeTypes,
     classes?: BreadcrumbClasses;
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
     attributes?: HTMLAttributes<HTMLDivElement>;
-    dataset?: CommonDataSet;
+    datasets?: CommonDataSet;
 };

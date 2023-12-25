@@ -8,16 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app",
     "@storybook/addon-interactions",
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        mdxPluginOptions: {
-          mdxCompileOptinos: {
-            remarkPlugins: [remarkGfm],
-          },
-        },
-      },
-    },
+    "@storybook/addon-actions",
   ],
   framework: {
     name: "@storybook/react-webpack5",
@@ -29,6 +20,9 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  typescript: {
+    reactDocgen: 'react-docgen',
   },
 };
 export default config;

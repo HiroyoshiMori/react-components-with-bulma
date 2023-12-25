@@ -4,6 +4,7 @@ import {ColorTypes, CommonDataSet, CommonStyleClasses, SizeTypes, StateTypes} fr
 /** Type definition for property of input */
 export type InputProps = {
     fieldName: string;
+    fieldType?: 'text' | 'password' | 'email' | 'tel';
     value: string|number;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;

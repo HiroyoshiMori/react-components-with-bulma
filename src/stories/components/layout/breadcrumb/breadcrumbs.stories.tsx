@@ -1,11 +1,130 @@
-import React from "react";
-import {Breadcrumbs} from "../../../../components";
+import React, {HTMLAttributes} from "react";
+import {BreadcrumbItemFields, Breadcrumbs, HORIZONTAL_POSITIONS, SEPARATORS, SIZES} from "../../../../components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default {
+    title: 'React Component/Layout/Breadcrumb',
     component: Breadcrumbs,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Breadcrumb to improve navigation experience',
+        docs: {
+            description: {
+                component: 'This component shows breadcumbs to let users know where they are now.<br>'
+                    + 'See: https://en.wikipedia.org/wiki/Breadcrumb_navigation<br>'
+                    + 'In Bulma doc: https://bulma.io/documentation/components/breadcrumb/',
+            },
+        },
+    },
+    argTypes: {
+        items: {
+            control: 'object',
+            description: "Items for breadcrumb",
+            table: {
+                type: {
+                    summary: 'BreadcrumbItemFields[]',
+                    detail: '{\n'
+                        + '  label: ReactNode,\n'
+                        + '  isActive?: boolean,\n'
+                        + '  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void,\n'
+                        + '  attributes?: HTMLAttributes<HTMLLIElement>,\n'
+                        + '  datasets?: Map<string, string>,\n'
+                        + '}[]',
+                },
+                defaultValue: {
+                    summary: '[]',
+                },
+            },
+        },
+        position: {
+            control: 'select',
+            options: (['left']).concat(HORIZONTAL_POSITIONS),
+            mapping: {
+                Left: "",
+            },
+            description: 'Where to show breadcrumb',
+            table: {
+                type: {
+                    summary: HORIZONTAL_POSITIONS.join('|'),
+                },
+            },
+        },
+        separator: {
+            control: 'select',
+            options: (['default']).concat(SEPARATORS),
+            mapping: {
+                Default: "",
+            },
+            description: 'Separator which is placed between each item',
+            table: {
+                type: {
+                    summary: SEPARATORS.join('|'),
+                },
+            },
+        },
+        size: {
+            control: 'select',
+            options: (['default']).concat(SIZES),
+            mapping: {
+                Default: "",
+            },
+            description: 'Size of breadcrumb',
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style Classes to apply',
+            table: {
+                type: {
+                    summary: 'string[]',
+                },
+                defaultValue: {
+                    summary: '[]',
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'attributes to add extra. ',
+            table: {
+                type: {
+                    summary: 'HTMLAttributes<HTMLDivElement>',
+                    detail: ''
+                        + 'e.g.,\n'
+                        + "{'aria-label': 'LABEL'}\n"
+                        + '',
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'datasets which start with data-.',
+            table: {
+                type: {
+                    summary: 'Map<string, string>',
+                    detail: ''
+                        + 'e.g.,\n'
+                        + "new Map([\n"
+                        + "  ['id', 'DATA_ID'],\n"
+                        + "  ['name', 'DATA NAME'],\n"
+                        + "])\n"
+                        + '→ data-id="DATA_ID" data-name="DATA NAME" \n'
+                        + '',
+                },
+                defaultValue: {
+                    summary: "new Map()",
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <Breadcrumbs

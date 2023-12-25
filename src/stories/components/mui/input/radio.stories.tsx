@@ -1,9 +1,112 @@
-import React from 'react';
-import {Radio} from "../../../../components";
+import React, {HTMLAttributes, InputHTMLAttributes} from 'react';
+import {CommonDataSet, Radio} from "../../../../components";
 
 export default {
+    title: 'React Component/Element/RadioGroup/Radio',
     component: Radio,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Radio Element',
+        docs: {
+            description: {
+                component: "This component shows radio for form.<br>In Bulma doc: https://bulma.io/documentation/form/radio/",
+            },
+        },
+    },
+    argTypes: {
+        field: {
+            control: 'object',
+            description: 'Field data for radio',
+            table: {
+                type: {
+                    summary: "{name: string;} & RadioGroupFields",
+                    detail: '{\n'
+                        + "  name: string,\n"
+                        + "  key: string, \n"
+                        + "  value?: string, \n"
+                        + "  label?: ReactNode, \n"
+                        + "  disabled: boolean, \n"
+                        + "  attributes: {\n"
+                        + "    wrap?: HTMLAttributes<HTMLDivElement>, \n"
+                        + "    label?: HTMLAttributes<HTMLLabelElement>, \n"
+                        + "    input?: InputHTMLAttributes<HTMLInputElement>, \n"
+                        + "  }, \n"
+                        + "  datasets: {\n"
+                        + "    wrap?: Map<string, string>, \n"
+                        + "    label?: Map<string, string>, \n"
+                        + "    input?: Map<string, string>, \n"
+                        + "  }, \n"
+                        + "}",
+                },
+            },
+        },
+        currentValue: {
+            control: 'text',
+            description: 'Current value for ragio group',
+            table: {
+                type: {
+                    summary: 'string | number',
+                },
+            },
+        },
+        onChange: {
+            action: 'function',
+            description: 'Function called when radio value changed',
+        },
+        prefix: {
+            control: 'text',
+            description: 'Prefix for field name of radio',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style classes for radio',
+            table: {
+                type: {
+                    summary: '{wrap?: string[], label?: string[], input?: string[]}'
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'Additional attributes for radio',
+            table: {
+                type: {
+                    summary: '{'
+                        + '  wrap?: HTMLAttributes<HTMLDivElement>, '
+                        + '  label?: HTMLAttributes<HTMLLabelElement>, '
+                        + '  input?: InputHTMLAttributes<HTMLInputElement> '
+                        + '}',
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'Dataset for radio',
+            table: {
+                type: {
+                    summary: '{'
+                        + '  wrap?: Map<string, string>, '
+                        + '  label?: Map<string, string>, '
+                        + '  input?: Map<string, string>'
+                        + '}'
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+    }
 };
 export const Default = {
     render: (args: any) => <Radio

@@ -14,7 +14,7 @@ export const Tag = (props: TagProps) => {
         useAnchor = false,
         isAnchorClose = undefined,
         onClick = undefined,
-        isLight = false,
+        isLightColor = false,
         size,
         isRounded = false,
         hasCombination = false,
@@ -50,7 +50,7 @@ export const Tag = (props: TagProps) => {
             }
         }
     });
-    if (isLight && !classes.includes('is-light')) {
+    if (isLightColor && !classes.includes('is-light')) {
         classes.push('is-light');
     }
     if (isRounded && !classes.includes('is-rounded')) {

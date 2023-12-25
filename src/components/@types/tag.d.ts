@@ -10,7 +10,7 @@ export type TagCombinationProps = {
 /** Type definition for property of tag */
 export type TagProps = {
     color?: ColorTypes;
-    isLight: boolean;
+    isLightColor: boolean;
     size?: SizeTypes;
     isRounded?: boolean;
     attributes?: HTMLAttributes<HTMLSpanElement | HTMLAnchorElement>;

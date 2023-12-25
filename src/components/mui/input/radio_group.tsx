@@ -44,7 +44,7 @@ export const RadioGroup = (props: RadioGroupProps) => {
                 {...dataShown}
             >
                 {
-                    fields.map((v: RadioGroupFields) => {
+                    fields.map((v: RadioGroupFields, idx: number) => {
                         // Initialize if undefined
                         v.attributes = v.attributes ?? {};
                         v.datasets = v.datasets ?? {};
@@ -61,7 +61,7 @@ export const RadioGroup = (props: RadioGroupProps) => {
                                 }
                             });
                         return (
-                            <Fragment key={(prefix ? (prefix + '-') : '') + v.key}>
+                            <Fragment key={(prefix ? (prefix + '-') : '') + 'radio_group-' + v.key}>
                                 <Radio
                                     field={{
                                         name: fieldName,

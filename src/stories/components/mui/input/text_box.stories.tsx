@@ -1,9 +1,132 @@
 import React from 'react';
-import {TextBox} from "../../../../components";
+import {COLOR_TYPES, STATES, TextBox} from "../../../../components";
 
 export default {
+    title: 'React Component/Element/TextBox',
     component: TextBox,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Text Box Element',
+        docs: {
+            description: {
+                component: "This component shows text box for form.<br>In Bulma doc: https://bulma.io/documentation/form/input/",
+            },
+        },
+    },
+    argTypes: {
+        fieldName: {
+            control: 'text',
+            description: 'Field name',
+        },
+        fieldType: {
+            control: 'select',
+            options: ['text', 'password', 'email', 'tel'],
+            description: 'Field type',
+            table: {
+                type: {
+                    summary: 'text|password|email|tel',
+                },
+                defaultValue: {
+                    summary: 'text',
+                },
+            },
+        },
+        value: {
+            control: 'text',
+            description: 'Field value',
+        },
+        onChange: {
+            action: 'function',
+            description: 'Function called when value is changed',
+        },
+        placeholder: {
+            control: 'text',
+            description: 'Placeholder which is shown when value is empty',
+        },
+        colorType: {
+            control: 'select',
+            options: (['default']).concat(COLOR_TYPES),
+            mapping: {
+                Default: '',
+            },
+            description: 'Color of text box',
+            table: {
+                type: {
+                    summary: COLOR_TYPES.join('|'),
+                },
+            },
+        },
+        state: {
+            control: 'select',
+            options: (['default']).concat(STATES),
+            mapping: {
+                Default: '',
+            },
+            description: 'State of text box',
+            table: {
+                type: {
+                    summary: STATES.join('|'),
+                },
+            },
+        },
+        size: {
+            control: {type: 'range', min: 1, max: 6, step: 1},
+            description: 'Size of text box',
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style Classes to apply',
+            table: {
+                type: {
+                    summary: 'string[]',
+                },
+                defaultValue: {
+                    summary: "[]",
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'attributes to add extra. ',
+            table: {
+                type: {
+                    summary: 'InputHTMLAttributes<HTMLInputElement>',
+                    detail: ''
+                        + 'e.g.,\n'
+                        + "{'aria-label': 'LABEL'}\n"
+                        + '',
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'datasets which start with data-.',
+            table: {
+                type: {
+                    summary: 'Map<string, string>',
+                    detail: ''
+                        + 'e.g.,\n'
+                        + "new Map([\n"
+                        + "  ['id', 'DATA_ID'],\n"
+                        + "  ['name', 'DATA NAME'],\n"
+                        + "])\n"
+                        + '→ data-id="DATA_ID" data-name="DATA NAME" \n'
+                        + '',
+                },
+                defaultValue: {
+                    summary: "new Map()",
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <TextBox fieldName="text" value="Text" {...args} />,
@@ -109,7 +232,7 @@ export const PrimaryWithClasses = {
     },
 };
 export const WithAttribute = {
-    ...Primary,
+    ...Default,
     args: {
         attributes: {
             'aria-label': 'Text Box',
@@ -117,10 +240,10 @@ export const WithAttribute = {
     },
 };
 export const WithDatasets = {
-    ...Primary,
+    ...Default,
     args: {
         datasets: new Map([
-            ['id', 'text-box'], ['name', 'Text Box']
+            ['id', 'text-box-with-id'], ['name', 'Text Box']
         ]),
     },
 };

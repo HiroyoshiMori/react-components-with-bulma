@@ -15,7 +15,6 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
         items,
         position = 'centered',
         classes = {},
-        onClick,
         attributes = {},
         datasets = new Map(),
     } = {...props};
@@ -92,7 +91,7 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
                                 <Fragment key={"breadcrumb-item-" + idx}>
                                     <li
                                         className={itemClasses.join(' ')}
-                                        onClick={onClick}
+                                        onClick={item.onClick}
                                         {...item.attributes}
                                         {...itemDatasetShown}
                                     >

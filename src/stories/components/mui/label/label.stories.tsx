@@ -3,9 +3,96 @@ import { Label } from "../../../../components";
 import {Fragment} from "react";
 
 export default {
+    title: 'React Component/Element/Label',
     component: Label,
-    title: 'stories/components/mui/label/label',  // to gather in label instead of rooting
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Label Element',
+        docs: {
+            description: {
+                component: "This component put \"label\".",
+            },
+        },
+    },
+    argTypes: {
+        label: {
+            control: 'text',
+            description: 'Label string. ignored when children specified',
+            if: {arg: 'children', exists: false},
+            table: {
+                type: {
+                    summary: 'string',
+                },
+            },
+        },
+        children: {
+            control: 'text',
+            description: 'Child element. is optional when label is specified',
+            if: {arg: 'label', exists: false},
+            table: {
+                type: {
+                    summary: 'ReactNode',
+                },
+            },
+        },
+        htmlFor: {
+            control: 'text',
+            description: 'specify for what element this label is',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style Classes to apply',
+            table: {
+                type: {
+                    summary: 'string[]',
+                },
+                defaultValue: {
+                    summary: "[]",
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'attributes to add extra. ',
+            table: {
+                type: {
+                    summary: 'LabelHTMLAttributes<HTMLLabelElement>',
+                    detail: ''
+                        + 'e.g.,\n'
+                        + "{'aria-label': 'LABEL'}\n"
+                        + '',
+                },
+                defaultValue: {
+                    summary: "{}",
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'datasets which start with data-.',
+            table: {
+                type: {
+                    summary: 'Map<string, string>',
+                    detail: ''
+                        + 'e.g.,\n'
+                        + "new Map([\n"
+                        + "  ['id', 'DATA_ID'],\n"
+                        + "  ['name', 'DATA NAME'],\n"
+                        + "])\n"
+                        + '→ data-id="DATA_ID" data-name="DATA NAME" \n'
+                        + '',
+                },
+                defaultValue: {
+                    summary: "new Map()",
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <Label label="Label" {...args} />,

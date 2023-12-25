@@ -2,8 +2,168 @@ import {Card} from "../../../../components/layout/card";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default {
+    title: 'React Component/Layout/Card',
     component: Card,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Card Box',
+        docs: {
+            description: {
+                component: "This component shows composable card box.<br>In Bulma doc: https://bulma.io/documentation/components/card/",
+            },
+        },
+    },
+    argTypes: {
+        header: {
+            control: 'object',
+            description: 'Card header information',
+            table: {
+                type: {
+                    summary: 'CardHeaderProps',
+                    detail: '{\n'
+                        + '  title: ReactNode, \n'
+                        + '  buttonIcon?: IconDefinition, \n'
+                        + '  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void, \n'
+                        + '  classes?: {\n'
+                        + '    wrap?: string[], title?: string[], button?: string[], \n'
+                        + '    span?: string[], icon?: string[], \n'
+                        + '  }, \n'
+                        + '  attributes: {\n'
+                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
+                        + '    title?: HTMLAttributes<HTMLParagraphElement>, \n'
+                        + '    button?: ButtonHTMLAttributes<HTMLButtonElement>, \n'
+                        + '    span?: HTMLAttributes<HTMLSpanElement>, \n'
+                        + '    icon?: HTMLAttributes<HTMLElement>, \n'
+                        + '  }, \n'
+                        + '  datasets: {\n'
+                        + '    wrap?: Map<string, string>, \n'
+                        + '    title?: Map<string, string>, \n'
+                        + '    button?: Map<string, string>, \n'
+                        + '    span?: Map<string, string>, \n'
+                        + '    icon?: Map<string, string>, \n'
+                        + '  }, \n'
+                        + '}',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        image: {
+            control: 'object',
+            description: 'Card image information',
+            table: {
+                type: {
+                    summary: 'CardImageProps',
+                    detail: '{\n'
+                        + '  src: string, \n'
+                        + '  alt?: string, \n'
+                        + '  classes?: {\n'
+                        + '    wrap?: string[], \n'
+                        + '    figure?: string[], \n'
+                        + '    image?: string[], \n'
+                        + '  },\n'
+                        + '  attributes?: {\n'
+                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
+                        + '    figure?: HTMLAttributes<HTMLElement>, \n'
+                        + '    image?: HTMLAttributes<HTMLImageElement>, \n'
+                        + '  },\n'
+                        + '  datasets?: {\n'
+                        + '    wrap?: Map<string, string>, \n'
+                        + '    figure?: Map<string, string>, \n'
+                        + '    image?: Map<string, string>, \n'
+                        + '  },\n'
+                        + '}',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        content: {
+            control: 'object',
+            description: 'Card content information',
+            table: {
+                type: {
+                    summary: 'CardContentProps',
+                    detail: '{\n'
+                        + '  children?: ReactNode, \n'
+                        + '  classes?: {\n'
+                        + '    wrap?: string[], \n'
+                        + '    content?: string[], \n'
+                        + '  }, \n'
+                        + '  attributes?: {\n'
+                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
+                        + '    content?: HTMLAttributes<HTMLDivElement>, \n'
+                        + '  datasets?: { \n'
+                        + '    wrap?: Map<string, string>, \n'
+                        + '    content?: Map<string, string>, \n'
+                        + '}',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        footer: {
+            control: 'object',
+            description: 'Card footer information',
+            table: {
+                type: {
+                    summary: 'CardFooterProps',
+                    detail: '{\n'
+                        + '  items: ReactNode[], \n'
+                        + '  classes?: string[], \n'
+                        + '  attributes?: {\n'
+                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
+                        + '    content?: HTMLAttributes<HTMLDivElement>, \n'
+                        + '  datasets?: { \n'
+                        + '    wrap?: Map<string, string>, \n'
+                        + '    content?: Map<string, string>, \n'
+                        + '}',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style classes for card',
+            table: {
+                type: {
+                    summary: "string[]",
+                },
+                defaultValue: {
+                    summary: "[]",
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'Additional attributes',
+            table: {
+                type: {
+                    summary: 'HTMLAttributes<HTMLDivElement>',
+                },
+                defaultValue: {
+                    summary: '{}',
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'Datasets',
+            table: {
+                type: {
+                    summary: 'Map<string, string>',
+                },
+                defaultValue: {
+                    summary: 'new Map()',
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <Card
@@ -17,7 +177,7 @@ export const Default = {
         footer={{
             items: [
                 "Card Footer Item 1",
-                <a href="#">Card Footer Item 2</a>,
+                "Card Footer Item 2",
                 "Card Footer Item 3",
                 "Card Footer Item 4",
             ],
@@ -73,7 +233,7 @@ export const WithAttributes = {
         footer: {
             items: [
                 "Card Footer Item 1",
-                <a href="#">Card Footer Item 2</a>,
+                "Card Footer Item 2",
                 "Card Footer Item 3",
                 "Card Footer Item 4",
             ],
@@ -123,7 +283,7 @@ export const WithDatasets = {
         footer: {
             items: [
                 "Card Footer Item 1",
-                <a href="#">Card Footer Item 2</a>,
+                "Card Footer Item 2",
                 "Card Footer Item 3",
                 "Card Footer Item 4",
             ],
