@@ -30,6 +30,7 @@ export type CommonStyleClasses = {
 };
 export type CommonDataSet = Map<string, any>;
 
+export * from './box.d';
 export * from './breadcrumb.d';
 export * from './button.d';
 export * from './card.d';

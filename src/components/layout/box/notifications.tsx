@@ -8,7 +8,7 @@ import {
     NotificationsProps
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-import {Button} from "../../mui";
+import {Button} from "../../element";
 
 export const Notifications = (props: NotificationsProps) => {
     const {

@@ -7,7 +7,7 @@ import {
     DialogHeaderProps,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
-import {Button} from "../../mui";
+import {Button} from "../../element";
 
 export const Header = (props: DialogHeaderProps) => {
     const {

@@ -6,7 +6,7 @@ import {
     DialogFooterDatasets,
     DialogFooterProps,
 } from "../../@types";
-import {Button} from "../../mui";
+import {Button} from "../../element";
 import {convertDataSet} from "../../../utils";
 
 export const Footer = (props: DialogFooterProps) => {
