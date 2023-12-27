@@ -21,6 +21,9 @@ export default {
                 type: {
                     summary: 'ReactNode',
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         useAnchor: {
