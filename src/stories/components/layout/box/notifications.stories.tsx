@@ -1,5 +1,6 @@
 import React from 'react';
-import {COLOR_TYPES, Notifications} from "../../../../components";
+import {COLOR_TYPES, Notifications, NotificationsClasses} from "../../../../components";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Layout/Notifications',
@@ -34,6 +35,9 @@ export default {
                 type: {
                     summary: COLOR_TYPES.join('|'),
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         isLightColor: {
@@ -50,7 +54,13 @@ export default {
             description: 'Style classes for radio',
             table: {
                 type: {
-                    summary: '{wrap?: string[], button?: string[]}'
+                    summary: 'NotificationsClasses',
+                    detail: deIndent(`
+                            {
+                                wrap?: string[],
+                                button?: string[],
+                             }
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",
@@ -62,10 +72,13 @@ export default {
             description: 'Additional attributes for radio',
             table: {
                 type: {
-                    summary: '{'
-                        + '  wrap?: HTMLAttributes<HTMLDivElement>, '
-                        + '  button?: ButtonHTMLAttributes<HTMLButtonElement> '
-                        + '}',
+                    summary: 'NotificationsAttributes',
+                    detail: deIndent(`
+                            {
+                                wrap?: HTMLAttributes<HTMLDivElement>,
+                                button?: ButtonHTMLAttributes<HTMLButtonElement>
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",
@@ -77,10 +90,13 @@ export default {
             description: 'Dataset for radio',
             table: {
                 type: {
-                    summary: '{'
-                        + '  wrap?: Map<string, string>, '
-                        + '  button?: Map<string, string> '
-                        + '}'
+                    summary: 'NotificationsDatasets',
+                    detail: deIndent(`
+                            {
+                                wrap?: Map<string, string>,
+                                button?: Map<string, string>
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",

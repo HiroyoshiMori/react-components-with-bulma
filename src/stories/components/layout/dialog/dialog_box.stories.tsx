@@ -1,9 +1,150 @@
 import React from 'react';
 import {Dialog} from "../../../../components";
+import {deIndent} from '../../../../utils';
 
 export default {
+    title: 'React Component/Layout/Dialog',
     component: Dialog,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Dialog Box',
+        docs: {
+            description: {
+                component: "This component shows dialog box.<br>In Bulma doc: https://bulma.io/documentation/components/modal/",
+            },
+        },
+    },
+    argTypes: {
+        children: {
+            control: 'text',
+            description: 'Content of dialog box',
+            table: {
+                type: {
+                    summary: 'ReactNode',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        isActive: {
+            control: 'boolean',
+            description: 'true when dialog is active',
+        },
+        title: {
+            control: 'text',
+            description: 'Dialog title',
+            table: {
+                type: {
+                    summary: 'ReactNode',
+                },
+            },
+        },
+        onClose: {
+            action: 'function',
+            description: 'Function to close dialog',
+        },
+        noFooter: {
+            control: 'boolean',
+            description: 'true if dialog has no footer',
+            table: {
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
+        buttonLabel: {
+            control: 'text',
+            description: 'Button label in dialog',
+            table: {
+                type: {
+                    summary: 'ReactNode',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style classes',
+            table: {
+                type: {
+                    summary: 'DialogClasses',
+                    detail: deIndent(`
+                            {
+                                wrap?: string[],
+                                header?: string[],
+                                content?: string[],
+                                footer?: string[],
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '[]',
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'Additional attributes',
+            table: {
+                type: {
+                    summary: 'DialogAttributes',
+                    detail: deIndent(`
+                            {
+                                wrap?: HTMLAttributes<HTMLDivElement>,
+                                card?: HTMLAttributes<HTMLDivElement>,
+                                header?: {
+                                    wrap?: HTMLAttributes<HTMLDivElement>,
+                                    title?: HTMLAttributes<HTMLDivElement>,
+                                    button?: HTMLAttributes<HTMLButtonElement>,
+                                },
+                                content?: HTMLAttributes<HTMLElement>,
+                                footer?: {,
+                                    wrap?: HTMLAttributes<HTMLElement>,
+                                    button?: HTMLAttributes<HTMLButtonElement>,
+                                },
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '{}',
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'Datasets',
+            table: {
+                type: {
+                    summary: 'DialogDatasets',
+                    detail: deIndent(`
+                            {
+                                wrap?: Map<string, string>,
+                                card?: Map<string, string>,
+                                header?: {
+                                    wrap?: Map<string, string>,
+                                    title?: Map<string, string>,
+                                    button?: Map<string, string>,
+                                },
+                                content?: Map<string, string>,
+                                footer?: {,
+                                    wrap?: Map<string, string>,
+                                    button?: Map<string, string>,
+                                },
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: 'new Map()',
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <Dialog

@@ -1,5 +1,6 @@
-import React, {HTMLAttributes, InputHTMLAttributes} from 'react';
-import {CommonDataSet, Radio} from "../../../../components";
+import React from 'react';
+import {Radio} from "../../../../components";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Element/RadioGroup/Radio',
@@ -20,29 +21,31 @@ export default {
             table: {
                 type: {
                     summary: "{name: string;} & RadioGroupFields",
-                    detail: '{\n'
-                        + "  name: string,\n"
-                        + "  key: string, \n"
-                        + "  value?: string, \n"
-                        + "  label?: ReactNode, \n"
-                        + "  disabled: boolean, \n"
-                        + "  attributes: {\n"
-                        + "    wrap?: HTMLAttributes<HTMLDivElement>, \n"
-                        + "    label?: HTMLAttributes<HTMLLabelElement>, \n"
-                        + "    input?: InputHTMLAttributes<HTMLInputElement>, \n"
-                        + "  }, \n"
-                        + "  datasets: {\n"
-                        + "    wrap?: Map<string, string>, \n"
-                        + "    label?: Map<string, string>, \n"
-                        + "    input?: Map<string, string>, \n"
-                        + "  }, \n"
-                        + "}",
+                    detail: deIndent(`
+                            {
+                                name: string,
+                                key: string,
+                                value?: string,
+                                label?: ReactNode,
+                                disabled: boolean,
+                                attributes: {
+                                    wrap?: HTMLAttributes<HTMLDivElement>,
+                                    label?: HTMLAttributes<HTMLLabelElement>,
+                                    input?: InputHTMLAttributes<HTMLInputElement>,
+                                },
+                                datasets: {
+                                    wrap?: Map<string, string>,
+                                    label?: Map<string, string>,
+                                    input?: Map<string, string>,
+                                },
+                            }
+                        `),
                 },
             },
         },
         currentValue: {
             control: 'text',
-            description: 'Current value for ragio group',
+            description: 'Current value for radio group',
             table: {
                 type: {
                     summary: 'string | number',
@@ -59,6 +62,9 @@ export default {
             table: {
                 type: {
                     summary: 'string',
+                },
+                defaultValue: {
+                    summary: 'undefined',
                 },
             },
         },
@@ -79,11 +85,13 @@ export default {
             description: 'Additional attributes for radio',
             table: {
                 type: {
-                    summary: '{'
-                        + '  wrap?: HTMLAttributes<HTMLDivElement>, '
-                        + '  label?: HTMLAttributes<HTMLLabelElement>, '
-                        + '  input?: InputHTMLAttributes<HTMLInputElement> '
-                        + '}',
+                    summary: deIndent(`
+                            {
+                                wrap?: HTMLAttributes<HTMLDivElement>,
+                                label?: HTMLAttributes<HTMLLabelElement>,
+                                input?: InputHTMLAttributes<HTMLInputElement>,
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",
@@ -95,11 +103,13 @@ export default {
             description: 'Dataset for radio',
             table: {
                 type: {
-                    summary: '{'
-                        + '  wrap?: Map<string, string>, '
-                        + '  label?: Map<string, string>, '
-                        + '  input?: Map<string, string>'
-                        + '}'
+                    summary: deIndent(`
+                            {
+                                wrap?: Map<string, string>,
+                                label?: Map<string, string>,
+                                input?: Map<string, string>,
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",

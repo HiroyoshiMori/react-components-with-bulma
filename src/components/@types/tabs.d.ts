@@ -2,7 +2,7 @@ import {HTMLAttributes, ReactNode} from "react";
 import {
     CommonDataSet,
     CommonStyleClasses,
-    PositionTypes
+    PositionTypes,
 } from "./index";
 
 /** Type definition for classes of tabs */
@@ -12,7 +12,7 @@ export type TabsClasses = {
 };
 /** Type definition for fields of tab item */
 export type TabsItemFields = {
-    label: ReactNode,
+    label: ReactNode;
     isActive?: boolean;
     href?: string;
     attributes?: HTMLAttributes<HTMLLIElement>;
@@ -20,8 +20,8 @@ export type TabsItemFields = {
 } & CommonStyleClasses;
 /** Type definition for property of tabs */
 export type TabsProps = {
-    items: TabsItemFields[],
-    position?: PositionTypes,
+    items: TabsItemFields[];
+    position?: PositionTypes;
     classes?: TabsClasses;
     attributes?: HTMLAttributes<HTMLDivElement>;
     datasets?: CommonDataSet;

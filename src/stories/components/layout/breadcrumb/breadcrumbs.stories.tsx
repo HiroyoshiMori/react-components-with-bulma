@@ -1,7 +1,8 @@
-import React, {HTMLAttributes} from "react";
-import {BreadcrumbItemFields, Breadcrumbs, HORIZONTAL_POSITIONS, SEPARATORS, SIZES} from "../../../../components";
+import React from "react";
+import {Breadcrumbs, HORIZONTAL_POSITIONS, SEPARATORS, SIZES} from "../../../../components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Layout/Breadcrumb',
@@ -24,13 +25,15 @@ export default {
             table: {
                 type: {
                     summary: 'BreadcrumbItemFields[]',
-                    detail: '{\n'
-                        + '  label: ReactNode,\n'
-                        + '  isActive?: boolean,\n'
-                        + '  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void,\n'
-                        + '  attributes?: HTMLAttributes<HTMLLIElement>,\n'
-                        + '  datasets?: Map<string, string>,\n'
-                        + '}[]',
+                    detail: deIndent(`
+                            {
+                                label: ReactNode,
+                                isActive?: boolean,
+                                onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+                                attributes?: HTMLAttributes<HTMLLIElement>,
+                                datasets?: Map<string, string>,
+                            }[]
+                        `),
                 },
                 defaultValue: {
                     summary: '[]',
@@ -48,6 +51,9 @@ export default {
                 type: {
                     summary: HORIZONTAL_POSITIONS.join('|'),
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         separator: {
@@ -61,6 +67,9 @@ export default {
                 type: {
                     summary: SEPARATORS.join('|'),
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         size: {
@@ -73,6 +82,9 @@ export default {
             table: {
                 type: {
                     summary: 'number',
+                },
+                defaultValue: {
+                    summary: 'undefined',
                 },
             },
         },
@@ -94,10 +106,9 @@ export default {
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
-                    detail: ''
-                        + 'e.g.,\n'
-                        + "{'aria-label': 'LABEL'}\n"
-                        + '',
+                    detail: deIndent(`
+                            e.g., {'aria-label': 'LABEL'}
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",
@@ -110,14 +121,14 @@ export default {
             table: {
                 type: {
                     summary: 'Map<string, string>',
-                    detail: ''
-                        + 'e.g.,\n'
-                        + "new Map([\n"
-                        + "  ['id', 'DATA_ID'],\n"
-                        + "  ['name', 'DATA NAME'],\n"
-                        + "])\n"
-                        + '→ data-id="DATA_ID" data-name="DATA NAME" \n'
-                        + '',
+                    detail: deIndent(`
+                            e.g.,
+                            new Map([
+                                ['id', 'DATA_ID'],
+                                ['name', 'DATA NAME'],
+                            ])
+                            → data-id="DATA_ID" data-name="DATA NAME"
+                        `),
                 },
                 defaultValue: {
                     summary: "new Map()",

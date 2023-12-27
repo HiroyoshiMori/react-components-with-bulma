@@ -1,5 +1,6 @@
 import {Card} from "../../../../components/layout/card";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Layout/Card',
@@ -20,29 +21,31 @@ export default {
             table: {
                 type: {
                     summary: 'CardHeaderProps',
-                    detail: '{\n'
-                        + '  title: ReactNode, \n'
-                        + '  buttonIcon?: IconDefinition, \n'
-                        + '  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void, \n'
-                        + '  classes?: {\n'
-                        + '    wrap?: string[], title?: string[], button?: string[], \n'
-                        + '    span?: string[], icon?: string[], \n'
-                        + '  }, \n'
-                        + '  attributes: {\n'
-                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
-                        + '    title?: HTMLAttributes<HTMLParagraphElement>, \n'
-                        + '    button?: ButtonHTMLAttributes<HTMLButtonElement>, \n'
-                        + '    span?: HTMLAttributes<HTMLSpanElement>, \n'
-                        + '    icon?: HTMLAttributes<HTMLElement>, \n'
-                        + '  }, \n'
-                        + '  datasets: {\n'
-                        + '    wrap?: Map<string, string>, \n'
-                        + '    title?: Map<string, string>, \n'
-                        + '    button?: Map<string, string>, \n'
-                        + '    span?: Map<string, string>, \n'
-                        + '    icon?: Map<string, string>, \n'
-                        + '  }, \n'
-                        + '}',
+                    detail: deIndent(`
+                            {
+                                title: ReactNode,
+                                buttonIcon?: IconDefinition,
+                                onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
+                                classes?: {
+                                    wrap?: string[], title?: string[], button?: string[],
+                                    span?: string[], icon?: string[],
+                                },
+                                attributes: {
+                                    wrap?: HTMLAttributes<HTMLDivElement>,
+                                    title?: HTMLAttributes<HTMLParagraphElement>,
+                                    button?: ButtonHTMLAttributes<HTMLButtonElement>,
+                                    span?: HTMLAttributes<HTMLSpanElement>,
+                                    icon?: HTMLAttributes<HTMLElement>,
+                                },
+                                datasets: {
+                                    wrap?: Map<string, string>,
+                                    title?: Map<string, string>,
+                                    button?: Map<string, string>,
+                                    span?: Map<string, string>,
+                                    icon?: Map<string, string>,
+                                },
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -55,25 +58,27 @@ export default {
             table: {
                 type: {
                     summary: 'CardImageProps',
-                    detail: '{\n'
-                        + '  src: string, \n'
-                        + '  alt?: string, \n'
-                        + '  classes?: {\n'
-                        + '    wrap?: string[], \n'
-                        + '    figure?: string[], \n'
-                        + '    image?: string[], \n'
-                        + '  },\n'
-                        + '  attributes?: {\n'
-                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
-                        + '    figure?: HTMLAttributes<HTMLElement>, \n'
-                        + '    image?: HTMLAttributes<HTMLImageElement>, \n'
-                        + '  },\n'
-                        + '  datasets?: {\n'
-                        + '    wrap?: Map<string, string>, \n'
-                        + '    figure?: Map<string, string>, \n'
-                        + '    image?: Map<string, string>, \n'
-                        + '  },\n'
-                        + '}',
+                    detail: deIndent(`
+                            {
+                                src: string,
+                                alt?: string,
+                                classes?: {
+                                    wrap?: string[],
+                                    figure?: string[],
+                                    image?: string[],
+                                },
+                                attributes?: {
+                                    wrap?: HTMLAttributes<HTMLDivElement>,
+                                    figure?: HTMLAttributes<HTMLElement>,
+                                    image?: HTMLAttributes<HTMLImageElement>,
+                                },
+                                datasets?: {
+                                    wrap?: Map<string, string>,
+                                    figure?: Map<string, string>,
+                                    image?: Map<string, string>,
+                                },
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -86,19 +91,23 @@ export default {
             table: {
                 type: {
                     summary: 'CardContentProps',
-                    detail: '{\n'
-                        + '  children?: ReactNode, \n'
-                        + '  classes?: {\n'
-                        + '    wrap?: string[], \n'
-                        + '    content?: string[], \n'
-                        + '  }, \n'
-                        + '  attributes?: {\n'
-                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
-                        + '    content?: HTMLAttributes<HTMLDivElement>, \n'
-                        + '  datasets?: { \n'
-                        + '    wrap?: Map<string, string>, \n'
-                        + '    content?: Map<string, string>, \n'
-                        + '}',
+                    detail: deIndent(`
+                            {
+                                children?: ReactNode,
+                                classes?: {
+                                    wrap?: string[],
+                                    content?: string[],
+                                },
+                                attributes?: {
+                                    wrap?: HTMLAttributes<HTMLDivElement>,
+                                    content?: HTMLAttributes<HTMLDivElement>,
+                                },
+                                datasets?: {
+                                    wrap?: Map<string, string>,
+                                    content?: Map<string, string>,
+                                }
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -111,16 +120,20 @@ export default {
             table: {
                 type: {
                     summary: 'CardFooterProps',
-                    detail: '{\n'
-                        + '  items: ReactNode[], \n'
-                        + '  classes?: string[], \n'
-                        + '  attributes?: {\n'
-                        + '    wrap?: HTMLAttributes<HTMLDivElement>, \n'
-                        + '    content?: HTMLAttributes<HTMLDivElement>, \n'
-                        + '  datasets?: { \n'
-                        + '    wrap?: Map<string, string>, \n'
-                        + '    content?: Map<string, string>, \n'
-                        + '}',
+                    detail: deIndent(`
+                            {
+                                items: ReactNode[],
+                                classes?: string[],
+                                attributes?: {
+                                    wrap?: HTMLAttributes<HTMLDivElement>,
+                                    content?: HTMLAttributes<HTMLDivElement>,
+                                },
+                                datasets?: {
+                                    wrap?: Map<string, string>,
+                                    content?: Map<string, string>,
+                                },
+                            }
+                        `),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -145,6 +158,9 @@ export default {
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
+                    detail: deIndent(`
+                            e.g., {'aria-label': 'LABEL'}
+                        `),
                 },
                 defaultValue: {
                     summary: '{}',
@@ -157,6 +173,14 @@ export default {
             table: {
                 type: {
                     summary: 'Map<string, string>',
+                    detail: deIndent(`
+                            e.g.,
+                            new Map([
+                                ['id', 'DATA_ID'],
+                                ['name', 'DATA NAME'],
+                            ])
+                            → data-id="DATA_ID" data-name="DATA NAME"
+                        `),
                 },
                 defaultValue: {
                     summary: 'new Map()',

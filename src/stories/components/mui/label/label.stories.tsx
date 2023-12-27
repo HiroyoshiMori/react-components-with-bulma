@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Label } from "../../../../components";
-import {Fragment} from "react";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Element/Label',
@@ -42,6 +42,9 @@ export default {
                 type: {
                     summary: 'string',
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         classes: {
@@ -62,10 +65,9 @@ export default {
             table: {
                 type: {
                     summary: 'LabelHTMLAttributes<HTMLLabelElement>',
-                    detail: ''
-                        + 'e.g.,\n'
-                        + "{'aria-label': 'LABEL'}\n"
-                        + '',
+                    detail: deIndent(`
+                            e.g., {'aria-label': 'LABEL'}
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",
@@ -78,14 +80,14 @@ export default {
             table: {
                 type: {
                     summary: 'Map<string, string>',
-                    detail: ''
-                        + 'e.g.,\n'
-                        + "new Map([\n"
-                        + "  ['id', 'DATA_ID'],\n"
-                        + "  ['name', 'DATA NAME'],\n"
-                        + "])\n"
-                        + '→ data-id="DATA_ID" data-name="DATA NAME" \n'
-                        + '',
+                    detail: deIndent(`
+                            e.g.,
+                            new Map([
+                                ['id', 'DATA_ID'],
+                                ['name', 'DATA NAME'],
+                            ])
+                            → data-id="DATA_ID" data-name="DATA NAME"
+                        `),
                 },
                 defaultValue: {
                     summary: "new Map()",

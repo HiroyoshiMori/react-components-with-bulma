@@ -14,13 +14,13 @@ export type ListRowClasses = {
 };
 /** Type definition for attributes of List */
 export type ListAttributes = {
-    wrap?: HTMLAttributes<HTMLDivElement>,
-    header?: HTMLAttributes<HTMLDivElement>,
+    wrap?: HTMLAttributes<HTMLDivElement>;
+    header?: HTMLAttributes<HTMLDivElement>;
 };
 /** Type definition for datasets of List */
 export type ListDatasets = {
-    wrap?: CommonDataSet,
-    header?: CommonDataSet,
+    wrap?: CommonDataSet;
+    header?: CommonDataSet;
 };
 /** Type definition for classes of List */
 export type ListClasses = {
@@ -39,16 +39,17 @@ export type ListHeaderProps = {
     attributes?: HTMLAttributes<HTMLDivElement>;
     datasets?: CommonDataSet;
 };
+export type ListItemProps = {
+    data: {
+        columns: ListColumnFields[],
+        attributes?: HTMLAttributes<HTMLDivElement>,
+        datasets?: CommonDataSet,
+    }[],
+    type?: string,
+};
 /** Type definition for property of list */
 export type ListProps = {
-    items: {
-        data: {
-            columns: ListColumnFields[],
-            attributes?: HTMLAttributes<HTMLDivElement>,
-            datasets?: CommonDataSet,
-        }[],
-        type?: string,
-    };
+    items: ListItemProps;
     headers?: ListColumnFields[];
     classes?: ListClasses;
     attributes?: ListAttributes;

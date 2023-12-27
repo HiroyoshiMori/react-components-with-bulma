@@ -1,4 +1,5 @@
 import {COLOR_TYPES, Tag} from "../../../../components";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Element/Tags/Tag',
@@ -71,6 +72,12 @@ export default {
             table: {
                 type: {
                     summary: 'TagCombinationProps',
+                    detail: deIndent(`
+                            onClick?: (e: React.MouseEvent) => void,
+                            classes?: string[],
+                            attributes?: HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>,
+                            datasets?: CommonDataSet,
+                        `),
                 },
             },
         },
@@ -85,13 +92,21 @@ export default {
                 type: {
                     summary: COLOR_TYPES.join('|'),
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         isLightColor: {
             control: 'boolean',
             description: 'Make color more light',
             table: {
-                defaultValue: false,
+                type: {
+                    summary: 'boolean',
+                },
+                defaultValue: {
+                    summary: false,
+                },
             },
         },
         size: {
@@ -101,12 +116,18 @@ export default {
                 type: {
                     summary: 'number',
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         isRounded: {
             control: 'boolean',
             description: 'Tag has rounded corners',
             table: {
+                type: {
+                    summary: 'boolean',
+                },
                 defaultValue: {
                     summary: 'false',
                 },

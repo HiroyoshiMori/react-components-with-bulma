@@ -1,5 +1,5 @@
 import React, {HTMLAttributes} from "react";
-import {CommonDataSet} from "./index";
+import {CommonDataSet, DialogClasses} from "./index";
 import {
     DialogAttributes,
     DialogDatasets
@@ -15,6 +15,11 @@ export type ProgressBarDatasets = {
     dialog?: DialogDatasets,
     progressbar?: CommonDataSet;
 }
+/** Type definition for classes of Progressbar */
+export type ProgressBarClasses = {
+    dialog?: DialogClasses,
+    progressbar?: string[];
+}
 /** Type definition for property of progressbar */
 export type ProgressBarProps = {
     isActive: boolean;
@@ -22,6 +27,7 @@ export type ProgressBarProps = {
     value: number;
     max: number;
     onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    classes?: ProgressBarClasses;
     attributes?: ProgressBarAttributes;
     datasets?: ProgressBarDatasets;
 };

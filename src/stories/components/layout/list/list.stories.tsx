@@ -1,9 +1,126 @@
 import React from 'react';
-import {List} from "../../../../components";
+import {List} from '../../../../components';
+import {deIndent} from '../../../../utils';
 
 export default {
+    title: 'React Component/Layout/List',
     component: List,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'List of items',
+        docs: {
+            description: {
+                component: "This component shows list of items using Flexbox.<br>In Bulma doc: https://bulma.io/documentation/columns/basics/",
+            },
+        },
+    },
+    argTypes: {
+        items: {
+            control: 'object',
+            description: 'Items in list',
+            table: {
+                type: {
+                    summary: 'ListItemProps',
+                    detail: deIndent(`
+                            {
+                                data?: {
+                                    column?: {
+                                        value: any,
+                                        attributes?: HTMLAttributes<HTMLDivElement>,
+                                        datasets?: Map<string, string>,
+                                    }[],
+                                    attributes?: HTMLAttributes<HTMLDivElement>,
+                                    datasets?: Map<string, string>,
+                                }[],
+                                type?: string,
+                            }
+                        `),
+                },
+            },
+        },
+        headers: {
+            control: 'object',
+            description: 'Header of list',
+            table: {
+                type: {
+                    summary: 'ListColumnFields[]',
+                    detail: deIndent(`
+                            {
+                                column?: {
+                                    value: any,
+                                    attributes?: HTMLAttributes<HTMLDivElement>,
+                                    datasets?: Map<string, string>,
+                                }
+                            }[]
+                        `),
+                },
+                defaultValue: {
+                    summary: '[]',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style classes',
+            table: {
+                type: {
+                    summary: 'ListClasses',
+                    detail: deIndent(`
+                            {
+                                wrap?: string[],
+                                headers?: {
+                                    wrap?: string[],
+                                    column?: string[],
+                                },
+                                detail?: {
+                                    wrap?: string[],
+                                    column?: string[],
+                                },
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '{}',
+                }
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'Additional attributes',
+            table: {
+                type: {
+                    summary: 'ListAttributes',
+                    detail: deIndent(`
+                            {
+                                wrap?: HTMLAttributes<HTMLDivElement>,
+                                headers?: HTMLAttributes<HTMLDivElement>,
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '{}',
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'Datasets',
+            table: {
+                type: {
+                    summary: 'ListDatasets',
+                    detail: deIndent(`
+                            {
+                                wrap?: Map<string, string>,
+                                headers?: Map<string, string>,
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: 'new Map()',
+                },
+            },
+        },
+    },
 };
 export const Default = {
     render: (args: any) => <List

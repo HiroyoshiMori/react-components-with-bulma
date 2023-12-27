@@ -1,5 +1,6 @@
 import React from 'react';
 import {COLOR_TYPES, STATES, TextBox} from "../../../../components";
+import {deIndent} from '../../../../utils';
 
 export default {
     title: 'React Component/Element/TextBox',
@@ -24,7 +25,7 @@ export default {
             description: 'Field type',
             table: {
                 type: {
-                    summary: 'text|password|email|tel',
+                    summary: 'text | password | email | tel',
                 },
                 defaultValue: {
                     summary: 'text',
@@ -42,6 +43,11 @@ export default {
         placeholder: {
             control: 'text',
             description: 'Placeholder which is shown when value is empty',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
         },
         colorType: {
             control: 'select',
@@ -53,6 +59,9 @@ export default {
             table: {
                 type: {
                     summary: COLOR_TYPES.join('|'),
+                },
+                defaultValue: {
+                    summary: 'undefined',
                 },
             },
         },
@@ -67,6 +76,9 @@ export default {
                 type: {
                     summary: STATES.join('|'),
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                },
             },
         },
         size: {
@@ -75,6 +87,9 @@ export default {
             table: {
                 type: {
                     summary: 'number',
+                },
+                defaultValue: {
+                    summary: 'undefined',
                 },
             },
         },
@@ -96,10 +111,10 @@ export default {
             table: {
                 type: {
                     summary: 'InputHTMLAttributes<HTMLInputElement>',
-                    detail: ''
-                        + 'e.g.,\n'
-                        + "{'aria-label': 'LABEL'}\n"
-                        + '',
+                    detail: deIndent(`
+                            e.g.,
+                            {'aria-label': 'LABEL'}
+                        `),
                 },
                 defaultValue: {
                     summary: "{}",
@@ -112,14 +127,14 @@ export default {
             table: {
                 type: {
                     summary: 'Map<string, string>',
-                    detail: ''
-                        + 'e.g.,\n'
-                        + "new Map([\n"
-                        + "  ['id', 'DATA_ID'],\n"
-                        + "  ['name', 'DATA NAME'],\n"
-                        + "])\n"
-                        + '→ data-id="DATA_ID" data-name="DATA NAME" \n'
-                        + '',
+                    detail: deIndent(`
+                            e.g.,
+                            new Map([
+                                ['id', 'DATA_ID'],
+                                ['name', 'DATA NAME'],
+                            ])
+                            → data-id="DATA_ID" data-name="DATA NAME"
+                        `),
                 },
                 defaultValue: {
                     summary: "new Map()",

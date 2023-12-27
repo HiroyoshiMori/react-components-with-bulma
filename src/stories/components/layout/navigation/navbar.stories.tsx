@@ -1,9 +1,159 @@
 import React, {Fragment} from "react";
 import {Navbar} from "../../../../components";
+import {deIndent} from '../../../../utils';
 
 export default {
+    title: 'React Component/Layout/Navbar',
     component: Navbar,
     tags: ['autodocs'],
+    parameters: {
+        componentSubtitle: 'Navbar - Navigation',
+        docs: {
+            description: {
+                component: "This component shows navbar.<br>In Bulma doc: https://bulma.io/documentation/components/navbar/",
+            },
+        },
+    },
+    argTypes: {
+        ariaLabel: {
+            control: 'text',
+            description: 'aria-label for navbar',
+        },
+        menuId: {
+            control: 'text',
+            description: 'ID for navbar menu',
+        },
+        menus: {
+            control: 'object',
+            description: 'Menu data in navbar',
+            table: {
+                type: {
+                    summary: deIndent(`
+                            {
+                                start?: NavbarItemFields[],
+                                end?: NavbarItemFields[],
+                            }
+                        `),
+                    detail: deIndent(`
+                            {
+                                start?: {
+                                    label: ReactNode;
+                                    isDivider?: boolean;
+                                    href?: string;
+                                    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+                                    children?: NavbarItemFields[];
+                                    classes?: string[],
+                                    attributes?: HTMLAttributes<HTMLDivElement | HTMLHeadingElement | HTMLAnchorElement>;
+                                    datasets?: Map<string, string>;
+                                }[] as NavbarItemFields[],
+                                end?: NavbarItemFields[],
+                            }
+                        `),
+                },
+            },
+        },
+        brand: {
+            control: 'object',
+            description: 'Brand information including logo',
+            table: {
+                type: {
+                    summary: deIndent(`
+                            {
+                                item: ReactNode,
+                                href?: string,
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        fixed: {
+            control: 'radio',
+            options: ['top', 'bottom'],
+            description: 'Position of navbar',
+            table: {
+                type: {
+                    summary: 'string',
+                    detail: "top | bottom",
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        classes: {
+            control: 'object',
+            description: 'Style classes',
+            table: {
+                type: {
+                    summary: 'NavbarClasses',
+                    detail: deIndent(`
+                            {
+                                wrap?: string[],
+                                brand?: string[],
+                                burger?: string[],
+                                menu?: string[],
+                                menuStart?: string[],
+                                menuEnd?: string[],
+                                link?: string[],
+                                item?: string[],
+                                dropdown?: string[],
+                                divider?: string[],
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '{}',
+                },
+            },
+        },
+        attributes: {
+            control: 'object',
+            description: 'Additional attributes',
+            table: {
+                type: {
+                    summary: 'NavbarAttributes',
+                    detail: deIndent(`
+                            {
+                                wrap?: HTMLAttributes<HTMLElement>,
+                                brand?: HTMLAttributes<HTMLDivElement>,
+                                burger?: AnchorHTMLAttributes<HTMLAnchorElement>,
+                                menu?: HTMLAttributes<HTMLDivElement>,
+                                menuStart?: HTMLAttributes<HTMLDivElement>,
+                                menuEnd?: HTMLAttributes<HTMLDivElement>,
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '{}',
+                },
+            },
+        },
+        datasets: {
+            control: 'object',
+            description: 'Datasets',
+            table: {
+                type: {
+                    summary: 'NavbarDatasets',
+                    detail: deIndent(`
+                            {
+                                wrap?: Map<string, string>,
+                                brand?: Map<string, string>,
+                                burger?: Map<string, string>,
+                                menu?: Map<string, string>,
+                                menuStart?: Map<string, string>,
+                                menuEnd?: Map<string, string>,
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: '{}',
+                },
+            },
+        },
+    }
 };
 export const Default = {
     render: (args: any) => <Navbar
