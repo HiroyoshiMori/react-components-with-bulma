@@ -11,7 +11,7 @@ export const TableCell = (props: TableCellProps) => {
         classes = [],
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     const datasetShown = convertDataSet(datasets as CommonDataSet);
 

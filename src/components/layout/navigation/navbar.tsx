@@ -24,7 +24,7 @@ export const Navbar = (
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarAttributes>)

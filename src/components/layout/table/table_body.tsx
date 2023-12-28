@@ -14,7 +14,7 @@ export const TableBody = (props: TableBodyProps) => {
         classes = {},
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'row'] as Array<keyof TableBodyClasses>)

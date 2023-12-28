@@ -24,7 +24,7 @@ export const Tag = (props: TagProps) => {
         attributes = {},
         datasets = new Map(),
         children,
-    } = {...props};
+    } = props;
 
     if (!classes.includes('tag')) {
         classes.push('tag');

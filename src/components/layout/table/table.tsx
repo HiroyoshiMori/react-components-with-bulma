@@ -34,7 +34,7 @@ export const Table = (props: TableProps) => {
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'container'] as Array<keyof TableAttributes>)

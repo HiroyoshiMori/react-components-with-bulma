@@ -18,7 +18,7 @@ export const Menu = (
         classes = {},
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined && set default values if not already set
     (['wrap', 'label', 'list', 'item'] as Array<keyof MenuClasses>).forEach((k) => {

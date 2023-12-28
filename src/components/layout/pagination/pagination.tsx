@@ -27,7 +27,8 @@ export const Pagination = (
         onClick,
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
+
     // Initialize if undefined and set default values if not already set
     (['previous', 'next', 'ellipsis'] as Array<keyof PaginationLabels>)
         .forEach((k: keyof PaginationLabels) => {

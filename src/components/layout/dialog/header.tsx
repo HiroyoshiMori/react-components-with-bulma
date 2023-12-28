@@ -19,7 +19,7 @@ export const Header = (props: DialogHeaderProps) => {
         },
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'title', 'button'] as Array<keyof DialogHeaderAttributes>)

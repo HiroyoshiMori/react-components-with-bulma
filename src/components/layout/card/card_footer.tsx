@@ -10,7 +10,7 @@ export const CardFooter = (props: CardFooterProps) => {
         classes = [],
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Set default values if not already set
     if (!classes.includes('card-footer')) {

@@ -13,7 +13,7 @@ export const Label = (props: LabelProps) => {
         attributes = {},
         datasets = new Map(),
         children,
-    } = {...props};
+    } = props;
 
     const dataShown = convertDataSet(datasets as CommonDataSet);
 

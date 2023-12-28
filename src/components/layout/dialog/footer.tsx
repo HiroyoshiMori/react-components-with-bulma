@@ -16,7 +16,7 @@ export const Footer = (props: DialogFooterProps) => {
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'button'] as Array<keyof DialogFooterClasses>).forEach((k: keyof DialogFooterClasses) => {

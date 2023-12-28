@@ -20,7 +20,7 @@ export const Button = (props: ButtonProps) => {
         iconPosition = 'left',
         attributes= {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (["type", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {

@@ -12,7 +12,7 @@ export const ListDetail = (
     const {
         item,
         classes = [],
-    } = {...props};
+    } = props;
 
     // Set default values if not already set
     if (!classes.includes('column')) {

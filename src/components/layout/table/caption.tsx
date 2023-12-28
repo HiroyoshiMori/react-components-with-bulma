@@ -8,7 +8,7 @@ export const Caption = (props: CaptionProps) => {
         attributes = {},
         datasets = new Map(),
         children,
-    } = {...props};
+    } = props;
 
     const datasetShown = convertDataSet(datasets);
 

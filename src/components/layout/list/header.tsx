@@ -15,7 +15,7 @@ export const ListHeader = (
         classes = {},
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'column'] as Array<keyof ListRowClasses>)

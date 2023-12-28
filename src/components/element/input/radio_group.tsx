@@ -21,7 +21,7 @@ export const RadioGroup = (props: RadioGroupProps) => {
         classes = {},
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['group', 'radio'] as Array<keyof RadioGroupClasses>).forEach((k) => {

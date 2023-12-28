@@ -18,7 +18,7 @@ export const Radio = (props: RadioProps) => {
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'label', 'input'] as Array<keyof RadioAttributes>)

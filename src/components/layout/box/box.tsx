@@ -8,7 +8,7 @@ export const Box = (props: BoxProps) => {
         classes = [],
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Set default values if not already set.
     if (!classes.includes('box')) {

@@ -21,7 +21,7 @@ export const Dialog = (props: DialogBoxProps) => {
         attributes = {},
         datasets = {},
         children
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'card', 'header', 'content', 'footer'] as Array<keyof DialogAttributes>)

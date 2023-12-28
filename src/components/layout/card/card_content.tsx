@@ -14,7 +14,7 @@ export const CardContent = (props: CardContentProps) => {
         attributes = {},
         datasets = {},
         children,
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'content'] as Array<keyof CardContentAttributes>)

@@ -20,7 +20,7 @@ export const List = (
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'header'] as Array<keyof ListAttributes>).forEach((k: keyof ListAttributes) => {

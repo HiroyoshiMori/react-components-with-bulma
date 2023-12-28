@@ -17,7 +17,7 @@ export const Tab = (
         classes = {},
         attributes,
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'item'] as Array<keyof TabsClasses>).forEach((k: keyof TabsClasses) => {

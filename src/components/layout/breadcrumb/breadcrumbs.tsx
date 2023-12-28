@@ -17,7 +17,7 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
         classes = {},
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'item'] as Array<keyof BreadcrumbClasses>)

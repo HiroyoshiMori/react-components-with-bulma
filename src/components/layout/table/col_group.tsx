@@ -9,7 +9,7 @@ export const ColGroup = (props: ColGroupProps) => {
         classes = {},
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     (['group', 'col'] as Array<keyof ColGroupCLasses>)
         .forEach((k: keyof ColGroupCLasses) => {

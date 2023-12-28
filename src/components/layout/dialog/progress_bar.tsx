@@ -22,7 +22,7 @@ export const ProgressBar = (
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Set default values if not already set
     (['dialog', 'progressbar'] as Array<keyof ProgressBarAttributes>)

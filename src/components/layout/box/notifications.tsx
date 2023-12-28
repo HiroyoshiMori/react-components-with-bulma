@@ -18,7 +18,7 @@ export const Notifications = (props: NotificationsProps) => {
         attributes = {},
         datasets = {},
         children,
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'button'] as Array<keyof NotificationsAttributes>)

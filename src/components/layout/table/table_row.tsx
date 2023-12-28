@@ -9,7 +9,7 @@ export const TableRow = (props: TableRowProps) => {
         classes = [],
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     const datasetShown = convertDataSet(datasets as CommonDataSet);
 

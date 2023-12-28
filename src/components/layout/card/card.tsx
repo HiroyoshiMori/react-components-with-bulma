@@ -15,7 +15,7 @@ export const Card = (props: CardProps) => {
         classes = [],
         attributes = {},
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     if (!classes.includes('card')) {
         classes.push('card');

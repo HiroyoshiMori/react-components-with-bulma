@@ -15,7 +15,7 @@ export const Heading = (props: HeadingProps) => {
         children,
         attributes,
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Set default values if not already set
     if (!classes.includes('title') && !classes.includes('subtitle')) {

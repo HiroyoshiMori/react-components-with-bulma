@@ -17,7 +17,7 @@ export const Image = (props: ImageProps) => {
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'image'] as Array<keyof ImageAttributes>)

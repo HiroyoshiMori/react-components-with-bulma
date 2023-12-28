@@ -18,7 +18,7 @@ export const TextBox = (props: InputProps) => {
         placeholder = '',
         attributes,
         datasets = new Map(),
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['colorType', 'state', 'size'] as Array<keyof InputProps>).forEach((v: keyof InputProps) => {

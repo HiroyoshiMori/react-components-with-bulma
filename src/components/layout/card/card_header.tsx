@@ -16,7 +16,7 @@ export const CardHeader = (props: CardHeaderProps) => {
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'title', 'button', 'span', 'icon'] as Array<keyof CardHeaderAttributes>)

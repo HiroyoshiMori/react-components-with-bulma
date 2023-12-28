@@ -16,7 +16,7 @@ export const CardImage = (props: CardImageProps) => {
         classes = {},
         attributes = {},
         datasets = {},
-    } = {...props};
+    } = props;
 
     // Initialize if undefined
     (['wrap', 'figure', 'image'] as Array<keyof CardImageAttributes>)
