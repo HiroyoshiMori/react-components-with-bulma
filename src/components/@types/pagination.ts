@@ -1,8 +1,11 @@
-import React, {HTMLAttributes, ReactNode} from "react";
+import React, {
+    ReactNode,
+    HTMLAttributes,
+} from "react";
 import {
     CommonDataSet,
     PositionTypes,
-    SizeTypes
+    SizeTypes,
 } from "./index";
 
 /** Type definition for labels of pagination */

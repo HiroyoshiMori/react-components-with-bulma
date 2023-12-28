@@ -1,5 +1,14 @@
-import {ColgroupHTMLAttributes, ColHTMLAttributes, HTMLAttributes, ReactNode, TableHTMLAttributes} from "react";
-import {CommonAttributes, CommonDataSet, CommonStyleClasses} from "./index";
+import {
+    ReactNode,
+    HTMLAttributes,
+    TableHTMLAttributes,
+    ColHTMLAttributes,
+    ColgroupHTMLAttributes,
+} from "react";
+import {
+    CommonStyleClasses,
+    CommonDataSet,
+} from "./index";
 
 /** Type definition for attributes of table */
 export type TableAttributes = {
@@ -57,7 +66,7 @@ export type ColProps = {
 export type ColGroupProps = {
     classes?: ColGroupCLasses;
     attributes?: ColgroupHTMLAttributes<HTMLTableColElement>;
-    datasets?: CommonAttributes;
+    datasets?: CommonDataSet;
 } & ({cols: ColProps[], span: undefined} | {cols: [], span: number});
 /** Type definition for property of table row */
 export type TableRowProps = {

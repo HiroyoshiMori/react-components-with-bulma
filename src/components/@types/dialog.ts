@@ -1,5 +1,10 @@
-import React, {ReactNode} from "react";
-import {CommonDataSet} from "./index";
+import React, {
+    ReactNode,
+    HTMLAttributes,
+} from "react";
+import {
+    CommonDataSet,
+} from "./index";
 
 /** Type definition for attributes of header of Dialog */
 export type DialogHeaderAttributes = {

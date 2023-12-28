@@ -1,5 +1,11 @@
-import {CommonDataSet, CommonStyleClasses} from "./index";
-import {LabelHTMLAttributes, ReactNode} from "react";
+import {
+    ReactNode,
+    LabelHTMLAttributes,
+} from "react";
+import {
+    CommonDataSet,
+    CommonStyleClasses,
+} from "./index";
 
 /** Type definition for fields of label */
 export type LabelFields = {

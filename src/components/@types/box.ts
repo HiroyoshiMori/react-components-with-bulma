@@ -1,5 +1,10 @@
-import {HTMLAttributes, ReactNode} from "react";
-import {CommonDataSet} from "./index";
+import {
+    ReactNode,
+    HTMLAttributes,
+} from "react";
+import {
+    CommonDataSet,
+} from "./index";
 
 export type BoxProps = {
     children?: ReactNode;

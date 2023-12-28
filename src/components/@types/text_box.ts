@@ -1,5 +1,14 @@
-import {ChangeEvent, InputHTMLAttributes} from "react";
-import {ColorTypes, CommonDataSet, CommonStyleClasses, SizeTypes, StateTypes} from "./index";
+import {
+    ChangeEvent,
+    InputHTMLAttributes,
+} from "react";
+import {
+    ColorTypes,
+    CommonDataSet,
+    CommonStyleClasses,
+    SizeTypes,
+    StateTypes,
+} from "./index";
 
 /** Type definition for property of input */
 export type InputProps = {

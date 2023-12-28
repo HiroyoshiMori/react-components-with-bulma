@@ -1,8 +1,11 @@
-import {ButtonHTMLAttributes, HTMLAttributes, ReactNode} from "react";
+import {
+    ButtonHTMLAttributes,
+    HTMLAttributes,
+    ReactNode,
+} from "react";
 import {
     ColorTypes,
     CommonDataSet,
-    CommonStyleClasses,
 } from "./index";
 
 /** Type definitions for attributes of notifications */

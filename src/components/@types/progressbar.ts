@@ -1,9 +1,12 @@
-import React, {HTMLAttributes} from "react";
-import {CommonDataSet, DialogClasses} from "./index";
+import React, {
+    HTMLAttributes,
+} from "react";
 import {
+    CommonDataSet,
+    DialogClasses,
     DialogAttributes,
     DialogDatasets
-} from "./dialog";
+} from "./index";
 
 /** Type definition for attributes of Progressbar */
 export type ProgressBarAttributes = {

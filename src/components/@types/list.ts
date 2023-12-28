@@ -1,5 +1,10 @@
-import {CommonDataSet, CommonStyleClasses} from "./index";
-import {HTMLAttributes} from "react";
+import {
+    HTMLAttributes,
+} from "react";
+import {
+    CommonDataSet,
+    CommonStyleClasses,
+} from "./index";
 
 /** Type definition for fields of columns in List */
 export type ListColumnFields = {

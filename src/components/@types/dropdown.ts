@@ -1,3 +1,8 @@
+import {ReactNode} from "react";
+import {
+    CommonStyleClasses,
+} from "./index";
+
 /** Type definition for classes of dropdown */
 export type DropdownClasses = {
     wrap?: string[];

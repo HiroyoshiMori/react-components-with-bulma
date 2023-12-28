@@ -1,4 +1,7 @@
-import React, {ButtonHTMLAttributes, ReactNode} from "react";
+import React, {
+    ReactNode,
+    ButtonHTMLAttributes,
+} from "react";
 import {
     ColorTypes,
     CommonDataSet,

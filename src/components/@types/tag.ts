@@ -1,5 +1,13 @@
-import React, {HTMLAttributes, ReactNode} from "react";
-import {ColorTypes, CommonDataSet, CommonStyleClasses, SizeTypes} from "./index";
+import React, {
+    HTMLAttributes,
+    ReactNode,
+} from "react";
+import {
+    ColorTypes,
+    CommonDataSet,
+    CommonStyleClasses,
+    SizeTypes,
+} from "./index";
 
 /** Type definition for property of tag modifier */
 export type TagCombinationProps = {

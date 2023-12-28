@@ -1,7 +1,11 @@
-import {AnchorHTMLAttributes, HTMLAttributes, ReactNode} from "react";
+import {
+    ReactNode,
+    AnchorHTMLAttributes,
+    HTMLAttributes,
+} from "react";
 import {
     CommonDataSet,
-    CommonStyleClasses
+    CommonStyleClasses,
 } from "./index";
 
 /** Type definition for attributes of Navbar */

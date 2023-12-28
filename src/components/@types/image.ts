@@ -1,5 +1,9 @@
-import {HTMLAttributes} from "react";
-import {ImageSizesTypes} from "./index";
+import {
+    HTMLAttributes,
+} from "react";
+import {
+    ImageSizesTypes,
+} from "./index";
 
 // Type definition of attributes for image
 export type ImageAttributes = {
