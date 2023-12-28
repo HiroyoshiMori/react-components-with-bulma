@@ -61,7 +61,7 @@ export const RadioGroup = (props: RadioGroupProps) => {
                                 }
                             });
                         return (
-                            <Fragment key={(prefix ? (prefix + '-') : '') + 'radio_group-' + v.key}>
+                            <Fragment key={idx}>
                                 <Radio
                                     field={{
                                         name: fieldName,
