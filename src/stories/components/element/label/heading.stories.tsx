@@ -53,6 +53,38 @@ export default {
                 },
             },
         },
+        hasSpaced: {
+            control: 'boolean',
+            description: 'Has space between title and subtitle if subtitle exists',
+            if: {arg: 'subHeading', exists: true},
+            table: {
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
+        subHeading: {
+            control: 'object',
+            description: 'Subtitle data',
+            table: {
+                type: {
+                    summary: 'HeadingProps',
+                    detail: deIndent(`
+                            {
+                                label: string,
+                                children: string,
+                                size?: number,
+                                classes: string[],
+                                attributes: LabelHTMLAttributes<HTMLLabelElement>,
+                                datasets: Map<string, string,
+                            }
+                        `),
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                }
+            },
+        },
         classes: {
             control: 'object',
             description: 'Style Classes to apply',
@@ -187,5 +219,22 @@ export const WithDatasets = {
         datasets: new Map([
             ['id', 'heading'], ['name', 'Heading'],
         ]),
+    },
+};
+export const WithSubTitle = {
+    ...Default,
+    args: {
+        subHeading: {
+            label: 'Subtitle',
+        },
+    },
+};
+export const WithSubTitleWithSpaced = {
+    ...Default,
+    args: {
+        hasSpaced: true,
+        subHeading: {
+            label: 'Subtitle',
+        },
     },
 };

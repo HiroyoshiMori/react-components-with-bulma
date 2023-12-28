@@ -7,6 +7,7 @@ import {
     CardImageProps,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
+import {Image} from "../../element";
 
 export const CardImage = (props: CardImageProps) => {
     const {
@@ -49,15 +50,14 @@ export const CardImage = (props: CardImageProps) => {
     // Set default values if not already set
 
     let datasetShown = {} as any;
-    (['wrap', 'figure', 'image'] as Array<keyof CardImageDatasets>)
+    (['wrap'] as Array<keyof CardImageDatasets>)
         .forEach((k: keyof CardImageDatasets) => {
             if (datasetShown[k] === undefined) {
                 datasetShown[k] = {};
             }
             datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
         });
-
-
+    
     return (
         <Fragment>
             <div
@@ -65,19 +65,22 @@ export const CardImage = (props: CardImageProps) => {
                 {...attributes.wrap}
                 {...datasetShown.wrap}
             >
-                <figure
-                    className={classes.figure?.join('')}
-                    {...attributes.figure}
-                    {...datasetShown.figure}
-                >
-                    <img
-                        src={src}
-                        alt={alt}
-                        className={classes.image?.join(' ')}
-                        {...attributes.image}
-                        {...datasetShown.image}
-                    />
-                </figure>
+                <Image
+                    src={src}
+                    alt={alt}
+                    classes={{
+                        wrap: classes.figure,
+                        image: classes.image,
+                    }}
+                    attributes={{
+                        wrap: attributes.figure,
+                        image: attributes.image,
+                    }}
+                    datasets={{
+                        wrap: datasets.figure,
+                        image: datasets.image,
+                    }}
+                />
             </div>
         </Fragment>
     );

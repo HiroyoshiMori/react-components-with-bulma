@@ -1,4 +1,7 @@
-import {COLOR_TYPES, Tag} from "../../../../components";
+import {
+    COLOR_TYPES,
+    Tag,
+} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {

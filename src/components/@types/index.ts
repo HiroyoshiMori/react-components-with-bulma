@@ -1,5 +1,4 @@
 // List of horizontal positions
-
 export const HORIZONTAL_POSITIONS = ["centered", "right"];
 // List of vertical positions
 export const VERTICAL_POSITIONS = ["top", "middle", "bottom"];
@@ -11,6 +10,14 @@ export const SIZES = ["small", "normal", "medium", "large"];
 export const STATES = ["hover", "focus", "loading"];
 // List of separators for breadcrumb
 export const SEPARATORS = ["arrow", "bullet", "dot", "succeeds"];
+// List of image size
+export const IMAGE_SIZES = [
+    '16x16', '24x24', '32x32', '48x48', '64x64', '96x96', '128x128',
+    'square', '1by1', '5by4', '4by3', '3by2', '5by3', '16x9', '2by1', '3by1',
+    '4by5', '3by4', '2by3', '3by5', '9by16', '1by2', '1by3',
+];
+
+// List of horizontal positions
 /** Type definition for horizontal positions */
 export type PositionTypes = typeof HORIZONTAL_POSITIONS[number];
 /** Type definition for vertical positions */
@@ -23,6 +30,8 @@ export type SizeTypes = typeof SIZES[number];
 export type StateTypes = typeof STATES[number];
 /** Type definition for seperators */
 export type SeparatorsTypes = typeof SEPARATORS[number];
+/** Type definition for image sizes */
+export type ImageSizesTypes = typeof IMAGE_SIZES[number];
 
 /** Type definition for common style classes for fields */
 export type CommonStyleClasses = {
@@ -37,6 +46,7 @@ export * from './card.d';
 export * from './dialog.d';
 export * from './dropdown.d';
 export * from './heading.d';
+export * from './image.d';
 export * from './label.d';
 export * from './list.d';
 export * from './menu.d';
@@ -49,4 +59,3 @@ export * from './table.d';
 export * from './tabs.d';
 export * from './tag.d';
 export * from './text_box.d';
-

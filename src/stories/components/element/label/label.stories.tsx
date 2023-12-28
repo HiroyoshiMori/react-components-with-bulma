@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import { Label } from "../../../../components";
+import {Label} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {

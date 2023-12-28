@@ -8,6 +8,8 @@ import {
 export type HeadingFields = {
     label: string;
     size?: number;
+    hasSpaced?: boolean;
+    subHeading?: HeadingProps;
     attributes?: HTMLAttributes<HTMLHeadingElement>;
     datasets?: CommonDataSet;
 } & CommonStyleClasses;
