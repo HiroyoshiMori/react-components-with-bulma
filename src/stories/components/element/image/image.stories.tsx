@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image} from '../../../../components';
 import {deIndent} from '../../../../utils';
-import {IMAGE_SIZES} from '../../../../components/@types';
+import {IMAGE_SIZES} from '../../../../components';
 // @ts-ignore
 import SampleImage from '../../../assets/sample_image.jpg';
 
