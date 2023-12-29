@@ -28,7 +28,7 @@ export type ColorTypes = typeof COLOR_TYPES[number];
 export type SizeTypes = typeof SIZES[number];
 /** Type definition for states */
 export type StateTypes = typeof STATES[number];
-/** Type definition for seperators */
+/** Type definition for separators */
 export type SeparatorsTypes = typeof SEPARATORS[number];
 /** Type definition for image sizes */
 export type ImageSizesTypes = typeof IMAGE_SIZES[number];

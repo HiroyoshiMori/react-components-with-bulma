@@ -64,11 +64,11 @@ export const Notifications = (props: NotificationsProps) => {
             }
         }
     }
-    let datasetsShwon = {} as any;
+    let datasetsShown = {} as any;
     (['wrap', 'button'] as Array<keyof NotificationsDatasets>)
         .forEach((k: keyof NotificationsDatasets) => {
-            if (!Object.hasOwn(datasetsShwon, k)) {
-                datasetsShwon[k] = convertDataSet(datasets[k] as CommonDataSet);
+            if (!Object.hasOwn(datasetsShown, k)) {
+                datasetsShown[k] = convertDataSet(datasets[k] as CommonDataSet);
             }
         });
 
@@ -77,7 +77,7 @@ export const Notifications = (props: NotificationsProps) => {
             <div
                 className={classes.wrap?.join(' ')}
                 {...attributes.wrap}
-                {...datasetsShwon.wrap}
+                {...datasetsShown.wrap}
             >
                 <Button
                     label=""

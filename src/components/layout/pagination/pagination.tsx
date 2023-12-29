@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, ReactNode} from "react";
 import {sprintf} from "sprintf-js";
 import {
     CommonDataSet,
@@ -187,7 +187,7 @@ export const Pagination = (
                 >
                     {
                         (function () {
-                            const linkList: JSX.Element[] = [];
+                            const linkList: ReactNode[] = [];
                             let idx: number = 0;
                             if (current - 2 >= 1) {
                                 linkList.push((

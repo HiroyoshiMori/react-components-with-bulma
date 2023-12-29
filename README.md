@@ -1,4 +1,4 @@
-# React Components with Bulma CSS Fremework
+# React Components with Bulma CSS Framework
 
 This modules is set of react components which uses Bulma CSS Framework and Font Awesome Free.
 
