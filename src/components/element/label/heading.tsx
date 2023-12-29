@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {
     CommonDataSet,
-    HeadingProps, SIZES,
+    HeadingProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
