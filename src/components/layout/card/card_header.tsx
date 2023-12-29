@@ -8,7 +8,6 @@ import {
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {Icons} from "../../element";
-import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export const CardHeader = (props: CardHeaderProps) => {
     const {
