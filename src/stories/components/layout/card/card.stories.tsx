@@ -24,7 +24,7 @@ export default {
                     detail: deIndent(`
                             {
                                 title: ReactNode,
-                                buttonIcon?: IconDefinition,
+                                buttonIcon?: FontAwesomeIconProps,
                                 onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
                                 classes?: {
                                     wrap?: string[], title?: string[], button?: string[],
@@ -193,7 +193,9 @@ export const Default = {
     render: (args: any) => <Card
         header={{
             title: "Card Header",
-            buttonIcon: icon({name: 'angle-down', style: 'solid'}),
+            buttonIcon: {
+                icon: icon({name: 'angle-down', style: 'solid'}),
+            },
         }}
         content={{
             children: "Card Content"
@@ -227,20 +229,20 @@ export const WithAttributes = {
     args: {
         header: {
             title: "Card Header",
-            buttonIcon: icon({name: 'angle-down', style: 'solid'}),
+            buttonIcon: {
+                icon: icon({name: 'angle-down', style: 'solid'}),
+            },
             classes: {
                 wrap: ['card-header-wrap'],
                 title: ['card-header-title'],
                 button: ['card-header-button'],
                 span: ['card-header-span'],
-                icon: ['card-header-icon'],
             },
             attributes: {
                 wrap: {'aria-label': 'card-header-wrap'},
                 title: {'aria-label': 'card-header-title'},
                 button: {'aria-label': 'card-header-button'},
                 span: {'aria-label': 'card-header-span'},
-                icon: {'aria-label': 'card-header-icon'},
             },
         },
         content: {
@@ -274,7 +276,9 @@ export const WithDatasets = {
         ]),
         header: {
             title: "Card Header",
-            buttonIcon: icon({name: 'angle-down', style: 'solid'}),
+            buttonIcon: {
+                icon: icon({name: 'angle-down', style: 'solid'}),
+            },
             datasets: {
                 wrap: new Map([
                     ['id', 'card-header-wrap'], ['name', 'Card Header Wrap']

@@ -7,6 +7,7 @@ import {
     ButtonProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {Icons} from "../label";
 
 export const Button = (props: ButtonProps) => {
     const {
@@ -66,10 +67,10 @@ export const Button = (props: ButtonProps) => {
                 {
                     awesomeIcon && iconPosition === 'left' && (
                         <Fragment>
-                            <span className="icon mr-1">
-                                <FontAwesomeIcon icon={awesomeIcon} />
-                                {/*<i className={awesomeIcon.join(' ')}></i>*/}
-                            </span>
+                            <Icons
+                                icon={awesomeIcon}
+                                classes={['mr-1']}
+                            />
                         </Fragment>
                     )
                 }
@@ -77,10 +78,10 @@ export const Button = (props: ButtonProps) => {
                 {
                     awesomeIcon && iconPosition === 'right' && (
                         <Fragment>
-                            <span className="icon ml-1">
-                                <FontAwesomeIcon icon={awesomeIcon} />
-                                {/*<i className={awesomeIcon.join(' ')}></i>*/}
-                            </span>
+                            <Icons
+                                icon={awesomeIcon}
+                                classes={['ml-1']}
+                            />
                         </Fragment>
                     )
                 }

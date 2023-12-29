@@ -8,7 +8,7 @@ import {
     CommonStyleClasses,
     SizeTypes,
 } from "./index";
-import {IconDefinition} from "@fortawesome/fontawesome-common-types";
+import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
 /** Type definition for property of button */
 export type ButtonProps = {
@@ -19,7 +19,7 @@ export type ButtonProps = {
     size?: SizeTypes;
     disabled?: boolean;
     noDefaultClasses?: boolean;
-    awesomeIcon?: IconDefinition; //icon({name: 'check'}),
+    awesomeIcon?: FontAwesomeIconProps; //icon({name: 'check'}),
     iconPosition?: "left" | "right";
     attributes?: ButtonHTMLAttributes<HTMLButtonElement>;
     datasets?: CommonDataSet;

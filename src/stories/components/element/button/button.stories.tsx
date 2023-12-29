@@ -98,7 +98,7 @@ export default {
             description: 'Icon Definition for Font Awesome',
             table: {
                 type: {
-                    summary: 'IconDefinition',
+                    summary: 'FontAwesomeIconProps',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -306,13 +306,17 @@ export const Large = {
 export const WithIcon = {
     ...Default,
     args: {
-        awesomeIcon: icon({name: 'check', style: 'solid'}),
+        awesomeIcon: {
+            icon: icon({name: 'check', style: 'solid'}),
+        },
     },
 };
 export const WithIconRight = {
     ...Default,
     args: {
-        awesomeIcon: icon({name: 'check', style: 'solid'}),
+        awesomeIcon: {
+            icon: icon({name: 'check', style: 'solid'}),
+        },
         iconPosition: 'right',
     },
 };

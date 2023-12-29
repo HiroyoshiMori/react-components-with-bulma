@@ -46,6 +46,7 @@ export * from './card';
 export * from './dialog';
 export * from './dropdown';
 export * from './heading';
+export * from './icon';
 export * from './image';
 export * from './label';
 export * from './list';

@@ -3,11 +3,11 @@ import React, {
     ButtonHTMLAttributes,
     HTMLAttributes,
 } from "react";
-import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 import {
     CommonDataSet,
     CommonStyleClasses,
 } from "./index";
+import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
 /** Type definition for attributes of card header */
 export type CardHeaderAttributes = {
@@ -15,7 +15,6 @@ export type CardHeaderAttributes = {
     title?: HTMLAttributes<HTMLParagraphElement>;
     button?: ButtonHTMLAttributes<HTMLButtonElement>;
     span?: HTMLAttributes<HTMLSpanElement>;
-    icon?: HTMLAttributes<HTMLElement>;
 };
 /** Type definition for attributes of card image */
 export type CardImageAttributes = {
@@ -34,7 +33,6 @@ export type CardHeaderDatasets = {
     title?: CommonDataSet;
     button?: CommonDataSet;
     span?: CommonDataSet;
-    icon?: CommonDataSet;
 };
 /** Type definition for datasets of card image */
 export type CardImageDatasets = {
@@ -53,7 +51,6 @@ export type CardHeaderClasses = {
     title?: string[];
     button?: string[];
     span?: string[];
-    icon?: string[];
 };
 /** Type definition for classes of card image */
 export type CardImageClasses = {
@@ -69,7 +66,7 @@ export type CardContentClasses = {
 /** Type definition for property of card header */
 export type CardHeaderProps = {
     title: ReactNode;
-    buttonIcon?: IconDefinition;
+    buttonIcon?: FontAwesomeIconProps;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     classes?: CardHeaderClasses;
     attributes?: CardHeaderAttributes;

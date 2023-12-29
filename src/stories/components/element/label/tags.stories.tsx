@@ -10,7 +10,7 @@ export default {
         componentSubtitle: 'Tags Group',
         docs: {
             description: {
-                component: "This component put several \"Tag\"s.",
+                component: "This component put several \"Tag\"s.<br>In Bulma doc: https://bulma.io/documentation/elements/tag/",
             },
         },
     },

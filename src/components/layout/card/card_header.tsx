@@ -1,5 +1,4 @@
 import {Fragment} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     CommonDataSet,
     CardHeaderAttributes,
@@ -8,6 +7,8 @@ import {
     CardHeaderProps,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
+import {Icons} from "../../element";
+import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export const CardHeader = (props: CardHeaderProps) => {
     const {
@@ -19,19 +20,19 @@ export const CardHeader = (props: CardHeaderProps) => {
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'title', 'button', 'span', 'icon'] as Array<keyof CardHeaderAttributes>)
+    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderAttributes>)
         .forEach((k: keyof CardHeaderAttributes) => {
             if (attributes[k] === undefined) {
                 attributes[k] = {};
             }
         });
-    (['wrap', 'title', 'button', 'span', 'icon'] as Array<keyof CardHeaderDatasets>)
+    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderDatasets>)
         .forEach((k: keyof CardHeaderDatasets) => {
             if (datasets[k] === undefined) {
                 datasets[k] = new Map();
             }
         });
-    (['wrap', 'title', 'button', 'span', 'icon'] as Array<keyof CardHeaderClasses>)
+    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderClasses>)
         .forEach((k: keyof CardHeaderClasses) => {
             if (classes[k] === undefined) {
                 classes[k] = [];
@@ -54,7 +55,7 @@ export const CardHeader = (props: CardHeaderProps) => {
         });
 
     let datasetShown = {} as any;
-    (['wrap', 'title', 'button', 'span', 'icon'] as Array<keyof CardHeaderDatasets>)
+    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderDatasets>)
         .forEach((k: keyof CardHeaderDatasets) => {
             if (datasetShown[k] === undefined) {
                 datasetShown[k] = {};
@@ -87,17 +88,12 @@ export const CardHeader = (props: CardHeaderProps) => {
                             {...attributes.button}
                             {...datasetShown.button}
                         >
-                            <span
-                                className={classes.span?.join(' ')}
-                                {...attributes.span}
-                                {...datasetShown.span}
-                            >
-                                <FontAwesomeIcon icon={buttonIcon}
-                                    className={classes.icon?.join(' ')}
-                                    {...attributes.icon}
-                                    {...datasetShown.icon}
-                                />
-                            </span>
+                            <Icons
+                                icon={buttonIcon}
+                                classes={classes.span}
+                                attributes={attributes.span}
+                                datasets={datasets.span}
+                            />
                         </button>
                     )
                 }
