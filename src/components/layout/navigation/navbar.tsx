@@ -75,7 +75,7 @@ export const Navbar = (
             }
         });
     // Set default values if not already set
-    if (fixed && classes.wrap && !ArrayRegexIncludes(classes.wrap, /^is-fixed-(top|bottom)$/)) {
+    if (fixed && classes.wrap && ArrayRegexIncludes(classes.wrap, /^is-fixed-(top|bottom)$/) === -1) {
         classes.wrap?.push('is-fixed-' + fixed);
     }
     if (attributes.wrap) {

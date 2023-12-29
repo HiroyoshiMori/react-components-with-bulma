@@ -44,7 +44,7 @@ export const Tag = (props: TagProps) => {
             }
             if (pattern) {
                 const reg: string = `^is-(${pattern})$`;
-                if (!ArrayRegexIncludes(classes, new RegExp(reg))) {
+                if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
                     classes.push('is-' + props[v]);
                 }
             }
@@ -97,35 +97,20 @@ export const Tag = (props: TagProps) => {
             </Fragment>
         )
     };
+    let Tag: React.ElementType;
+    Tag = useAnchor ? 'a' : 'span';
 
     return (
         <Fragment>
-            {
-                useAnchor ? (
-                    <Fragment>
-                        <a
-                            className={classes.join(' ')}
-                            onClick={onClick}
-                            {...attributes}
-                            {...datasetShown}
-                        >
-                            {children}
-                            { hasCombination && (renderCombinations(combinations)) }
-                        </a>
-                    </Fragment>
-                ) : (
-                    <Fragment>
-                        <span
-                            className={classes.join(' ')}
-                            {...attributes}
-                            {...datasetShown}
-                        >
-                            {children}
-                            { hasCombination && (renderCombinations(combinations)) }
-                        </span>
-                    </Fragment>
-                )
-            }
+            <Tag
+                className={classes.join(' ')}
+                onClick={onClick}
+                {...attributes}
+                {...datasetShown}
+            >
+                {children}
+                { hasCombination && (renderCombinations(combinations)) }
+            </Tag>
         </Fragment>
     );
 };

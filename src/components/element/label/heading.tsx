@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {
     CommonDataSet,
-    HeadingProps,
+    HeadingProps, SIZES,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
@@ -11,6 +11,7 @@ export const Heading = (props: HeadingProps) => {
         size = 3,
         hasSpaced = false,
         subHeading,
+        useParagraph = false,
         classes = [],
         children,
         attributes,
@@ -21,8 +22,9 @@ export const Heading = (props: HeadingProps) => {
     if (!classes.includes('title') && !classes.includes('subtitle')) {
         classes.push('title');
     }
-    if (!ArrayRegexIncludes(classes, /^is-[1-6]$/)) {
-        classes.push('is-' + size);
+    const pattern = `^is-([0-9]+)$`;
+    if (ArrayRegexIncludes(classes, new RegExp(pattern)) === -1) {
+        classes.push('is-' + ((size >= 1 && size <= 7) ? size : 3));
     }
     if (subHeading) {
         if (hasSpaced && !classes.includes('is-spaced')) {
@@ -35,27 +37,38 @@ export const Heading = (props: HeadingProps) => {
             subHeading.classes.push('subtitle');
         }
     }
+    // Tag switch by useParagraph: p or h?
+    let Tag: React.ElementType;
+    if (useParagraph) {
+        Tag = 'p';
+    } else {
+        // Tag switch by size: h1 - h6
+        switch (size) {
+            case 1: case 2: case 4: case 5: case 6:
+                Tag = `h${size}`; break;
+            default:
+                Tag = 'h3';
+        }
+    }
 
     const dataShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
-            { size === 1 && <h1 className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</h1> }
-            { size === 2 && <h2 className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</h2> }
-            { size === 4 && <h4 className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</h4> }
-            { size === 5 && <h5 className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</h5> }
-            { size === 6 && <h6 className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</h6> }
-            { (size === 3 || size < 1 || size > 6) && <h3 className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</h3> }
-            { subHeading && size + 2 <= 6 && (
-                <Heading
-                    size={size+2}
-                    classes={subHeading.classes}
-                    attributes={subHeading.attributes}
-                    datasets={subHeading.datasets}
-                >
-                    {subHeading.label}
-                </Heading>
-                )}
+            <Tag className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</Tag>
+            {
+                (subHeading && size + 2 <= 6) ? (
+                    <Heading
+                        size={size + 2}
+                        useParagraph={useParagraph}
+                        classes={subHeading.classes}
+                        attributes={subHeading.attributes}
+                        datasets={subHeading.datasets}
+                    >
+                        {subHeading.label}
+                    </Heading>
+                ) : <Fragment />
+            }
         </Fragment>
     );
 }

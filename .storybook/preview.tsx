@@ -9,10 +9,10 @@ const preview: Preview = {
       // sort: 'requiredFirst',
       hideNoControlsWarning: true,
       expanded: true,
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
+      // matchers: {
+      //   color: /(background|color)$/i,
+      //   date: /Date$/i,
+      // },
       // exclude: ['classes', 'attributes', 'datasets'],
     },
     docs: {

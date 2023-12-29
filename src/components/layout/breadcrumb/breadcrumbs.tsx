@@ -40,21 +40,21 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
                     case 'position':
                         pattern = HORIZONTAL_POSITIONS.join('|');
                         reg = `^is-(${pattern})$`;
-                        if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+                        if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                             classes.wrap?.push('is-' + position);
                         }
                         break;
                     case 'separator':
                         pattern = SEPARATORS.join('|');
                         reg = `^has-(${pattern})-separator$`;
-                        if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+                        if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                             classes.wrap?.push('has-' + props[k] + '-separator');
                         }
                         break;
                     case 'size':
                         pattern = SIZES.join('|');
                         reg = `^is-(${pattern})$`;
-                        if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+                        if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                             classes.wrap?.push('is-' + props[k]);
                         }
                         break;

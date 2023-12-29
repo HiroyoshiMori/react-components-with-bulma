@@ -38,16 +38,16 @@ export function getFormattedDate(date: Date, format: string) {
  * 
  * @param arr array to check values
  * @param regex regex
- * @returns boolean true if matched.
+ * @returns number same as Array.indexOf
  */
 export function ArrayRegexIncludes(arr: Array<string|number>, regex: RegExp) {
     for (const i in arr) {
         const testStr = arr[i] as string;
         if (regex.test(testStr)) {
-            return true;
+            return arr.indexOf(testStr);
         }
     }
-    return false;
+    return -1;
 }
 
 /**

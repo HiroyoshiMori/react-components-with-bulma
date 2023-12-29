@@ -13,6 +13,7 @@ export type HeadingFields = {
     size?: number;
     hasSpaced?: boolean;
     subHeading?: HeadingProps;
+    useParagraph: boolean;
     attributes?: HTMLAttributes<HTMLHeadingElement>;
     datasets?: CommonDataSet;
 } & CommonStyleClasses;

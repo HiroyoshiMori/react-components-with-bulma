@@ -194,6 +194,14 @@ export const H3_Size7 = {
         label: 'H3',
     },
 };
+export const H3_WithClassIs1 = {
+    ...Default,
+    args: {
+        size: 3,
+        label: 'H3',
+        classes: ['is-1'],
+    },
+};
 export const DefaultWithClasses = {
     ...Default,
     args: {
@@ -236,5 +244,33 @@ export const WithSubTitleWithSpaced = {
         subHeading: {
             label: 'Subtitle',
         },
+    },
+};
+export const ParagraphWithSize1 = {
+    ...Default,
+    args: {
+        useParagraph: true,
+        size: 1,
+    },
+};
+export const ParagraphWithSize3 = {
+    ...Default,
+    args: {
+        useParagraph: true,
+        size: 3,
+    },
+};
+export const ParagraphWithSize5 = {
+    ...Default,
+    args: {
+        useParagraph: true,
+        size: 5,
+    },
+};
+export const ParagraphWithSize8 = {
+    ...Default,
+    args: {
+        useParagraph: true,
+        size: 8,
     },
 };

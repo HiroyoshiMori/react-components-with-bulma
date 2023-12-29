@@ -56,7 +56,7 @@ export const Notifications = (props: NotificationsProps) => {
         if (color) {
             const pattern: string = COLOR_TYPES.join('|');
             const reg: string = `^is-(${pattern})$`;
-            if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+            if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                 classes.wrap?.push('is-' + color);
             }
             if (isLightColor && !classes.wrap?.includes('is-light')) {

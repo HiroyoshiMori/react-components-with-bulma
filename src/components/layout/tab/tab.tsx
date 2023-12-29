@@ -34,7 +34,7 @@ export const Tab = (
             const pattern: string = HORIZONTAL_POSITIONS.join('|');
             if (pattern) {
                 const reg: string = `^is-(${pattern})$`;
-                if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+                if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                     classes.wrap?.push('is-' + position);
                 }
             }

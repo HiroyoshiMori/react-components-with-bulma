@@ -34,7 +34,7 @@ export const Button = (props: ButtonProps) => {
             }
             if (pattern) {
                 const reg: string = `^is-(${pattern})$`;
-                if (!ArrayRegexIncludes(classes, new RegExp(reg))) {
+                if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
                     classes.push('is-' + props[v]);
                 }
             }

@@ -72,7 +72,7 @@ export const ProgressBar = (
                         case 'wrap': checkPattern = '^p-([1-6])$'; defaultValue = 'p-3'; break;
                         case 'title': checkPattern = 'is-size-([1-7])'; defaultValue = 'is-size-6'; break;
                     }
-                    if (checkPattern && !ArrayRegexIncludes(classes.dialog.header[k] as string[], new RegExp(checkPattern))) {
+                    if (checkPattern && ArrayRegexIncludes(classes.dialog.header[k] as string[], new RegExp(checkPattern)) === -1) {
                         classes.dialog.header[k]?.push(defaultValue);
                     }
                 }
@@ -89,7 +89,7 @@ export const ProgressBar = (
                 case 'pb': checkPattern = '^pb?-([1-6]|auto)$'; defaultValue = 'pt-3'; break;
                 case 'pl': checkPattern = '^pl?-([1-6]|auto)$'; defaultValue = 'pt-5'; break;
             }
-            if (checkPattern && classes.dialog?.content && !ArrayRegexIncludes(classes.dialog.content as string[], new RegExp(checkPattern))) {
+            if (checkPattern && classes.dialog?.content && ArrayRegexIncludes(classes.dialog.content as string[], new RegExp(checkPattern)) === -1) {
                 classes.dialog.content?.push(defaultValue);
             }
         })
@@ -98,12 +98,14 @@ export const ProgressBar = (
         if (classes.dialog?.footer.wrap === undefined) {
             classes.dialog.footer.wrap = [];
         }
-        if (!ArrayRegexIncludes(classes.dialog.footer.wrap, /^p[trbl]?-([0-6]|auto)$/)) {
+        if (ArrayRegexIncludes(classes.dialog.footer.wrap, /^p[trbl]?-([0-6]|auto)$/) === -1) {
             classes.dialog.footer.wrap.push('p-3');
         }
-        if (!ArrayRegexIncludes(
-            classes.dialog.footer.wrap,
-            /^is-justify-content-(flex-start|flex-end|center|space-between|space-around|space-evenly|start|end|left|right)$/)
+        if (
+            ArrayRegexIncludes(
+                classes.dialog.footer.wrap,
+                /^is-justify-content-(flex-start|flex-end|center|space-between|space-around|space-evenly|start|end|left|right)$/
+            ) === -1
         ) {
             classes.dialog.footer.wrap.push('is-justify-content-flex-end');
         }
@@ -113,7 +115,7 @@ export const ProgressBar = (
             classes.progressbar.push('progress');
         }
         const colorPattern = '^is-(' + COLOR_TYPES.join('|') + ')$';
-        if (!ArrayRegexIncludes(classes.progressbar, new RegExp(colorPattern))) {
+        if (ArrayRegexIncludes(classes.progressbar, new RegExp(colorPattern)) === -1) {
             classes.progressbar.push('is-info');
         }
     }

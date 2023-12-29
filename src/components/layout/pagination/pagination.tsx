@@ -70,7 +70,7 @@ export const Pagination = (
             const pattern = HORIZONTAL_POSITIONS.join('|');
             if (pattern) {
                 const reg: string = `^is-(${pattern})$`;
-                if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+                if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                     classes.wrap?.push('is-' + position);
                 }
             }
@@ -84,7 +84,7 @@ export const Pagination = (
             const pattern = SIZES.join('|');
             if (pattern) {
                 const reg: string = `^is-(${pattern})$`;
-                if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+                if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                     classes.wrap?.push('is-' + size);
                 }
             }

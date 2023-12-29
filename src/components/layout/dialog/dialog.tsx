@@ -70,17 +70,19 @@ export const Dialog = (props: DialogBoxProps) => {
         classes.content.push('modal-card-body');
     }
     if (classes.header.wrap) {
-        if (!ArrayRegexIncludes(classes.header.wrap, /^p[trbl]?-([0-6]|auto)$/)) {
+        if (ArrayRegexIncludes(classes.header.wrap, /^p[trbl]?-([0-6]|auto)$/) === -1) {
             classes.header.wrap.push('p-3');
         }
     }
     if (classes.footer.wrap) {
-        if (!ArrayRegexIncludes(classes.footer.wrap, /^p[trbl]?-([0-6]|auto)$/)) {
+        if (ArrayRegexIncludes(classes.footer.wrap, /^p[trbl]?-([0-6]|auto)$/) === -1) {
             classes.footer.wrap.push('p-3');
         }
-        if (!ArrayRegexIncludes(
-            classes.footer.wrap,
-            /^is-justify-content-(flex-start|flex-end|center|space-between|space-around|space-evenly|start|end|left|right)$/)
+        if (
+            ArrayRegexIncludes(
+                classes.footer.wrap,
+                /^is-justify-content-(flex-start|flex-end|center|space-between|space-around|space-evenly|start|end|left|right)$/
+            ) === -1
         ) {
             classes.footer.wrap.push('is-justify-content-flex-end');
         }

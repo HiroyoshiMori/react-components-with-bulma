@@ -44,7 +44,7 @@ export const Radio = (props: RadioProps) => {
         classes.label.push('radio');
     }
     if (classes.input) {
-        if (!ArrayRegexIncludes(classes.input, /^mr?-([0-6]|auto)$/)) {
+        if (ArrayRegexIncludes(classes.input, /^mr?-([0-6]|auto)$/) === -1) {
             classes.input.push('mr-1');
         }
     }

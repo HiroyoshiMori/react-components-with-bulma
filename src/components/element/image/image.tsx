@@ -47,7 +47,7 @@ export const Image = (props: ImageProps) => {
         const pattern = IMAGE_SIZES.join('|');
         if (pattern && classes.wrap) {
             const reg: string = `^is-(${pattern})$`;
-            if (!ArrayRegexIncludes(classes.wrap, new RegExp(reg))) {
+            if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                 classes.wrap?.push('is-' + imageSize);
             }
         }
