@@ -1,4 +1,4 @@
-import React, {AnchorHTMLAttributes, Fragment, HTMLAttributes} from "react";
+import React, {AnchorHTMLAttributes, Fragment} from "react";
 import {PanelBlockProps} from "../../@types/panel";
 import {convertDataSet} from "../../../utils";
 

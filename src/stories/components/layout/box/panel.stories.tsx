@@ -1,5 +1,4 @@
 import React from "react";
-import {action} from "@storybook/addon-actions";
 import {Panel} from "../../../../components";
 import {deIndent} from "../../../../utils";
 import {withActions} from "@storybook/addon-actions/decorator";
