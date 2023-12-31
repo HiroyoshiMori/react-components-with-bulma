@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test-storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ./docs",
     "chromatic": "npx chromatic --project-token=%YOUR_PROJECT_TOKEN%"
@@ -58,6 +59,7 @@
     "@storybook/react": "^7.6.6",
     "@storybook/react-webpack5": "^7.6.6",
     "@storybook/test": "^7.6.6",
+    "@storybook/test-runner": "^0.16.0",
     "@types/node": "^20.10.5",
     "babel-plugin-macros": "^3.1.0",
     "chromatic": "^10.2.0",
