@@ -76,7 +76,7 @@ export default {
     },
 };
 export const Default = {
-    render: (args: any) => <Block>
+    render: (args: any) => <Block {...args}>
         Block children
     </Block>
 };
