@@ -67,7 +67,7 @@ export const ListHeaderCustomWith5Items = (
                 >
                     {customItems[0].value}
                 </div>
-                <div>
+                <div className="column">
                     <div className="columns">
                         <div
                             className={customItems[1].classes.join(' ')}
