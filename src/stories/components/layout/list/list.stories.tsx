@@ -291,31 +291,30 @@ export const UsingCustom = {
     ...Default,
     args: {
         headers: [
-            {value: 'Header A', classes: ['is-narrow']},
-            {value: 'Header B'},
-            {value: 'Header C'},
-            {value: 'Header D'},
-            {value: 'Header E'},
-            {value: 'Header F'},
+            {value: 'Header A', classes: ['is-1']},
+            {value: 'Header B', classes: ['is-4']},
+            {value: 'Header C', classes: ['is-8']},
+            {value: 'Header D', classes: ['is-4']},
+            {value: 'Header E', classes: ['is-8']},
         ],
         items: {
             data: [
                 {
                     columns: [
-                        {value: "Column A", classes: ['is-narrow']},
-                        {value: "Column B"},
-                        {value: "Column C"},
-                        {value: "Column D"},
-                        {value: "Column E"},
+                        {value: "Column A", classes: ['is-1']},
+                        {value: "Column B", classes: ['is-4']},
+                        {value: "Column C", classes: ['is-8']},
+                        {value: "Column D", classes: ['is-4']},
+                        {value: "Column E", classes: ['is-8']},
                     ],
                 },
                 {
                     columns: [
-                        {value: "Column 2A", classes: ['is-narrow']},
-                        {value: "Column 2B"},
-                        {value: "Column 2C"},
-                        {value: "Column 2D"},
-                        {value: "Column 2E"},
+                        {value: "Column 2A", classes: ['is-1']},
+                        {value: "Column 2B", classes: ['is-4']},
+                        {value: "Column 2C", classes: ['is-8']},
+                        {value: "Column 2D", classes: ['is-4']},
+                        {value: "Column 2E", classes: ['is-8']},
                     ],
                 },
             ],
