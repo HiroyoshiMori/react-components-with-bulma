@@ -51,11 +51,17 @@ export const Heading = (props: HeadingProps) => {
         }
     }
 
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
-            <Tag className={classes.join(' ')} {...attributes} {...dataShown}>{children ?? label}</Tag>
+            <Tag
+                className={classes.join(' ')}
+                {...attributes}
+                {...datasetShown}
+            >
+                {children ?? label}
+            </Tag>
             {
                 (subHeading && size + 2 <= 6) ? (
                     <Heading

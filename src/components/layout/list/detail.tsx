@@ -27,13 +27,13 @@ export const ListDetail = (
                     v.datasets = v.datasets ?? new Map();
                     const colClasses: string[] = v.classes ?
                         classes.concat(v.classes) : classes;
-                    const dataShown = convertDataSet(v.datasets as CommonDataSet);
+                    const itemDatasetShown = convertDataSet(v.datasets as CommonDataSet);
                     return (
                         <Fragment key={"list-detail-" + idx}>
                             <div
                                 className={colClasses.join(' ')}
                                 {...v.attributes}
-                                {...dataShown}
+                                {...itemDatasetShown}
                             >
                                 {v.value}
                             </div>

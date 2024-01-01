@@ -15,7 +15,7 @@ export const Label = (props: LabelProps) => {
         children,
     } = props;
 
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
@@ -23,7 +23,7 @@ export const Label = (props: LabelProps) => {
                 htmlFor={htmlFor}
                 className={classes.join(' ')}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             >
                 {children ?? label}
             </label>

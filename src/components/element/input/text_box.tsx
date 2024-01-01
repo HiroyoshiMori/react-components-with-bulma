@@ -44,7 +44,7 @@ export const TextBox = (props: InputProps) => {
     if (!classes.includes('input')) {
         classes.push('input');
     }
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
@@ -56,7 +56,7 @@ export const TextBox = (props: InputProps) => {
                 value={value}
                 onChange={onChange}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             />
         </Fragment>
     );

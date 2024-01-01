@@ -136,7 +136,7 @@ export const Navbar = (
         item.datasets = item.datasets ?? new Map();
         const itemClasses = classes.item ?
             classes.item.concat(item.classes ?? []) : (item.classes ?? []);
-        const itemDataShown = convertDataSet(item.datasets);
+        const itemDatasetShown = convertDataSet(item.datasets);
         if (item.isDivider) {
             // Render divider if isDivider is true
             return (
@@ -153,7 +153,7 @@ export const Navbar = (
                             className={classes.link?.join(' ')}
                             href={item.href} onClick={item.onClick}
                             {...item.attributes}
-                            {...itemDataShown}
+                            {...itemDatasetShown}
                         >
                             {item.label}
                         </a>
@@ -176,7 +176,7 @@ export const Navbar = (
                     <a
                         className={itemClasses.join(' ')} href={item.href} onClick={item.onClick}
                         {...item.attributes}
-                        {...itemDataShown}
+                        {...itemDatasetShown}
                     >
                         {item.label}
                     </a>

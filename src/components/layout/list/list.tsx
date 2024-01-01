@@ -6,6 +6,8 @@ import {
     ListAttributes,
     ListDatasets,
     ListProps,
+    ListHeaderProps,
+    ListDetailProps,
 } from '../../@types';
 import {ListHeader} from "./header";
 import {ListDetail} from "./detail";
@@ -17,6 +19,8 @@ export const List = (
     const {
         items,
         headers = [],
+        itemElement,
+        headerElement,
         classes = {},
         attributes = {},
         datasets = {},
@@ -62,6 +66,15 @@ export const List = (
             }
         });
 
+    let ListHeaderTag: React.ElementType<ListHeaderProps> = ListHeader;
+    let ListDetailTag: React.ElementType<ListDetailProps> = ListDetail;
+    if (headerElement !== undefined) {
+        ListHeaderTag = headerElement;
+    }
+    if (itemElement !== undefined) {
+        ListDetailTag = itemElement;
+    }
+
     return (
         <Fragment>
             <div
@@ -69,7 +82,7 @@ export const List = (
                 {...attributes?.wrap}
                 {...datasetShown.wrap}
             >
-                <ListHeader
+                <ListHeaderTag
                     items={headers}
                     classes={classes.headers}
                     attributes={attributes?.header}
@@ -81,15 +94,15 @@ export const List = (
                     && items.data.map((item, idx: number) => {
                         item.attributes = item.attributes ?? {};
                         item.datasets = item.datasets ?? new Map();
-                        const dataShown = convertDataSet(item.datasets as CommonDataSet);
+                        const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);
                         return (
                             <Fragment key={idx}>
                                 <div
                                     className={classes.detail?.wrap?.join(' ')}
                                     {...item.attributes}
-                                    {...dataShown}
+                                    {...itemDatasetShown}
                                 >
-                                    <ListDetail
+                                    <ListDetailTag
                                         item={item.columns as ListColumnFields[]}
                                         classes={classes?.detail?.column}
                                     />

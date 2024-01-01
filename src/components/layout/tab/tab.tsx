@@ -40,14 +40,14 @@ export const Tab = (
             }
         }
     }
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
             <div
                 className={classes.wrap?.join(' ')}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             >
                 <ul>
                     {
@@ -58,13 +58,13 @@ export const Tab = (
                                 itemClasses.push('is-active');
                             }
                             item.datasets = item.datasets ?? new Map();
-                            const itemDataShown = convertDataSet(item.datasets as CommonDataSet);
+                            const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);
                             return (
                                 <Fragment key={"tab-item-"+idx}>
                                     <li
                                         className={itemClasses.join(' ')}
                                         {...item.attributes}
-                                        {...itemDataShown}
+                                        {...itemDatasetShown}
                                     >
                                         <a href={item.href}>
                                             {item.label}

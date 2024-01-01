@@ -1,4 +1,4 @@
-import {
+import React, {
     HTMLAttributes,
 } from "react";
 import {
@@ -56,6 +56,8 @@ export type ListItemProps = {
 export type ListProps = {
     items: ListItemProps;
     headers?: ListColumnFields[];
+    itemElement?: React.ElementType<ListDetailProps>;
+    headerElement?: React.ElementType<ListHeaderProps>;
     classes?: ListClasses;
     attributes?: ListAttributes;
     datasets?: ListDatasets;

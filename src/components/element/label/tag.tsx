@@ -131,14 +131,14 @@ export const Tags = (props: TagsProps) => {
     if (hasAddons && !classes.includes('has-addons')) {
         classes.push('has-addons');
     }
-    const dataShown = convertDataSet(datasets);
+    const datasetShown = convertDataSet(datasets);
 
     return (
         <Fragment>
             <div
                 className={classes.join(' ')}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             >
                 {
                     tags && tags.length > 0 && tags.map((tag: TagProps, idx: number) => {

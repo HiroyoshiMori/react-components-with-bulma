@@ -31,14 +31,14 @@ export const ListHeader = (
     if (classes.column && !classes.column.includes('column')) {
         classes.column.push('column');
     }
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
             <div
                 className={classes.wrap ? classes.wrap.join(' ') : ''}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             >
                 {
                     items && items.map((header: ListColumnFields, idx: number) => {
@@ -46,13 +46,13 @@ export const ListHeader = (
                         header.datasets = header.datasets ?? new Map();
                         const headerClasses: string[] = (classes.column) ?
                             classes.column.concat(header.classes ?? []) : (header.classes ?? []);
-                        const dataShown = convertDataSet(header.datasets as CommonDataSet);
+                        const itemDatasetShown = convertDataSet(header.datasets as CommonDataSet);
                         return (
                             <Fragment key={idx}>
                                 <div
                                     className={headerClasses.join(' ')}
                                     {...header.attributes}
-                                    {...dataShown}
+                                    {...itemDatasetShown}
                                 >
                                     {header.value}
                                 </div>

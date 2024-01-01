@@ -1,6 +1,8 @@
 import React from 'react';
 import {List} from '../../../../components';
 import {deIndent} from '../../../../utils';
+import {ListDetailCustom} from "../../../../components/layout/list/custom/detail_custom";
+import {ListHeaderCustomWith5Items} from "../../../../components/layout/list/custom/header_custom";
 
 export default {
     title: 'React Component/Layout/List',
@@ -283,5 +285,42 @@ export const WithDatasets = {
                 ['id', 'header'], ['name', 'list-header'],
             ]),
         },
+    },
+};
+export const UsingCustom = {
+    ...Default,
+    args: {
+        headers: [
+            {value: 'Header A', classes: ['is-narrow']},
+            {value: 'Header B'},
+            {value: 'Header C'},
+            {value: 'Header D'},
+            {value: 'Header E'},
+            {value: 'Header F'},
+        ],
+        items: {
+            data: [
+                {
+                    columns: [
+                        {value: "Column A", classes: ['is-narrow']},
+                        {value: "Column B"},
+                        {value: "Column C"},
+                        {value: "Column D"},
+                        {value: "Column E"},
+                    ],
+                },
+                {
+                    columns: [
+                        {value: "Column 2A", classes: ['is-narrow']},
+                        {value: "Column 2B"},
+                        {value: "Column 2C"},
+                        {value: "Column 2D"},
+                        {value: "Column 2E"},
+                    ],
+                },
+            ],
+        },
+        itemElement: ListDetailCustom,
+        headerElement: ListHeaderCustomWith5Items,
     },
 };

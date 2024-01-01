@@ -34,14 +34,14 @@ export const RadioGroup = (props: RadioGroupProps) => {
             classes.radio[k] = [];
         }
     });
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     return (
         <Fragment>
             <div
                 className={classes.group?.join(' ')}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             >
                 {
                     fields.map((v: RadioGroupFields, idx: number) => {

@@ -37,7 +37,7 @@ export const Menu = (
             }
         }
     });
-    const dataShown = convertDataSet(datasets as CommonDataSet);
+    const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     /**
      * Recursive function to render menu items
@@ -48,13 +48,13 @@ export const Menu = (
         // Initialize if undefined
         item.attributes = item.attributes ?? {};
         item.datasets = item.datasets ?? new Map();
-        const itemDataShown = convertDataSet(item.datasets as CommonDataSet);
+        const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);
         return (
             <Fragment>
                 <li
                     className={classes.item?.join(' ')}
                     {...item.attributes}
-                    {...itemDataShown}
+                    {...itemDatasetShown}
                 >
                     {item.content}
                 </li>
@@ -82,7 +82,7 @@ export const Menu = (
             <aside
                 className={classes.wrap?.join(' ')}
                 {...attributes}
-                {...dataShown}
+                {...datasetShown}
             >
                 {
                     menus && menus.length > 0 && menus.map((item: MenuFields, idx: number) => {
@@ -94,13 +94,13 @@ export const Menu = (
                                 item.attributes[k] = {};
                             }
                         });
-                        let itemDataShown = {} as any;
+                        let itemDatasetShown = {} as any;
                         (['list', 'label'] as Array<keyof MenuDatasets>).forEach((k: keyof MenuDatasets) => {
                             if (item.datasets) {
                                 if (item.datasets[k] === undefined) {
                                     item.datasets[k] = new Map();
                                 }
-                                itemDataShown[k] = convertDataSet(item.datasets[k] as CommonDataSet);
+                                itemDatasetShown[k] = convertDataSet(item.datasets[k] as CommonDataSet);
                             }
                         });
                         return (
@@ -108,7 +108,7 @@ export const Menu = (
                                 <p
                                     className={classes.label?.join(' ')}
                                     {...item.attributes?.label}
-                                    {...itemDataShown.label}
+                                    {...itemDatasetShown.label}
                                 >
                                     {item.label}
                                 </p>
