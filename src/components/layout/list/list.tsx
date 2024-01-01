@@ -67,12 +67,8 @@ export const List = (
         });
 
     let ListHeaderTag: React.ElementType<ListHeaderProps> = ListHeader;
-    let ListDetailTag: React.ElementType<ListDetailProps> = ListDetail;
     if (headerElement !== undefined) {
         ListHeaderTag = headerElement;
-    }
-    if (itemElement !== undefined) {
-        ListDetailTag = itemElement;
     }
 
     return (
@@ -92,6 +88,10 @@ export const List = (
                     items.data.length > 0
                     && (items.type === undefined || items.type === '' || items.type === 'default')
                     && items.data.map((item, idx: number) => {
+                        let ListDetailTag: React.ElementType<ListDetailProps> = ListDetail;
+                        if (itemElement !== undefined) {
+                            ListDetailTag = itemElement;
+                        }
                         item.attributes = item.attributes ?? {};
                         item.datasets = item.datasets ?? new Map();
                         const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);

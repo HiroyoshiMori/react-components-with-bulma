@@ -24,7 +24,7 @@ export const ListDetailCustom = (
         classes: string[];
         attributes: React.HTMLAttributes<HTMLDivElement>;
         datasets: any; }[] = [];
-    item && item.map((v: ListColumnFields, idx: number) => {
+    item && item.map((v: ListColumnFields) => {
         v.datasets = v.datasets ?? new Map();
         const columnClasses: string[] = (classes) ?
             classes.concat(v.classes ?? []) : (v.classes ?? []);

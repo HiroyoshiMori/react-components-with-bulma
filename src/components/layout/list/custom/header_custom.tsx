@@ -39,7 +39,7 @@ export const ListHeaderCustomWith5Items = (
         classes: string[];
         attributes: React.HTMLAttributes<HTMLDivElement>;
         datasets: any; }[] = [];
-    items && items.map((header: ListColumnFields, idx: number) => {
+    items && items.map((header: ListColumnFields) => {
         header.datasets = header.datasets ?? new Map();
         const columnClasses: string[] = (classes.column) ?
             classes.column.concat(header.classes ?? []) : (header.classes ?? []);
