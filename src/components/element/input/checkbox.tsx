@@ -1,18 +1,18 @@
 import React, {Fragment} from "react";
 import {
     CommonDataSet,
-    RadioAttributes,
-    RadioClasses,
-    RadioDatasets,
-    RadioProps,
+    CheckboxProps,
+    CheckboxAttributes,
+    CheckboxClasses,
+    CheckboxDatasets,
 } from "../../@types";
 import {Label} from "../label";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
-export const Radio = (props: RadioProps) => {
+export const Checkbox = (props: CheckboxProps) => {
     const {
         field,
-        currentValue,
+        currentValues= [],
         onChange,
         prefix = '',
         classes = {},
@@ -21,27 +21,27 @@ export const Radio = (props: RadioProps) => {
     } = props;
 
     // Initialize if undefined
-    (['label', 'input'] as Array<keyof RadioAttributes>)
-        .forEach((k: keyof RadioAttributes) => {
+    (['label', 'input'] as Array<keyof CheckboxAttributes>)
+        .forEach((k: keyof CheckboxAttributes) => {
             if (attributes[k] === undefined) {
                 attributes[k] = {};
             }
         });
-    (['label', 'input'] as Array<keyof RadioDatasets>)
-        .forEach((k: keyof RadioDatasets) => {
+    (['label', 'input'] as Array<keyof CheckboxDatasets>)
+        .forEach((k: keyof CheckboxDatasets) => {
             if (datasets[k] === undefined) {
                 datasets[k] = new Map();
             }
         });
-    (['label', 'input'] as Array<keyof RadioClasses>)
-        .forEach((k: keyof RadioClasses) => {
+    (['label', 'input'] as Array<keyof CheckboxClasses>)
+        .forEach((k: keyof CheckboxClasses) => {
             if (classes[k] === undefined) {
                 classes[k] = [];
             }
         });
     // Set default values if not already set
-    if (classes.label && !classes.label.includes('radio')) {
-        classes.label.push('radio');
+    if (classes.label && !classes.label.includes('checkbox')) {
+        classes.label.push('checkbox');
     }
     if (classes.input) {
         if (ArrayRegexIncludes(classes.input, /^mr?-([0-6]|auto)$/) === -1) {
@@ -49,16 +49,11 @@ export const Radio = (props: RadioProps) => {
         }
     }
 
-    let datasetShown = {} as any;
-    (['input'] as Array<keyof RadioDatasets>)
-        .forEach((k: keyof RadioDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
+    console.debug("attributes:");
+    console.debug(attributes);
+    console.debug("datasets:");
+    console.debug(datasets);
+    const datasetShown = convertDataSet(datasets.input as CommonDataSet);
 
     return (
         <Fragment>
@@ -69,16 +64,16 @@ export const Radio = (props: RadioProps) => {
                 datasets={datasets.label}
             >
                 <input
-                    type="radio"
+                    type="checkbox"
                     name={field.name}
                     id={(prefix ? (prefix + '-') : '') + field.key}
                     value={field.value ?? field.key}
                     className={classes.input?.join(' ')}
                     onChange={onChange}
-                    checked={currentValue === (field.value ?? field.key) || currentValue === field.key}
+                    checked={currentValues.includes(field.value ?? field.key) || currentValues.includes(field.key)}
                     disabled={field.disabled ?? false}
                     {...attributes?.input}
-                    {...datasetShown.input}
+                    {...datasetShown}
                 />
                 <span>{field.label ?? (field.value ?? field.key)}</span>
             </Label>

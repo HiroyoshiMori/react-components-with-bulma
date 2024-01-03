@@ -2,6 +2,7 @@ import React from "react";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {Dropdown} from "../../../../components";
 import {deIndent} from "../../../../utils";
+import {action} from "@storybook/addon-actions";
 
 export default {
     title: 'React Component/Layout/Dropdown',
@@ -148,7 +149,7 @@ export const Default = {
             },
             {
                 tag: 'a',
-                onClick: (e: React.MouseEvent<HTMLElement>) => {console.debug(e);},
+                onClick: action('onClick'),
                 children: 'Dropdown Menu 2',
             },
             {

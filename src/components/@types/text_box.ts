@@ -5,16 +5,16 @@ import {
 import {
     ColorTypes,
     CommonDataSet,
-    CommonStyleClasses,
+    CommonStyleClasses, InputTextTypes,
     SizeTypes,
     StateTypes,
 } from "./index";
 
 /** Type definition for property of input */
-export type InputProps = {
+export type TextBoxProps = {
     fieldName: string;
-    fieldType?: 'text' | 'password' | 'email' | 'tel';
-    value: string|number;
+    fieldType?: InputTextTypes;
+    value: boolean | string | number;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     colorType?: ColorTypes;

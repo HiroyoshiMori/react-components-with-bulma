@@ -4,24 +4,24 @@ import {
     COLOR_TYPES,
     SIZES,
     STATES,
-    InputProps,
+    TextBoxProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
-export const TextBox = (props: InputProps) => {
+export const TextBox = (props: TextBoxProps) => {
     const {
         fieldName,
         fieldType = 'text',
         value,
         onChange,
-        classes = [],
         placeholder = '',
+        classes = [],
         attributes,
         datasets = new Map(),
     } = props;
 
     // Initialize if undefined
-    (['colorType', 'state', 'size'] as Array<keyof InputProps>).forEach((v: keyof InputProps) => {
+    (['colorType', 'state', 'size'] as Array<keyof TextBoxProps>).forEach((v: keyof TextBoxProps) => {
         if (props[v]) {
             let pattern = null;
             switch (v) {

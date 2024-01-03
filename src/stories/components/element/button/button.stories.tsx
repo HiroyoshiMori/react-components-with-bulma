@@ -29,7 +29,7 @@ export default {
             action: 'clicked',
             description: 'Function to be called when button is clicked.',
         },
-        type: {
+        colorType: {
             control: 'select',
             options: (['default']).concat(COLOR_TYPES),
             mapping: {
@@ -188,49 +188,49 @@ export const Disabled = {
 export const Primary = {
     ...Default,
     args: {
-        type: 'primary',
+        colorType: 'primary',
         label: 'Primary',
     },
 };
 export const Link = {
     ...Default,
     args: {
-        type: 'link',
+        colorType: 'link',
         label: 'Link',
     },
 };
 export const Info = {
     ...Default,
     args: {
-        type: 'info',
+        colorType: 'info',
         label: 'Info',
     },
 };
 export const Success = {
     ...Default,
     args: {
-        type: 'success',
+        colorType: 'success',
         label: 'Success',
     },
 };
 export const Warning = {
     ...Default,
     args: {
-        type: 'warning',
+        colorType: 'warning',
         label: 'Warning',
     },
 };
 export const Danger = {
     ...Default,
     args: {
-        type: 'danger',
+        colorType: 'danger',
         label: 'Danger',
     },
 };
 export const PrimaryLight = {
     ...Default,
     args: {
-        type: 'primary',
+        colorType: 'primary',
         colorLight: true,
         label: 'Primary w/Light Color'
     },
@@ -238,7 +238,7 @@ export const PrimaryLight = {
 export const LinkLight = {
     ...Default,
     args: {
-        type: 'link',
+        colorType: 'link',
         colorLight: true,
         label: 'Link w/Light Color'
     },
@@ -246,7 +246,7 @@ export const LinkLight = {
 export const InfoLight = {
     ...Default,
     args: {
-        type: 'info',
+        colorType: 'info',
         colorLight: true,
         label: 'Info w/Light Color'
     },
@@ -254,7 +254,7 @@ export const InfoLight = {
 export const SuccessLight = {
     ...Default,
     args: {
-        type: 'success',
+        colorType: 'success',
         colorLight: true,
         label: 'Success w/Light Color'
     },
@@ -262,7 +262,7 @@ export const SuccessLight = {
 export const WarningLight = {
     ...Default,
     args: {
-        type: 'warning',
+        colorType: 'warning',
         colorLight: true,
         label: 'Warning w/Light Color'
     },
@@ -270,7 +270,7 @@ export const WarningLight = {
 export const DangerLight = {
     ...Default,
     args: {
-        type: 'danger',
+        colorType: 'danger',
         colorLight: true,
         label: 'Danger w/Light Color'
     },

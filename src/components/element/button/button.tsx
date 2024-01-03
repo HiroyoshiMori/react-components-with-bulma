@@ -12,22 +12,22 @@ export const Button = (props: ButtonProps) => {
     const {
         label,
         onClick,
-        classes = [],
         colorLight = false,
         disabled = false,
         noDefaultClasses = false,
         awesomeIcon,
         iconPosition = 'left',
+        classes = [],
         attributes= {},
         datasets = new Map(),
     } = props;
 
     // Initialize if undefined
-    (["type", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {
+    (["colorType", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {
         if (props[v]) {
             let pattern: string | null = null;
             switch (v) {
-                case 'type':
+                case 'colorType':
                     pattern = COLOR_TYPES.join('|'); break;
                 case 'size':
                     pattern = SIZES.join('|'); break;

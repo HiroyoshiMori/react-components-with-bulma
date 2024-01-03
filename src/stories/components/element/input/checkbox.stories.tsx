@@ -1,26 +1,26 @@
 import React from 'react';
-import {Radio} from "../../../../components";
+import {Checkbox, CheckboxFields} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {
-    title: 'React Component/Element/Radio',
-    component: Radio,
+    title: 'React Component/Element/Checkbox',
+    component: Checkbox,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Radio Element',
+        componentSubtitle: 'Checkbox Element',
         docs: {
             description: {
-                component: "This component shows radio for form.<br>In Bulma doc: https://bulma.io/documentation/form/radio/",
+                component: "This component shows checkbox for form.<br>In Bulma doc: https://bulma.io/documentation/form/checkbox/",
             },
         },
     },
     argTypes: {
         field: {
             control: 'object',
-            description: 'Field data for radio',
+            description: 'Field data for checkbox',
             table: {
                 type: {
-                    summary: "RadioFields",
+                    summary: "CheckboxFields",
                     detail: deIndent(`
                             {
                                 name: string,
@@ -33,18 +33,18 @@ export default {
                 },
             },
         },
-        currentValue: {
+        currentValues: {
             control: 'text',
-            description: 'Current value for radio group',
+            description: 'Current values for checkbox group',
             table: {
                 type: {
-                    summary: 'string | number',
+                    summary: '(boolean | string | number)[]',
                 },
             },
         },
         onChange: {
             action: 'function',
-            description: 'Function called when radio value changed',
+            description: 'Function called when checkbox value changed',
             table: {
                 type: {
                     summary: '(e: ChangeEvent<HTMLInputElement>) => void',
@@ -53,7 +53,7 @@ export default {
         },
         prefix: {
             control: 'text',
-            description: 'Prefix for field name of radio',
+            description: 'Prefix for field name of checkbox',
             table: {
                 type: {
                     summary: 'string',
@@ -65,10 +65,10 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes for radio',
+            description: 'Style classes for checkbox',
             table: {
                 type: {
-                    summary: 'RadioClasses',
+                    summary: 'CheckboxClasses',
                     detail: deIndent(`
                             {
                                 wrap?: string[],
@@ -84,10 +84,10 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes for radio',
+            description: 'Additional attributes for checkbox',
             table: {
                 type: {
-                    summary: 'RadioAttributes',
+                    summary: 'CheckboxAttributes',
                     detail: deIndent(`
                             {
                                 wrap?: HTMLAttributes<HTMLDivElement>,
@@ -103,10 +103,10 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Dataset for radio',
+            description: 'Dataset for checkbox',
             table: {
                 type: {
-                    summary: 'RadioDatasets',
+                    summary: 'CheckboxDatasets',
                     detail: deIndent(`
                             {
                                 wrap?: Map<string, string>,
@@ -123,14 +123,14 @@ export default {
     }
 };
 export const Default = {
-    render: (args: any) => <Radio
+    render: (args: any) => <Checkbox
         field={{
-            name: 'radio',
+            name: 'checkbox',
             key: 'key',
-            value: 'radio value',
-            label: 'Radio',
+            value: 'checkbox value',
+            label: 'Checkbox',
         }}
-        currentValue="curValue"
+        currentValues={["curValue"]}
         onChange={() => {return;}}
         {...args}
     />,
@@ -140,10 +140,10 @@ export const Checked = {
     ...Default,
     args: {
         field: {
-            label: 'Checked Radio',
+            label: 'Checked checkbox',
             value: "same value",
         },
-        currentValue: "same value",
+        currentValues: ["same value"],
     },
 };
 export const Disabled = {
@@ -184,13 +184,13 @@ export const WithAttribute = {
     args: {
         attributes: {
             wrap: {
-                "aria-label": "Radio",
+                "aria-label": "Checkbox",
             },
             label: {
-                "aria-label": "Radio Label",
+                "aria-label": "Checkbox Label",
             },
             input: {
-                "aria-label": "Radio Input",
+                "aria-label": "Checkbox Input",
             },
         },
     },
@@ -200,13 +200,13 @@ export const WithDatasets = {
     args: {
         datasets: {
             wrap: new Map([
-                ['id', 'radio-wrap'], ['name', 'Radio Wrap']
+                ['id', 'radio-wrap'], ['name', 'Checkbox Wrap']
             ]),
             label: new Map([
-                ['id', 'radio-label'], ['name', 'Radio Label']
+                ['id', 'radio-label'], ['name', 'Checkbox Label']
             ]),
             input: new Map([
-                ['id', 'radio-input'], ['name', 'Radio Input']
+                ['id', 'radio-input'], ['name', 'Checkbox Input']
             ]),
         }
     },

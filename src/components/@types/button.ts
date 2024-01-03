@@ -10,17 +10,20 @@ import {
 } from "./index";
 import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
-/** Type definition for property of button */
-export type ButtonProps = {
+/** Type definition for fields of button */
+export type ButtonFields = {
     label: ReactNode;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    type?: ColorTypes;
+    colorType?: ColorTypes;
     colorLight?: boolean;
     size?: SizeTypes;
     disabled?: boolean;
     noDefaultClasses?: boolean;
     awesomeIcon?: FontAwesomeIconProps; //icon({name: 'check'}),
     iconPosition?: "left" | "right";
+};
+/** Type definition for property of button */
+export type ButtonProps = ButtonFields & {
     attributes?: ButtonHTMLAttributes<HTMLButtonElement>;
     datasets?: CommonDataSet;
 } & CommonStyleClasses;

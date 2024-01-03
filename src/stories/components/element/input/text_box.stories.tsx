@@ -1,5 +1,5 @@
 import React from 'react';
-import {COLOR_TYPES, STATES, TextBox} from "../../../../components";
+import {COLOR_TYPES, INPUT_TEXT_TYPES, SIZES, STATES, TextBox} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {
@@ -21,11 +21,11 @@ export default {
         },
         fieldType: {
             control: 'select',
-            options: ['text', 'password', 'email', 'tel'],
+            options: INPUT_TEXT_TYPES,
             description: 'Field type',
             table: {
                 type: {
-                    summary: 'text | password | email | tel',
+                    summary: INPUT_TEXT_TYPES.join('|'),
                 },
                 defaultValue: {
                     summary: 'text',
@@ -35,15 +35,31 @@ export default {
         value: {
             control: 'text',
             description: 'Field value',
+            table: {
+                type: {
+                    summary: 'boolean | string | number',
+                },
+            },
         },
         onChange: {
             action: 'function',
             description: 'Function called when value is changed',
+            table: {
+                type: {
+                    summary: '(e: ChangeEvent<HTMLInputElement>) => void',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                }
+            },
         },
         placeholder: {
             control: 'text',
             description: 'Placeholder which is shown when value is empty',
             table: {
+                type: {
+                    summary: 'string',
+                },
                 defaultValue: {
                     summary: 'undefined',
                 },
@@ -82,11 +98,15 @@ export default {
             },
         },
         size: {
-            control: {type: 'range', min: 1, max: 6, step: 1},
+            control: 'select',
+            options: (['default']).concat(SIZES),
+            mapping: {
+                Default: '',
+            },
             description: 'Size of text box',
             table: {
                 type: {
-                    summary: 'number',
+                    summary: SIZES.join('|'),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -260,5 +280,41 @@ export const WithDatasets = {
         datasets: new Map([
             ['id', 'text-box-with-id'], ['name', 'Text Box']
         ]),
+    },
+};
+export const Password = {
+    ...Default,
+    args: {
+        fieldType: 'password',
+    },
+};
+export const Email = {
+    ...Default,
+    args: {
+        fieldType: 'email',
+    },
+};
+export const Tel = {
+    ...Default,
+    args: {
+        fieldType: 'tel',
+    },
+};
+export const Number = {
+    ...Default,
+    args: {
+        fieldType: 'number',
+    },
+};
+export const Search = {
+    ...Default,
+    args: {
+        fieldType: 'search',
+    },
+};
+export const Url = {
+    ...Default,
+    args: {
+        fieldType: 'url',
     },
 };
