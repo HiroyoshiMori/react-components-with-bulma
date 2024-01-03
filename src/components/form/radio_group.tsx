@@ -2,7 +2,6 @@ import React, {
     Fragment,
 } from "react";
 import {
-    CommonDataSet,
     RadioAttributes,
     RadioClasses,
     RadioDatasets,
@@ -10,7 +9,6 @@ import {
     RadioGroupFieldsProps,
 } from "../@types";
 import {Radio} from "../element";
-import {convertDataSet} from "../../utils";
 
 export const RadioGroup = (props: RadioGroupProps) => {
     const {

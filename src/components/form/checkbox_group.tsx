@@ -2,20 +2,13 @@ import React, {
     Fragment,
 } from "react";
 import {
-    CommonDataSet,
-    RadioAttributes,
-    RadioClasses,
-    RadioDatasets,
-    RadioGroupProps,
-    RadioGroupFieldsProps,
     CheckboxGroupProps,
     CheckboxClasses,
     CheckboxGroupFieldsProps,
     CheckboxAttributes,
     CheckboxDatasets,
 } from "../@types";
-import {Checkbox, Radio} from "../element";
-import {convertDataSet} from "../../utils";
+import {Checkbox} from "../element";
 
 export const CheckboxGroup = (props: CheckboxGroupProps) => {
     const {

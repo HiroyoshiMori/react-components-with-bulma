@@ -1,5 +1,7 @@
 import React from 'react';
-import {COLOR_TYPES, INPUT_TEXT_TYPES, SIZES, STATES, Textarea, TextBox} from "../../../../components";
+import {
+    Textarea,
+} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {

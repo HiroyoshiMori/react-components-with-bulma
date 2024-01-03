@@ -119,11 +119,12 @@ export const FormInput = (props: InputProps) => {
                                         datasets: datasets,
                                     } as InputButtonProps)
                                     : componentType === 'Others'
-                                        ? (
-                                            <Fragment>
-
-                                            </Fragment>
-                                        )
+                                        ? InputOthers({
+                                            ...props,
+                                            classes: classes,
+                                            attributes: attributes,
+                                            datasets: datasets,
+                                        } as InputOtherProps)
                                         : (
                                         <Fragment>
                                             Un-supported.
