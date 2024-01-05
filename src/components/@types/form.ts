@@ -18,6 +18,7 @@ import {
     SubmitButtonFields, SubmitImageFields,
     TextareaProps,
 } from "./index";
+import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
 /** Type definition for attributes of input */
 export type InputAttributes = {
@@ -153,22 +154,26 @@ export type FormTextareaProps = Omit<TextareaProps, "classes" | "attributes" | "
 export type FormSelectAttributes = SelectAttributes & {
     wrap?: HTMLAttributes<HTMLDivElement>;
     control?: HTMLAttributes<HTMLDivElement>;
+    icon?: React.HTMLAttributes<HTMLSpanElement>;
 };
 /** Type definition for datasets of form select */
 export type FormSelectDatasets = SelectDatasets & {
     wrap?: Map<string, string>;
     control?: Map<string, string>;
+    icon?: Map<string, string>;
 };
 /** Type definition for classes of form select */
 export type FormSelectClasses = SelectClasses & {
     wrap?: string[];
     control?: string[];
+    icon?: string[];
 }
 /** Type definition for property of form select */
 export type FormSelectProps = Omit<SelectProps, "classes" | "attributes" | "datasets"> & {
     prefix?: string;
     label?: LabelProps;
     noDivWrap?: boolean;
+    icon?: FontAwesomeIconProps;
     classes?: FormSelectClasses;
     attributes?: FormSelectAttributes;
     datasets?: FormSelectDatasets;

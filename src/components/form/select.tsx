@@ -1,8 +1,19 @@
 import React, {Fragment} from "react";
-import {CommonDataSet, FormSelectAttributes, FormSelectClasses, FormSelectDatasets, FormSelectProps} from "../@types";
-import {convertDataSet} from "../../utils";
-import {Label} from "../element";
-import {Select} from "../element/input/select";
+import {
+    COLOR_TYPES,
+    CommonDataSet,
+    FormSelectAttributes,
+    FormSelectClasses,
+    FormSelectDatasets,
+    FormSelectProps, SIZES, STATES
+} from "../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../utils";
+import {
+    Icons,
+    Label,
+    Select,
+} from "../element";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const FormSelect = (props: FormSelectProps) => {
     const {
@@ -19,20 +30,21 @@ export const FormSelect = (props: FormSelectProps) => {
         onChange,
         label,
         noDivWrap = false,
+        icon,
         classes = {},
         attributes = {},
         datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'control', 'div', 'select'] as Array<keyof FormSelectAttributes>)
+    (['wrap', 'control', 'div', 'select', 'icon'] as Array<keyof FormSelectAttributes>)
         .forEach((k: keyof FormSelectAttributes) => {
             if (attributes[k] === undefined) {
                 attributes[k] = {};
             }
         });
     let datasetShown = {} as any;
-    (['wrap', 'control', 'div', 'select'] as Array<keyof FormSelectDatasets>)
+    (['wrap', 'control', 'div', 'select', 'icon'] as Array<keyof FormSelectDatasets>)
         .forEach((k: keyof FormSelectDatasets) => {
             if (datasets[k] === undefined) {
                 datasets[k] = new Map();
@@ -43,7 +55,7 @@ export const FormSelect = (props: FormSelectProps) => {
             datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
         });
     // Initialize if undefined and set default values if not already set
-    (['wrap', 'control', 'div', 'select', 'optgroup', 'option'] as Array<keyof FormSelectClasses>)
+    (['wrap', 'control', 'div', 'select', 'optgroup', 'option', 'icon'] as Array<keyof FormSelectClasses>)
         .forEach((k: keyof FormSelectClasses) => {
             if (classes[k] === undefined) {
                 classes[k] = [];
@@ -53,6 +65,10 @@ export const FormSelect = (props: FormSelectProps) => {
                 case 'wrap': defaultValue = 'field'; break;
                 case 'control': defaultValue = 'control'; break;
                 case 'div': defaultValue = 'select'; break;
+                case 'icon': defaultValue = 'icon'; break;
+            }
+            if (defaultValue && !classes[k]?.includes(defaultValue)) {
+                classes[k]?.push(defaultValue);
             }
         });
 
@@ -64,6 +80,28 @@ export const FormSelect = (props: FormSelectProps) => {
         if (!label.classes.includes('label')) {
             label.classes.push('label');
         }
+    }
+    if (fontSize) {
+        const pattern = '^is-(' + SIZES.join('|') + ')$';
+        if (pattern && classes.icon) {
+            const reg: string = `^is-(${pattern})$`;
+            if (ArrayRegexIncludes(classes.icon, new RegExp(reg)) === -1) {
+                classes.icon.push('is-' + fontSize);
+            }
+        }
+    }
+    if (icon && classes.control) {
+        (['control', 'icon'] as Array<keyof FormSelectClasses>)
+            .forEach((k: keyof FormSelectClasses) => {
+                let checkValue;
+                switch (k) {
+                    case 'control': checkValue = 'has-icons-left'; break;
+                    case 'icon': checkValue = 'is-left'; break;
+                }
+                if (checkValue) {
+                    classes[k]?.push(checkValue);
+                }
+            });
     }
     const Tag = noDivWrap ? Fragment : 'div';
 
@@ -106,6 +144,18 @@ export const FormSelect = (props: FormSelectProps) => {
                             select: datasets.select,
                         }}
                     />
+                    {
+                        icon && (
+                            <Fragment>
+                                <Icons
+                                    icon={icon}
+                                    classes={classes.icon}
+                                    attributes={attributes.icon}
+                                    datasets={datasets.icon}
+                                />
+                            </Fragment>
+                        )
+                    }
                 </div>
             </Tag>
         </Fragment>

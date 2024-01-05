@@ -1,6 +1,11 @@
 import {action} from "@storybook/addon-actions";
-import {FormSelect} from "../../../components/form/select";
-import {COLOR_TYPES, SIZES, STATES} from "../../../components";
+import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {
+    COLOR_TYPES,
+    FormSelect,
+    SIZES,
+    STATES,
+} from "../../../components";
 import {deIndent} from "../../../utils";
 
 export default {
@@ -8,7 +13,7 @@ export default {
     component: FormSelect,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Select Element',
+        componentSubtitle: 'Select Element for Form',
         docs: {
             description: {
                 component: "This component shows select for form.<br>In Bulma doc: https://bulma.io/documentation/form/select/",
@@ -282,6 +287,24 @@ export const FontSize = {
     ...Default,
     args: {
         fontSize: 'small',
+    },
+};
+export const WithIcon = {
+    ...Default,
+    args: {
+        icon: {
+            icon: icon({name: 'globe'}),
+        },
+        iconPosition: 'left',
+    },
+};
+export const IconWithFontSize = {
+    ...Default,
+    args: {
+        fontSize: 'large',
+        icon: {
+            icon: icon({name: 'globe'}),
+        },
     },
 };
 export const WithClasses = {

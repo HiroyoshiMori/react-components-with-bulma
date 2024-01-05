@@ -1,5 +1,5 @@
-import {Select} from "../../../../components/element/input/select";
 import {action} from "@storybook/addon-actions";
+import {Select} from "../../../../components";
 import {COLOR_TYPES, SIZES, STATES} from "../../../../components";
 import {deIndent} from "../../../../utils";
 
