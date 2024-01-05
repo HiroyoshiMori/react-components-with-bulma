@@ -1,13 +1,9 @@
 import React, {Fragment} from "react";
 import {
     CommonDataSet,
-    CheckboxProps,
-    CheckboxAttributes,
-    CheckboxClasses,
-    CheckboxDatasets, COLOR_TYPES, SIZES, STATES,
+    COLOR_TYPES,
+    SIZES, STATES,
 } from "../../@types";
-import {Label} from "../label";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {
     OptGroupClasses,
     OptGroupProps,
@@ -16,7 +12,8 @@ import {
     SelectClasses,
     SelectDatasets,
     SelectProps
-} from "../../@types/select";
+} from "../../@types";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 export const Select = (props: SelectProps) => {
     const {
@@ -26,9 +23,6 @@ export const Select = (props: SelectProps) => {
         currentValues= [],
         multiple = false,
         size,
-        colorType,
-        state,
-        fontSize,
         onChange,
         classes = {},
         attributes = {},

@@ -1,6 +1,5 @@
 import React, {HTMLAttributes, OptgroupHTMLAttributes, OptionHTMLAttributes, SelectHTMLAttributes} from "react";
 import {ColorTypes, SizeTypes, StateTypes} from "./index";
-import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
 /** Type definition of attributes for select */
 export type SelectAttributes = {
