@@ -140,6 +140,7 @@ const InputOthers = (props: InputOtherProps) => {
     const {
         type,
         name,
+        id,
         value,
         prefix = '',
         label,
@@ -149,6 +150,7 @@ const InputOthers = (props: InputOtherProps) => {
         datasets = {},
     } = props;
 
+    // Initialize if undefined
     (['control'] as Array<keyof InputAttributes>)
         .forEach((k: keyof InputAttributes) => {
             if (attributes[k] === undefined) {
@@ -161,6 +163,7 @@ const InputOthers = (props: InputOtherProps) => {
                 datasets[k] = new Map();
             }
         });
+    // Initialize if undefined and set default values if not already set
     (['control', 'input'] as Array<keyof InputOtherClasses>)
         .forEach((k: keyof InputOtherClasses) => {
             if (classes[k] === undefined) {
@@ -175,6 +178,18 @@ const InputOthers = (props: InputOtherProps) => {
             }
         });
 
+    // Set default values if not already set
+    if (label) {
+        if (id) {
+            label.htmlFor = id;
+        }
+        if (label.classes === undefined) {
+            label.classes = [];
+        }
+        if (!label.classes.includes('label')) {
+            label.classes.push('label');
+        }
+    }
     let datasetShown = {} as any;
     (['control', 'input'] as Array<keyof InputDatasets>)
         .forEach((k: keyof InputDatasets) => {

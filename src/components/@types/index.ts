@@ -85,6 +85,7 @@ export * from './pagination';
 export * from './progressbar';
 export * from './radio';
 export * from './radio_group';
+export * from './select';
 export * from './submit';
 export * from './table';
 export * from './tabs';

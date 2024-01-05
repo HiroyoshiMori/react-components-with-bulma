@@ -5,19 +5,19 @@ import React, {
     TextareaHTMLAttributes,
 } from "react";
 import {
-    CheckboxClasses,
-    CheckboxProps,
+    CheckboxClasses, CheckboxProps,
     ColorTypes,
     CommonDataSet,
     IconsProps,
-    InputButtonTypes, InputOtherTypes,
-    InputTextTypes,
+    InputButtonTypes, InputOtherTypes, InputTextTypes,
     LabelProps,
-    RadioClasses,
+    RadioClasses, RadioGroupFieldsProps,
+    SelectAttributes, SelectClasses, SelectDatasets, SelectProps,
     SizeTypes,
-    StateTypes, SubmitButtonFields, SubmitImageFields, TextareaProps,
+    StateTypes,
+    SubmitButtonFields, SubmitImageFields,
+    TextareaProps,
 } from "./index";
-import {RadioGroupFieldsProps} from "./radio_group";
 
 /** Type definition for attributes of input */
 export type InputAttributes = {
@@ -127,19 +127,19 @@ export type InputOtherProps = {
 /** Type definition for property of input */
 export type InputProps = InputTextProps | InputRadioProps | InputCheckboxProps | InputButtonProps;
 
-/** Type definition for attributes of textarea */
+/** Type definition for attributes of form textarea */
 export type TextareaAttributes = Omit<InputAttributes, 'input'> & {
     textarea?: TextareaHTMLAttributes<HTMLTextAreaElement>;
 }
-/** Type definition for classes of textarea */
+/** Type definition for classes of form textarea */
 export type TextareaDatasets = Omit<InputDatasets, 'input'> & {
     textarea?: Map<string, string>;
 }
-/** Type definition for classes of textarea */
+/** Type definition for classes of form textarea */
 export type TextareaClasses = Omit<InputClasses, 'input'> & {
     textarea?: string[];
 }
-/** Type definition for property of textarea */
+/** Type definition for property of form textarea */
 export type FormTextareaProps = Omit<TextareaProps, "classes" | "attributes" | "datasets"> & {
     prefix?: string;
     label?: LabelProps;
@@ -147,4 +147,29 @@ export type FormTextareaProps = Omit<TextareaProps, "classes" | "attributes" | "
     classes?: TextareaClasses;
     attributes?: TextareaAttributes;
     datasets?: TextareaDatasets;
+};
+
+/** Type definition for attributes of form select */
+export type FormSelectAttributes = SelectAttributes & {
+    wrap?: HTMLAttributes<HTMLDivElement>;
+    control?: HTMLAttributes<HTMLDivElement>;
+};
+/** Type definition for datasets of form select */
+export type FormSelectDatasets = SelectDatasets & {
+    wrap?: Map<string, string>;
+    control?: Map<string, string>;
+};
+/** Type definition for classes of form select */
+export type FormSelectClasses = SelectClasses & {
+    wrap?: string[];
+    control?: string[];
+}
+/** Type definition for property of form select */
+export type FormSelectProps = Omit<SelectProps, "classes" | "attributes" | "datasets"> & {
+    prefix?: string;
+    label?: LabelProps;
+    noDivWrap?: boolean;
+    classes?: FormSelectClasses;
+    attributes?: FormSelectAttributes;
+    datasets?: FormSelectDatasets;
 };

@@ -41,11 +41,16 @@ export const FormTextarea = (props: FormTextareaProps) => {
                 attributes[k] = {};
             }
         });
+    let datasetShown = {} as any;
     (['wrap', 'control', 'textarea'] as Array<keyof TextareaDatasets>)
         .forEach((k: keyof TextareaDatasets) => {
             if (datasets[k] === undefined) {
                 datasets[k] = new Map();
             }
+            if (datasetShown[k] === undefined) {
+                datasetShown[k] = {};
+            }
+            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
         });
     // Initialize if undefined and set default values if not already set
     (['wrap', 'control', 'textarea'] as Array<keyof TextareaClasses>)
@@ -72,16 +77,7 @@ export const FormTextarea = (props: FormTextareaProps) => {
             label.classes.push('label');
         }
     }
-
     const Tag = noDivWrap ? Fragment : 'div';
-    let datasetShown = {} as any;
-    (['wrap', 'control', 'textarea'] as Array<keyof TextareaDatasets>)
-        .forEach((k: keyof TextareaDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
 
     return (
         <Fragment>

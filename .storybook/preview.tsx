@@ -1,4 +1,5 @@
 import {Preview} from "@storybook/react";
+import MockDate from 'mockdate';
 import DocumentationTemplate from './DocumentationTemplate.mdx';
 import '../node_modules/bulma/css/bulma.css';
 

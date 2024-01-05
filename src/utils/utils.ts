@@ -22,15 +22,32 @@ export function getFormattedDate(date: Date, format: string) {
         h: date.getHours(),
         m: date.getMinutes(),
         s: date.getSeconds(),
+        w: getWeekNumber(date),
     };
 
-    const formatted: string = format.replace(/(M+|d+|h+|m+|s+)/g, (v) =>
+    const formatted: string = format.replace(/(M+|d+|h+|m+|s+|w+)/g, (v) =>
         ((v.length > 1 ? "0" : "") + symbol[v.slice(-1) as keyof typeof symbol]).slice(-2)
     );
 
     return formatted.replace(/(y+)/g, (v) =>
         date.getFullYear().toString().slice(-v.length)
     );
+}
+
+/**
+ * Get Week number of the year
+ * @param date
+ */
+export function getWeekNumber(date: Date) {
+    const oneJan = new Date(date.getFullYear(), 0, 1);
+    const firstMonday = new Date(
+        oneJan.getTime()
+        + (1 + (oneJan.getDay() - (oneJan.getDay() < 2 ? 0 : 7))) * (24 * 60 * 60 * 1000)
+    );
+    const numberOfDays = Math.floor(
+        (date.getTime() - firstMonday.getTime()) / (24 * 60 * 60 * 1000)
+    );
+    return Math.ceil((1 + numberOfDays) / 7);
 }
 
 /**

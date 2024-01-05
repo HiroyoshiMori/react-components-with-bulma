@@ -49,10 +49,6 @@ export const Checkbox = (props: CheckboxProps) => {
         }
     }
 
-    console.debug("attributes:");
-    console.debug(attributes);
-    console.debug("datasets:");
-    console.debug(datasets);
     const datasetShown = convertDataSet(datasets.input as CommonDataSet);
 
     return (
