@@ -5,7 +5,6 @@ import {
 import {
     InputFile,
     Label,
-    Textarea,
 } from "../element";
 import {initialize, initializeDatasets} from "../common";
 
