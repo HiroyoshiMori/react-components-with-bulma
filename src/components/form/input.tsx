@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets, FormInputFileProps,
     InputAttributes,
     InputButtonProps,
     InputCheckboxProps,
@@ -16,45 +16,40 @@ import {InputButton} from "./input_button";
 import {InputTextBox} from "./input_text";
 import {InputRadioGroup} from "./input_radio";
 import {Label} from "../element";
+import {FormInputFile} from "./file";
+import {initialize, initializeDatasets} from "../common";
 
 export const FormInput = (props: InputProps) => {
     const {
         type,
         noDivWrap = false,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'control', 'input'] as Array<keyof InputAttributes>)
-        .forEach((k: keyof InputAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'control', 'input'] as Array<keyof InputDatasets>)
-        .forEach((k: keyof InputDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
+    const attributes = initialize(
+        props['attributes'] as InputAttributes, [
+            'wrap', 'control', 'input'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as FormInputFileDatasets, [
+            'wrap', 'control', 'input'
+        ], new Map()
+    );
 
     // Initialize if undefined and set default values if not already set
-    (['wrap', 'control', 'input'] as Array<keyof InputClasses>)
-        .forEach((k: keyof InputClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const classes = initialize(
+        props['classes'] as InputClasses, [
+            'wrap', 'control',
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'wrap': defaultValue = 'field'; break;
                 case 'control': defaultValue = 'control'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     // Set default values if not already set
     let componentType;
@@ -71,6 +66,9 @@ export const FormInput = (props: InputProps) => {
         case 'text': case 'password': case 'email': case 'tel': case 'number': case 'search': case 'url':
             componentType = 'TextBox';
             break;
+        case 'file':
+            componentType = 'File';
+            break;
         case 'color': case 'range':
         case 'date': case 'datetime-local': case 'month': case 'time': case 'week':
             componentType = 'Others';
@@ -80,7 +78,6 @@ export const FormInput = (props: InputProps) => {
     }
 
     const Tag = noDivWrap ? Fragment : 'div';
-    const datasetShown = convertDataSet(datasets.wrap as CommonDataSet);
 
     return (
         <Fragment>
@@ -118,18 +115,25 @@ export const FormInput = (props: InputProps) => {
                                         attributes: attributes,
                                         datasets: datasets,
                                     } as InputButtonProps)
-                                    : componentType === 'Others'
-                                        ? InputOthers({
+                                    : componentType === 'File'
+                                        ? FormInputFile({
                                             ...props,
                                             classes: classes,
                                             attributes: attributes,
                                             datasets: datasets,
-                                        } as InputOtherProps)
-                                        : (
-                                        <Fragment>
-                                            Un-supported.
-                                        </Fragment>
-                                    )
+                                        } as FormInputFileProps)
+                                        : componentType === 'Others'
+                                            ? InputOthers({
+                                                ...props,
+                                                classes: classes,
+                                                attributes: attributes,
+                                                datasets: datasets,
+                                            } as InputOtherProps)
+                                            : (
+                                                <Fragment>
+                                                    Un-supported.
+                                                </Fragment>
+                                            )
                 }
             </Tag>
         </Fragment>

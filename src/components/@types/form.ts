@@ -5,21 +5,36 @@ import React, {
     TextareaHTMLAttributes,
 } from "react";
 import {
-    CheckboxClasses, CheckboxProps,
+    CheckboxClasses,
+    CheckboxProps,
     ColorTypes,
     CommonDataSet,
     IconsProps,
-    InputButtonTypes, InputOtherTypes, InputTextTypes,
+    InputButtonTypes,
+    InputFileAttributes,
+    InputFileClasses,
+    InputFileDatasets,
+    InputFileProps,
+    InputOtherTypes,
+    InputTextTypes,
     LabelProps,
-    RadioClasses, RadioGroupFieldsProps,
-    SelectAttributes, SelectClasses, SelectDatasets, SelectProps,
+    RadioClasses,
+    RadioGroupFieldsProps,
+    SelectAttributes,
+    SelectClasses,
+    SelectDatasets,
+    SelectProps,
     SizeTypes,
     StateTypes,
-    SubmitButtonFields, SubmitImageFields,
+    SubmitButtonFields,
+    SubmitImageFields,
     TextareaProps,
 } from "./index";
 import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
+// ----------------------------------------------------------------------
+// Common
+// ----------------------------------------------------------------------
 /** Type definition for attributes of input */
 export type InputAttributes = {
     wrap?: HTMLAttributes<HTMLDivElement>;
@@ -37,6 +52,19 @@ export type InputClasses = {
     wrap?: string[];
     control?: string[];
 };
+// ----------------------------------------------------------------------
+// Attributes
+// ----------------------------------------------------------------------
+/** Type definition for attributes of input[type=file] */
+export type FormInputFileAttributes = InputAttributes & InputFileAttributes;
+// ----------------------------------------------------------------------
+// Datasets
+// ----------------------------------------------------------------------
+/** Type definition for datasets of input[type=file] */
+export type FormInputFileDatasets = InputDatasets & InputFileDatasets;
+// ----------------------------------------------------------------------
+// Classes
+// ----------------------------------------------------------------------
 /** Type definition for classes of input[type=text,password,email,tel,number,search,url] */
 export type InputTextClasses = InputClasses & {
     input?: string[];
@@ -45,10 +73,16 @@ export type InputTextClasses = InputClasses & {
 export type InputButtonClasses = InputClasses & {
     input?: string[];
 };
+/** Type definition for classes of input[type=file] */
+export type FormInputFileClasses = InputClasses & InputFileClasses;
 /** Type definition for classes of input[type=others] */
 export type InputOtherClasses = InputClasses & {
     input?: string[];
 };
+
+// ----------------------------------------------------------------------
+// Props (Text)
+// ----------------------------------------------------------------------
 /** Type definition for additional properties of input[type=text,password,email,tel,number,search,url] */
 export type InputTextProps = {
     type: InputTextTypes;
@@ -69,6 +103,9 @@ export type InputTextProps = {
     attributes?: InputAttributes;
     datasets?: InputDatasets;
 };
+// ----------------------------------------------------------------------
+// Props (Radio)
+// ----------------------------------------------------------------------
 /** Type definition for additional properties of input[type=radio] */
 export type InputRadioProps = {
     type: 'radio';
@@ -83,6 +120,9 @@ export type InputRadioProps = {
     attributes?: InputAttributes;
     datasets?: InputDatasets;
 };
+// ----------------------------------------------------------------------
+// Props (Checkbox)
+// ----------------------------------------------------------------------
 /** Type definition for additional properties of input[type=checkbox] */
 export type InputCheckboxProps = {
     type: 'checkbox';
@@ -97,6 +137,9 @@ export type InputCheckboxProps = {
     attributes?: InputAttributes;
     datasets?: InputDatasets;
 };
+// ----------------------------------------------------------------------
+// Props (Button/Submit/Image)
+// ----------------------------------------------------------------------
 /** Type definition for additional properties of input[type=submit,button,image] */
 export type InputButtonProps = {
     type: InputButtonTypes;
@@ -111,6 +154,20 @@ export type InputButtonProps = {
     attributes?: InputAttributes;
     datasets?: InputDatasets;
 };
+// ----------------------------------------------------------------------
+// Props (File)
+// ----------------------------------------------------------------------
+export type FormInputFileProps = Omit<InputFileProps, 'classes' | 'attributes' | 'datasets'> & {
+    prefix?: string;
+    label?: LabelProps;
+    noDivWrap?: boolean;
+    classes?: FormInputFileClasses;
+    attributes?: FormInputFileAttributes;
+    datasets?: FormInputFileDatasets;
+};
+// ----------------------------------------------------------------------
+// Props (Others)
+// ----------------------------------------------------------------------
 /** Type definition for additional properties of input[type=others] */
 export type InputOtherProps = {
     type: InputOtherTypes;
@@ -126,8 +183,14 @@ export type InputOtherProps = {
     datasets?: InputDatasets;
 };
 /** Type definition for property of input */
-export type InputProps = InputTextProps | InputRadioProps | InputCheckboxProps | InputButtonProps;
+export type InputProps = InputTextProps
+    | InputRadioProps | InputCheckboxProps
+    | InputButtonProps | FormInputFileProps
+    | InputOtherProps;
 
+// ----------------------------------------------------------------------
+// Props (Textarea)
+// ----------------------------------------------------------------------
 /** Type definition for attributes of form textarea */
 export type TextareaAttributes = Omit<InputAttributes, 'input'> & {
     textarea?: TextareaHTMLAttributes<HTMLTextAreaElement>;
@@ -150,6 +213,9 @@ export type FormTextareaProps = Omit<TextareaProps, "classes" | "attributes" | "
     datasets?: TextareaDatasets;
 };
 
+// ----------------------------------------------------------------------
+// Props (Select)
+// ----------------------------------------------------------------------
 /** Type definition for attributes of form select */
 export type FormSelectAttributes = SelectAttributes & {
     wrap?: HTMLAttributes<HTMLDivElement>;
