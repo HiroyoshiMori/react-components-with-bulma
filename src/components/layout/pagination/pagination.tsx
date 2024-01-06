@@ -32,7 +32,7 @@ export const Pagination = (
             'wrap', 'list'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         props['datasets'] as PaginationDatasets, [
             'wrap', 'list'
         ], new Map()

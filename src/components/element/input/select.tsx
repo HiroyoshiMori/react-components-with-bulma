@@ -32,7 +32,7 @@ export const Select = (props: SelectProps) => {
             'div', 'select'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         props['datasets'] as SelectDatasets, [
             'div', 'select'
         ], new Map()

@@ -38,7 +38,7 @@ export const Table = (props: TableProps) => {
             'wrap', 'container'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         props['datasets'] as TableDatasets, [
             'wrap', 'container'
         ], new Map()

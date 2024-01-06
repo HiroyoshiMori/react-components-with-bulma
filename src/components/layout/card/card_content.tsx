@@ -18,7 +18,7 @@ export const CardContent = (props: CardContentProps) => {
             'wrap', 'content'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         props['datasets'] as CardContentDatasets, [
             'wrap', 'content'
         ], new Map()

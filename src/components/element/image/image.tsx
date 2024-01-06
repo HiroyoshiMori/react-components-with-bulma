@@ -6,7 +6,7 @@ import {
     ImageDatasets,
     ImageProps,
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Image = (props: ImageProps) => {

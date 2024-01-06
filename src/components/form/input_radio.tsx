@@ -24,7 +24,7 @@ export const InputRadioGroup = (itemProps: InputRadioProps) => {
             'control'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         itemProps['datasets'] as InputDatasets, [
             'control'
         ], new Map()
