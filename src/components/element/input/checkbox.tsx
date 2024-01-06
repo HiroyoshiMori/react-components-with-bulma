@@ -4,10 +4,11 @@ import {
     CheckboxProps,
     CheckboxAttributes,
     CheckboxClasses,
-    CheckboxDatasets,
+    CheckboxDatasets, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
 } from "../../@types";
 import {Label} from "../label";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Checkbox = (props: CheckboxProps) => {
     const {
@@ -15,41 +16,37 @@ export const Checkbox = (props: CheckboxProps) => {
         currentValues= [],
         onChange,
         prefix = '',
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['label', 'input'] as Array<keyof CheckboxAttributes>)
-        .forEach((k: keyof CheckboxAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
+    const attributes = initialize(
+        props['attributes'] as CheckboxAttributes, [
+            'label', 'input'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as CheckboxDatasets, [
+            'label', 'input'
+        ], new Map()
+    );
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as CheckboxClasses, [
+            'label', 'input'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'label': defaultValue = 'checkbox'; break;
             }
-        });
-    (['label', 'input'] as Array<keyof CheckboxDatasets>)
-        .forEach((k: keyof CheckboxDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['label', 'input'] as Array<keyof CheckboxClasses>)
-        .forEach((k: keyof CheckboxClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
-    // Set default values if not already set
-    if (classes.label && !classes.label.includes('checkbox')) {
-        classes.label.push('checkbox');
-    }
+            return defaultValue;
+        }
+    );
+
     if (classes.input) {
         if (ArrayRegexIncludes(classes.input, /^mr?-([0-6]|auto)$/) === -1) {
             classes.input.push('mr-1');
         }
     }
-
-    const datasetShown = convertDataSet(datasets.input as CommonDataSet);
 
     return (
         <Fragment>

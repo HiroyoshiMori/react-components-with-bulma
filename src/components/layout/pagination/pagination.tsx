@@ -8,9 +8,10 @@ import {
     PaginationClasses,
     PaginationDatasets,
     PaginationLabels,
-    PaginationProps,
+    PaginationProps, FormInputFileClasses, FormInputFileAttributes, FormInputFileDatasets,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Pagination = (
     props: PaginationProps
@@ -23,13 +24,38 @@ export const Pagination = (
         position = 'centered',
         style,
         size,
-        classes = {},
         onClick,
-        attributes = {},
-        datasets = {},
     } = props;
 
+    // Initialize if undefined
+    const attributes = initialize(
+        props['attributes'] as PaginationAttributes, [
+            'wrap', 'list'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as PaginationDatasets, [
+            'wrap', 'list'
+        ], new Map()
+    );
+
     // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as PaginationClasses, [
+            'wrap', 'previous', 'next', 'list', 'link', 'ellipsis'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap': defaultValue = 'pagination'; break;
+                case 'previous': defaultValue = 'pagination-previous'; break;
+                case 'next': defaultValue = 'pagination-next'; break;
+                case 'list': defaultValue = 'pagination-list'; break;
+                case 'link': defaultValue = 'pagination-link'; break;
+                case 'ellipsis': defaultValue = 'pagination-ellipsis'; break;
+            }
+            return defaultValue;
+        }
+    );
     (['previous', 'next', 'ellipsis'] as Array<keyof PaginationLabels>)
         .forEach((k: keyof PaginationLabels) => {
             let defaultValue;
@@ -42,30 +68,9 @@ export const Pagination = (
                 labels[k] = defaultValue;
             }
         });
-    // Initialize if undefined
-    (['wrap', 'previous', 'next', 'list', 'link', 'ellipsis'] as Array<keyof PaginationClasses>)
-        .forEach((k: keyof PaginationClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
-    (['wrap', 'list'] as Array<keyof PaginationAttributes>)
-        .forEach((k: keyof PaginationAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'list'] as Array<keyof PaginationDatasets>)
-        .forEach((k: keyof PaginationDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
+
     // Set default values if not already set
     if (classes.wrap) {
-        if (!classes.wrap.includes('pagination')) {
-            classes.wrap.push('pagination');
-        }
         if (position) {
             const pattern = HORIZONTAL_POSITIONS.join('|');
             if (pattern) {
@@ -90,21 +95,6 @@ export const Pagination = (
             }
         }
     }
-    if (classes.previous && !classes.previous.includes('pagination-previous')) {
-        classes.previous.push('pagination-previous');
-    }
-    if (classes.next && !classes.next.includes('pagination-next')) {
-        classes.next.push('pagination-next');
-    }
-    if (classes.list && !classes.list.includes('pagination-list')) {
-        classes.list.push('pagination-list');
-    }
-    if (classes.link && !classes.link.includes('pagination-link')) {
-        classes.link.push('pagination-link');
-    }
-    if (classes.ellipsis && !classes.ellipsis.includes('pagination-ellipsis')) {
-        classes.ellipsis.push('pagination-ellipsis');
-    }
 
     if (attributes.wrap && (!Object.hasOwn(attributes.wrap, 'role') || attributes.wrap.role === '')) {
         attributes.wrap.role = 'navigation';
@@ -121,17 +111,6 @@ export const Pagination = (
     if (nextDisabled) {
         classes.next?.push('is-disabled');
     }
-
-    let datasetShown = {} as any;
-    (['wrap', 'list'] as Array<keyof PaginationDatasets>)
-        .forEach((k: keyof PaginationDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     return (
         <Fragment>

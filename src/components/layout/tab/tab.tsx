@@ -1,12 +1,13 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileClasses,
     HORIZONTAL_POSITIONS,
     TabsClasses,
     TabsItemFields,
     TabsProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize} from "../../common";
 
 export const Tab = (
     props: TabsProps
@@ -14,22 +15,25 @@ export const Tab = (
     const {
         items,
         position = 'centered',
-        classes = {},
         attributes,
         datasets = new Map(),
     } = props;
 
-    // Initialize if undefined
-    (['wrap', 'item'] as Array<keyof TabsClasses>).forEach((k: keyof TabsClasses) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as TabsClasses, [
+            'wrap', 'item'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap': defaultValue = 'tabs'; break;
+            }
+            return defaultValue;
         }
-    });
+    );
+
     // Set default values if not already set
     if (classes.wrap) {
-        if (!classes.wrap?.includes('tabs')) {
-            classes.wrap?.push('tabs');
-        }
         if (position) {
             const pattern: string = HORIZONTAL_POSITIONS.join('|');
             if (pattern) {

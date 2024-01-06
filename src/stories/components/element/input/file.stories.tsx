@@ -1,4 +1,4 @@
-import {InputFile} from "../../../../components/element/input/file";
+import {InputFile} from "../../../../components";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {COLOR_TYPES, SIZES} from "../../../../components";
 import {deIndent} from "../../../../utils";

@@ -9,10 +9,10 @@ export const Label = (props: LabelProps) => {
     const {
         label,
         htmlFor,
+        children,
         classes = [],
         attributes = {},
         datasets = new Map(),
-        children,
     } = props;
 
     const datasetShown = convertDataSet(datasets as CommonDataSet);

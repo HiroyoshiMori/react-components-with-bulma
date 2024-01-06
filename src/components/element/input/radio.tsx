@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     RadioAttributes,
     RadioClasses,
     RadioDatasets,
@@ -8,6 +8,7 @@ import {
 } from "../../@types";
 import {Label} from "../label";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Radio = (props: RadioProps) => {
     const {
@@ -15,50 +16,37 @@ export const Radio = (props: RadioProps) => {
         currentValue,
         onChange,
         prefix = '',
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['label', 'input'] as Array<keyof RadioAttributes>)
-        .forEach((k: keyof RadioAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
+    const attributes = initialize(
+        props['attributes'] as RadioAttributes, [
+            'label', 'input'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as RadioDatasets, [
+            'label', 'input'
+        ], new Map()
+    );
+    const classes = initialize(
+        props['classes'] as RadioClasses, [
+            'label', 'input'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'label': defaultValue = 'radio'; break;
             }
-        });
-    (['label', 'input'] as Array<keyof RadioDatasets>)
-        .forEach((k: keyof RadioDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['label', 'input'] as Array<keyof RadioClasses>)
-        .forEach((k: keyof RadioClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+            return defaultValue;
+        }
+    );
+
     // Set default values if not already set
-    if (classes.label && !classes.label.includes('radio')) {
-        classes.label.push('radio');
-    }
     if (classes.input) {
         if (ArrayRegexIncludes(classes.input, /^mr?-([0-6]|auto)$/) === -1) {
             classes.input.push('mr-1');
         }
     }
-
-    let datasetShown = {} as any;
-    (['input'] as Array<keyof RadioDatasets>)
-        .forEach((k: keyof RadioDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     return (
         <Fragment>

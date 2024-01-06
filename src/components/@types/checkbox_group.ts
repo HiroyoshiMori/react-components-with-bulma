@@ -4,7 +4,7 @@ import {
     CheckboxClasses,
     CheckboxDatasets,
     CheckboxFields,
-} from "./checkbox";
+} from "./input";
 
 /** Type definition for property of radio group fields */
 export type CheckboxGroupFieldsProps = {

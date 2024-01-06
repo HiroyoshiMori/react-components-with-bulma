@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     FormTextareaProps,
     TextareaAttributes,
     TextareaClasses,
@@ -11,6 +11,7 @@ import {
     Textarea,
 } from "../element";
 import {convertDataSet} from "../../utils";
+import {initialize, initializeDatasets} from "../common";
 
 export const FormTextarea = (props: FormTextareaProps) => {
     const {
@@ -29,45 +30,35 @@ export const FormTextarea = (props: FormTextareaProps) => {
         disabled = false,
         readOnly = false,
         noDivWrap = false,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'control', 'textarea'] as Array<keyof TextareaAttributes>)
-        .forEach((k: keyof TextareaAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    let datasetShown = {} as any;
-    (['wrap', 'control', 'textarea'] as Array<keyof TextareaDatasets>)
-        .forEach((k: keyof TextareaDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
+    const attributes = initialize(
+        props['attributes'] as TextareaAttributes, [
+            'wrap', 'control', 'textarea'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as TextareaDatasets, [
+            'wrap', 'control', 'textarea'
+        ], new Map()
+    );
+
     // Initialize if undefined and set default values if not already set
-    (['wrap', 'control', 'textarea'] as Array<keyof TextareaClasses>)
-        .forEach((k: keyof TextareaClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const classes = initialize(
+        props['classes'] as TextareaClasses, [
+            'wrap', 'control', 'textarea'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'wrap': defaultValue = 'field'; break;
                 case 'control': defaultValue = 'control'; break;
                 case 'textarea': defaultValue = 'textarea'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
+
     // Set default values if not already set
     if (label) {
         if (label.classes === undefined) {

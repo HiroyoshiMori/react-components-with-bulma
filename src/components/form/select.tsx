@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {
     COLOR_TYPES,
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     FormSelectAttributes,
     FormSelectClasses,
     FormSelectDatasets,
@@ -14,6 +14,7 @@ import {
     Select,
 } from "../element";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {initialize, initializeDatasets} from "../common";
 
 export const FormSelect = (props: FormSelectProps) => {
     const {
@@ -31,46 +32,36 @@ export const FormSelect = (props: FormSelectProps) => {
         label,
         noDivWrap = false,
         icon,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'control', 'div', 'select', 'icon'] as Array<keyof FormSelectAttributes>)
-        .forEach((k: keyof FormSelectAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    let datasetShown = {} as any;
-    (['wrap', 'control', 'div', 'select', 'icon'] as Array<keyof FormSelectDatasets>)
-        .forEach((k: keyof FormSelectDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
+    const attributes = initialize(
+        props['attributes'] as FormSelectAttributes, [
+            'wrap', 'control', 'div', 'select', 'icon'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as FormSelectDatasets, [
+            'wrap', 'control', 'div', 'select', 'icon'
+        ], new Map()
+    );
+
     // Initialize if undefined and set default values if not already set
-    (['wrap', 'control', 'div', 'select', 'optgroup', 'option', 'icon'] as Array<keyof FormSelectClasses>)
-        .forEach((k: keyof FormSelectClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const classes = initialize(
+        props['classes'] as FormSelectClasses, [
+            'wrap', 'control', 'div', 'select',
+            'optgroup', 'option', 'icon'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'wrap': defaultValue = 'field'; break;
                 case 'control': defaultValue = 'control'; break;
                 case 'div': defaultValue = 'select'; break;
                 case 'icon': defaultValue = 'icon'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     // Set default values if not already set
     if (label) {

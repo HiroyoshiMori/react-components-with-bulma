@@ -9,7 +9,7 @@ import {
     TableHeaderClasses,
     TableHeaderProps,
     TableFooterClasses,
-    TableFooterProps, CaptionProps, ColGroupProps,
+    TableFooterProps, CaptionProps, ColGroupProps, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
 } from "../../@types";
 import {TableHeader} from "./table_header";
 import {TableFooter} from "./table_footer";
@@ -17,6 +17,7 @@ import {TableBody} from "./table_body";
 import {convertDataSet} from "../../../utils";
 import {Caption} from "./caption";
 import {ColGroup} from "./col_group";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Table = (props: TableProps) => {
     const {
@@ -31,30 +32,24 @@ export const Table = (props: TableProps) => {
         isHoverable = false,
         isFullWidth = false,
         inTableContainer = false,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'container'] as Array<keyof TableAttributes>)
-        .forEach((k: keyof TableAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'container'] as Array<keyof TableDatasets>)
-        .forEach((k: keyof TableDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['wrap', 'container'] as Array<keyof TableClasses>)
-        .forEach((k: keyof TableClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+    const attributes = initialize(
+        props['attributes'] as TableAttributes, [
+            'wrap', 'container'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as TableDatasets, [
+            'wrap', 'container'
+        ], new Map()
+    );
+    const classes = initialize(
+        props['classes'] as TableClasses, [
+            'wrap', 'container'
+        ], []
+    );
 
     // Set default value if not already set
     ['table', 'is-bordered', 'is-striped', 'is-narrow', 'is-hoverable', 'is-fullwidth']
@@ -75,16 +70,6 @@ export const Table = (props: TableProps) => {
     if (inTableContainer && !classes.container?.includes('table-container')) {
         classes.container?.push('table-container');
     }
-    let datasetShown = {} as any;
-    (['wrap', 'container'] as Array<keyof TableDatasets>)
-        .forEach((k: keyof TableDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     return (
         <Fragment>

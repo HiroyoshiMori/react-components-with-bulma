@@ -2,13 +2,14 @@ import React, {Fragment} from "react";
 import {sprintf} from "sprintf-js";
 import {
     COLOR_TYPES,
-    CommonDataSet, DialogClasses, DialogHeaderClasses,
+    CommonDataSet, DialogClasses, DialogHeaderClasses, FormInputFileAttributes, FormInputFileClasses,
     ProgressBarAttributes, ProgressBarClasses,
     ProgressBarDatasets,
     ProgressBarProps,
 } from "../../@types";
 import {Dialog} from "./index";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize} from "../../common";
 
 export const ProgressBar = (
     props: ProgressBarProps
@@ -19,18 +20,20 @@ export const ProgressBar = (
         value,
         max,
         onClose,
-        classes = {},
-        attributes = {},
         datasets = {},
     } = props;
 
-    // Set default values if not already set
-    (['dialog', 'progressbar'] as Array<keyof ProgressBarAttributes>)
-        .forEach((k: keyof ProgressBarAttributes) => {
-        if (attributes[k] === undefined) {
-            attributes[k] = {};
-        }
-    });
+    // Initialize if undefined
+    const attributes = initialize(
+        props['attributes'] as ProgressBarAttributes, [
+            'dialog', 'progressbar'
+        ], {}
+    );
+    const classes = initialize(
+        props['classes'] as ProgressBarClasses, [
+            'dialog', 'progressbar'
+        ], []
+    );
     (['dialog', 'progressbar'] as Array<keyof ProgressBarDatasets>)
         .forEach((k: keyof ProgressBarDatasets) => {
         if (datasets[k] === undefined) {
@@ -40,13 +43,8 @@ export const ProgressBar = (
             }
         }
     });
-    (['dialog', 'progressbar'] as Array<keyof ProgressBarClasses>)
-        .forEach((k: keyof ProgressBarClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
 
+    // Set default values if not already set
     if (classes.dialog) {
         (['header', 'footer'] as Array<keyof DialogClasses>)
             .forEach((k: keyof DialogClasses) => {

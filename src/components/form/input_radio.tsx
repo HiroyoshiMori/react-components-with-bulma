@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     InputAttributes,
     InputClasses,
     InputDatasets,
@@ -9,6 +9,7 @@ import {
 } from "../@types";
 import {convertDataSet} from "../../utils";
 import {RadioGroup} from "./radio_group";
+import {initialize, initializeDatasets} from "../common";
 
 export const InputRadioGroup = (itemProps: InputRadioProps) => {
     const {
@@ -17,48 +18,40 @@ export const InputRadioGroup = (itemProps: InputRadioProps) => {
         currentValue,
         onChange,
         prefix,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = itemProps;
 
     // Initialize if undefined
-    (['control'] as Array<keyof InputAttributes>)
-        .forEach((k: keyof InputAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['control'] as Array<keyof InputDatasets>)
-        .forEach((k: keyof InputDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['control', 'label', 'input'] as Array<keyof (InputClasses & RadioClasses)>)
-        .forEach((k: keyof (InputClasses & RadioClasses)) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const attributes = initialize(
+        itemProps['attributes'] as InputAttributes, [
+            'control'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        itemProps['datasets'] as InputDatasets, [
+            'control'
+        ], new Map()
+    );
+    const classes = initialize(
+        itemProps['classes'] as InputClasses & RadioClasses, [
+            'control', 'label', 'input'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'control': defaultValue = 'control'; break;
                 case 'label': defaultValue = 'radio'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     // Set default values if not already set
-    const datasetShown = convertDataSet(datasets.control as CommonDataSet);
 
     return (
         <Fragment>
             <div
                 className={classes.control?.join(' ')}
                 {...attributes.control}
-                {...datasetShown}
+                {...datasetShown.control}
             >
                 <RadioGroup
                     fieldName={name}

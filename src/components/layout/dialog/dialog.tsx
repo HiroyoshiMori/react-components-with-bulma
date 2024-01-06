@@ -4,11 +4,12 @@ import {
     DialogAttributes,
     DialogBoxProps,
     DialogClasses,
-    DialogDatasets,
+    DialogDatasets, FormInputFileAttributes,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {Header} from "./header";
 import {Footer} from "./footer";
+import {initialize} from "../../common";
 
 export const Dialog = (props: DialogBoxProps) => {
     const {
@@ -17,19 +18,21 @@ export const Dialog = (props: DialogBoxProps) => {
         onClose,
         noFooter = false,
         buttonLabel,
-        classes = {},
-        attributes = {},
         datasets = {},
         children
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'card', 'header', 'content', 'footer'] as Array<keyof DialogAttributes>)
-        .forEach((k: keyof DialogAttributes) => {
-        if (attributes[k] === undefined) {
-            attributes[k] = {};
-        }
-    });
+    const attributes = initialize(
+        props['attributes'] as DialogAttributes, [
+            'wrap', 'card', 'header', 'content', 'footer'
+        ], {}
+    );
+    const classes = initialize(
+        props['classes'] as DialogClasses, [
+            'wrap', 'content'
+        ], []
+    );
     (['wrap', 'card', 'header', 'content', 'footer'] as Array<keyof DialogDatasets>)
         .forEach((k: keyof DialogDatasets) => {
         if (datasets[k] === undefined) {
@@ -42,11 +45,8 @@ export const Dialog = (props: DialogBoxProps) => {
             }
         }
     });
-    (['wrap', 'content'] as Array<keyof DialogClasses>).forEach((k) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-    });
+
+    // Set default values if not already set
     if (classes.header === undefined) {
         classes.header = {
             wrap: [], title: [],

@@ -7,11 +7,12 @@ import {
     ListDatasets,
     ListProps,
     ListHeaderProps,
-    ListDetailProps,
+    ListDetailProps, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
 } from '../../@types';
 import {ListHeader} from "./header";
 import {ListDetail} from "./detail";
 import {convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const List = (
     props: ListProps
@@ -21,27 +22,28 @@ export const List = (
         headers = [],
         itemElement,
         headerElement,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'header'] as Array<keyof ListAttributes>).forEach((k: keyof ListAttributes) => {
-        if (attributes[k] === undefined) {
-            attributes[k] = {};
-        }
-    });
-    (['wrap', 'header'] as Array<keyof ListDatasets>).forEach((k: keyof ListDatasets) => {
-        if (datasets[k] === undefined) {
-            datasets[k] = new Map();
-        }
-    });
-    (['wrap'] as Array<keyof ListClasses>).forEach((k: keyof ListClasses) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-    });
+    const attributes = initialize(
+        props['attributes'] as ListAttributes, [
+            'wrap', 'header'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as ListDatasets, [
+            'wrap', 'header'
+        ], new Map()
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as ListClasses, [
+            'wrap'
+        ], []
+    );
+
+    // Set default values if not already set
     if (classes.headers === undefined) {
         classes.headers = {};
     }
@@ -55,16 +57,6 @@ export const List = (
     if (classes.detail.wrap && !classes.detail.wrap.includes('columns')) {
         classes.detail.wrap.push('columns');
     }
-    let datasetShown = {} as any;
-    (['wrap', 'header'] as Array<keyof ListDatasets>)
-        .forEach((k: keyof ListDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     let ListHeaderTag: React.ElementType<ListHeaderProps> = ListHeader;
     if (headerElement !== undefined) {

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileClasses,
     MenuAttributes,
     MenuClasses,
     MenuDatasets,
@@ -9,34 +9,31 @@ import {
     MenuProps,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
+import {initialize} from "../../common";
 
 export const Menu = (
     props: MenuProps
 ) => {
     const {
         menus,
-        classes = {},
         attributes = {},
         datasets = new Map(),
     } = props;
 
-    // Initialize if undefined && set default values if not already set
-    (['wrap', 'label', 'list', 'item'] as Array<keyof MenuClasses>).forEach((k) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-        if (classes[k]) {
-            let checkStyle;
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as MenuClasses, [
+            'wrap', 'label', 'list', 'item'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
-                case 'wrap': checkStyle = 'menu'; break;
-                case 'label': checkStyle = 'menu-label'; break;
-                case 'list': checkStyle = 'menu-list'; break;
+                case 'wrap': defaultValue = 'menu'; break;
+                case 'label': defaultValue = 'menu-label'; break;
+                case 'list': defaultValue = 'menu-list'; break;
             }
-            if (checkStyle && !classes[k]?.includes(checkStyle)) {
-                classes[k]?.push(checkStyle);
-            }
+            return defaultValue;
         }
-    });
+    );
     const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     /**

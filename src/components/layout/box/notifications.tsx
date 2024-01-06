@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {
     COLOR_TYPES,
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     NotificationsAttributes,
     NotificationsClasses,
     NotificationsDatasets,
@@ -9,49 +9,42 @@ import {
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {Button} from "../../element";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Notifications = (props: NotificationsProps) => {
     const {
         color,
         isLightColor = false,
-        classes = {},
-        attributes = {},
-        datasets = {},
         children,
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'button'] as Array<keyof NotificationsAttributes>)
-        .forEach((k: keyof NotificationsAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'button'] as Array<keyof NotificationsDatasets>)
-        .forEach((k: keyof NotificationsDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map;
-            }
-        });
-    (['wrap', 'button'] as Array<keyof NotificationsClasses>)
-        .forEach((k: keyof NotificationsClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+    const attributes = initialize(
+        props['attributes'] as NotificationsAttributes, [
+            'wrap', 'button'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as NotificationsDatasets, [
+            'wrap', 'button'
+        ], new Map()
+    );
 
-    // Set default values if not already set
-    (['wrap', 'button'] as Array<keyof NotificationsClasses>)
-        .forEach((k: keyof NotificationsClasses) => {
-            let defaultValue;
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as NotificationsClasses, [
+            'wrap', 'button'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'wrap': defaultValue = 'notification'; break;
                 case 'button': defaultValue = 'delete'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
+
+    // Set default values if not already set
     if (classes.wrap) {
         if (color) {
             const pattern: string = COLOR_TYPES.join('|');
@@ -64,20 +57,13 @@ export const Notifications = (props: NotificationsProps) => {
             }
         }
     }
-    let datasetsShown = {} as any;
-    (['wrap', 'button'] as Array<keyof NotificationsDatasets>)
-        .forEach((k: keyof NotificationsDatasets) => {
-            if (!Object.hasOwn(datasetsShown, k)) {
-                datasetsShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     return (
         <Fragment>
             <div
                 className={classes.wrap?.join(' ')}
                 {...attributes.wrap}
-                {...datasetsShown.wrap}
+                {...datasetShown.wrap}
             >
                 <Button
                     label=""

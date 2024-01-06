@@ -6,9 +6,10 @@ import {
     RadioClasses,
     RadioDatasets,
     RadioGroupProps,
-    RadioGroupFieldsProps,
+    RadioGroupFieldsProps, FormInputFileClasses,
 } from "../@types";
 import {Radio} from "../element";
+import {initialize} from "../common";
 
 export const RadioGroup = (props: RadioGroupProps) => {
     const {
@@ -17,15 +18,14 @@ export const RadioGroup = (props: RadioGroupProps) => {
         currentValue,
         onChange,
         prefix = '',
-        classes = {},
     } = props;
 
     // Initialize if undefined
-    (['label', 'input'] as Array<keyof RadioClasses>).forEach((k) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-    });
+    const classes = initialize(
+        props['classes'] as RadioClasses, [
+            'label', 'input'
+        ], []
+    );
 
     return (
         <Fragment>

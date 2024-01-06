@@ -6,26 +6,26 @@ import {
     CommonDataSet,
     BreadcrumbClasses,
     BreadcrumbItemFields,
-    BreadcrumbProps,
+    BreadcrumbProps, FormInputFileClasses,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize} from "../../common";
 
 export const Breadcrumbs = (props: BreadcrumbProps) => {
     const {
         items,
         position = 'centered',
-        classes = {},
         attributes = {},
         datasets = new Map(),
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'item'] as Array<keyof BreadcrumbClasses>)
-        .forEach((k: keyof BreadcrumbClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+    const classes = initialize(
+        props['classes'] as BreadcrumbClasses, [
+            'wrap', 'item'
+        ], []
+    );
+
     // Set default values if not already set
     if (classes.wrap) {
         if (!classes.wrap.includes('breadcrumb')) {

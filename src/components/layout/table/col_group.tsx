@@ -1,23 +1,22 @@
 import React, {Fragment} from "react";
-import {ColGroupCLasses, ColGroupProps, ColProps} from "../../@types";
+import {ColGroupCLasses, ColGroupProps, ColProps, FormInputFileClasses} from "../../@types";
 import {convertDataSet} from "../../../utils";
+import {initialize} from "../../common";
 
 export const ColGroup = (props: ColGroupProps) => {
     const {
         cols,
         span,
-        classes = {},
         attributes = {},
         datasets = new Map(),
     } = props;
 
-    (['group', 'col'] as Array<keyof ColGroupCLasses>)
-        .forEach((k: keyof ColGroupCLasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
-
+    // Initialize if undefined
+    const classes = initialize(
+        props['classes'] as ColGroupCLasses, [
+            'group', 'col'
+        ], []
+    );
     const datasetShown = convertDataSet(datasets);
 
     return (

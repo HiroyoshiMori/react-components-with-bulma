@@ -6,9 +6,10 @@ import {
     CheckboxClasses,
     CheckboxGroupFieldsProps,
     CheckboxAttributes,
-    CheckboxDatasets,
+    CheckboxDatasets, FormInputFileClasses,
 } from "../@types";
 import {Checkbox} from "../element";
+import {initialize} from "../common";
 
 export const CheckboxGroup = (props: CheckboxGroupProps) => {
     const {
@@ -17,16 +18,14 @@ export const CheckboxGroup = (props: CheckboxGroupProps) => {
         currentValues = [],
         onChange,
         prefix = '',
-        classes = {},
     } = props;
 
     // Initialize if undefined
-    (['label', 'input'] as Array<keyof CheckboxClasses>)
-        .forEach((k: keyof CheckboxClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+    const classes = initialize(
+        props['classes'] as CheckboxClasses, [
+            'label', 'input'
+        ], []
+    );
 
     return (
         <Fragment>

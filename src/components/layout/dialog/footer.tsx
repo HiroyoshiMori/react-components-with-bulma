@@ -4,53 +4,43 @@ import {
     DialogFooterAttributes,
     DialogFooterClasses,
     DialogFooterDatasets,
-    DialogFooterProps,
+    DialogFooterProps, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
 } from "../../@types";
 import {Button} from "../../element";
 import {convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Footer = (props: DialogFooterProps) => {
     const {
         buttonLabel,
         onClose,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'button'] as Array<keyof DialogFooterClasses>).forEach((k: keyof DialogFooterClasses) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
-        }
-    });
-    (['wrap', 'button'] as Array<keyof DialogFooterAttributes>).forEach((k: keyof DialogFooterAttributes) => {
-        if (attributes[k] === undefined) {
-            attributes[k] = {};
-        }
-    });
-    (['wrap', 'button'] as Array<keyof DialogFooterDatasets>).forEach((k: keyof DialogFooterDatasets) => {
-        if (datasets[k] === undefined) {
-            datasets[k] = new Map();
-        }
-    });
-    // Set default values if not already set
-    if (classes.wrap && !classes.wrap.includes('modal-card-foot')) {
-        classes.wrap.push('modal-card-foot');
-    }
-    if (classes.button && !classes.button.includes('button')) {
-        classes.button.push('button');
-    }
-    let datasetShown = {} as any;
-    (['wrap', 'button'] as Array<keyof DialogFooterDatasets>)
-        .forEach((k: keyof DialogFooterDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
+    const attributes = initialize(
+        props['attributes'] as DialogFooterAttributes, [
+            'wrap', 'button'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as DialogFooterDatasets, [
+            'wrap', 'button'
+        ], new Map()
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as DialogFooterClasses, [
+            'wrap', 'button'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap': defaultValue = 'modal-card-foot'; break;
+                case 'button': defaultValue = 'button'; break;
             }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     return (
         <Fragment>

@@ -184,5 +184,27 @@ export const TypeFile = {
     args: {
         type: 'file',
         name: 'Form File',
+        buttonLabel: 'Choose a file...',
+        attributes: {
+            wrap: {'aria-label': 'File-wrap'},
+            control: {'aria-label': 'File-control'},
+            input: {'aria-label': 'File-label'},
+        },
+        datasets: {
+            wrap: new Map([['id', 'File-wrap-id']]),
+            control: new Map([['id', 'File-control-id']]),
+            input: new Map([['id', 'File-input-id']]),
+        },
+        classes: {
+            wrap: ['test-wrap'],
+            control: ['test-control'],
+            div: ['test-div'],
+            label: ['test-label'],
+            input: ['test-input'],
+            cta: ['test-cta'],
+            icon: ['test-icon'],
+            labelSpan: ['test-label-span'],
+            fileNameLabel: ['test-file-name-label'],
+        },
     },
 };

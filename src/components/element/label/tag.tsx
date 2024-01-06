@@ -19,11 +19,10 @@ export const Tag = (props: TagProps) => {
         isRounded = false,
         hasCombination = false,
         combinations = {},
-
+        children,
         classes = [],
         attributes = {},
         datasets = new Map(),
-        children,
     } = props;
 
     if (!classes.includes('tag')) {

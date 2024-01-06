@@ -4,10 +4,10 @@ import {convertDataSet} from "../../../utils";
 
 export const Caption = (props: CaptionProps) => {
     const {
+        children,
         classes = [],
         attributes = {},
         datasets = new Map(),
-        children,
     } = props;
 
     const datasetShown = convertDataSet(datasets);

@@ -4,63 +4,43 @@ import {
     CardHeaderAttributes,
     CardHeaderClasses,
     CardHeaderDatasets,
-    CardHeaderProps,
+    CardHeaderProps, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {Icons} from "../../element";
+import {initialize, initializeDatasets} from "../../common";
 
 export const CardHeader = (props: CardHeaderProps) => {
     const {
         title,
         buttonIcon,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderAttributes>)
-        .forEach((k: keyof CardHeaderAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderDatasets>)
-        .forEach((k: keyof CardHeaderDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderClasses>)
-        .forEach((k: keyof CardHeaderClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
-
-    // Set default values if not already set
-    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderClasses>)
-        .forEach((k: keyof CardHeaderClasses) => {
-            let checkValue;
+    const attributes = initialize(
+        props['attributes'] as CardHeaderAttributes, [
+            'wrap', 'title', 'button', 'span'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as CardHeaderDatasets, [
+            'wrap', 'title', 'button', 'span'
+        ], new Map()
+    );
+    const classes = initialize(
+        props['classes'] as CardHeaderClasses, [
+            'wrap', 'title', 'button', 'span'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
-                case 'wrap': checkValue = 'card-header'; break;
-                case 'title': checkValue = 'card-header-title'; break;
-                case 'button': checkValue = 'card-header-icon'; break;
-                case 'span': checkValue = 'icon'; break;
+                case 'wrap': defaultValue = 'card-header'; break;
+                case 'title': defaultValue = 'card-header-title'; break;
+                case 'button': defaultValue = 'card-header-icon'; break;
+                case 'span': defaultValue = 'icon'; break;
             }
-            if (checkValue && !classes[k]?.includes(checkValue)) {
-                classes[k]?.push(checkValue);
-            }
-        });
-
-    let datasetShown = {} as any;
-    (['wrap', 'title', 'button', 'span'] as Array<keyof CardHeaderDatasets>)
-        .forEach((k: keyof CardHeaderDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
+            return defaultValue;
+        }
+    );
 
     return (
         <Fragment>

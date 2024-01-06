@@ -9,67 +9,56 @@ import {
     DropdownContentProps,
     DropdownDatasets,
     DropdownItemProps,
-    DropdownProps,
+    DropdownProps, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {Button} from "../../element";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Dropdown = (props: DropdownProps) => {
     const {
         menuId,
         trigger,
         items,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = {...props};
 
     // Initialize if undefined
-    (['wrap', 'trigger', 'menu', 'content', 'item', 'divider'] as Array<keyof DropdownAttributes>)
-        .forEach((k: keyof DropdownAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-            let key: string | undefined;
-            let val: string | undefined;
+    const attributes = initialize(
+        props['attributes'] as DropdownAttributes, [
+            'wrap', 'trigger', 'menu', 'content', 'item', 'divider'
+        ], {}
+    );
+    const {datasetShown} = initializeDatasets(
+        props['datasets'] as DropdownDatasets, [
+            'wrap', 'trigger', 'menu', 'content', 'item', 'divider'
+        ], new Map()
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as DropdownClasses, [
+            'wrap', 'trigger', 'menu', 'content', 'item', 'divider'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
-                case 'menu': key = 'role'; val = 'menu'; break;
+                case 'wrap': defaultValue = 'dropdown'; break;
+                case 'trigger': defaultValue = 'dropdown-trigger'; break;
+                case 'menu': defaultValue = 'dropdown-menu'; break;
+                case 'content': defaultValue = 'dropdown-content'; break;
+                case 'item': defaultValue = 'dropdown-item'; break;
+                case 'divider': defaultValue = 'dropdown-divider'; break;
             }
-            // @ts-ignore
-            if (key && !Object.hasOwn(attributes[k], 'role')) {
-                // @ts-ignore
-                attributes[k]['role'] = val;
-            }
-        });
-    (['wrap', 'trigger', 'menu', 'content', 'item', 'divider'] as Array<keyof DropdownDatasets>)
-        .forEach((k: keyof DropdownDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['wrap', 'trigger', 'menu', 'content', 'item', 'divider'] as Array<keyof DropdownClasses>)
-        .forEach((k: keyof DropdownClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let key: string | undefined;
-            switch (k) {
-                case 'wrap': key = 'dropdown'; break;
-                case 'trigger': key = 'dropdown-trigger'; break;
-                case 'menu': key = 'dropdown-menu'; break;
-                case 'content': key = 'dropdown-content'; break;
-                case 'item': key = 'dropdown-item'; break;
-                case 'divider': key = 'dropdown-divider'; break;
-            }
-            if (key && !classes[k]?.includes(key)) {
-                classes[k]?.push(key);
-            }
-        });
+            return defaultValue;
+        }
+    );
+
+    // Set default values if not already set
+    if (attributes.menu && !Object.hasOwn(attributes.menu, 'role')) {
+        attributes.menu['role'] = 'menu';
+    }
     if (trigger.attributes === undefined) {
         trigger.attributes = {};
     }
-
-    // Set default values if not already set
     if (trigger.attributes) {
         if (!Object.hasOwn(trigger.attributes, 'aria-controls')) {
             trigger.attributes['aria-controls'] = menuId;
@@ -81,15 +70,6 @@ export const Dropdown = (props: DropdownProps) => {
     if (attributes.menu) {
         attributes.menu.id = trigger.attributes['aria-controls'];
     }
-
-    let datasetShown = {} as any;
-    (['wrap', 'trigger', 'menu', 'content', 'item', 'divider'] as Array<keyof DropdownDatasets>)
-        .forEach((k: keyof DropdownDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
 
     return (
         <Fragment>

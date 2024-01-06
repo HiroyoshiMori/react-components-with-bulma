@@ -4,61 +4,48 @@ import {
     DialogHeaderAttributes,
     DialogHeaderClasses,
     DialogHeaderDatasets,
-    DialogHeaderProps,
+    DialogHeaderProps, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {Button} from "../../element";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Header = (props: DialogHeaderProps) => {
     const {
         title,
         onClose,
-        classes = {
-            wrap: [],
-            title: [],
-        },
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'title', 'button'] as Array<keyof DialogHeaderAttributes>)
-        .forEach((k: keyof DialogHeaderAttributes) => {
-        if (attributes[k] === undefined) {
-            attributes[k] = {};
-        }
-    });
-    (['wrap', 'title', 'button'] as Array<keyof DialogHeaderDatasets>)
-        .forEach((k: keyof DialogHeaderDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
+    const attributes = initialize(
+        props['attributes'] as DialogHeaderAttributes, [
+            'wrap', 'title', 'button'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as DialogHeaderDatasets, [
+            'wrap', 'title', 'button'
+        ], new Map()
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as DialogHeaderClasses, [
+            'wrap', 'title'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap': defaultValue = 'modal-card-head'; break;
+                case 'title': defaultValue = 'modal-card-title'; break;
             }
-        });
-    (['wrap', 'title'] as Array<keyof DialogHeaderClasses>).forEach((k: keyof DialogHeaderClasses) => {
-        if (classes[k] === undefined) {
-            classes[k] = [];
+            return defaultValue;
         }
-    });
+    );
+
     // Set default values if not already set
-    if (classes.wrap && !classes.wrap.includes('modal-card-head')) {
-        classes.wrap?.push('modal-card-head');
-    }
-    if (classes.title && !classes.title.includes('modal-card-title')) {
-        classes.title.push('modal-card-title');
-    }
     if (attributes.button && !Object.hasOwn(attributes?.button, 'aria-label')) {
         attributes.button['aria-label'] = 'close';
     }
-    let datasetShown = {} as any;
-    (['wrap', 'title', 'button'] as Array<keyof DialogHeaderDatasets>)
-        .forEach((k: keyof DialogHeaderDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     return (
         <Fragment>

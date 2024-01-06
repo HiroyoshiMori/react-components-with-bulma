@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     IconsProps,
     InputAttributes,
     InputDatasets,
@@ -9,6 +9,7 @@ import {
 } from "../@types";
 import {convertDataSet} from "../../utils";
 import {Icons, Label, TextBox} from "../element";
+import {initialize, initializeDatasets} from "../common";
 
 export const InputTextBox = (itemProps: InputTextProps) => {
     let {
@@ -25,38 +26,32 @@ export const InputTextBox = (itemProps: InputTextProps) => {
         colorType,
         state,
         size,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = itemProps;
 
     // Initialize if undefined
-    (['control'] as Array<keyof InputAttributes>)
-        .forEach((k: keyof InputAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['control'] as Array<keyof InputDatasets>)
-        .forEach((k: keyof InputDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['control', 'input'] as Array<keyof (InputTextClasses)>)
-        .forEach((k: keyof (InputTextClasses)) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const attributes = initialize(
+        itemProps['attributes'] as InputAttributes, [
+            'control'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        itemProps['datasets'] as InputDatasets, [
+            'control'
+        ], new Map()
+    );
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        itemProps['classes'] as InputTextClasses, [
+            'control', 'input'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'control': defaultValue = 'control'; break;
                 case 'input': defaultValue = 'input'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     // Set default values if not already set
     if (label) {
@@ -90,7 +85,6 @@ export const InputTextBox = (itemProps: InputTextProps) => {
                 }
             }
         });
-    const datasetShown = convertDataSet(datasets.control as CommonDataSet);
 
     return (
         <Fragment>
@@ -98,7 +92,7 @@ export const InputTextBox = (itemProps: InputTextProps) => {
             <div
                 className={classes.control?.join(' ')}
                 {...attributes?.control}
-                {...datasetShown}
+                {...datasetShown.control}
             >
                 <TextBox
                     fieldName={prefix ? (prefix + name) : name}

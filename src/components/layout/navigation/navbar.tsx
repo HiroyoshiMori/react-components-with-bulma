@@ -1,6 +1,6 @@
 import React, {Fragment, HTMLAttributes} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     NavbarAttributes,
     NavbarClasses,
     NavbarDatasets,
@@ -8,6 +8,7 @@ import {
     NavbarProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Navbar = (
     props: NavbarProps
@@ -21,59 +22,53 @@ export const Navbar = (
         },
         brand,
         fixed,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarAttributes>)
-        .forEach((k: keyof NavbarAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarDatasets>)
-        .forEach((k: keyof NavbarDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
+    const attributes = initialize(
+        props['attributes'] as NavbarAttributes, [
+            'wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as NavbarDatasets, [
+            'wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'
+        ], new Map()
+    );
+
     // Initialize if undefined and set default values if not already set
-    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd', 'link', 'item','dropdown', 'divider'] as Array<keyof NavbarClasses>)
-        .forEach((k: keyof NavbarClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
+    const classes = initialize(
+        props['classes'] as NavbarClasses, [
+            'wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd',
+            'link', 'item','dropdown', 'divider'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap':
+                    defaultValue = 'navbar'; break;
+                case 'brand':
+                    defaultValue = 'navbar-brand'; break;
+                case 'burger':
+                    defaultValue = 'navbar-burger'; break;
+                case 'menu':
+                    defaultValue = 'navbar-menu'; break;
+                case 'menuStart':
+                    defaultValue = 'navbar-start'; break;
+                case 'menuEnd':
+                    defaultValue = 'navbar-end'; break;
+                case 'link':
+                    defaultValue = 'navbar-link'; break;
+                case 'item':
+                    defaultValue = 'navbar-item'; break;
+                case 'dropdown':
+                    defaultValue = 'navbar-dropdown'; break;
+                case 'divider':
+                    defaultValue = 'navbar-divider'; break;
             }
-            if (classes[k]) {
-                let checkClass;
-                switch (k) {
-                    case 'wrap':
-                        checkClass = 'navbar'; break;
-                    case 'brand':
-                        checkClass = 'navbar-brand'; break;
-                    case 'burger':
-                        checkClass = 'navbar-burger'; break;
-                    case 'menu':
-                        checkClass = 'navbar-menu'; break;
-                    case 'menuStart':
-                        checkClass = 'navbar-start'; break;
-                    case 'menuEnd':
-                        checkClass = 'navbar-end'; break;
-                    case 'link':
-                        checkClass = 'navbar-link'; break;
-                    case 'item':
-                        checkClass = 'navbar-item'; break;
-                    case 'dropdown':
-                        checkClass = 'navbar-dropdown'; break;
-                    case 'divider':
-                        checkClass = 'navbar-divider'; break;
-                }
-                if (checkClass && !classes[k]?.includes(checkClass)) {
-                    classes[k]?.push(checkClass);
-                }
-            }
-        });
+            return defaultValue;
+        }
+    );
+
     // Set default values if not already set
     if (fixed && classes.wrap && ArrayRegexIncludes(classes.wrap, /^is-fixed-(top|bottom)$/) === -1) {
         classes.wrap?.push('is-fixed-' + fixed);
@@ -115,16 +110,6 @@ export const Navbar = (
             datasets.burger.set('target', menuId);
         }
     }
-    let datasetShown = {} as any;
-    (['wrap', 'brand', 'burger', 'menu', 'menuStart', 'menuEnd'] as Array<keyof NavbarDatasets>)
-        .forEach((k: keyof NavbarDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            if (datasets[k]) {
-                datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-            }
-        });
 
     /**
      * Recursive function to render items

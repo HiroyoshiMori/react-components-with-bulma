@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     InputAttributes,
     InputButtonClasses,
     InputButtonProps,
@@ -8,6 +8,7 @@ import {
 } from "../@types";
 import {convertDataSet} from "../../utils";
 import {Submit} from "../element/button/submit";
+import {initialize, initializeDatasets} from "../common";
 
 export const InputButton = (itemProps: InputButtonProps) => {
     const {
@@ -17,48 +18,40 @@ export const InputButton = (itemProps: InputButtonProps) => {
         onClick,
         prefix,
         disabled,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = itemProps;
 
     // Initialize if undefined
-    (['control'] as Array<keyof InputAttributes>)
-        .forEach((k: keyof InputAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['control'] as Array<keyof InputDatasets>)
-        .forEach((k: keyof InputDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['control', 'input'] as Array<keyof (InputButtonClasses)>)
-        .forEach((k: keyof (InputButtonClasses)) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const attributes = initialize(
+        itemProps['attributes'] as InputAttributes, [
+            'control',
+        ], {}
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        itemProps['classes'] as InputButtonClasses, [
+            'control', 'input',
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'control': defaultValue = 'control'; break;
                 case 'input': defaultValue = 'button'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
-
-    // Set default values if not already set
-    const datasetShown = convertDataSet(datasets.control as CommonDataSet);
+            return defaultValue;
+        }
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        itemProps['datasets'] as InputDatasets, [
+            'control',
+        ], new Map()
+    );
 
     return (
         <Fragment>
             <div
                 className={classes.control?.join(' ')}
                 {...attributes.control}
-                {...datasetShown}
+                {...datasetShown.control}
             >
                 <Submit
                     name={name}

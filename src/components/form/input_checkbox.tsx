@@ -1,11 +1,12 @@
 import React, {Fragment} from "react";
 import {
     CheckboxClasses,
-    CommonDataSet, InputAttributes,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets, InputAttributes,
     InputCheckboxProps, InputClasses, InputDatasets,
 } from "../@types";
 import {convertDataSet} from "../../utils";
 import {CheckboxGroup} from "./checkbox_group";
+import {initialize, initializeDatasets} from "../common";
 
 export const InputCheckboxGroup = (itemProps: InputCheckboxProps) => {
     const {
@@ -14,48 +15,40 @@ export const InputCheckboxGroup = (itemProps: InputCheckboxProps) => {
         onChange,
         currentValues = [],
         prefix,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = itemProps;
 
     // Initialize if undefined
-    (['control'] as Array<keyof InputAttributes>)
-        .forEach((k: keyof InputAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['control'] as Array<keyof InputDatasets>)
-        .forEach((k: keyof InputDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['control', 'label', 'input'] as Array<keyof (InputClasses & CheckboxClasses)>)
-        .forEach((k: keyof (InputClasses & CheckboxClasses)) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let defaultValue;
+    const attributes = initialize(
+        itemProps['attributes'] as InputAttributes, [
+            'control'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        itemProps['datasets'] as InputDatasets, [
+            'control'
+        ], new Map()
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        itemProps['classes'] as InputClasses & CheckboxClasses, [
+            'control', 'label', 'input'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
                 case 'control': defaultValue = 'control'; break;
                 case 'label': defaultValue = 'checkbox'; break;
             }
-            if (defaultValue && !classes[k]?.includes(defaultValue)) {
-                classes[k]?.push(defaultValue);
-            }
-        });
-
-    // Set default values if not already set
-    const datasetShown = convertDataSet(datasets.control as CommonDataSet);
+            return defaultValue;
+        }
+    );
 
     return (
         <Fragment>
             <div
                 className={classes.control?.join(' ')}
                 {...attributes.control}
-                {...datasetShown}
+                {...datasetShown.control}
             >
                 <CheckboxGroup
                     fieldName={name}

@@ -9,14 +9,15 @@ import {CommonDataSet} from "./@types";
  * @param getDefaultValue function to get default value after initialize
  */
 export const initialize = <T extends {}, K extends keyof T>(
-    obj: T, arr: Array<K>, initValue: T[K], getDefaultValue?: (k: K) => string | undefined,
+    obj: T, arr: Array<K>, initValue: T[K],
+    getDefaultValue?: (k: K) => string | undefined,
 ): T => {
     if (obj === undefined) {
         obj = Object.create({});
     }
     arr.forEach((k: K) => {
         if (obj[k] === undefined) {
-            obj[k] = structuredClone(initValue);
+            obj[k] = structuredClone(initValue as T[K]);
         }
         if (getDefaultValue !== undefined && Array.isArray(obj[k])) {
             const val = getDefaultValue(k);

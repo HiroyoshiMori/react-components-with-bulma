@@ -3,59 +3,44 @@ import {
     CardContentClasses,
     CardContentDatasets,
     CardContentProps,
-    CommonDataSet
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets
 } from "../../@types";
 import {Fragment} from "react";
 import {convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const CardContent = (props: CardContentProps) => {
     const {
-        classes = {},
-        attributes = {},
-        datasets = {},
         children,
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'content'] as Array<keyof CardContentAttributes>)
-        .forEach((k: keyof CardContentAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
-            }
-        });
-    (['wrap', 'content'] as Array<keyof CardContentDatasets>)
-        .forEach((k: keyof CardContentDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
+    const attributes = initialize(
+        props['attributes'] as CardContentAttributes, [
+            'wrap', 'content'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as CardContentDatasets, [
+            'wrap', 'content'
+        ], new Map()
+    );
+
     // Initialize if undefined and set default values if not already set
-    (['wrap', 'content'] as Array<keyof CardContentClasses>)
-        .forEach((k: keyof CardContentClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-            let checkValue;
+    const classes = initialize(
+        props['classes'] as CardContentClasses, [
+            'wrap', 'content'
+        ], [], (k) => {
+            let defaultValue = undefined;
             switch (k) {
-                case 'wrap': checkValue = 'card-content'; break;
-                case 'content': checkValue = 'content'; break;
+                case 'wrap': defaultValue = 'card-content'; break;
+                case 'content': defaultValue = 'content'; break;
             }
-            if (checkValue && !classes[k]?.includes(checkValue)) {
-                classes[k]?.push(checkValue);
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     // Set default values if not already set
-
-
-    let datasetShown = {} as any;
-    (['wrap', 'content'] as Array<keyof CardContentDatasets>)
-        .forEach((k: keyof CardContentDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
 
     return (
         <Fragment>

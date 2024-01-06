@@ -1,6 +1,6 @@
 import {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     IMAGE_SIZES,
     ImageAttributes,
     ImageClasses,
@@ -8,41 +8,41 @@ import {
     ImageProps,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Image = (props: ImageProps) => {
     const {
         src,
         alt,
         imageSize,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'image'] as Array<keyof ImageAttributes>)
-        .forEach((k: keyof ImageAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
+    const attributes = initialize(
+        props['attributes'] as ImageAttributes, [
+            'wrap', 'image'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as ImageDatasets, [
+            'wrap', 'image'
+        ], new Map()
+    );
+
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as ImageClasses, [
+            'wrap', 'image'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap': defaultValue = 'image'; break;
             }
-        });
-    (['wrap', 'image'] as Array<keyof ImageDatasets>)
-        .forEach((k: keyof ImageDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-        });
-    (['wrap', 'image'] as Array<keyof ImageClasses>)
-        .forEach((k: keyof ImageClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+            return defaultValue;
+        }
+    );
 
     // Set default value if not already set
-    if (!classes.wrap?.includes('image')) {
-        classes.wrap?.push('image');
-    }
     if (imageSize) {
         const pattern = IMAGE_SIZES.join('|');
         if (pattern && classes.wrap) {
@@ -52,16 +52,6 @@ export const Image = (props: ImageProps) => {
             }
         }
     }
-
-    let datasetShown = {} as any;
-    (['wrap', 'image'] as Array<keyof ImageDatasets>)
-        .forEach((k: keyof ImageDatasets) => {
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
-
 
     return (
         <Fragment>

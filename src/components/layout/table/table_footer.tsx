@@ -1,28 +1,27 @@
 import {Fragment} from "react";
 import {
-    CommonDataSet,
+    CommonDataSet, FormInputFileClasses,
     TableFooterClasses,
     TableFooterProps,
     TableRowProps
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {TableRow} from "./table_row";
+import {initialize} from "../../common";
 
 export const TableFooter = (props: TableFooterProps) => {
     const {
         values,
-        classes = {},
         attributes = {},
         datasets = new Map(),
     } = props;
 
     // Initialize if undefined
-    (['wrap', 'row'] as Array<keyof TableFooterClasses>)
-        .forEach((k: keyof TableFooterClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
+    const classes = initialize(
+        props['classes'] as TableFooterClasses, [
+            'wrap', 'row'
+        ], []
+    );
     // Set default values if not already set
 
     // Convert datasets Map to Array with 'data-'

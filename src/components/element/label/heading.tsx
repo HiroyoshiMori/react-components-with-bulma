@@ -12,8 +12,8 @@ export const Heading = (props: HeadingProps) => {
         hasSpaced = false,
         subHeading,
         useParagraph = false,
-        classes = [],
         children,
+        classes = [],
         attributes,
         datasets = new Map(),
     } = props;

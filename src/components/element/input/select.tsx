@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {
     CommonDataSet,
     COLOR_TYPES,
-    SIZES, STATES,
+    SIZES, STATES, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
 } from "../../@types";
 import {
     OptGroupClasses,
@@ -14,6 +14,7 @@ import {
     SelectProps
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {initialize, initializeDatasets} from "../../common";
 
 export const Select = (props: SelectProps) => {
     const {
@@ -24,40 +25,33 @@ export const Select = (props: SelectProps) => {
         multiple = false,
         size,
         onChange,
-        classes = {},
-        attributes = {},
-        datasets = {},
     } = props;
 
     // Initialize if undefined
-    (['div', 'select'] as Array<keyof SelectAttributes>)
-        .forEach((k: keyof SelectAttributes) => {
-            if (attributes[k] === undefined) {
-                attributes[k] = {};
+    const attributes = initialize(
+        props['attributes'] as SelectAttributes, [
+            'div', 'select'
+        ], {}
+    );
+    const {datasets, datasetShown} = initializeDatasets(
+        props['datasets'] as SelectDatasets, [
+            'div', 'select'
+        ], new Map()
+    );
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as SelectClasses, [
+            'div', 'select', 'optgroup', 'option'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'div': defaultValue = 'select'; break;
             }
-        });
-    (['div', 'select', 'optgroup', 'option'] as Array<keyof SelectClasses>)
-        .forEach((k: keyof SelectClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
-            }
-        });
-    // Initialize if undefined and Set default values if not already set
-    let datasetShown = {} as any;
-    (['div', 'select'] as Array<keyof SelectDatasets>)
-        .forEach((k: keyof SelectDatasets) => {
-            if (datasets[k] === undefined) {
-                datasets[k] = new Map();
-            }
-            if (datasetShown[k] === undefined) {
-                datasetShown[k] = {};
-            }
-            datasetShown[k] = convertDataSet(datasets[k] as CommonDataSet);
-        });
+            return defaultValue;
+        }
+    );
+
     // Set default values if not already set
-    if (classes.div && !classes.div.includes('select')) {
-        classes.div.push('select');
-    }
     (['colorType', 'state', 'fontSize'] as Array<keyof SelectProps>).forEach((v) => {
         if (props[v]) {
             let pattern: string | null = null;

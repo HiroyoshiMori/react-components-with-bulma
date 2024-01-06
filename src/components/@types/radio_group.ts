@@ -4,7 +4,7 @@ import {
     RadioClasses,
     RadioDatasets,
     RadioFields,
-} from "./radio";
+} from "./input";
 
 /** Type definition for property of radio group fields */
 export type RadioGroupFieldsProps = {
