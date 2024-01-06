@@ -1,16 +1,15 @@
 import React, {Fragment, ReactNode} from "react";
 import {sprintf} from "sprintf-js";
 import {
-    CommonDataSet,
     HORIZONTAL_POSITIONS,
     SIZES,
     PaginationAttributes,
     PaginationClasses,
     PaginationDatasets,
     PaginationLabels,
-    PaginationProps, FormInputFileClasses, FormInputFileAttributes, FormInputFileDatasets,
+    PaginationProps,
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Pagination = (

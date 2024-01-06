@@ -1,6 +1,5 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
     TableProps,
     TableAttributes,
     TableBodyProps,
@@ -9,12 +8,11 @@ import {
     TableHeaderClasses,
     TableHeaderProps,
     TableFooterClasses,
-    TableFooterProps, CaptionProps, ColGroupProps, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
+    TableFooterProps, CaptionProps, ColGroupProps,
 } from "../../@types";
 import {TableHeader} from "./table_header";
 import {TableFooter} from "./table_footer";
 import {TableBody} from "./table_body";
-import {convertDataSet} from "../../../utils";
 import {Caption} from "./caption";
 import {ColGroup} from "./col_group";
 import {initialize, initializeDatasets} from "../../common";

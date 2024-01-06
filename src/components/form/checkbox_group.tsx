@@ -6,7 +6,7 @@ import {
     CheckboxClasses,
     CheckboxGroupFieldsProps,
     CheckboxAttributes,
-    CheckboxDatasets, FormInputFileClasses,
+    CheckboxDatasets,
 } from "../@types";
 import {Checkbox} from "../element";
 import {initialize} from "../common";

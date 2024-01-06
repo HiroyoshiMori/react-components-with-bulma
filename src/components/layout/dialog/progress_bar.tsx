@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {sprintf} from "sprintf-js";
 import {
     COLOR_TYPES,
-    CommonDataSet, DialogClasses, DialogHeaderClasses, FormInputFileAttributes, FormInputFileClasses,
+    CommonDataSet, DialogClasses, DialogHeaderClasses,
     ProgressBarAttributes, ProgressBarClasses,
     ProgressBarDatasets,
     ProgressBarProps,

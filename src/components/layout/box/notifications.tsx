@@ -1,13 +1,12 @@
 import React, {Fragment} from "react";
 import {
     COLOR_TYPES,
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     NotificationsAttributes,
     NotificationsClasses,
     NotificationsDatasets,
     NotificationsProps
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes} from "../../../utils";
 import {Button} from "../../element";
 import {initialize, initializeDatasets} from "../../common";
 

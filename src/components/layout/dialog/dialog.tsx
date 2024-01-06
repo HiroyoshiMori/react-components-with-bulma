@@ -4,7 +4,7 @@ import {
     DialogAttributes,
     DialogBoxProps,
     DialogClasses,
-    DialogDatasets, FormInputFileAttributes,
+    DialogDatasets,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 import {Header} from "./header";

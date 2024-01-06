@@ -1,8 +1,7 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
     COLOR_TYPES,
-    SIZES, STATES, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
+    SIZES, STATES,
 } from "../../@types";
 import {
     OptGroupClasses,

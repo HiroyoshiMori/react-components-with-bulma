@@ -1,6 +1,5 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     FormTextareaProps,
     TextareaAttributes,
     TextareaClasses,
@@ -10,7 +9,6 @@ import {
     Label,
     Textarea,
 } from "../element";
-import {convertDataSet} from "../../utils";
 import {initialize, initializeDatasets} from "../common";
 
 export const FormTextarea = (props: FormTextareaProps) => {

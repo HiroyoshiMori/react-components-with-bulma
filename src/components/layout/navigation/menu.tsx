@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet, FormInputFileClasses,
+    CommonDataSet,
     MenuAttributes,
     MenuClasses,
     MenuDatasets,

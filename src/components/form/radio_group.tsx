@@ -6,7 +6,7 @@ import {
     RadioClasses,
     RadioDatasets,
     RadioGroupProps,
-    RadioGroupFieldsProps, FormInputFileClasses,
+    RadioGroupFieldsProps,
 } from "../@types";
 import {Radio} from "../element";
 import {initialize} from "../common";

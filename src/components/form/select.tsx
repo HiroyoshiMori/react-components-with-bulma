@@ -1,19 +1,16 @@
 import React, {Fragment} from "react";
 import {
-    COLOR_TYPES,
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     FormSelectAttributes,
     FormSelectClasses,
     FormSelectDatasets,
-    FormSelectProps, SIZES, STATES
+    FormSelectProps, SIZES,
 } from "../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../utils";
+import {ArrayRegexIncludes} from "../../utils";
 import {
     Icons,
     Label,
     Select,
 } from "../element";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {initialize, initializeDatasets} from "../common";
 
 export const FormSelect = (props: FormSelectProps) => {
@@ -110,7 +107,7 @@ export const FormSelect = (props: FormSelectProps) => {
                     {...datasetShown.control}
                 >
                     <Select
-                        name={name}
+                        name={prefix + name}
                         id={id}
                         options={options}
                         currentValues={currentValues}

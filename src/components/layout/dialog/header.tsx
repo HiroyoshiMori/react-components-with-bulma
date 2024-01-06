@@ -1,12 +1,10 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
     DialogHeaderAttributes,
     DialogHeaderClasses,
     DialogHeaderDatasets,
-    DialogHeaderProps, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
+    DialogHeaderProps,
 } from "../../@types";
-import {convertDataSet} from "../../../utils";
 import {Button} from "../../element";
 import {initialize, initializeDatasets} from "../../common";
 

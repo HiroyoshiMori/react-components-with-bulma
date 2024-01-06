@@ -1,6 +1,6 @@
 import {Fragment} from "react";
 import {
-    CommonDataSet, FormInputFileClasses,
+    CommonDataSet,
     TableBodyClasses,
     TableBodyProps,
     TableRowProps,

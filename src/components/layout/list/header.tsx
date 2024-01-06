@@ -3,7 +3,7 @@ import {
     CommonDataSet,
     ListHeaderProps,
     ListColumnFields,
-    ListRowClasses, InputFileClasses,
+    ListRowClasses,
 } from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {initialize} from "../../common";

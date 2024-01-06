@@ -1,6 +1,5 @@
 import {Fragment} from "react";
 import {
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
     IMAGE_SIZES,
     ImageAttributes,
     ImageClasses,
@@ -23,7 +22,7 @@ export const Image = (props: ImageProps) => {
             'wrap', 'image'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         props['datasets'] as ImageDatasets, [
             'wrap', 'image'
         ], new Map()

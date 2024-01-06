@@ -1,5 +1,9 @@
 import React, {Fragment} from "react";
-import {ColGroupCLasses, ColGroupProps, ColProps, FormInputFileClasses} from "../../@types";
+import {
+    ColGroupCLasses,
+    ColGroupProps,
+    ColProps,
+} from "../../@types";
 import {convertDataSet} from "../../../utils";
 import {initialize} from "../../common";
 

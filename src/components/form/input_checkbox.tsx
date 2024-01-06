@@ -1,10 +1,9 @@
 import React, {Fragment} from "react";
 import {
     CheckboxClasses,
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets, InputAttributes,
+    InputAttributes,
     InputCheckboxProps, InputClasses, InputDatasets,
 } from "../@types";
-import {convertDataSet} from "../../utils";
 import {CheckboxGroup} from "./checkbox_group";
 import {initialize, initializeDatasets} from "../common";
 
@@ -23,7 +22,7 @@ export const InputCheckboxGroup = (itemProps: InputCheckboxProps) => {
             'control'
         ], {}
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         itemProps['datasets'] as InputDatasets, [
             'control'
         ], new Map()

@@ -1,13 +1,11 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
     DialogFooterAttributes,
     DialogFooterClasses,
     DialogFooterDatasets,
-    DialogFooterProps, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets,
+    DialogFooterProps,
 } from "../../@types";
 import {Button} from "../../element";
-import {convertDataSet} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Footer = (props: DialogFooterProps) => {

@@ -1,13 +1,12 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
     CheckboxProps,
     CheckboxAttributes,
     CheckboxClasses,
-    CheckboxDatasets, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
+    CheckboxDatasets,
 } from "../../@types";
 import {Label} from "../label";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Checkbox = (props: CheckboxProps) => {

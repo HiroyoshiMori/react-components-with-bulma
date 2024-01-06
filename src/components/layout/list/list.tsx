@@ -7,7 +7,7 @@ import {
     ListDatasets,
     ListProps,
     ListHeaderProps,
-    ListDetailProps, FormInputFileAttributes, FormInputFileDatasets, FormInputFileClasses,
+    ListDetailProps,
 } from '../../@types';
 import {ListHeader} from "./header";
 import {ListDetail} from "./detail";
