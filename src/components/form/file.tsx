@@ -1,17 +1,12 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets, FormInputFileProps,
-    FormTextareaProps,
-    TextareaAttributes,
-    TextareaClasses,
-    TextareaDatasets,
+    FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets, FormInputFileProps,
 } from "../@types";
 import {
     InputFile,
     Label,
     Textarea,
 } from "../element";
-import {convertDataSet} from "../../utils";
 import {initialize, initializeDatasets} from "../common";
 
 export const FormInputFile = (props: FormInputFileProps) => {
@@ -30,7 +25,6 @@ export const FormInputFile = (props: FormInputFileProps) => {
         alignment,
         prefix = '',
         label,
-        noDivWrap = false,
     } = props;
 
     // Initialize if undefined

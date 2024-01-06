@@ -3,10 +3,10 @@ import {CommonDataSet} from "./@types";
 
 /**
  * Common Initialize function for attributes/classes
- * @param obj
- * @param arr
- * @param initValue
- * @param getDefaultValue
+ * @param obj Object to initialize
+ * @param arr keys to loop to initialize
+ * @param initValue initial value when undefined
+ * @param getDefaultValue function to get default value after initialize
  */
 export const initialize = <T extends {}, K extends keyof T>(
     obj: T, arr: Array<K>, initValue: T[K], getDefaultValue?: (k: K) => string | undefined,
@@ -30,9 +30,9 @@ export const initialize = <T extends {}, K extends keyof T>(
 
 /**
  * Common Initialize function for datasets
- * @param obj
- * @param arr
- * @param initValue
+ * @param datasets Dataset to initialize
+ * @param arr keys to loop to initialize
+ * @param initValue initial value when undefined
  */
 export const initializeDatasets = <T extends {}, K extends keyof T>(
     datasets: T, arr: Array<K>, initValue: T[K]

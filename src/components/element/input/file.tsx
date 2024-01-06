@@ -1,13 +1,13 @@
 import {Fragment} from "react";
 import {
     COLOR_TYPES,
-    CommonDataSet, FormInputFileAttributes, FormInputFileClasses, FormInputFileDatasets, HORIZONTAL_POSITIONS,
+    HORIZONTAL_POSITIONS,
     InputFileAttributes,
     InputFileClasses,
     InputFileDatasets,
     InputFileProps, SIZES
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes} from "../../../utils";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {initialize, initializeDatasets} from "../../common";
 
@@ -46,7 +46,7 @@ export const InputFile = (props: InputFileProps) => {
             return defaultValue;
         }
     );
-    const {datasets, datasetShown} = initializeDatasets(
+    const {datasetShown} = initializeDatasets(
         props['datasets'] as InputFileDatasets, [
             'div', 'label', 'input', 'cta', 'icon', 'labelSpan', 'fileNameLabel'
         ], new Map()
