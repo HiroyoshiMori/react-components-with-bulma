@@ -23,23 +23,24 @@ export const Button = (props: ButtonProps) => {
     } = props;
 
     // Initialize if undefined
-    (["colorType", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {
-        if (props[v]) {
-            let pattern: string | null = null;
-            switch (v) {
-                case 'colorType':
-                    pattern = COLOR_TYPES.join('|'); break;
-                case 'size':
-                    pattern = SIZES.join('|'); break;
-            }
-            if (pattern) {
-                const reg: string = `^is-(${pattern})$`;
-                if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
-                    classes.push('is-' + props[v]);
+    (["colorType", "size"] as Array<keyof ButtonProps>)
+        .forEach((v: keyof ButtonProps) => {
+            if (props[v]) {
+                let pattern: string | null = null;
+                switch (v) {
+                    case 'colorType':
+                        pattern = COLOR_TYPES.join('|'); break;
+                    case 'size':
+                        pattern = SIZES.join('|'); break;
+                }
+                if (pattern) {
+                    const reg: string = `^is-(${pattern})$`;
+                    if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
+                        classes.push('is-' + props[v]);
+                    }
                 }
             }
-        }
-    });
+        });
     // Set default values if not already set
     if (!noDefaultClasses) {
         if (!classes.includes('button')) {
