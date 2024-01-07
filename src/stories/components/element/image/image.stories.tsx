@@ -20,7 +20,7 @@ export default {
     argTypes: {
         src: {
             control: 'text',
-            description: 'Image src',
+            description: 'Path to the image',
             table: {
                 type: {
                     summary: 'string',
@@ -29,7 +29,7 @@ export default {
         },
         alt: {
             control: 'text',
-            description: 'Alternative text',
+            description: 'Textual replacement for the image',
             table: {
                 type: {
                     summary: 'string',
@@ -45,6 +45,7 @@ export default {
             mapping: {
                 Default: '',
             },
+            description: 'Size of image',
             table: {
                 type: {
                     summary: IMAGE_SIZES.join('|'),

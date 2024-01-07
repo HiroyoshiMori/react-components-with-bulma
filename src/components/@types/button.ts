@@ -19,7 +19,12 @@ export type ButtonFields = {
     size?: SizeTypes;
     disabled?: boolean;
     noDefaultClasses?: boolean;
-    awesomeIcon?: FontAwesomeIconProps; //icon({name: 'check'}),
+    /**
+     * Property for React FontAwesome
+     * It will be used like <FontAwesomeIcon {...awesomeIcon} />
+     * @see https://github.com/FortAwesome/react-fontawesome/blob/976c1adc59934b34e52b11c03dda4bd69831a6df/index.d.ts#L23
+     */
+    awesomeIcon?: FontAwesomeIconProps; // e.g., { icon: icon({name: 'check'}) },
     iconPosition?: "left" | "right";
 };
 /** Type definition for property of button */

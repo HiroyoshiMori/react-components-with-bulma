@@ -1,7 +1,9 @@
-import React from 'react';
-import {Button, COLOR_TYPES} from "../../../../components";
+import React, {Fragment} from 'react';
+import {Button, COLOR_TYPES, SIZES} from "../../../../components";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {deIndent} from '../../../../utils';
+import {action} from "@storybook/addon-actions";
+import {LinkTo} from "@storybook/addon-links";
 
 export default {
     title: 'React Component/Element/Button',
@@ -17,17 +19,22 @@ export default {
     },
     argTypes: {
         label: {
-            control: 'object',
+            control: 'text',
             description: 'Button label',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
             },
         },
         onClick: {
             action: 'clicked',
             description: 'Function to be called when button is clicked.',
+            table: {
+                defaultValue: {
+                    summary: "undefined",
+                },
+            },
         },
         colorType: {
             control: 'select',
@@ -35,7 +42,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Button color',
+            description: 'Color type of button',
             table: {
                 type: {
                     summary: COLOR_TYPES.join('|'),
@@ -47,7 +54,7 @@ export default {
         },
         colorLight: {
             control: 'boolean',
-            description: 'Make color lighter',
+            description: 'Use lighter color of colorType',
             table: {
                 type: {
                     summary: 'boolean',
@@ -58,11 +65,15 @@ export default {
             },
         },
         size: {
-            control: {type: 'range', min: 1, max: 6, step: 1},
-            description: 'Button size',
+            control: "select",
+            options: ['default'].concat(SIZES),
+            mapping: {
+                'Default': '',
+            },
+            description: 'Size of button and label',
             table: {
                 type: {
-                    summary: 'number',
+                    summary: SIZES.join('|'),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -71,7 +82,7 @@ export default {
         },
         disabled: {
             control: 'boolean',
-            description: 'Make button disabled',
+            description: 'Disable button',
             table: {
                 type: {
                     summary: 'boolean',
@@ -83,7 +94,7 @@ export default {
         },
         noDefaultClasses: {
             control: 'boolean',
-            description: 'Prevent to add default classes such as "button"',
+            description: 'Prevent to add default classes to each elements such as ".button"',
             table: {
                 type: {
                     summary: 'boolean',
@@ -99,6 +110,9 @@ export default {
             table: {
                 type: {
                     summary: 'FontAwesomeIconProps',
+                    detail: deIndent(`
+                            @see https://github.com/FortAwesome/react-fontawesome/blob/976c1adc59934b34e52b11c03dda4bd69831a6df/index.d.ts#L23
+                        `)
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -108,7 +122,7 @@ export default {
         iconPosition: {
             control: 'radio',
             options: ['left', 'right'],
-            description: 'Which side icon placed',
+            description: 'Position icon will be placed',
             table: {
                 type: {
                     summary: 'left|right',
@@ -120,7 +134,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style Classes',
             table: {
                 type: {
                     summary: 'string[]',
@@ -132,7 +146,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes',
             table: {
                 type: {
                     summary: 'ButtonHTMLAttributes<HTMLButtonElement>',
@@ -147,7 +161,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets. "data-" will be added at the beginning of each dataset attribute.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -167,17 +181,25 @@ export default {
         },
     }
 };
+
+/**
+ * Default button.<br />
+ * Provide label and onClick
+ */
 export const Default = {
     render: (args: any) => {
         return (
             <Button
                 label="Button"
-                onClick={() => {}}
+                onClick={action('onClick')}
                 {...args}
             />
         );
     },
 };
+/**
+ * Button disabled.
+ */
 export const Disabled = {
     ...Default,
     args: {
@@ -185,141 +207,52 @@ export const Disabled = {
         disabled: true,
     },
 };
-export const Primary = {
+/**
+ * Button with color type
+ */
+export const ColorType = {
     ...Default,
     args: {
         colorType: 'primary',
-        label: 'Primary',
+        label: 'ColorType',
     },
 };
-export const Link = {
-    ...Default,
-    args: {
-        colorType: 'link',
-        label: 'Link',
-    },
-};
-export const Info = {
-    ...Default,
-    args: {
-        colorType: 'info',
-        label: 'Info',
-    },
-};
-export const Success = {
-    ...Default,
-    args: {
-        colorType: 'success',
-        label: 'Success',
-    },
-};
-export const Warning = {
-    ...Default,
-    args: {
-        colorType: 'warning',
-        label: 'Warning',
-    },
-};
-export const Danger = {
-    ...Default,
-    args: {
-        colorType: 'danger',
-        label: 'Danger',
-    },
-};
-export const PrimaryLight = {
+/**
+ * Button with color type of light color
+ */
+export const ColorTypeLight = {
     ...Default,
     args: {
         colorType: 'primary',
         colorLight: true,
-        label: 'Primary w/Light Color'
+        label: 'ColorType w/Light Color'
     },
 };
-export const LinkLight = {
-    ...Default,
-    args: {
-        colorType: 'link',
-        colorLight: true,
-        label: 'Link w/Light Color'
-    },
-};
-export const InfoLight = {
-    ...Default,
-    args: {
-        colorType: 'info',
-        colorLight: true,
-        label: 'Info w/Light Color'
-    },
-};
-export const SuccessLight = {
-    ...Default,
-    args: {
-        colorType: 'success',
-        colorLight: true,
-        label: 'Success w/Light Color'
-    },
-};
-export const WarningLight = {
-    ...Default,
-    args: {
-        colorType: 'warning',
-        colorLight: true,
-        label: 'Warning w/Light Color'
-    },
-};
-export const DangerLight = {
-    ...Default,
-    args: {
-        colorType: 'danger',
-        colorLight: true,
-        label: 'Danger w/Light Color'
-    },
-};
-export const Small = {
+/**
+ * Button with element size
+ */
+export const ElementSize = {
     ...Default,
     args: {
         size: 'small',
-        label: 'Small'
+        label: 'Element Size'
     },
 };
-export const Normal = {
-    ...Default,
-    args: {
-        size: 'normal',
-        label: 'Normal',
-    },
-};
-export const Medium = {
-    ...Default,
-    args: {
-        size: 'medium',
-        label: 'Medium',
-    },
-};
-export const Large = {
-    ...Default,
-    args: {
-        size: 'large',
-        label: 'Large',
-    },
-};
+/**
+ * Button with icon
+ */
 export const WithIcon = {
     ...Default,
     args: {
         awesomeIcon: {
             icon: icon({name: 'check', style: 'solid'}),
         },
+        iconPosition: undefined,
     },
 };
-export const WithIconRight = {
-    ...Default,
-    args: {
-        awesomeIcon: {
-            icon: icon({name: 'check', style: 'solid'}),
-        },
-        iconPosition: 'right',
-    },
-};
+/**
+ * Button with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -329,6 +262,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Button with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

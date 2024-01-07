@@ -17,7 +17,7 @@ export default {
     argTypes: {
         field: {
             control: 'object',
-            description: 'Field data for checkbox',
+            description: 'Fields for checkbox',
             table: {
                 type: {
                     summary: "CheckboxFields",
