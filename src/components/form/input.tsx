@@ -13,7 +13,7 @@ import {
 import {convertDataSet} from "../../utils";
 import {InputCheckboxGroup} from "./input_checkbox";
 import {InputButton} from "./input_button";
-import {InputTextBox} from "./input_text";
+import {InputTextField} from "./input_text";
 import {InputRadioGroup} from "./input_radio";
 import {Label} from "../element";
 import {FormInputFile} from "./file";
@@ -64,7 +64,7 @@ export const FormInput = (props: InputProps) => {
             componentType = 'Submit';
             break;
         case 'text': case 'password': case 'email': case 'tel': case 'number': case 'search': case 'url':
-            componentType = 'TextBox';
+            componentType = 'TextField';
             break;
         case 'file':
             componentType = 'File';
@@ -87,8 +87,8 @@ export const FormInput = (props: InputProps) => {
                 {...datasetShown.wrap}
             >
                 {
-                    componentType === 'TextBox'
-                        ? InputTextBox({
+                    componentType === 'TextField'
+                        ? InputTextField({
                             ...props,
                             classes: classes,
                             attributes: attributes,

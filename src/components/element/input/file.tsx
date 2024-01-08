@@ -5,7 +5,8 @@ import {
     InputFileAttributes,
     InputFileClasses,
     InputFileDatasets,
-    InputFileProps, SIZES
+    InputFileProps,
+    SIZES
 } from "../../@types";
 import {ArrayRegexIncludes} from "../../../utils";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -13,7 +14,7 @@ import {initialize, initializeDatasets} from "../../common";
 
 export const InputFile = (props: InputFileProps) => {
     const {
-        type,
+        type = 'file',
         name,
         id,
         buttonLabel,
@@ -24,14 +25,16 @@ export const InputFile = (props: InputFileProps) => {
     // Initialize if undefined
     const attributes = initialize(
         props['attributes'] as InputFileAttributes, [
-            'div', 'label', 'input', 'cta', 'icon', 'labelSpan', 'fileNameLabel'
+            'div', 'label', 'input', 'cta', 'icon',
+            'labelSpan', 'fileNameLabel'
         ], {}
     );
 
     // Initialize if undefined and set default values if not already set
     const classes = initialize(
         props['classes'] as InputFileClasses, [
-            'div', 'label', 'input', 'cta', 'icon', 'labelSpan', 'fileNameLabel'
+            'div', 'label', 'input', 'cta', 'icon',
+            'labelSpan', 'fileNameLabel'
         ], [], (k) => {
             let defaultValue = undefined;
             switch (k) {
@@ -48,7 +51,8 @@ export const InputFile = (props: InputFileProps) => {
     );
     const {datasetShown} = initializeDatasets(
         props['datasets'] as InputFileDatasets, [
-            'div', 'label', 'input', 'cta', 'icon', 'labelSpan', 'fileNameLabel'
+            'div', 'label', 'input', 'cta', 'icon',
+            'labelSpan', 'fileNameLabel'
         ], new Map()
     );
 

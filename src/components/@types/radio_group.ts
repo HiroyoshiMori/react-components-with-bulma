@@ -7,15 +7,14 @@ import {
 } from "./input";
 
 /** Type definition for property of radio group fields */
-export type RadioGroupFieldsProps = {
-    field: RadioFields,
+export type RadioGroupFieldsProps = RadioFields & {
     classes?: RadioClasses;
     attributes?: RadioAttributes;
     datasets?: RadioDatasets;
 };
 /** Type definition for property of radio group */
 export type RadioGroupProps = {
-    fieldName: string;
+    name: string;
     fields: RadioGroupFieldsProps[];
     currentValue: boolean | string | number;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;

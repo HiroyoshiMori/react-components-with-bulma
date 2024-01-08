@@ -13,7 +13,7 @@ import {initialize} from "../common";
 
 export const RadioGroup = (props: RadioGroupProps) => {
     const {
-        fieldName,
+        name,
         fields,
         currentValue,
         onChange,
@@ -49,10 +49,11 @@ export const RadioGroup = (props: RadioGroupProps) => {
                     return (
                         <Fragment key={idx}>
                             <Radio
-                                field={{
-                                    ...v.field,
-                                    name: fieldName,
-                                }}
+                                name={name}
+                                id={v.id}
+                                value={v.value}
+                                label={v.label}
+                                disabled={v.disabled}
                                 currentValue={currentValue}
                                 onChange={onChange}
                                 prefix={prefix}

@@ -9,11 +9,11 @@ import {
     CheckboxDatasets,
 } from "../@types";
 import {Checkbox} from "../element";
-import {initialize} from "../common";
+import {initialize, initializeDatasets} from "../common";
 
 export const CheckboxGroup = (props: CheckboxGroupProps) => {
     const {
-        fieldName,
+        name,
         fields,
         currentValues = [],
         onChange,
@@ -32,27 +32,28 @@ export const CheckboxGroup = (props: CheckboxGroupProps) => {
             {
                 fields && fields.map((v: CheckboxGroupFieldsProps, idx: number) => {
                     // Initialize if undefined
-                    v.attributes = v.attributes ?? {};
-                    v.datasets = v.datasets ?? {};
-                    (['label', 'input'] as Array<keyof CheckboxAttributes>)
-                        .forEach((k: keyof CheckboxAttributes) => {
-                            if (v.attributes && v.attributes[k] === undefined) {
-                                v.attributes[k] = {};
-                            }
-                        });
-                    (['label', 'input'] as Array<keyof CheckboxDatasets>)
-                        .forEach((k: keyof CheckboxDatasets) => {
-                            if (v.datasets && v.datasets[k] === undefined) {
-                                v.datasets[k] = new Map();
-                            }
-                        });
+                    v.attributes = initialize(
+                        v['attributes'] as CheckboxAttributes, [
+                            'label', 'input'
+                        ], {}
+                    );
+                    console.debug("v.attributes:");
+                    console.debug(v.attributes);
+                    const {datasets} = initializeDatasets(
+                        v['datasets'] as CheckboxDatasets, [
+                            'label', 'input'
+                        ], new Map()
+                    );
+                    v.datasets = datasets;
+
                     return (
                         <Fragment key={idx}>
                             <Checkbox
-                                field={{
-                                    ...v.field,
-                                    name: fieldName,
-                                }}
+                                name={name}
+                                id={v.id}
+                                value={v.value}
+                                label={v.label}
+                                disabled={v.disabled}
                                 currentValues={currentValues}
                                 onChange={onChange}
                                 prefix={prefix}

@@ -25,10 +25,10 @@ export type SelectProps = {
     options: (OptionProps|OptGroupProps)[];
     currentValues?: string[];
     multiple?: boolean;
-    size?: number;
+    rows?: number;
     colorType?: ColorTypes;
     state?: StateTypes;
-    fontSize?: SizeTypes;
+    size?: SizeTypes;
     onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     classes?: SelectClasses;
     attributes?: SelectAttributes;

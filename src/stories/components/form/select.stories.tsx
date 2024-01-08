@@ -95,7 +95,7 @@ export default {
                 },
             },
         },
-        size: {
+        rows: {
             control: 'number',
             description: 'The number of rows in the list that should be visible at one time',
             table: {
@@ -139,7 +139,7 @@ export default {
                 },
             },
         },
-        fontSize: {
+        size: {
             control: 'select',
             options: ['default'].concat(SIZES),
             mapping: {

@@ -6,12 +6,16 @@ import {
     RadioProps,
 } from "../../@types";
 import {Label} from "../label";
-import {ArrayRegexIncludes} from "../../../utils";
+import {ArrayRegexIncludes, generateId} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Radio = (props: RadioProps) => {
     const {
-        field,
+        name,
+        id = generateId(),
+        value,
+        label,
+        disabled = false,
         currentValue,
         onChange,
         prefix = '',
@@ -51,23 +55,23 @@ export const Radio = (props: RadioProps) => {
         <Fragment>
             <Label
                 classes={classes.label}
-                htmlFor={(prefix ? (prefix + '-') : '') + field.key}
+                htmlFor={(prefix ? (prefix + '-') : '') + id}
                 attributes={attributes?.label}
                 datasets={datasets.label}
             >
                 <input
                     type="radio"
-                    name={field.name}
-                    id={(prefix ? (prefix + '-') : '') + field.key}
-                    value={field.value ?? field.key}
+                    name={name}
+                    id={(prefix ? (prefix + '-') : '') + id}
+                    value={value ?? id}
                     className={classes.input?.join(' ')}
                     onChange={onChange}
-                    checked={currentValue === (field.value ?? field.key) || currentValue === field.key}
-                    disabled={field.disabled ?? false}
+                    checked={currentValue === (value ?? id) || currentValue === id}
+                    disabled={disabled}
                     {...attributes?.input}
                     {...datasetShown.input}
                 />
-                <span>{field.label ?? (field.value ?? field.key)}</span>
+                <span>{label ?? (value ?? id)}</span>
             </Label>
         </Fragment>
     );

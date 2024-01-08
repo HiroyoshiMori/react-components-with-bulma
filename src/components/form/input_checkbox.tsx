@@ -50,7 +50,7 @@ export const InputCheckboxGroup = (itemProps: InputCheckboxProps) => {
                 {...datasetShown.control}
             >
                 <CheckboxGroup
-                    fieldName={name}
+                    name={name}
                     fields={items}
                     currentValues={currentValues}
                     onChange={onChange}

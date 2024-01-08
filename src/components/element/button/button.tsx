@@ -15,7 +15,7 @@ export const Button = (props: ButtonProps) => {
         colorLight = false,
         disabled = false,
         noDefaultClasses = false,
-        awesomeIcon,
+        icon,
         iconPosition = 'left',
         classes = [],
         attributes= {},
@@ -23,23 +23,24 @@ export const Button = (props: ButtonProps) => {
     } = props;
 
     // Initialize if undefined
-    (["colorType", "size"] as Array<keyof ButtonProps>).forEach((v: keyof ButtonProps) => {
-        if (props[v]) {
-            let pattern: string | null = null;
-            switch (v) {
-                case 'colorType':
-                    pattern = COLOR_TYPES.join('|'); break;
-                case 'size':
-                    pattern = SIZES.join('|'); break;
-            }
-            if (pattern) {
-                const reg: string = `^is-(${pattern})$`;
-                if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
-                    classes.push('is-' + props[v]);
+    (["colorType", "size"] as Array<keyof ButtonProps>)
+        .forEach((v: keyof ButtonProps) => {
+            if (props[v]) {
+                let pattern: string | null = null;
+                switch (v) {
+                    case 'colorType':
+                        pattern = COLOR_TYPES.join('|'); break;
+                    case 'size':
+                        pattern = SIZES.join('|'); break;
+                }
+                if (pattern) {
+                    const reg: string = `^is-(${pattern})$`;
+                    if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
+                        classes.push('is-' + props[v]);
+                    }
                 }
             }
-        }
-    });
+        });
     // Set default values if not already set
     if (!noDefaultClasses) {
         if (!classes.includes('button')) {
@@ -64,10 +65,10 @@ export const Button = (props: ButtonProps) => {
                 {...datasetShown}
             >
                 {
-                    awesomeIcon && iconPosition === 'left' && (
+                    icon && iconPosition === 'left' && (
                         <Fragment>
                             <Icons
-                                icon={awesomeIcon}
+                                icon={icon}
                                 classes={['mr-1']}
                             />
                         </Fragment>
@@ -75,10 +76,10 @@ export const Button = (props: ButtonProps) => {
                 }
                 {label}
                 {
-                    awesomeIcon && iconPosition === 'right' && (
+                    icon && iconPosition === 'right' && (
                         <Fragment>
                             <Icons
-                                icon={awesomeIcon}
+                                icon={icon}
                                 classes={['ml-1']}
                             />
                         </Fragment>

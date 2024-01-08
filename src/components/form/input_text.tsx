@@ -6,10 +6,14 @@ import {
     InputTextClasses,
     InputTextProps,
 } from "../@types";
-import {Icons, Label, TextBox} from "../element";
+import {
+    Icons,
+    Label,
+    TextField,
+} from "../element";
 import {initialize, initializeDatasets} from "../common";
 
-export const InputTextBox = (itemProps: InputTextProps) => {
+export const InputTextField = (itemProps: InputTextProps) => {
     let {
         type,
         name,
@@ -92,9 +96,9 @@ export const InputTextBox = (itemProps: InputTextProps) => {
                 {...attributes?.control}
                 {...datasetShown.control}
             >
-                <TextBox
-                    fieldName={prefix ? (prefix + name) : name}
-                    fieldType={type}
+                <TextField
+                    name={prefix ? (prefix + name) : name}
+                    type={type}
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}

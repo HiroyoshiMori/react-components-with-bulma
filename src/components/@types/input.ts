@@ -1,22 +1,29 @@
 import React, {
     ChangeEvent,
     HTMLAttributes,
-    InputHTMLAttributes, LabelHTMLAttributes,
+    InputHTMLAttributes,
+    LabelHTMLAttributes,
     ReactNode,
 } from "react";
 import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 import {
     ColorTypes,
-    CommonDataSet, CommonStyleClasses, InputTextTypes, PositionTypes, SizeTypes, StateTypes,
+    CommonDataSet,
+    CommonStyleClasses,
+    InputTextTypes,
+    PositionTypes,
+    SizeTypes,
+    StateTypes,
 } from "./index";
 
 // ----------------------------------------------------------------------
 // Text Box
 // ----------------------------------------------------------------------
 /** Type definition for property of input */
-export type TextBoxProps = {
-    fieldName: string;
-    fieldType?: InputTextTypes;
+export type TextFieldProps = {
+    name: string;
+    id?: string;
+    type?: InputTextTypes;
     value: boolean | string | number;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
@@ -48,14 +55,13 @@ export type CheckboxClasses = {
 /** Type definition for fields of input[type=checkbox] */
 export type CheckboxFields = {
     name: string;
-    key: string | number;
-    value?: string | number;
+    id: string;
+    value?: boolean | string | number;
     label?: ReactNode;
     disabled?: boolean;
 };
 /** Type definition for property of input[type=checkbox] */
-export type CheckboxProps = {
-    field: CheckboxFields;
+export type CheckboxProps = CheckboxFields & {
     currentValues: (boolean | string | number)[];
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     prefix?: string;
@@ -85,14 +91,13 @@ export type RadioClasses = {
 /** Type definition for fields of radio */
 export type RadioFields = {
     name: string;
-    key: string | number;
+    id: string;
     value?: boolean | string | number;
     label?: ReactNode;
     disabled?: boolean;
 };
 /** Type definition for property of radio */
-export type RadioProps = {
-    field: RadioFields;
+export type RadioProps = RadioFields & {
     currentValue: boolean | string | number;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     prefix?: string;
