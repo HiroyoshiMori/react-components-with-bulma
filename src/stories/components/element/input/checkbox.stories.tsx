@@ -15,21 +15,58 @@ export default {
         },
     },
     argTypes: {
-        field: {
-            control: 'object',
-            description: 'Field data for checkbox',
+        name: {
+            control: 'text',
+            description: 'Element name',
             table: {
                 type: {
-                    summary: "CheckboxFields",
-                    detail: deIndent(`
-                            {
-                                name: string,
-                                key: string,
-                                value?: string,
-                                label?: ReactNode,
-                                disabled: boolean,
-                            }
-                        `),
+                    summary: 'string',
+                },
+            },
+        },
+        id: {
+            control: 'text',
+            description: 'Element ID. It will be used when value or label is undefined.',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                    detail: 'When undefined, random string will be generated.'
+                }
+            },
+        },
+        value: {
+            control: 'text',
+            description: 'Value for checkbox. When undefined, key will be used instead.',
+            table: {
+                type: {
+                    summary: 'boolean | string | number',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        label: {
+            control: 'text',
+            description: 'Label for checkbox. When undefined, value will be used instead.',
+            table: {
+                type: {
+                    summary: 'React.ReactNode',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        disabled: {
+            control: 'boolean',
+            description: 'Disable checkbox',
+            table: {
+                defaultValue: {
+                    summary: 'false',
                 },
             },
         },
@@ -71,7 +108,6 @@ export default {
                     summary: 'CheckboxClasses',
                     detail: deIndent(`
                             {
-                                wrap?: string[],
                                 label?: string[],
                                 input?: string[],
                             }
@@ -90,7 +126,6 @@ export default {
                     summary: 'CheckboxAttributes',
                     detail: deIndent(`
                             {
-                                wrap?: HTMLAttributes<HTMLDivElement>,
                                 label?: HTMLAttributes<HTMLLabelElement>,
                                 input?: InputHTMLAttributes<HTMLInputElement>,
                             }
@@ -103,13 +138,12 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Dataset for checkbox',
+            description: 'Dataset for checkbox. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'CheckboxDatasets',
                     detail: deIndent(`
                             {
-                                wrap?: Map<string, string>,
                                 label?: Map<string, string>,
                                 input?: Map<string, string>,
                             }
@@ -122,39 +156,97 @@ export default {
         },
     }
 };
+/**
+ * Default checkbox
+ */
 export const Default = {
     render: (args: any) => <Checkbox
-        field={{
-            name: 'checkbox',
-            key: 'key',
-            value: 'checkbox value',
-            label: 'Checkbox',
-        }}
+        name={'checkbox'}
+        id={'id'}
+        value={'checkbox value'}
+        label={'Checkbox'}
         currentValues={["curValue"]}
         onChange={() => {return;}}
         {...args}
     />,
 };
-
+/**
+ * Checked by id
+ */
+export const CheckedById = {
+    ...Default,
+    args: {
+        label: 'Checked checkbox',
+        value: "same value",
+        currentValues: ["id"],
+    },
+};
+/**
+ * Checked by value
+ */
 export const Checked = {
     ...Default,
     args: {
-        field: {
-            label: 'Checked checkbox',
-            value: "same value",
-        },
+        label: 'Checked checkbox',
+        value: "same value",
         currentValues: ["same value"],
     },
 };
+/**
+ * Checkbox without Id.<br />
+ * Random ID will be generated.
+ */
+export const NoId = {
+    ...Default,
+    args: {
+        id: undefined,
+    },
+};
+/**
+ * Checkbox without value.<br />
+ * ID will be used as value.
+ */
+export const WithoutValue = {
+    ...Default,
+    args: {
+        value: undefined,
+    },
+};
+/**
+ * Checkbox without label.<br />
+ * Value will be used as label.
+ */
+export const WithoutLabel = {
+    ...Default,
+    args: {
+        label: undefined,
+    },
+};
+/**
+ * Checkbox without value and label.<br />
+ * ID will be used as value and label.
+ */
+export const WithoutValueLabel = {
+    ...Default,
+    args: {
+        value: undefined,
+        label: undefined,
+    },
+};
+/**
+ * Disabled checkbox
+ */
 export const Disabled = {
     ...Default,
     args: {
-        field: {
-            label: 'Disabled Radio',
-            disabled: true,
-        },
+        label: 'Disabled Radio',
+        disabled: true,
     },
 };
+/**
+ * Checkbox with style class.<br />
+ * With margin 5.
+ */
 export const M5 = {
     ...Default,
     args: {
@@ -163,6 +255,10 @@ export const M5 = {
         },
     },
 };
+/**
+ * Checkbox with style class.<br />
+ * With margin-left 5.
+ */
 export const ML5 = {
     ...Default,
     args: {
@@ -171,6 +267,10 @@ export const ML5 = {
         },
     },
 };
+/**
+ * Checkbox with style class.<br />
+ * With margin-right 5.
+ */
 export const MR5 = {
     ...Default,
     args: {
@@ -179,13 +279,13 @@ export const MR5 = {
         },
     },
 };
+/**
+ * Checkbox with additional attributes
+ */
 export const WithAttribute = {
     ...Default,
     args: {
         attributes: {
-            wrap: {
-                "aria-label": "Checkbox",
-            },
             label: {
                 "aria-label": "Checkbox Label",
             },
@@ -195,13 +295,13 @@ export const WithAttribute = {
         },
     },
 };
+/**
+ * Checkbox with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
         datasets: {
-            wrap: new Map([
-                ['id', 'radio-wrap'], ['name', 'Checkbox Wrap']
-            ]),
             label: new Map([
                 ['id', 'radio-label'], ['name', 'Checkbox Label']
             ]),

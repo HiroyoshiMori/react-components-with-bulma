@@ -15,7 +15,7 @@ export default {
         },
     },
     argTypes: {
-        fieldName: {
+        name: {
             control: 'text',
             description: 'Field name for radio group',
             table: {
@@ -32,13 +32,11 @@ export default {
                     summary: 'RadioGroupFieldsProps[]',
                     detail: deIndent(`
                             {
-                                field: {
-                                    name: string,
-                                    key: string | number,
-                                    value?: boolean | string | number,
-                                    label?: ReactNode,
-                                    disabled?: boolean,
-                                } as RadioFields,
+                                name: string,
+                                id: string,
+                                value?: boolean | string | number,
+                                label?: ReactNode,
+                                disabled?: boolean,
                                 classes?: {
                                     label?: string[],
                                     input?: string[],
@@ -109,20 +107,26 @@ export default {
         },
     },
 };
+/**
+ * Default radio group
+ */
 export const Default = {
     render: (args: any) => <RadioGroup
         currentValue=""
-        fieldName="radio_group"
+        name="radio_group"
         fields={[
-            {field: {key: 'radio1'}},
-            {field: {key: 'radio2', value: 'radio2Value'}},
-            {field: {key: 'radio3', value: 'radio3Value', label: 'Radio3 Label'}},
-            {field: {key: 'radio4', disabled: true}},
+            {id: 'radio1'},
+            {id: 'radio2', value: 'radio2Value'},
+            {id: 'radio3', value: 'radio3Value', label: 'Radio3 Label'},
+            {id: 'radio4', disabled: true},
         ]}
         onChange={() => {return;}}
         {...args}
     />,
-}
+};
+/**
+ * Radio group in Grid
+ */
 export const Grid = {
     ...Default,
     args: {
@@ -134,20 +138,28 @@ export const Grid = {
             },
         }
     }
-}
-
-export const CheckedWithKey = {
+};
+/**
+ * Checked by ID as value
+ */
+export const CheckedWithID = {
     ...Default,
     args: {
         currentValue: "radio1",
     },
 };
+/**
+ * Checked with value
+ */
 export const CheckedWithVal = {
     ...Default,
     args: {
         currentValue: "radio2Value",
     },
 };
+/**
+ * With additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -156,76 +168,71 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * With datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
         fields: [
             {
-                field: {
-                    key: 'radio1',
-                    datasets: {
-                        wrap: new Map([
-                            ['id', 'radio1-wrap'], ['name', 'Radio1 Wrap']
-                        ]),
-                        label: new Map([
-                            ['id', 'radio1-label'], ['name', 'Radio1 Label']
-                        ]),
-                        input: new Map([
-                            ['id', 'radio1-input'], ['name', 'Radio1 Input']
-                        ]),
-                    },
-                }
-            },
-            {
-                field: {
-                    key: 'radio2',
-                    value: 'radio2Value',
-                    datasets: {
-                        wrap: new Map([
-                            ['id', 'radio2-wrap'], ['name', 'Radio2 Wrap']
-                        ]),
-                        label: new Map([
-                            ['id', 'radio2-label'], ['name', 'Radio2 Label']
-                        ]),
-                        input: new Map([
-                            ['id', 'radio2-input'], ['name', 'Radio2 Input']
-                        ]),
-                    },
+                id: 'radio1',
+                datasets: {
+                    wrap: new Map([
+                        ['id', 'radio1-wrap'], ['name', 'Radio1 Wrap']
+                    ]),
+                    label: new Map([
+                        ['id', 'radio1-label'], ['name', 'Radio1 Label']
+                    ]),
+                    input: new Map([
+                        ['id', 'radio1-input'], ['name', 'Radio1 Input']
+                    ]),
                 },
             },
             {
-                field: {
-                    key: 'radio3',
-                    value: 'radio3Value',
-                    label: 'Radio3 Value',
-                    datasets: {
-                        wrap: new Map([
-                            ['id', 'radio3-wrap'], ['name', 'Radio3 Wrap']
-                        ]),
-                        label: new Map([
-                            ['id', 'radio3-label'], ['name', 'Radio3 Label']
-                        ]),
-                        input: new Map([
-                            ['id', 'radio3-input'], ['name', 'Radio3 Input']
-                        ]),
-                    },
+                id: 'radio2',
+                value: 'radio2Value',
+                datasets: {
+                    wrap: new Map([
+                        ['id', 'radio2-wrap'], ['name', 'Radio2 Wrap']
+                    ]),
+                    label: new Map([
+                        ['id', 'radio2-label'], ['name', 'Radio2 Label']
+                    ]),
+                    input: new Map([
+                        ['id', 'radio2-input'], ['name', 'Radio2 Input']
+                    ]),
                 },
             },
             {
-                field: {
-                    key: 'radio4',
-                    disabled: true,
-                    datasets: {
-                        wrap: new Map([
-                            ['id', 'radio4-wrap'], ['name', 'Radio4 Wrap']
-                        ]),
-                        label: new Map([
-                            ['id', 'radio4-label'], ['name', 'Radio4 Label']
-                        ]),
-                        input: new Map([
-                            ['id', 'radio4-input'], ['name', 'Radio4 Input']
-                        ]),
-                    },
+                id: 'radio3',
+                value: 'radio3Value',
+                label: 'Radio3 Value',
+                datasets: {
+                    wrap: new Map([
+                        ['id', 'radio3-wrap'], ['name', 'Radio3 Wrap']
+                    ]),
+                    label: new Map([
+                        ['id', 'radio3-label'], ['name', 'Radio3 Label']
+                    ]),
+                    input: new Map([
+                        ['id', 'radio3-input'], ['name', 'Radio3 Input']
+                    ]),
+                },
+            },
+            {
+                id: 'radio4',
+                disabled: true,
+                datasets: {
+                    wrap: new Map([
+                        ['id', 'radio4-wrap'], ['name', 'Radio4 Wrap']
+                    ]),
+                    label: new Map([
+                        ['id', 'radio4-label'], ['name', 'Radio4 Label']
+                    ]),
+                    input: new Map([
+                        ['id', 'radio4-input'], ['name', 'Radio4 Input']
+                    ]),
                 },
             },
         ],

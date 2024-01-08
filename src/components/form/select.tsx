@@ -21,10 +21,10 @@ export const FormSelect = (props: FormSelectProps) => {
         options,
         currentValues,
         multiple,
-        size,
+        rows,
         colorType,
         state,
-        fontSize,
+        size,
         onChange,
         label,
         noDivWrap = false,
@@ -69,12 +69,12 @@ export const FormSelect = (props: FormSelectProps) => {
             label.classes.push('label');
         }
     }
-    if (fontSize) {
+    if (size) {
         const pattern = '^is-(' + SIZES.join('|') + ')$';
         if (pattern && classes.icon) {
             const reg: string = `^is-(${pattern})$`;
             if (ArrayRegexIncludes(classes.icon, new RegExp(reg)) === -1) {
-                classes.icon.push('is-' + fontSize);
+                classes.icon.push('is-' + size);
             }
         }
     }
@@ -112,10 +112,10 @@ export const FormSelect = (props: FormSelectProps) => {
                         options={options}
                         currentValues={currentValues}
                         multiple={multiple}
-                        size={size}
+                        rows={rows}
                         colorType={colorType}
                         state={state}
-                        fontSize={fontSize}
+                        size={size}
                         onChange={onChange}
                         classes={{
                             div: classes.div,

@@ -6,12 +6,16 @@ import {
     CheckboxDatasets,
 } from "../../@types";
 import {Label} from "../label";
-import {ArrayRegexIncludes} from "../../../utils";
+import {ArrayRegexIncludes, generateId} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Checkbox = (props: CheckboxProps) => {
     const {
-        field,
+        name,
+        id = generateId(),
+        value,
+        label,
+        disabled = false,
         currentValues= [],
         onChange,
         prefix = '',
@@ -51,23 +55,23 @@ export const Checkbox = (props: CheckboxProps) => {
         <Fragment>
             <Label
                 classes={classes.label}
-                htmlFor={(prefix ? (prefix + '-') : '') + field.key}
+                htmlFor={(prefix ? (prefix + '-') : '') + id}
                 attributes={attributes?.label}
                 datasets={datasets.label}
             >
                 <input
                     type="checkbox"
-                    name={field.name}
-                    id={(prefix ? (prefix + '-') : '') + field.key}
-                    value={field.value ?? field.key}
+                    name={name}
+                    id={(prefix ? (prefix + '-') : '') + id}
+                    value={value ?? id}
                     className={classes.input?.join(' ')}
                     onChange={onChange}
-                    checked={currentValues.includes(field.value ?? field.key) || currentValues.includes(field.key)}
-                    disabled={field.disabled ?? false}
+                    checked={currentValues.includes(value ?? id) || currentValues.includes(id)}
+                    disabled={disabled}
                     {...attributes?.input}
-                    {...datasetShown}
+                    {...datasetShown.input}
                 />
-                <span>{field.label ?? (field.value ?? field.key)}</span>
+                <span>{label ?? (value ?? id)}</span>
             </Label>
         </Fragment>
     );

@@ -15,7 +15,7 @@ export default {
         },
     },
     argTypes: {
-        fieldName: {
+        name: {
             control: 'text',
             description: 'Field name for checkbox group',
             table: {
@@ -32,13 +32,11 @@ export default {
                     summary: 'CheckboxGroupFieldsProps[]',
                     detail: deIndent(`
                             {
-                                field: {
-                                    name: string,
-                                    key: string | number,
-                                    value?: boolean | string | number,
-                                    label?: ReactNode,
-                                    disabled?: boolean,
-                                } as CheckboxFields,
+                                name: string,
+                                id: string,
+                                value?: boolean | string | number,
+                                label?: ReactNode,
+                                disabled?: boolean,
                                 classes?: {
                                     label?: string[],
                                     input?: string[],
@@ -58,22 +56,10 @@ export default {
         },
         currentValues: {
             control: 'text',
-            description: 'Current value for checkbox group',
+            description: 'Current values for checkbox group',
             table: {
                 type: {
                     summary: '(boolean | string | number)[]',
-                },
-            },
-        },
-        onChange: {
-            action: 'function',
-            description: 'Function called when one of checkbox in group is clicked',
-            table: {
-                type: {
-                    summary: '(e: ChangeEvent<HTMLInputElement>) => void',
-                },
-                defaultValue: {
-                    summary: 'undefined',
                 },
             },
         },
@@ -83,6 +69,18 @@ export default {
             table: {
                 type: {
                     summary: 'string',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        onChange: {
+            action: 'function',
+            description: 'Function called when one of checkbox in group is clicked',
+            table: {
+                type: {
+                    summary: '(e: ChangeEvent<HTMLInputElement>) => void',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -112,12 +110,12 @@ export default {
 export const Default = {
     render: (args: any) => <CheckboxGroup
         currentValues={[]}
-        fieldName="radio_group"
+        name="radio_group"
         fields={[
-            {field: {key: 'check1'}},
-            {field: {key: 'check2', value: 'check2Value'}},
-            {field: {key: 'check3', value: 'check3Value', label: 'Check3 Label'}},
-            {field: {key: 'check4', disabled: true}},
+            {id: 'check1'},
+            {id: 'check2', value: 'check2Value'},
+            {id: 'check3', value: 'check3Value', label: 'Check3 Label'},
+            {id: 'check4', disabled: true},
         ]}
         onChange={() => {return;}}
         {...args}
@@ -136,7 +134,7 @@ export const Grid = {
     }
 }
 
-export const CheckedWithKey = {
+export const CheckedWithID = {
     ...Default,
     args: {
         currentValues: ["check1", "check3"],
@@ -153,40 +151,32 @@ export const WithAttributes = {
     args: {
         fields: [
             {
-                field: {
-                    key: 'check1',
-                },
+                id: 'check1',
                 attributes: {
                     label: {'aria-label': 'Check1 Label'},
                     input: {'aria-label': 'Check1 Input'},
                 },
             },
             {
-                field: {
-                    key: 'check2',
-                    value: 'check2Value',
-                },
+                id: 'check2',
+                value: 'check2Value',
                 attributes: {
                     label: {'aria-label': 'Check2 Label'},
                     input: {'aria-label': 'Check2 Input'},
                 },
             },
             {
-                field: {
-                    key: 'check3',
-                    value: 'check3Value',
-                    label: 'Check3 Value',
-                },
+                id: 'check3',
+                value: 'check3Value',
+                label: 'Check3 Value',
                 attributes: {
                     label: {'aria-label': 'Check3 Label'},
                     input: {'aria-label': 'Check3 Input'},
                 },
             },
             {
-                field: {
-                    key: 'check4',
-                    disabled: true,
-                },
+                id: 'check4',
+                disabled: true,
                 attributes: {
                     label: {'aria-label': 'Check4 Label'},
                     input: {'aria-label': 'Check4 Input'},
@@ -200,9 +190,7 @@ export const WithDatasets = {
     args: {
         fields: [
             {
-                field: {
-                    key: 'check1',
-                },
+                id: 'check1',
                 datasets: {
                     label: new Map([
                         ['id', 'check1-label'], ['name', 'Check1 Label']
@@ -213,10 +201,8 @@ export const WithDatasets = {
                 },
             },
             {
-                field: {
-                    key: 'check2',
-                    value: 'check2Value',
-                },
+                id: 'check2',
+                value: 'check2Value',
                 datasets: {
                     label: new Map([
                         ['id', 'check2-label'], ['name', 'Check2 Label']
@@ -227,11 +213,9 @@ export const WithDatasets = {
                 },
             },
             {
-                field: {
-                    key: 'check3',
-                    value: 'check3Value',
-                    label: 'Check3 Value',
-                },
+                id: 'check3',
+                value: 'check3Value',
+                label: 'Check3 Value',
                 datasets: {
                     label: new Map([
                         ['id', 'check3-label'], ['name', 'Check3 Label']
@@ -242,10 +226,8 @@ export const WithDatasets = {
                 },
             },
             {
-                field: {
-                    key: 'check4',
-                    disabled: true,
-                },
+                id: 'check4',
+                disabled: true,
                 datasets: {
                     label: new Map([
                         ['id', 'check4-label'], ['name', 'Check4 Label']

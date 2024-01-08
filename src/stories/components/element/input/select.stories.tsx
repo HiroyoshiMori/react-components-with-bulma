@@ -39,7 +39,7 @@ export default {
         },
         options: {
             control: 'object',
-            description: 'Options to show',
+            description: 'Options',
             table: {
                 type: {
                     summary: '(OptionProps|OptGroupProps)[]',
@@ -90,9 +90,9 @@ export default {
                 },
             },
         },
-        size: {
+        rows: {
             control: 'number',
-            description: 'The number of rows in the list that should be visible at one time',
+            description: 'The number of rows in the list that should be visible at one time. formal attribute name in tag for this is "size".',
             table: {
                 type: {
                     summary: 'number',
@@ -134,13 +134,13 @@ export default {
                 },
             },
         },
-        fontSize: {
+        size: {
             control: 'select',
             options: ['default'].concat(SIZES),
             mapping: {
                 Default: '',
             },
-            description: 'Font size',
+            description: 'Size of select element',
             table: {
                 type: {
                     summary: SIZES.join('|'),
@@ -220,6 +220,9 @@ export default {
         },
     },
 };
+/**
+ * Default select
+ */
 export const Default = {
     render: (args: any) => <Select
         name={'Select'}
@@ -244,43 +247,64 @@ export const Default = {
         {...args}
     />,
 };
-export const Multiple = {
+/**
+ * Multiple select
+ */
+export const MultipleSelect = {
     ...Default,
     args: {
         multiple: true,
     },
 };
-export const SizeWithoutMultiple = {
+/**
+ * Single select with rows
+ */
+export const RowsWithoutMultiple = {
     ...Default,
     args: {
-        size: 3,
+        rows: 2,
     },
 };
-export const SizeWithMultiple = {
+/**
+ * Multiple select with rows
+ */
+export const RowsWithMultiple = {
     ...Default,
     args: {
         multiple: true,
-        size: 3,
+        rows: 2,
     },
 };
-export const ColorType = {
+/**
+ * Select with color type
+ */
+export const WithColorType = {
     ...Default,
     args: {
         colorType: 'primary',
     },
 };
-export const State = {
+/**
+ * Select with state
+ */
+export const WithState = {
     ...Default,
     args: {
         state: 'hoverable',
     },
 };
-export const FontSize = {
+/**
+ * Select with size
+ */
+export const ElementSize = {
     ...Default,
     args: {
-        fontSize: 'small',
+        size: 'small',
     },
 };
+/**
+ * Select with style classes
+ */
 export const WithClasses = {
     ...Default,
     args: {
@@ -309,6 +333,9 @@ export const WithClasses = {
         ],
     },
 };
+/**
+ * Select with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -332,6 +359,9 @@ export const WithAttributes = {
         ],
     },
 };
+/**
+ * Select with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

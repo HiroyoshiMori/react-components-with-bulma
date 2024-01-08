@@ -22,7 +22,7 @@ export const Select = (props: SelectProps) => {
         options,
         currentValues= [],
         multiple = false,
-        size,
+        rows,
         onChange,
     } = props;
 
@@ -51,7 +51,7 @@ export const Select = (props: SelectProps) => {
     );
 
     // Set default values if not already set
-    (['colorType', 'state', 'fontSize'] as Array<keyof SelectProps>).forEach((v) => {
+    (['colorType', 'state', 'size'] as Array<keyof SelectProps>).forEach((v) => {
         if (props[v]) {
             let pattern: string | null = null;
             switch (v) {
@@ -59,7 +59,7 @@ export const Select = (props: SelectProps) => {
                     pattern = COLOR_TYPES.join('|'); break;
                 case 'state':
                     pattern = STATES.join('|'); break;
-                case 'fontSize':
+                case 'size':
                     pattern = SIZES.join('|'); break;
             }
             if (pattern && classes.div) {
@@ -82,7 +82,7 @@ export const Select = (props: SelectProps) => {
                     name={name}
                     id={id}
                     multiple={multiple}
-                    size={multiple ? size : undefined}
+                    size={multiple ? rows : undefined}
                     onChange={onChange}
                     className={classes.select?.join(' ')}
                     {...attributes.select}

@@ -1,28 +1,52 @@
 import React from 'react';
-import {COLOR_TYPES, INPUT_TEXT_TYPES, SIZES, STATES, TextBox} from "../../../../components";
+import {
+    COLOR_TYPES,
+    INPUT_TEXT_TYPES,
+    SIZES,
+    STATES,
+    TextField,
+} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {
-    title: 'React Component/Element/TextBox',
-    component: TextBox,
+    title: 'React Component/Element/TextField',
+    component: TextField,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Text Box Element',
+        componentSubtitle: 'Text Field Element',
         docs: {
             description: {
-                component: "This component shows text box for form.<br>In Bulma doc: https://bulma.io/documentation/form/input/",
+                component: "This component shows text field for form.<br>In Bulma doc: https://bulma.io/documentation/form/input/",
             },
         },
     },
     argTypes: {
-        fieldName: {
+        name: {
             control: 'text',
             description: 'Field name',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+            },
         },
-        fieldType: {
+        id: {
+            control: 'text',
+            description: 'Field ID',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                    detail: 'Random string ID will be generated when undefined.',
+                },
+            },
+        },
+        type: {
             control: 'select',
             options: INPUT_TEXT_TYPES,
-            description: 'Field type',
+            description: 'Field type of control to render',
             table: {
                 type: {
                     summary: INPUT_TEXT_TYPES.join('|'),
@@ -34,7 +58,7 @@ export default {
         },
         value: {
             control: 'text',
-            description: 'Field value',
+            description: 'Value for text field',
             table: {
                 type: {
                     summary: 'boolean | string | number',
@@ -71,7 +95,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Color of text box',
+            description: 'Color of text field',
             table: {
                 type: {
                     summary: COLOR_TYPES.join('|'),
@@ -87,7 +111,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'State of text box',
+            description: 'States as pseudo-classes of text field',
             table: {
                 type: {
                     summary: STATES.join('|'),
@@ -103,7 +127,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Size of text box',
+            description: 'Size of text field',
             table: {
                 type: {
                     summary: SIZES.join('|'),
@@ -115,7 +139,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes',
             table: {
                 type: {
                     summary: 'string[]',
@@ -127,7 +151,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes',
             table: {
                 type: {
                     summary: 'InputHTMLAttributes<HTMLInputElement>',
@@ -143,7 +167,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for text box. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -163,10 +187,19 @@ export default {
         },
     },
 };
+/**
+ * Default text box
+ */
 export const Default = {
-    render: (args: any) => <TextBox fieldName="text" value="Text" {...args} />,
+    render: (args: any) => <TextField
+        name="text"
+        value="Text"
+        {...args}
+    />,
 };
-
+/**
+ * Text box with placeholder.
+ */
 export const PlaceHolder = {
     ...Default,
     args: {
@@ -174,98 +207,56 @@ export const PlaceHolder = {
         placeholder: 'Place Holder',
     }
 };
-export const Primary = {
+/**
+ * Text box with color type
+ */
+export const WithColorType = {
     ...Default,
     args: {
         colorType: 'primary',
     }
 };
-export const Link = {
-    ...Default,
-    args: {
-        colorType: 'link',
-    }
-};
-export const Info = {
-    ...Default,
-    args: {
-        colorType: 'info',
-    }
-};
-export const Success = {
-    ...Default,
-    args: {
-        colorType: 'success',
-    }
-};
-export const Warning = {
-    ...Default,
-    args: {
-        colorType: 'warning',
-    }
-};
-export const Danger = {
-    ...Default,
-    args: {
-        colorType: 'danger',
-    }
-};
-export const Hover = {
+/**
+ * Text box with state
+ */
+export const WithState = {
     ...Default,
     args: {
         state: 'hover',
     }
 };
-export const Focus = {
-    ...Default,
-    args: {
-        state: 'focus',
-    }
-};
-export const Loading = {
-    ...Default,
-    args: {
-        state: 'loading',
-    }
-};
-export const Small = {
+/**
+ * Text box with element size
+ */
+export const ElementSize = {
     ...Default,
     args: {
         size: 'small',
     }
 };
-export const Normal = {
-    ...Default,
-    args: {
-        size: 'normal',
-    }
-};
-export const Medium = {
-    ...Default,
-    args: {
-        size: 'medium',
-    }
-};
-export const Large = {
-    ...Default,
-    args: {
-        size: 'large',
-    }
-};
+/**
+ * Default text box with style classes
+ */
 export const DefaultWithClasses = {
     ...Default,
     args: {
         classes: ['has-background-primary', 'p-1']
     }
 };
-export const PrimaryWithClasses = {
-    ...Primary,
+/**
+ * Text box with color type and style classes
+ */
+export const ColortypeWithClasses = {
+    ...WithColorType,
     args: {
         value: 'Color will be Info',
         colorType: 'primary',
         classes: ['is-info']
     },
 };
+/**
+ * Text box with additional attributes
+ */
 export const WithAttribute = {
     ...Default,
     args: {
@@ -274,6 +265,9 @@ export const WithAttribute = {
         },
     },
 };
+/**
+ * Text box with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
@@ -282,36 +276,54 @@ export const WithDatasets = {
         ]),
     },
 };
+/**
+ * Text box with type=password
+ */
 export const Password = {
     ...Default,
     args: {
         fieldType: 'password',
     },
 };
+/**
+ * Text box with type=email
+ */
 export const Email = {
     ...Default,
     args: {
         fieldType: 'email',
     },
 };
+/**
+ * Text box with type=tel
+ */
 export const Tel = {
     ...Default,
     args: {
         fieldType: 'tel',
     },
 };
+/**
+ * Text box with type=number
+ */
 export const Number = {
     ...Default,
     args: {
         fieldType: 'number',
     },
 };
+/**
+ * Text box with type=search
+ */
 export const Search = {
     ...Default,
     args: {
         fieldType: 'search',
     },
 };
+/**
+ * Text box with type=url
+ */
 export const Url = {
     ...Default,
     args: {

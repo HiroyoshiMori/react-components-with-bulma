@@ -19,7 +19,7 @@ export type ButtonFields = {
     size?: SizeTypes;
     disabled?: boolean;
     noDefaultClasses?: boolean;
-    awesomeIcon?: FontAwesomeIconProps; //icon({name: 'check'}),
+    icon?: FontAwesomeIconProps; //icon({name: 'check'}),
     iconPosition?: "left" | "right";
 };
 /** Type definition for property of button */

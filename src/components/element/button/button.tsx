@@ -15,7 +15,7 @@ export const Button = (props: ButtonProps) => {
         colorLight = false,
         disabled = false,
         noDefaultClasses = false,
-        awesomeIcon,
+        icon,
         iconPosition = 'left',
         classes = [],
         attributes= {},
@@ -65,10 +65,10 @@ export const Button = (props: ButtonProps) => {
                 {...datasetShown}
             >
                 {
-                    awesomeIcon && iconPosition === 'left' && (
+                    icon && iconPosition === 'left' && (
                         <Fragment>
                             <Icons
-                                icon={awesomeIcon}
+                                icon={icon}
                                 classes={['mr-1']}
                             />
                         </Fragment>
@@ -76,10 +76,10 @@ export const Button = (props: ButtonProps) => {
                 }
                 {label}
                 {
-                    awesomeIcon && iconPosition === 'right' && (
+                    icon && iconPosition === 'right' && (
                         <Fragment>
                             <Icons
-                                icon={awesomeIcon}
+                                icon={icon}
                                 classes={['ml-1']}
                             />
                         </Fragment>

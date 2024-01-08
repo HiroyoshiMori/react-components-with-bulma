@@ -80,6 +80,15 @@ export function convertDataSet(dataSet: Map<string, any>) {
     return props;
 }
 
+/**
+ * Generate random ID
+ */
+export function generateId(): string {
+    var S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    var N=16
+    return Array.from(crypto.getRandomValues(new Uint8Array(N))).map((n)=>S[n%S.length]).join('')
+}
+
 // -----
 // Define functions for removing indent in string into Array.prototype
 // @see; https://stackoverflow.com/questions/62415501/typescript-cant-use-array-prototype

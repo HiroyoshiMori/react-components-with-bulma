@@ -52,7 +52,7 @@ export const InputRadioGroup = (itemProps: InputRadioProps) => {
                 {...datasetShown.control}
             >
                 <RadioGroup
-                    fieldName={name}
+                    name={name}
                     fields={items}
                     currentValue={currentValue}
                     onChange={onChange}

@@ -7,29 +7,67 @@ export default {
     component: Radio,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Radio Element',
+        componentSubtitle: 'Radio button Element',
         docs: {
             description: {
-                component: "This component shows radio for form.<br>In Bulma doc: https://bulma.io/documentation/form/radio/",
+                component: 'This component renders radio button.<br />'
+                    + 'In Bulma doc: https://bulma.io/documentation/form/radio/',
             },
         },
     },
     argTypes: {
-        field: {
-            control: 'object',
-            description: 'Field data for radio',
+        name: {
+            control: 'text',
+            description: 'Element name',
             table: {
                 type: {
-                    summary: "RadioFields",
-                    detail: deIndent(`
-                            {
-                                name: string,
-                                key: string,
-                                value?: string,
-                                label?: ReactNode,
-                                disabled: boolean,
-                            }
-                        `),
+                    summary: 'string',
+                },
+            },
+        },
+        id: {
+            control: 'text',
+            description: 'Element ID. It will be used when value or label is undefined.',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                    detail: 'When undefined, random string will be generated.'
+                }
+            },
+        },
+        value: {
+            control: 'text',
+            description: 'Value for radio. When undefined, ID will be used instead.',
+            table: {
+                type: {
+                    summary: 'boolean | string | number',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        label: {
+            control: 'text',
+            description: 'Label for radio. When undefined, value will be used instead.',
+            table: {
+                type: {
+                    summary: 'React.ReactNode',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        disabled: {
+            control: 'boolean',
+            description: 'Disable radio',
+            table: {
+                defaultValue: {
+                    summary: 'false',
                 },
             },
         },
@@ -38,7 +76,7 @@ export default {
             description: 'Current value for radio group',
             table: {
                 type: {
-                    summary: 'string | number',
+                    summary: 'boolean | string | number',
                 },
             },
         },
@@ -71,7 +109,6 @@ export default {
                     summary: 'RadioClasses',
                     detail: deIndent(`
                             {
-                                wrap?: string[],
                                 label?: string[],
                                 input?: string[],
                             }
@@ -90,7 +127,6 @@ export default {
                     summary: 'RadioAttributes',
                     detail: deIndent(`
                             {
-                                wrap?: HTMLAttributes<HTMLDivElement>,
                                 label?: HTMLAttributes<HTMLLabelElement>,
                                 input?: InputHTMLAttributes<HTMLInputElement>,
                             }
@@ -103,13 +139,12 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Dataset for radio',
+            description: 'Dataset for radio. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'RadioDatasets',
                     detail: deIndent(`
                             {
-                                wrap?: Map<string, string>,
                                 label?: Map<string, string>,
                                 input?: Map<string, string>,
                             }
@@ -122,39 +157,86 @@ export default {
         },
     }
 };
+/**
+ * Default radio
+ */
 export const Default = {
     render: (args: any) => <Radio
-        field={{
-            name: 'radio',
-            key: 'key',
-            value: 'radio value',
-            label: 'Radio',
-        }}
+        name={'radio'}
+        id={'id'}
+        value={'radio value'}
+        label={'Radio'}
         currentValue="curValue"
         onChange={() => {return;}}
         {...args}
     />,
 };
-
+/**
+ * Checked radio
+ */
 export const Checked = {
     ...Default,
     args: {
-        field: {
-            label: 'Checked Radio',
-            value: "same value",
-        },
+        label: 'Checked Radio',
+        value: "same value",
         currentValue: "same value",
     },
 };
+/**
+ * Radio disabled
+ */
 export const Disabled = {
     ...Default,
     args: {
-        field: {
-            label: 'Disabled Radio',
-            disabled: true,
-        },
+        label: 'Disabled Radio',
+        disabled: true,
     },
 };
+/**
+ * Radio without ID.<br />
+ * Random ID will be generated.
+ */
+export const NoId = {
+    ...Default,
+    args: {
+        id: undefined,
+    },
+};
+/**
+ * Radio without value.<br />
+ * ID will be used as value.
+ */
+export const WithoutValue = {
+    ...Default,
+    args: {
+        value: undefined,
+    },
+};
+/**
+ * Radio without label.<br />
+ * Value will be used as label.
+ */
+export const WithoutLabel = {
+    ...Default,
+    args: {
+        label: undefined,
+    },
+};
+/**
+ * Radio without label and value.<br />
+ * ID will be used as value and label.
+ */
+export const WithoutValueLabel = {
+    ...Default,
+    args: {
+        value: undefined,
+        label: undefined,
+    },
+};
+/**
+ * With style classes.<br />
+ * With margin 5.
+ */
 export const M5 = {
     ...Default,
     args: {
@@ -163,6 +245,10 @@ export const M5 = {
         },
     },
 };
+/**
+ * With style classes.<br />
+ * With margin-left 5.
+ */
 export const ML5 = {
     ...Default,
     args: {
@@ -171,6 +257,10 @@ export const ML5 = {
         },
     },
 };
+/**
+ * With style classes.<br />
+ * With margin-right 5.
+ */
 export const MR5 = {
     ...Default,
     args: {
@@ -179,13 +269,13 @@ export const MR5 = {
         },
     },
 };
+/**
+ * Radio with additional attributes
+ */
 export const WithAttribute = {
     ...Default,
     args: {
         attributes: {
-            wrap: {
-                "aria-label": "Radio",
-            },
             label: {
                 "aria-label": "Radio Label",
             },
@@ -195,13 +285,13 @@ export const WithAttribute = {
         },
     },
 };
+/**
+ * Radio with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
         datasets: {
-            wrap: new Map([
-                ['id', 'radio-wrap'], ['name', 'Radio Wrap']
-            ]),
             label: new Map([
                 ['id', 'radio-label'], ['name', 'Radio Label']
             ]),

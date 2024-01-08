@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, COLOR_TYPES} from "../../../../components";
+import {Button, COLOR_TYPES, SIZES} from "../../../../components";
 import {icon} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {deIndent} from '../../../../utils';
 
@@ -11,7 +11,8 @@ export default {
         componentSubtitle: 'Button Element',
         docs: {
             description: {
-                component: "This component shows \"Button\".<br>In Bulma doc: https://bulma.io/documentation/elements/button/",
+                component: 'This component renders Button element.<br />'
+                    + 'In Bulma doc: https://bulma.io/documentation/elements/button/',
             },
         },
     },
@@ -58,7 +59,11 @@ export default {
             },
         },
         size: {
-            control: {type: 'range', min: 1, max: 6, step: 1},
+            control: 'select',
+            options: ['default'].concat(SIZES),
+            mapping: {
+                Default: '',
+            },
             description: 'Button size',
             table: {
                 type: {
@@ -83,7 +88,7 @@ export default {
         },
         noDefaultClasses: {
             control: 'boolean',
-            description: 'Prevent to add default classes such as "button"',
+            description: 'Prevent to add default classes such as "div.button"',
             table: {
                 type: {
                     summary: 'boolean',
@@ -93,9 +98,9 @@ export default {
                 },
             },
         },
-        awesomeIcon: {
+        icon: {
             control: 'object',
-            description: 'Icon Definition for Font Awesome',
+            description: 'Icon definition for Font Awesome',
             table: {
                 type: {
                     summary: 'FontAwesomeIconProps',
@@ -108,7 +113,7 @@ export default {
         iconPosition: {
             control: 'radio',
             options: ['left', 'right'],
-            description: 'Which side icon placed',
+            description: 'Which side icon is rendered',
             table: {
                 type: {
                     summary: 'left|right',
@@ -120,7 +125,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes',
             table: {
                 type: {
                     summary: 'string[]',
@@ -132,7 +137,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes',
             table: {
                 type: {
                     summary: 'ButtonHTMLAttributes<HTMLButtonElement>',
@@ -147,7 +152,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -167,6 +172,9 @@ export default {
         },
     }
 };
+/**
+ * Default button
+ */
 export const Default = {
     render: (args: any) => {
         return (
@@ -178,6 +186,9 @@ export const Default = {
         );
     },
 };
+/**
+ * Disabled Button
+ */
 export const Disabled = {
     ...Default,
     args: {
@@ -185,49 +196,20 @@ export const Disabled = {
         disabled: true,
     },
 };
-export const Primary = {
+/**
+ * Button with color type
+ */
+export const WithColorType = {
     ...Default,
     args: {
         colorType: 'primary',
         label: 'Primary',
     },
 };
-export const Link = {
-    ...Default,
-    args: {
-        colorType: 'link',
-        label: 'Link',
-    },
-};
-export const Info = {
-    ...Default,
-    args: {
-        colorType: 'info',
-        label: 'Info',
-    },
-};
-export const Success = {
-    ...Default,
-    args: {
-        colorType: 'success',
-        label: 'Success',
-    },
-};
-export const Warning = {
-    ...Default,
-    args: {
-        colorType: 'warning',
-        label: 'Warning',
-    },
-};
-export const Danger = {
-    ...Default,
-    args: {
-        colorType: 'danger',
-        label: 'Danger',
-    },
-};
-export const PrimaryLight = {
+/**
+ * Button with color type of lighter color
+ */
+export const WithColorTypeLight = {
     ...Default,
     args: {
         colorType: 'primary',
@@ -235,91 +217,31 @@ export const PrimaryLight = {
         label: 'Primary w/Light Color'
     },
 };
-export const LinkLight = {
-    ...Default,
-    args: {
-        colorType: 'link',
-        colorLight: true,
-        label: 'Link w/Light Color'
-    },
-};
-export const InfoLight = {
-    ...Default,
-    args: {
-        colorType: 'info',
-        colorLight: true,
-        label: 'Info w/Light Color'
-    },
-};
-export const SuccessLight = {
-    ...Default,
-    args: {
-        colorType: 'success',
-        colorLight: true,
-        label: 'Success w/Light Color'
-    },
-};
-export const WarningLight = {
-    ...Default,
-    args: {
-        colorType: 'warning',
-        colorLight: true,
-        label: 'Warning w/Light Color'
-    },
-};
-export const DangerLight = {
-    ...Default,
-    args: {
-        colorType: 'danger',
-        colorLight: true,
-        label: 'Danger w/Light Color'
-    },
-};
-export const Small = {
+/**
+ * Button with size
+ */
+export const ElementSize = {
     ...Default,
     args: {
         size: 'small',
         label: 'Small'
     },
 };
-export const Normal = {
-    ...Default,
-    args: {
-        size: 'normal',
-        label: 'Normal',
-    },
-};
-export const Medium = {
-    ...Default,
-    args: {
-        size: 'medium',
-        label: 'Medium',
-    },
-};
-export const Large = {
-    ...Default,
-    args: {
-        size: 'large',
-        label: 'Large',
-    },
-};
+/**
+ * Button with icon
+ */
 export const WithIcon = {
     ...Default,
     args: {
-        awesomeIcon: {
+        icon: {
             icon: icon({name: 'check', style: 'solid'}),
         },
+        iconPosition: undefined,
     },
 };
-export const WithIconRight = {
-    ...Default,
-    args: {
-        awesomeIcon: {
-            icon: icon({name: 'check', style: 'solid'}),
-        },
-        iconPosition: 'right',
-    },
-};
+/**
+ * Button with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -329,6 +251,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Button with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
