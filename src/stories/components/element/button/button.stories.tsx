@@ -64,7 +64,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Button size',
+            description: 'Size of Button element',
             table: {
                 type: {
                     summary: 'number',
@@ -125,7 +125,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for button',
             table: {
                 type: {
                     summary: 'string[]',
@@ -137,7 +137,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for button',
             table: {
                 type: {
                     summary: 'ButtonHTMLAttributes<HTMLButtonElement>',
@@ -152,7 +152,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets. "data-" will be added at the beginning of attributes.',
+            description: 'Datasets for button. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',

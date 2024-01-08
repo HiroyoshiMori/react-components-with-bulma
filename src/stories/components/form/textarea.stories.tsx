@@ -191,7 +191,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'States as pseudo-classes of text field',
+            description: 'States as pseudo-classes of textarea',
             table: {
                 type: {
                     summary: STATES.join('|'),

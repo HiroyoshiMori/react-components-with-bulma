@@ -10,7 +10,8 @@ export default {
         componentSubtitle: 'Icon and Text Group Element',
         docs: {
             description: {
-                component: "This component put \"Icon and Text\" group.<br>In Bulma doc: https://bulma.io/documentation/elements/icon/",
+                component: 'This component renders set of icon and label group.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/icon/',
             },
         },
     },
@@ -34,7 +35,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for icon text',
             table: {
                 type: {
                     summary: 'string[]',
@@ -46,7 +47,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Additional attributes for icon text',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLSpanElement>',
@@ -61,7 +62,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for icon text. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -81,6 +82,9 @@ export default {
         },
     }
 };
+/**
+ * Default icon text group
+ */
 export const Default = {
     render: (args: any) => <IconText
         items={[
@@ -94,4 +98,33 @@ export const Default = {
         ]}
         {...args}
     />,
+};
+/**
+ * icon text group with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: ['test-class'],
+    },
+};
+/**
+ * icon text group with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {'aria-label': 'Icon Text Group'},
+    },
+};
+/**
+ * icon text group with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'icon-text-id'],
+        ]),
+    },
 };

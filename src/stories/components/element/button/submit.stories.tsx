@@ -71,8 +71,8 @@ export default {
             },
         },
         prefix: {
-            control: 'boolean',
-            description: 'Disable button',
+            control: 'text',
+            description: 'Prefix of element name',
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -80,12 +80,17 @@ export default {
             },
         },
         disabled: {
-            control: '',
-            description: '',
+            control: 'boolean',
+            description: 'Make submit button disabled',
+            table: {
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for submit',
             table: {
                 type: {
                     summary: 'string[]',
@@ -97,7 +102,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for submit',
             table: {
                 type: {
                     summary: 'InputHTMLAttributes<HTMLInputElement>',
@@ -112,7 +117,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets. "data-" will be added at the beginning of attributes.',
+            description: 'Datasets for submit button. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -132,6 +137,7 @@ export default {
         },
     },
 };
+// Default submit/button parameters
 const defaultSubmitArgs = {
     name: 'InputSubmit',
     onClick: action('onClick'),
@@ -141,6 +147,7 @@ const defaultSubmitArgs = {
         value: 'Submit Value',
     },
 };
+// Default image parameters
 const defaultImageArgs = {
     name: 'InputImage',
     onClick: action('onClick'),

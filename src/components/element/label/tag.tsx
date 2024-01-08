@@ -32,11 +32,11 @@ export const Tag = (props: TagProps) => {
         classes.push('is-delete');
     }
     // Set default values if not already set
-    (["color", "size"] as Array<keyof TagProps>).forEach((v: keyof TagProps) => {
+    (["colorType", "size"] as Array<keyof TagProps>).forEach((v: keyof TagProps) => {
         if (props[v]) {
             let pattern: string | null = null;
             switch (v) {
-                case 'color':
+                case 'colorType':
                     pattern = COLOR_TYPES.join('|'); break;
                 case 'size':
                     pattern = SIZES.join('|'); break;

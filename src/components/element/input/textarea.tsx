@@ -9,7 +9,7 @@ import {initialize} from "../../common";
 export const Textarea = (props: TextareaProps) => {
     const {
         name,
-        id = generateId(),
+        id,
         children,
         cols = 20,
         rows = 2,

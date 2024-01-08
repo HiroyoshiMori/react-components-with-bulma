@@ -10,7 +10,7 @@ export default {
         componentSubtitle: 'Heading Element',
         docs: {
             description: {
-                component: "This component put \"Heading\".",
+                component: "This component renders Heading such as h1, h2 and etc.",
             },
         },
     },
@@ -31,7 +31,7 @@ export default {
             if: {arg: 'label', exists: false},
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -87,7 +87,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes for heading',
             table: {
                 type: {
                     summary: 'string[]',
@@ -99,7 +99,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes for heading',
             table: {
                 type: {
                     summary: 'LabelHTMLAttributes<HTMLLabelElement>',
@@ -114,7 +114,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for heading. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -134,10 +134,15 @@ export default {
         },
     },
 };
+/**
+ * Default heading
+ */
 export const Default = {
     render: (args: any) => <Heading label="Label" {...args} />,
 }
-
+/**
+ * H1
+ */
 export const H1 = {
     ...Default,
     args: {
@@ -145,6 +150,9 @@ export const H1 = {
         label: 'H1',
     },
 };
+/**
+ * H2
+ */
 export const H2 = {
     ...Default,
     args: {
@@ -152,6 +160,9 @@ export const H2 = {
         label: 'H2',
     },
 };
+/**
+ * H3
+ */
 export const H3 = {
     ...Default,
     args: {
@@ -159,6 +170,9 @@ export const H3 = {
         label: 'H3',
     },
 };
+/**
+ * H4
+ */
 export const H4 = {
     ...Default,
     args: {
@@ -166,6 +180,9 @@ export const H4 = {
         label: 'H4',
     },
 };
+/**
+ * H5
+ */
 export const H5 = {
     ...Default,
     args: {
@@ -173,6 +190,9 @@ export const H5 = {
         label: 'H5',
     },
 };
+/**
+ * H6
+ */
 export const H6 = {
     ...Default,
     args: {
@@ -180,6 +200,9 @@ export const H6 = {
         label: 'H6',
     },
 };
+/**
+ * Heading with size not capable
+ */
 export const H3_Size0 = {
     ...Default,
     args: {
@@ -187,6 +210,9 @@ export const H3_Size0 = {
         label: 'H3',
     },
 };
+/**
+ * Heading with size not capable (2)
+ */
 export const H3_Size7 = {
     ...Default,
     args: {
@@ -194,6 +220,9 @@ export const H3_Size7 = {
         label: 'H3',
     },
 };
+/**
+ * Heading with in-consistent size
+ */
 export const H3_WithClassIs1 = {
     ...Default,
     args: {
@@ -202,12 +231,18 @@ export const H3_WithClassIs1 = {
         classes: ['is-1'],
     },
 };
-export const DefaultWithClasses = {
+/**
+ * Heading with style classes
+ */
+export const WithClasses = {
     ...Default,
     args: {
         classes: ['has-background-primary', 'p-1']
     },
 };
+/**
+ * Size with in-consistent style classes
+ */
 export const WithSizeClasses = {
     ...Default,
     args: {
@@ -215,20 +250,9 @@ export const WithSizeClasses = {
         classes: ['is-6']
     },
 };
-export const WithAttributes = {
-    ...Default,
-    args: {
-        attributes: {'aria-label': 'Heading'},
-    },
-};
-export const WithDatasets = {
-    ...Default,
-    args: {
-        datasets: new Map([
-            ['id', 'heading'], ['name', 'Heading'],
-        ]),
-    },
-};
+/**
+ * Heading with subtitle
+ */
 export const WithSubTitle = {
     ...Default,
     args: {
@@ -237,6 +261,9 @@ export const WithSubTitle = {
         },
     },
 };
+/**
+ * Heading with subtitle with spaced
+ */
 export const WithSubTitleWithSpaced = {
     ...Default,
     args: {
@@ -246,31 +273,33 @@ export const WithSubTitleWithSpaced = {
         },
     },
 };
-export const ParagraphWithSize1 = {
+/**
+ * Heading using paragraph with size
+ */
+export const ParagraphWithSize = {
     ...Default,
     args: {
         useParagraph: true,
         size: 1,
     },
 };
-export const ParagraphWithSize3 = {
+/**
+ * Heading with additional attributes
+ */
+export const WithAttributes = {
     ...Default,
     args: {
-        useParagraph: true,
-        size: 3,
+        attributes: {'aria-label': 'Heading'},
     },
 };
-export const ParagraphWithSize5 = {
+/**
+ * Heading with datasets
+ */
+export const WithDatasets = {
     ...Default,
     args: {
-        useParagraph: true,
-        size: 5,
-    },
-};
-export const ParagraphWithSize8 = {
-    ...Default,
-    args: {
-        useParagraph: true,
-        size: 8,
+        datasets: new Map([
+            ['id', 'heading'], ['name', 'Heading'],
+        ]),
     },
 };

@@ -10,7 +10,7 @@ export default {
         componentSubtitle: 'Label Element',
         docs: {
             description: {
-                component: "This component put \"label\".",
+                component: 'This component renders label.',
             },
         },
     },
@@ -52,7 +52,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes for label',
             table: {
                 type: {
                     summary: 'string[]',
@@ -64,7 +64,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes for label',
             table: {
                 type: {
                     summary: 'LabelHTMLAttributes<HTMLLabelElement>',
@@ -79,7 +79,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for label. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -99,9 +99,15 @@ export default {
         },
     },
 };
+/**
+ * Default label
+ */
 export const Default = {
     render: (args: any) => <Label label="Label" {...args} />,
-}
+};
+/**
+ * label with children
+ */
 export const HasChildren = {
     ...Default,
     args: {
@@ -109,16 +115,22 @@ export const HasChildren = {
             <Fragment>
                 <span>Child Element</span>
             </Fragment>
-        )
-    }
-}
+        ),
+    },
+};
+/**
+ * Label with style classes
+ */
 export const HasClassesBgPrimary = {
     ...Default,
     args: {
         label: 'Has Classes',
         classes: ['has-background-primary', 'p-1']
     }
-}
+};
+/**
+ * Label with children with style classes
+ */
 export const HasChildrenClassesBgPrimary = {
     ...Default,
     args: {
@@ -129,7 +141,10 @@ export const HasChildrenClassesBgPrimary = {
         ),
         classes: ['has-background-primary', 'p-1']
     }
-}
+};
+/**
+ * Label with both label and children
+ */
 export const HasLabelChildren = {
     ...Default,
     args: {

@@ -39,7 +39,6 @@ export default {
                 },
                 defaultValue: {
                     summary: 'undefined',
-                    detail: 'Random string ID will be generated when undefined',
                 },
             },
         },
@@ -196,7 +195,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'States as pseudo-classes of text field',
+            description: 'States as pseudo-classes of textarea',
             table: {
                 type: {
                     summary: STATES.join('|'),
@@ -236,7 +235,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets for text box. "data-" will be added at the beginning of attributes.',
+            description: 'Datasets for textarea. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',

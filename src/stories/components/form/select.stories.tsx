@@ -129,7 +129,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: '',
+            description: 'States as pseudo-classes of select',
             table: {
                 type: {
                     summary: STATES.join('|'),

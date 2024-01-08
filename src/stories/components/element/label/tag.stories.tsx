@@ -1,5 +1,5 @@
 import {
-    COLOR_TYPES,
+    COLOR_TYPES, SIZES,
     Tag,
 } from "../../../../components";
 import {deIndent} from '../../../../utils';
@@ -9,17 +9,18 @@ export default {
     component: Tag,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Tag Element in Tag Group',
+        componentSubtitle: 'Tag element in Tag Group',
         docs: {
             description: {
-                component: "This component put \"Tag\".<br>In Bulma doc: https://bulma.io/documentation/elements/tag/",
+                component: 'This component renders tag.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/tag/',
             },
         },
     },
     argTypes: {
         children: {
             control: 'text',
-            description: 'Tag label',
+            description: 'Label for tag',
             table: {
                 type: {
                     summary: 'ReactNode',
@@ -58,6 +59,14 @@ export default {
             action: 'function',
             description: 'Click event when tag is clicked',
             if: {arg: 'useAnchor', eq: true},
+            table: {
+                type: {
+                    summary: '(e: React.MouseEvent<HTMLElement>) => void',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
         },
         hasCombination: {
             control: 'boolean',
@@ -79,17 +88,19 @@ export default {
                 type: {
                     summary: 'TagCombinationProps',
                     detail: deIndent(`
-                            onClick?: (e: React.MouseEvent) => void,
-                            classes?: string[],
-                            attributes?: HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>,
-                            datasets?: CommonDataSet,
+                            {
+                                onClick?: (e: React.MouseEvent) => void,
+                                classes?: string[],
+                                attributes?: HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>,
+                                datasets?: CommonDataSet,
+                            }
                         `),
                 },
             },
         },
-        color: {
+        colorType: {
             control: 'select',
-            description: 'Color of tag',
+            description: 'Color type of tag',
             options: (['default']).concat(COLOR_TYPES),
             mapping: {
                 Default: '',
@@ -105,7 +116,7 @@ export default {
         },
         isLightColor: {
             control: 'boolean',
-            description: 'Make color more light',
+            description: 'Use lighter color type of tag',
             table: {
                 type: {
                     summary: 'boolean',
@@ -116,11 +127,15 @@ export default {
             },
         },
         size: {
-            control: {type: 'range', min: 1, max: 6, step: 1},
+            control: 'select',
+            options: ['default'].concat(SIZES),
+            mapping: {
+                Default: '',
+            },
             description: 'Size of tag',
             table: {
                 type: {
-                    summary: 'number',
+                    summary: SIZES.join('|'),
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -129,7 +144,7 @@ export default {
         },
         isRounded: {
             control: 'boolean',
-            description: 'Tag has rounded corners',
+            description: 'Use rounded corners',
             table: {
                 type: {
                     summary: 'boolean',
@@ -141,7 +156,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes for tag',
             table: {
                 type: {
                     summary: 'string[]',
@@ -153,7 +168,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes for tag',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLSpanElement | HTMLAnchorElement>',
@@ -169,7 +184,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for tag. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -189,92 +204,75 @@ export default {
         },
     },
 };
+/**
+ * Default tag
+ */
 export const Default = {
     render: (args: any) => <Tag {...args}>Example</Tag>
 };
-export const Primary = {
+/**
+ * Tag with color style
+ */
+export const WithColorStyle = {
     ...Default,
     args: {
         color: 'primary',
+        isLightColor: undefined,
     },
 };
-export const Link = {
-    ...Default,
-    args: {
-        color: 'link',
-    },
-};
-export const Info = {
-    ...Default,
-    args: {
-        color: 'info',
-    },
-};
-export const Success = {
-    ...Default,
-    args: {
-        color: 'success',
-    },
-};
-export const Warning = {
-    ...Default,
-    args: {
-        color: 'warning',
-    },
-};
-export const Danger = {
-    ...Default,
-    args: {
-        color: 'danger',
-    },
-};
-export const PrimaryLight = {
-    ...Default,
-    args: {
-        color: 'primary',
-        isLightColor: true,
-    },
-};
+/**
+ * Tag with rounded corners
+ */
 export const IsRounded = {
     ...Default,
     args: {
         isRounded: true,
     },
 };
-export const Small = {
+/**
+ * Tag with size
+ */
+export const ElementSize = {
     ...Default,
     args: {
         size: 'small',
     },
 };
-export const Normal = {
-    ...Default,
-    args: {
-        size: 'normal',
-    },
-};
-export const Medium = {
-    ...Default,
-    args: {
-        size: 'medium',
-    },
-};
-export const Large = {
-    ...Default,
-    args: {
-        size: 'large',
-    },
-};
+/**
+ * Tag with combination
+ */
 export const HasCombination = {
     ...Default,
     args: {
         hasCombination: true,
     },
 };
-export const LargeHasCombination = {
+/**
+ * Tag with style classes
+ */
+export const WithClasses = {
     ...Default,
     args: {
-        size: 'large',
-        hasCombination: true,
+        classes: ['test-class'],
+    },
+};
+/**
+ * Tag with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {'aria-label': 'Tag'},
+    },
+};
+/**
+ * Tag with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'tag-id']
+        ]),
     },
 };

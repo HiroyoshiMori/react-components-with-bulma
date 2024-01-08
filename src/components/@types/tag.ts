@@ -17,7 +17,7 @@ export type TagCombinationProps = {
 } & CommonStyleClasses;
 /** Type definition for property of tag */
 export type TagProps = {
-    color?: ColorTypes;
+    colorType?: ColorTypes;
     isLightColor: boolean;
     size?: SizeTypes;
     isRounded?: boolean;

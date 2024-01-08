@@ -13,7 +13,8 @@ export default {
         componentSubtitle: 'Image Element',
         docs: {
             description: {
-                component: "This component put \"Image\" element.",
+                component: 'This component renders Image element.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/image/',
             },
         },
     },
@@ -45,7 +46,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Size of image',
+            description: 'Size/ratio of image',
             table: {
                 type: {
                     summary: IMAGE_SIZES.join('|'),
@@ -57,7 +58,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for image',
             table: {
                 type: {
                     summary: 'ImageClasses',
@@ -75,7 +76,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for image',
             table: {
                 type: {
                     summary: 'ImageAttributes',
@@ -93,7 +94,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Dataset for image. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'ImageDatasets',

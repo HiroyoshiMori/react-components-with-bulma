@@ -10,7 +10,8 @@ export default {
         componentSubtitle: 'Checkbox Element',
         docs: {
             description: {
-                component: "This component shows checkbox for form.<br>In Bulma doc: https://bulma.io/documentation/form/checkbox/",
+                component: 'This component renders checkbox.<br />'
+                    + 'In Bulma doc: https://bulma.io/documentation/form/checkbox/',
             },
         },
     },
@@ -39,7 +40,7 @@ export default {
         },
         value: {
             control: 'text',
-            description: 'Value for checkbox. When undefined, key will be used instead.',
+            description: 'Value for checkbox. When undefined, id will be used instead.',
             table: {
                 type: {
                     summary: 'boolean | string | number',
@@ -154,7 +155,7 @@ export default {
                 },
             },
         },
-    }
+    },
 };
 /**
  * Default checkbox
@@ -308,6 +309,6 @@ export const WithDatasets = {
             input: new Map([
                 ['id', 'radio-input'], ['name', 'Checkbox Input']
             ]),
-        }
+        },
     },
 };

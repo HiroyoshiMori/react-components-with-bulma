@@ -10,14 +10,15 @@ export default {
         componentSubtitle: 'Tags Group',
         docs: {
             description: {
-                component: "This component put several \"Tag\"s.<br>In Bulma doc: https://bulma.io/documentation/elements/tag/",
+                component: 'This component renders several tags.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/tag/',
             },
         },
     },
     argTypes: {
         tags: {
             control: 'object',
-            description: 'Tag information',
+            description: 'Tag items in tag group',
             table: {
                 type: {
                     summary: 'TagProps[]',
@@ -27,7 +28,7 @@ export default {
         },
         hasAddons: {
             control: 'boolean',
-            description: 'has "has-addon" class',
+            description: 'Attach tags together',
             table: {
                 type: {
                     summary: 'boolean',
@@ -39,7 +40,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes for tags',
             table: {
                 type: {
                     summary: 'string[]',
@@ -51,7 +52,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes for tags',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -66,7 +67,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for tags. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -86,6 +87,9 @@ export default {
         },
     },
 };
+/**
+ * Default tag group
+ */
 export const Default = {
     render: (args: any) => <Tags
         tags={[
@@ -98,6 +102,9 @@ export const Default = {
         {...args}
     />
 };
+/**
+ * Tags attached together
+ */
 export const HasAddons = {
     ...Default,
     args: {
@@ -108,6 +115,9 @@ export const HasAddons = {
         hasAddons: true,
     },
 };
+/**
+ * Tags with close button
+ */
 export const HasAddonsClose = {
     ...Default,
     args: {
@@ -122,13 +132,19 @@ export const HasAddonsClose = {
         hasAddons: true,
     },
 };
-export const HasAttributes = {
+/**
+ * Tags with additional attributes
+ */
+export const WithAttributes = {
     ...Default,
     args: {
         attributes: {'aria-label': 'tags'},
     },
 };
-export const HasDatasets = {
+/**
+ * Tags with datasets
+ */
+export const WithDatasets = {
     ...Default,
     args: {
         datasets: new Map([
@@ -136,7 +152,10 @@ export const HasDatasets = {
         ]),
     },
 };
-export const Attributes = {
+/**
+ * Tags with more additional attributes
+ */
+export const WithItemAttributes = {
     ...Default,
     args: {
         classes: ['tags-tags'],
@@ -160,7 +179,10 @@ export const Attributes = {
         ],
     },
 };
-export const Datasets = {
+/**
+ * Tags with more datasets
+ */
+export const WithItemDatasets = {
     ...Default,
     args: {
         datasets: new Map([

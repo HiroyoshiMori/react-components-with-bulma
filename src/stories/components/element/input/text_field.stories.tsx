@@ -16,14 +16,15 @@ export default {
         componentSubtitle: 'Text Field Element',
         docs: {
             description: {
-                component: "This component shows text field for form.<br>In Bulma doc: https://bulma.io/documentation/form/input/",
+                component: 'This component renders text field.<br>'
+                        + 'In Bulma doc: https://bulma.io/documentation/form/input/',
             },
         },
     },
     argTypes: {
         name: {
             control: 'text',
-            description: 'Field name',
+            description: 'Element name',
             table: {
                 type: {
                     summary: 'string',
@@ -32,14 +33,13 @@ export default {
         },
         id: {
             control: 'text',
-            description: 'Field ID',
+            description: 'Element ID',
             table: {
                 type: {
                     summary: 'string',
                 },
                 defaultValue: {
                     summary: 'undefined',
-                    detail: 'Random string ID will be generated when undefined.',
                 },
             },
         },
@@ -139,7 +139,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for text field',
             table: {
                 type: {
                     summary: 'string[]',
@@ -151,7 +151,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for text field',
             table: {
                 type: {
                     summary: 'InputHTMLAttributes<HTMLInputElement>',
@@ -167,7 +167,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets for text box. "data-" will be added at the beginning of attributes.',
+            description: 'Datasets for text field. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -235,48 +235,6 @@ export const ElementSize = {
     }
 };
 /**
- * Default text box with style classes
- */
-export const DefaultWithClasses = {
-    ...Default,
-    args: {
-        classes: ['has-background-primary', 'p-1']
-    }
-};
-/**
- * Text box with color type and style classes
- */
-export const ColortypeWithClasses = {
-    ...WithColorType,
-    args: {
-        value: 'Color will be Info',
-        colorType: 'primary',
-        classes: ['is-info']
-    },
-};
-/**
- * Text box with additional attributes
- */
-export const WithAttribute = {
-    ...Default,
-    args: {
-        attributes: {
-            'aria-label': 'Text Box',
-        },
-    },
-};
-/**
- * Text box with datasets
- */
-export const WithDatasets = {
-    ...Default,
-    args: {
-        datasets: new Map([
-            ['id', 'text-box-with-id'], ['name', 'Text Box']
-        ]),
-    },
-};
-/**
  * Text box with type=password
  */
 export const Password = {
@@ -328,5 +286,47 @@ export const Url = {
     ...Default,
     args: {
         fieldType: 'url',
+    },
+};
+/**
+ * Default text box with style classes
+ */
+export const DefaultWithClasses = {
+    ...Default,
+    args: {
+        classes: ['has-background-primary', 'p-1']
+    }
+};
+/**
+ * Text box with color type and style classes
+ */
+export const ColorTypeWithClasses = {
+    ...WithColorType,
+    args: {
+        value: 'Color will be Info',
+        colorType: 'primary',
+        classes: ['is-info']
+    },
+};
+/**
+ * Text box with additional attributes
+ */
+export const WithAttribute = {
+    ...Default,
+    args: {
+        attributes: {
+            'aria-label': 'Text Box',
+        },
+    },
+};
+/**
+ * Text box with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'text-box-with-id'], ['name', 'Text Box']
+        ]),
     },
 };

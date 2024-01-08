@@ -11,14 +11,15 @@ export default {
         componentSubtitle: 'Select Element',
         docs: {
             description: {
-                component: "This component shows select for form.<br>In Bulma doc: https://bulma.io/documentation/form/select/",
+                component: 'This component renders select.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/form/select/',
             },
         },
     },
     argTypes: {
         name: {
             control: 'text',
-            description: 'Field name',
+            description: 'Element name',
             table: {
                 type: {
                     summary: 'string',
@@ -27,7 +28,7 @@ export default {
         },
         id: {
             control: 'text',
-            description: 'Field ID',
+            description: 'Element ID',
             table: {
                 type: {
                     summary: 'string',
@@ -124,7 +125,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: '',
+            description: 'States as pseudo-classes of select',
             table: {
                 type: {
                     summary: STATES.join('|'),
@@ -164,7 +165,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for select',
             table: {
                 type: {
                     summary: 'SelectClasses',
@@ -184,7 +185,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for select',
             table: {
                 type: {
                     summary: 'SelectAttributes',
@@ -202,7 +203,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Dataset for select. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'SelectDatasets',

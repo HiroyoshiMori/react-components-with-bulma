@@ -10,7 +10,8 @@ export default {
         componentSubtitle: 'Icons Element',
         docs: {
             description: {
-                component: "This component put \"Icon\".<br>In Bulma doc: https://bulma.io/documentation/elements/icon/",
+                component: 'This component renders Icon.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/icon/',
             },
         },
     },
@@ -31,7 +32,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for icon',
             table: {
                 type: {
                     summary: 'string[]',
@@ -43,7 +44,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Additional attributes for icon',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLSpanElement>',
@@ -58,7 +59,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for icon. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -78,12 +79,18 @@ export default {
         },
     },
 };
+/**
+ * Default icon
+ */
 export const Default = {
     render: (args: any) => <Icons
         icon={{icon: icon({name: 'check', style: 'solid'})}}
         {...args}
     />,
 };
+/**
+ * Icon with spin and rotate
+ */
 export const FontAwesomeSizeRotationSpin = {
     ...Default,
     args: {
@@ -93,5 +100,34 @@ export const FontAwesomeSizeRotationSpin = {
             rotation: 90,
             spin: true,
         },
+    },
+};
+/**
+ * Icon with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: ['test-class'],
+    },
+};
+/**
+ * Icon with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {'aria-label': 'Icon Label'},
+    },
+};
+/**
+ * Icon with Datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'icon-id'],
+        ]),
     },
 };

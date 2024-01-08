@@ -11,7 +11,7 @@ import {ArrayRegexIncludes, convertDataSet, generateId} from "../../../utils";
 export const TextField = (props: TextFieldProps) => {
     const {
         name,
-        id = generateId(),
+        id,
         type = 'text',
         value,
         onChange,

@@ -11,23 +11,24 @@ export default {
         componentSubtitle: 'Input File Element',
         docs: {
             description: {
-                component: "This component shows select for form.<br>In Bulma doc: https://bulma.io/documentation/form/file/",
+                component: 'This component shows select for form.<br>'
+                        + 'In Bulma doc: https://bulma.io/documentation/form/file/',
             },
         },
     },
     argTypes: {
         name: {
             control: 'text',
-            description: 'Field name',
+            description: 'Element name',
             table: {
                 type: {
                     summary: 'string',
                 },
             },
         },
-        label: {
+        buttonLabel: {
             control: 'text',
-            description: 'Label',
+            description: 'Button label',
             table: {
                 type: {
                     summary: 'string',
@@ -36,7 +37,7 @@ export default {
         },
         id: {
             control: 'text',
-            description: 'ID',
+            description: 'Element ID',
             table: {
                 type: {
                     summary: 'string',
@@ -48,7 +49,7 @@ export default {
         },
         icon: {
             control: 'object',
-            description: 'Icon put left side of label',
+            description: 'Icon which is rendered at left side of label',
             table: {
                 type: {
                     summary: 'FontAwesomeIconProps',
@@ -69,7 +70,7 @@ export default {
         },
         fileNameLabel: {
             control: 'text',
-            description: 'Placeholder for file name label',
+            description: 'Placeholder of label for file name',
             table: {
                 type: {
                     summary: 'string',
@@ -81,7 +82,7 @@ export default {
         },
         fileNamePositionLeft: {
             control: 'boolean',
-            description: 'Put file name at left side',
+            description: 'Put file name at left side, but it seems wrong behavior in Bulma',
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -103,7 +104,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Color type',
+            description: 'Color type of element',
             table: {
                 type: {
                     summary: COLOR_TYPES.join(' '),
@@ -119,7 +120,7 @@ export default {
             mapping: {
                 Default: '',
             },
-            description: 'Font size',
+            description: 'Size of element',
             table: {
                 type: {
                     summary: SIZES.join('|'),
@@ -144,7 +145,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for input[type=file]',
             table: {
                 type: {
                     summary: 'InputFileClasses',
@@ -167,7 +168,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for input[type=file]',
             table: {
                 type: {
                     summary: 'InputFileAttributes',
@@ -190,7 +191,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Dataset',
+            description: 'Dataset for file upload. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'InputFileDatasets',
@@ -213,20 +214,29 @@ export default {
         },
     },
 };
+/**
+ * Default file upload input
+ */
 export const Default = {
     render: (args: any) => <InputFile
         type={'file'}
         name={'Input File'}
-        label={'Choose a file...'}
+        buttonLabel={'Choose a file...'}
         {...args}
     />,
 };
+/**
+ * File upload input with file name placeholder
+ */
 export const WithFileName = {
     ...Default,
     args: {
         fileNameLabel: 'File name is here.',
     },
 };
+/**
+ * File upload input with Icon
+ */
 export const WithIcon = {
     ...Default,
     args: {
@@ -235,6 +245,9 @@ export const WithIcon = {
         },
     },
 };
+/**
+ * File upload input with boxed shape
+ */
 export const IsBoxed = {
     ...Default,
     args: {
@@ -244,6 +257,9 @@ export const IsBoxed = {
         isBoxed: true,
     },
 };
+/**
+ * File upload input with file name in boxed shape
+ */
 export const IsBoxedWithFileName = {
     ...Default,
     args: {
@@ -254,6 +270,10 @@ export const IsBoxedWithFileName = {
         fileNameLabel: 'File name is here.',
     },
 };
+/**
+ * File upload input with file name which is placed at left.<br />
+ * Due to Bulma restriction, element will be rendered at flex-end
+ */
 export const WithFileNameLeft = {
     ...Default,
     args: {
@@ -261,6 +281,9 @@ export const WithFileNameLeft = {
         fileNamePositionLeft: true,
     },
 };
+/**
+ * File upload input with expanded file name label
+ */
 export const WithFileNameExpanded = {
     ...Default,
     args: {
@@ -268,27 +291,43 @@ export const WithFileNameExpanded = {
         fileNameExpanded: true,
     },
 };
-export const ColorPrimary = {
+/**
+ * File upload input with color type
+ */
+export const WithColorType = {
     ...Default,
     args: {
         colorType: 'primary',
     },
 };
-export const SizeLarge = {
+/**
+ * File upload input with size
+ */
+export const ElementSize = {
     ...Default,
     args: {
         size: 'large',
     },
 };
-export const Alignment = {
+/**
+ * File upload input with alignment
+ */
+export const WithAlignment = {
     ...Default,
     args: {
-
+        alignment: 'left',
     },
 };
-export const WithCLasses = {
+/**
+ * File upload input with style classes
+ */
+export const WithClasses = {
     ...Default,
     args: {
+        icon: {
+            icon: icon({name: 'upload'}),
+        },
+        fileNameLabel: 'file name...',
         classes: {
             div: ['test-div'],
             label: ['test-label'],
@@ -297,6 +336,48 @@ export const WithCLasses = {
             icon: ['test-icon'],
             labelSpan: ['test-labelSpan'],
             fileNameLabel: ['test-fileNameLabel'],
+        },
+    },
+};
+/**
+ * File upload input with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    args: {
+        icon: {
+            icon: icon({name: 'upload'}),
+        },
+        fileNameLabel: 'file name...',
+        attributes: {
+            div: {'aria-label': 'file-div'},
+            label: {'aria-label': 'file-label'},
+            input: {'aria-label': 'file-input'},
+            cta: {'aria-label': 'file-cta'},
+            icon: {'aria-label': 'file-icon'},
+            labelSpan: {'aria-label': 'file-span'},
+            fileNameLabel: {'aria-label': 'file-filename'},
+        },
+    },
+};
+/**
+ * File upload input with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        icon: {
+            icon: icon({name: 'upload'}),
+        },
+        fileNameLabel: 'file name...',
+        datasets: {
+            div: new Map([['id', 'div-id']]),
+            label: new Map([['id', 'label-id']]),
+            input: new Map([['id', 'input-id']]),
+            cta: new Map([['id', 'cta-id']]),
+            icon: new Map([['id', 'icon-id']]),
+            labelSpan: new Map([['id', 'span-id']]),
+            fileNameLabel: new Map([['id', 'filename-id']]),
         },
     },
 };
