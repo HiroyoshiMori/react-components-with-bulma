@@ -6,7 +6,7 @@ import {
     STATES,
     TextFieldProps,
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet, generateId} from "../../../utils";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 export const TextField = (props: TextFieldProps) => {
     const {

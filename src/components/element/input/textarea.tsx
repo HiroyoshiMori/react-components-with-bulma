@@ -1,10 +1,11 @@
 import React, {Fragment} from "react";
 import {
-    COLOR_TYPES, HORIZONTAL_POSITIONS, SIZES, STATES,
+    COLOR_TYPES,
+    SIZES,
+    STATES,
     TextareaProps,
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet, generateId} from "../../../utils";
-import {initialize} from "../../common";
+import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
 
 export const Textarea = (props: TextareaProps) => {
     const {
