@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox, CheckboxFields} from "../../../../components";
+import {Checkbox} from "../../../../components";
 import {deIndent} from '../../../../utils';
 
 export default {

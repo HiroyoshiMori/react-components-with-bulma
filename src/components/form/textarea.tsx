@@ -23,11 +23,14 @@ export const FormTextarea = (props: FormTextareaProps) => {
         placeholder,
         maxLength,
         minLength,
-        wrap,
+        wordWrap,
         required = false,
         disabled = false,
         readOnly = false,
         noDivWrap = false,
+        colorType,
+        size,
+        state,
     } = props;
 
     // Initialize if undefined
@@ -89,10 +92,13 @@ export const FormTextarea = (props: FormTextareaProps) => {
                         placeholder={placeholder}
                         maxLength={maxLength}
                         minLength={minLength}
-                        wrap={wrap}
+                        wordWrap={wordWrap}
                         required={required}
                         disabled={disabled}
                         readOnly={readOnly}
+                        colorType={colorType}
+                        size={size}
+                        state={state}
                         classes={classes.textarea}
                         attributes={attributes.textarea}
                         datasets={datasets.textarea}

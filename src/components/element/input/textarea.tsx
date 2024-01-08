@@ -1,20 +1,22 @@
 import React, {Fragment} from "react";
 import {
+    COLOR_TYPES, HORIZONTAL_POSITIONS, SIZES, STATES,
     TextareaProps,
 } from "../../@types";
-import {convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes, convertDataSet, generateId} from "../../../utils";
+import {initialize} from "../../common";
 
 export const Textarea = (props: TextareaProps) => {
     const {
         name,
-        id,
+        id = generateId(),
         children,
         cols = 20,
         rows = 2,
         placeholder,
         maxLength,
         minLength,
-        wrap,
+        wordWrap,
         required = false,
         disabled = false,
         readOnly = false,
@@ -22,6 +24,31 @@ export const Textarea = (props: TextareaProps) => {
         attributes = {},
         datasets = new Map(),
     } = props;
+
+    // Set initial values if not already set
+    (['colorType', 'size', 'state'] as Array<keyof TextareaProps>)
+        .forEach((k: keyof TextareaProps) => {
+            if (props[k]) {
+                let pattern;
+                switch (k) {
+                    case 'colorType':
+                        pattern = COLOR_TYPES.join('|');
+                        break;
+                    case 'size':
+                        pattern = SIZES.join('|');
+                        break;
+                    case 'state':
+                        pattern = STATES.join('|');
+                        break;
+                }
+                if (pattern) {
+                    const reg = '^is-($pattern)$';
+                    if (ArrayRegexIncludes(classes, new RegExp(reg)) === -1) {
+                        classes.push('is-' + props[k]);
+                    }
+                }
+            }
+        });
 
     const datasetShown = convertDataSet(datasets);
 
@@ -35,7 +62,7 @@ export const Textarea = (props: TextareaProps) => {
                 placeholder={placeholder}
                 maxLength={maxLength}
                 minLength={minLength}
-                wrap={wrap}
+                wrap={wordWrap}
                 required={required}
                 disabled={disabled}
                 readOnly={readOnly}
