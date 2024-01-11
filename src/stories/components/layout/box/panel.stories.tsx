@@ -1,7 +1,6 @@
 import React from "react";
 import {Panel} from "../../../../components";
 import {deIndent} from "../../../../utils";
-import {withActions} from "@storybook/addon-actions/decorator";
 
 export default {
     title: 'React Component/Layout/Panel',

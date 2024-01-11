@@ -1,6 +1,5 @@
 import React, {Fragment} from "react";
 import {
-    CommonDataSet,
     ListColumnFields,
     ListClasses,
     ListAttributes,
@@ -11,7 +10,6 @@ import {
 } from '../../@types';
 import {ListHeader} from "./header";
 import {ListDetail} from "./detail";
-import {convertDataSet} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const List = (
