@@ -21,7 +21,7 @@ export const Pagination = (
         labels = {},
         link,
         position = 'centered',
-        style,
+        styleRounded,
         size,
         onClick,
     } = props;
@@ -79,7 +79,7 @@ export const Pagination = (
                 }
             }
         }
-        if (style) {
+        if (styleRounded) {
             if (!classes.wrap.includes('rounded')) {
                 classes.wrap?.push('is-rounded');
             }

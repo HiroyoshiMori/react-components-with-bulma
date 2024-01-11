@@ -9,10 +9,11 @@ export default {
     component: Dropdown,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Dropdown menu',
+        componentSubtitle: 'Interactive Dropdown menu for discoverable content',
         docs: {
             description: {
-                component: "This component shows navigation menu for content.<br>In Bulma doc: https://bulma.io/documentation/components/dropdown/",
+                component: 'This component renders dropdown menu for content.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/dropdown/',
             },
         },
     },
@@ -24,6 +25,10 @@ export default {
                 type: {
                     summary: 'string',
                 },
+                defaultValue: {
+                    summary: 'undefined',
+                    detail: 'Random string ID will be generated if undefined'
+                }
             },
         },
         trigger: {
@@ -63,7 +68,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for dropdown',
             table: {
                 type: {
                     summary: 'DropdownClasses',
@@ -85,7 +90,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for dropdown',
             table: {
                 type: {
                     summary: 'DropdownAttributes',
@@ -107,7 +112,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for dropdown. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'DropdownDatasets',
@@ -129,9 +134,11 @@ export default {
         },
     },
 };
+/**
+ * Default dropdown
+ */
 export const Default = {
     render: (args: any) => <Dropdown
-        menuId='dropdown-id'
         trigger={{
             label: 'Dropdown Button',
             awesomeIcon: {
@@ -165,4 +172,166 @@ export const Default = {
         }}
         {...args}
     />,
+};
+/**
+ * Dropdown with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        items: [
+            {
+                tag: 'a',
+                children: 'Tag A',
+                classes: ['test-tag-a'],
+            },
+            {
+                tag: 'a',
+                children: 'Tag B',
+                classes: ['test-tag-b'],
+            },
+            {
+                isDivider: true,
+                classes: ['test-divider-a'],
+            },
+            {
+                tag: 'a',
+                children: 'Tag C',
+                classes: ['test-tag-c'],
+            },
+            {
+                isDivider: true,
+                classes: ['test-divider-b'],
+            },
+            {
+                tag: 'a',
+                children: 'Tag D',
+                classes: ['test-tag-d'],
+            },
+        ],
+        classes: {
+            wrap: ['is-hoverable', 'test-wrap'],
+            trigger: ['test-trigger'],
+            menu: ['test-menu'],
+            content: ['test-content'],
+            item: ['test-item'],
+            divider: ['test-divider'],
+        }
+    },
+};
+/**
+ * Dropdown with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    args: {
+        items: [
+            {
+                tag: 'a',
+                children: 'Tag A',
+                attributes: {'aria-label': 'Tag A'},
+            },
+            {
+                tag: 'a',
+                children: 'Tag B',
+                attributes: {'aria-label': 'Tag B'},
+            },
+            {
+                isDivider: true,
+                attributes: {'aria-label': 'Divider A'},
+            },
+            {
+                tag: 'a',
+                children: 'Tag C',
+                attributes: {'aria-label': 'Tag C'},
+            },
+            {
+                isDivider: true,
+                attributes: {'aria-label': 'Divider B'},
+            },
+            {
+                tag: 'a',
+                children: 'Tag D',
+                attributes: {'aria-label': 'Tag D'},
+            },
+        ],
+        attributes: {
+            wrap: {'aria-label': 'Wrap'},
+            trigger: {'aria-label': 'Trigger'},
+            menu: {'aria-label': 'Menu'},
+            content: {'aria-label': 'Content'},
+            item: {'aria-label2': 'Item'},
+            divider: {'aria-label2': 'Divider'},
+        }
+    },
+};
+/**
+ * Dropdown with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        items: [
+            {
+                tag: 'a',
+                children: 'Tag A',
+                datasets: new Map([
+                    ['name', 'Tag A'],
+                ]),
+            },
+            {
+                tag: 'a',
+                children: 'Tag B',
+                datasets: new Map([
+                    ['name', 'Tag B'],
+                ]),
+            },
+            {
+                isDivider: true,
+                datasets: new Map([
+                    ['name', 'Divider A'],
+                ]),
+            },
+            {
+                tag: 'a',
+                children: 'Tag C',
+                datasets: new Map([
+                    ['name', 'Tag C'],
+                ]),
+            },
+            {
+                isDivider: true,
+                datasets: new Map([
+                    ['name', 'Divider B'],
+                ]),
+            },
+            {
+                tag: 'a',
+                children: 'Tag D',
+                datasets: new Map([
+                    ['name', 'Tag D'],
+                ]),
+            },
+        ],
+        datasets: {
+            wrap: new Map([
+                ['name2', 'Wrap'],
+            ]),
+            trigger: new Map([
+                ['name2', 'Trigger'],
+            ]),
+            menu: new Map([
+                ['name2', 'Menu'],
+            ]),
+            content: new Map([
+                ['name2', 'Content'],
+            ]),
+            item: new Map([
+                ['name2', 'Item'],
+            ]),
+            divider: new Map([
+                ['name2', 'Divider'],
+            ]),
+        }
+    },
 };

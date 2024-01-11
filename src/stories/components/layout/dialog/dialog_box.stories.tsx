@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dialog} from "../../../../components";
 import {deIndent} from '../../../../utils';
+import {action} from "@storybook/addon-actions";
 
 export default {
     title: 'React Component/Layout/Dialog',
@@ -10,7 +11,8 @@ export default {
         componentSubtitle: 'Dialog Box',
         docs: {
             description: {
-                component: "This component shows dialog box.<br>In Bulma doc: https://bulma.io/documentation/components/modal/",
+                component: 'This component renders dialog box.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/modal/',
             },
         },
     },
@@ -20,7 +22,7 @@ export default {
             description: 'Content of dialog box',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -29,24 +31,32 @@ export default {
         },
         isActive: {
             control: 'boolean',
-            description: 'true when dialog is active',
+            description: 'Activate Dialog',
         },
         title: {
             control: 'text',
-            description: 'Dialog title',
+            description: 'Title for dialog',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
             },
         },
         onClose: {
             action: 'function',
             description: 'Function to close dialog',
+            table: {
+                type: {
+                    summary: '(e: React.MouseEvent<HTMLElement>) => void',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
         },
         noFooter: {
             control: 'boolean',
-            description: 'true if dialog has no footer',
+            description: 'No footer',
             table: {
                 type: {
                     summary: 'boolean',
@@ -61,7 +71,7 @@ export default {
             description: 'Button label in dialog',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -70,16 +80,22 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for dialog',
             table: {
                 type: {
                     summary: 'DialogClasses',
                     detail: deIndent(`
                             {
                                 wrap?: string[],
-                                header?: string[],
+                                header?: {
+                                    wrap?: string[],
+                                    title?: string[],
+                                },
                                 content?: string[],
-                                footer?: string[],
+                                footer?: {
+                                    wrap?: string[],
+                                    button?: string[],
+                                },
                             }
                         `),
                 },
@@ -90,7 +106,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for dialog',
             table: {
                 type: {
                     summary: 'DialogAttributes',
@@ -118,7 +134,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for dialog. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'DialogDatasets',
@@ -146,15 +162,60 @@ export default {
         },
     },
 };
+/**
+ * Default dialog
+ */
 export const Default = {
     render: (args: any) => <Dialog
         isActive={true}
         title="Dialog Box"
+        onClose={action('onClose')}
         {...args}
     >
         <span>TEST</span>
     </Dialog>,
 };
+/**
+ * Dialog modified button label
+ */
+export const ButtonLabel = {
+    ...Default,
+    args: {
+        buttonLabel: 'CLOSE',
+    },
+};
+/**
+ * Dialog without footer
+ */
+export const WithoutFooter = {
+    ...Default,
+    args: {
+        noFooter: true,
+    },
+};
+/**
+ * Dialog with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: {
+            wrap: ['test-wrap'],
+            header: {
+                wrap: ['test-header-wrap'],
+                title: ['test-header-title'],
+            },
+            content: ['test-content'],
+            footer: {
+                wrap: ['test-footer-wrap'],
+                button: ['test-footer-button'],
+            },
+        },
+    },
+};
+/**
+ * Dialog with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -174,6 +235,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Dialog with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

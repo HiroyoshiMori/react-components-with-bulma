@@ -11,7 +11,7 @@ export type DropdownAttributes = {
     menu?: HTMLAttributes<HTMLDivElement>;
     content?: HTMLAttributes<HTMLDivElement>;
     item?: HTMLAttributes<HTMLDivElement> | AnchorHTMLAttributes<HTMLAnchorElement>;
-    divider?: HTMLAttributes<HTMLDivElement>;
+    divider?: HTMLAttributes<HTMLHeadingElement>;
 };
 // Type definition for datasets of dropdown
 export type DropdownDatasets = {
@@ -50,7 +50,7 @@ export type DropdownDividerProps = {
 export type DropdownContentProps = DropdownItemProps | DropdownDividerProps;
 // Type definition for property of dropdown
 export type DropdownProps = {
-    menuId: string;
+    menuId?: string;
     trigger: ButtonProps;
     items: DropdownContentProps[];
     classes?: DropdownClasses;

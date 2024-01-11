@@ -22,7 +22,7 @@ export default {
             description: 'Button label',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
             },
         },

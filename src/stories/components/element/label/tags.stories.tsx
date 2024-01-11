@@ -22,7 +22,7 @@ export default {
             table: {
                 type: {
                     summary: 'TagProps[]',
-                    detail: 'See [Tag] Document',
+                    detail: 'See: React Component/Element/Tag',
                 },
             },
         },

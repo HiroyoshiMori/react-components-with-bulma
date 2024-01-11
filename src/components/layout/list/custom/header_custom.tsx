@@ -6,31 +6,32 @@ import {
     ListRowClasses,
 } from "../../../@types";
 import {convertDataSet} from "../../../../utils";
+import {initialize} from "../../../common";
 
 export const ListHeaderCustomWith5Items = (
     props: ListHeaderProps
 ) => {
     const {
         items,
-        classes = {},
         attributes = {},
         datasets = new Map(),
     } = props;
 
-    // Initialize if undefined
-    (['wrap', 'column'] as Array<keyof ListRowClasses>)
-        .forEach((k: keyof ListRowClasses) => {
-            if (classes[k] === undefined) {
-                classes[k] = [];
+    // Initialize if undefined and set default values if not already set
+    const classes = initialize(
+        props['classes'] as ListRowClasses, [
+            'wrap', 'column'
+        ], [], (k) => {
+            let defaultValue = undefined;
+            switch (k) {
+                case 'wrap': defaultValue = 'columns'; break;
+                case 'column': defaultValue = 'column'; break;
             }
-        });
+            return defaultValue;
+        }
+    );
+
     // Set default values if not already set
-    if (classes.wrap && !classes.wrap.includes('columns')) {
-        classes.wrap.push('columns');
-    }
-    if (classes.column && !classes.column.includes('column')) {
-        classes.column.push('column');
-    }
     const datasetShown = convertDataSet(datasets as CommonDataSet);
 
     // Convert to variable easy to handle in this component
@@ -38,7 +39,8 @@ export const ListHeaderCustomWith5Items = (
         value: any;
         classes: string[];
         attributes: React.HTMLAttributes<HTMLDivElement>;
-        datasets: any; }[] = [];
+        datasets: any;
+    }[] = [];
     items && items.map((header: ListColumnFields) => {
         header.datasets = header.datasets ?? new Map();
         const columnClasses: string[] = (classes.column) ?

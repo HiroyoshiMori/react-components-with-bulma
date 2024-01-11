@@ -38,7 +38,7 @@ export type PaginationProps = {
     itemTotal: number;
     current?: number;
     labels?: PaginationLabels;
-    style?: "rounded";
+    styleRounded?: "rounded";
     position?: PositionTypes;
     size?: SizeTypes,
     classes?: PaginationClasses;

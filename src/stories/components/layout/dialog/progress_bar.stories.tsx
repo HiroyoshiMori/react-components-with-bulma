@@ -1,6 +1,7 @@
 import React from 'react';
 import {ProgressBar} from "../../../../components";
 import {deIndent} from '../../../../utils';
+import {action} from "@storybook/addon-actions";
 
 export default {
     title: 'React Component/Layout/Progress bar',
@@ -10,39 +11,40 @@ export default {
         componentSubtitle: 'Progress bar using Dialog Box',
         docs: {
             description: {
-                component: "This component shows progress bar.<br>In Bulma doc: https://bulma.io/documentation/elements/progress/",
+                component: 'This component renders progress bar.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/progress/',
             },
         },
     },
     argTypes: {
         isActive: {
             control: 'boolean',
-            description: 'true when dialog is active',
+            description: 'Activate progress bar',
         },
         title: {
             control: 'text',
-            description: 'Dialog title',
+            description: 'Title for progress bar',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
             },
         },
         value: {
             control: 'number',
-            description: 'Value of progress bar',
+            description: 'Numerator of progress bar',
         },
         max: {
             control: 'number',
-            description: 'Max value of progress bar',
+            description: 'Denominator of progress bar',
         },
         onClose: {
             action: 'function',
-            description: 'Function to close dialog',
+            description: 'Function to close progress bar',
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for progress bar',
             table: {
                 type: {
                     summary: 'ProgressBarClasses',
@@ -50,9 +52,15 @@ export default {
                             {
                                 dialog?: {
                                     wrap?: string[],
-                                    header?: string[],
+                                    header?: {
+                                        wrap?: string[],
+                                        title?: string[],
+                                    },
                                     content?: string[],
-                                    footer?: string[],
+                                    footer?: {
+                                        wrap?: string[],
+                                        button?: string[],
+                                    },
                                 },
                                 progressbar?: string[],
                             }
@@ -65,7 +73,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for progress bar',
             table: {
                 type: {
                     summary: 'DialogAttributes',
@@ -127,16 +135,45 @@ export default {
         },
     },
 };
+/**
+ * Default progress bar
+ */
 export const Default = {
     render: (args: any) => <ProgressBar
         isActive={true}
         title="Progress Bar"
         value={1}
         max={100}
-        onClose={() => {return;}}
+        onClose={action('onClose')}
         {...args}
     />,
 };
+/**
+ * Progress bar with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: {
+            dialog: {
+                wrap: ['test-dialog-wrap'],
+                header: {
+                    wrap: ['test-dialog-header-wrap'],
+                    title: ['test-dialog-header-title']
+                },
+                content: ['test-dialog-content'],
+                footer: {
+                    wrap: ['test-dialog-footer-wrap'],
+                    button: ['test-dialog-footer-button'],
+                },
+            },
+            progressbar: ['test-progressbar'],
+        }
+    },
+};
+/**
+ * Progress bar with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -159,6 +196,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Progress bar with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

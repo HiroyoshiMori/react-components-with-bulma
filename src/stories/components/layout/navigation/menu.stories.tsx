@@ -10,7 +10,8 @@ export default {
         componentSubtitle: 'Menu - Navigation',
         docs: {
             description: {
-                component: "This component shows menu.<br>In Bulma doc: https://bulma.io/documentation/components/menu/",
+                component: 'This component renders menu.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/menu/',
             },
         },
     },
@@ -36,12 +37,12 @@ export default {
                                 datasets?: MenuDatasets;
                             }
                         `),
-                }
-            }
+                },
+            },
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for menu',
             table: {
                 type: {
                     summary: 'MenuClasses',
@@ -57,11 +58,11 @@ export default {
                 defaultValue: {
                     summary: '{}',
                 },
-            }
+            },
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for menu',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLAreaElement>',
@@ -72,11 +73,11 @@ export default {
                 defaultValue: {
                     summary: '{}',
                 },
-            }
+            },
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for menu. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -92,10 +93,13 @@ export default {
                 defaultValue: {
                     summary: 'new Map()',
                 },
-            }
+            },
         },
     }
 };
+/**
+ * Default menu
+ */
 export const Default = {
     render: (args: any) => <Menu
         menus={[
@@ -112,6 +116,42 @@ export const Default = {
         {...args}
     />,
 };
+/**
+ * Menu with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        menus: [
+            {
+                label: 'Menu 1',
+                classes: {
+                    list: ['test-menu-list'],
+                    label: ['test-menu-label'],
+                },
+                list: [
+                    {
+                        content: 'Menu1-1',
+                        classes: ['test-list'],
+                        children: [{
+                            content: 'Menu1-1-1',
+                            classes: ['test-list-children'],
+                        }],
+                    },
+                ],
+            },
+        ],
+        classes: {
+            wrap: ['text-wrap'],
+            label: ['test-label'],
+            list: ['test-list'],
+            item: ['test-item']
+        },
+    },
+};
+/**
+ * Menu with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -141,20 +181,15 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Menu with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
         menus: [
             {
                 label: 'Menu 1',
-                datasets: {
-                    list: new Map([
-                        ['id', 'menu-list'], ['name', 'menu list'],
-                    ]),
-                    label: new Map([
-                        ['id', 'menu-label'], ['name', 'menu label'],
-                    ]),
-                },
                 list: [
                     {
                         content: 'Menu1-1',
@@ -169,6 +204,14 @@ export const WithDatasets = {
                         }],
                     },
                 ],
+                datasets: {
+                    list: new Map([
+                        ['id', 'menu-list'], ['name', 'menu list'],
+                    ]),
+                    label: new Map([
+                        ['id', 'menu-label'], ['name', 'menu label'],
+                    ]),
+                },
             },
         ],
         datasets: new Map([

@@ -31,7 +31,7 @@ export default {
             if: {arg: 'label', exists: false},
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',

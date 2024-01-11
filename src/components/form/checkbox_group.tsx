@@ -37,8 +37,6 @@ export const CheckboxGroup = (props: CheckboxGroupProps) => {
                             'label', 'input'
                         ], {}
                     );
-                    console.debug("v.attributes:");
-                    console.debug(v.attributes);
                     const {datasets} = initializeDatasets(
                         v['datasets'] as CheckboxDatasets, [
                             'label', 'input'

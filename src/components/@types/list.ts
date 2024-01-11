@@ -30,13 +30,16 @@ export type ListDatasets = {
 /** Type definition for classes of List */
 export type ListClasses = {
     wrap?: string[];
-    headers?: ListRowClasses;
+    header?: ListRowClasses;
     detail?: ListRowClasses;
 };
 /** Type definition for property of list detail */
 export type ListDetailProps = {
     item: ListColumnFields[];
-} & CommonStyleClasses;
+    classes?: ListRowClasses;
+    attributes?: HTMLAttributes<HTMLDivElement>;
+    datasets?: CommonDataSet;
+};
 /** Type definition for property of list header */
 export type ListHeaderProps = {
     items: ListColumnFields[];
@@ -45,16 +48,13 @@ export type ListHeaderProps = {
     datasets?: CommonDataSet;
 };
 export type ListItemProps = {
-    data: {
-        columns: ListColumnFields[],
-        attributes?: HTMLAttributes<HTMLDivElement>,
-        datasets?: CommonDataSet,
-    }[],
-    type?: string,
+    columns: ListColumnFields[],
+    attributes?: HTMLAttributes<HTMLDivElement>,
+    datasets?: CommonDataSet,
 };
 /** Type definition for property of list */
 export type ListProps = {
-    items: ListItemProps;
+    items: ListItemProps[];
     headers?: ListColumnFields[];
     itemElement?: React.ElementType<ListDetailProps>;
     headerElement?: React.ElementType<ListHeaderProps>;

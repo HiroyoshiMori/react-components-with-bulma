@@ -25,7 +25,7 @@ export type NotificationsClasses = {
 };
 /** Type definitions for property of notifications */
 export type NotificationsProps = {
-    color?: ColorTypes,
+    colorType?: ColorTypes,
     isLightColor?: boolean,
     classes?: NotificationsClasses;
     attributes?: NotificationsAttributes;

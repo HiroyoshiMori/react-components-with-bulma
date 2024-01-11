@@ -10,30 +10,31 @@ export default {
         componentSubtitle: 'Notifications Box',
         docs: {
             description: {
-                component: "This component shows notification box.<br>In Bulma doc: https://bulma.io/documentation/elements/notification/",
+                component: 'This component renders notification box.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/notification/',
             },
         },
     },
     argTypes: {
         children: {
             control: 'text',
-            description: 'Notification message',
+            description: 'Message in notification box',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',
                 },
             },
         },
-        color: {
+        colorType: {
             control: 'select',
             options: (['default']).concat(COLOR_TYPES),
             mapping: {
                 Default: '',
             },
-            description: 'Color of notification box',
+            description: 'Color type of notification box',
             table: {
                 type: {
                     summary: COLOR_TYPES.join('|'),
@@ -54,7 +55,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes for radio',
+            description: 'Style classes for notification box',
             table: {
                 type: {
                     summary: 'NotificationsClasses',
@@ -72,7 +73,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes for radio',
+            description: 'Additional attributes for notification box',
             table: {
                 type: {
                     summary: 'NotificationsAttributes',
@@ -90,7 +91,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Dataset for radio',
+            description: 'Datasets for notification box. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'NotificationsDatasets',
@@ -108,84 +109,59 @@ export default {
         },
     },
 };
+/**
+ * Default notification box
+ */
 export const Default = {
     render: (args: any) => <Notifications {...args}>Notification</Notifications>,
 };
-export const Primary = {
+/**
+ * Notification box with color type
+ */
+export const WithColorType = {
     ...Default,
     args: {
-        color: 'primary',
+        colorType: 'primary',
+        isLightColor: undefined,
     },
 };
-export const Link = {
+/**
+ * Notification box with style classes
+ */
+export const WithClasses = {
     ...Default,
     args: {
-        color: 'link',
+        classes: {
+            wrap: ['test-wrap'],
+            button: ['test-button'],
+        },
     },
 };
-export const Info = {
+/**
+ * Notification box with additional attributes
+ */
+export const WithAttributes = {
     ...Default,
     args: {
-        color: 'info',
+        attributes: {
+            wrap: {'aria-label': 'Notification Wrap'},
+            button: {'aria-label': 'Notification Button'},
+        },
     },
 };
-export const Success = {
+/**
+ * Notification box with datasets
+ */
+export const WithDatasets = {
     ...Default,
     args: {
-        color: 'success',
-    },
-};
-export const Warning = {
-    ...Default,
-    args: {
-        color: 'warning',
-    },
-};
-export const Danger = {
-    ...Default,
-    args: {
-        color: 'danger',
-    },
-};
-export const LightPrimary = {
-    ...Default,
-    args: {
-        color: 'primary',
-        isLightColor: true,
-    },
-};
-export const LightLink = {
-    ...Default,
-    args: {
-        color: 'link',
-        isLightColor: true,
-    },
-};
-export const LightInfo = {
-    ...Default,
-    args: {
-        color: 'info',
-        isLightColor: true,
-    },
-};
-export const LightSuccess = {
-    ...Default,
-    args: {
-        color: 'success',
-        isLightColor: true,
-    },
-};
-export const LightWarning = {
-    ...Default,
-    args: {
-        color: 'warning',
-        isLightColor: true,
-    },
-};
-export const LightDanger = {
-    ...Default,
-    args: {
-        color: 'danger',
-        isLightColor: true,
+        datasets: {
+            wrap: new Map([
+                ['id', 'notification-wrap'],
+            ]),
+            button: new Map([
+                ['id', 'notification-button'],
+            ]),
+        },
     },
 };

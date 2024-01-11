@@ -7,8 +7,8 @@ import {
     DialogDatasets,
 } from "../../@types";
 import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
-import {Header} from "./header";
-import {Footer} from "./footer";
+import {DialogHeader} from "./header";
+import {DialogFooter} from "./footer";
 import {initialize} from "../../common";
 
 export const Dialog = (props: DialogBoxProps) => {
@@ -111,7 +111,7 @@ export const Dialog = (props: DialogBoxProps) => {
                     {...attributes.card}
                     {...datasetShown.card}
                 >
-                    <Header
+                    <DialogHeader
                         title={title}
                         onClose={onClose}
                         classes={classes.header}
@@ -127,7 +127,7 @@ export const Dialog = (props: DialogBoxProps) => {
                     </section>
                     {
                         !noFooter && (
-                            <Footer
+                            <DialogFooter
                                 buttonLabel={buttonLabel ?? 'OK'}
                                 onClose={onClose}
                                 classes={classes.footer}

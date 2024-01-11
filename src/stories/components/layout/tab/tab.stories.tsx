@@ -13,14 +13,15 @@ export default {
         componentSubtitle: 'Tabs - Navigation',
         docs: {
             description: {
-                component: "This component shows tabs.<br>In Bulma doc: https://bulma.io/documentation/components/tabs/",
+                component: 'This component renders tabs.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/tabs/',
             },
         },
     },
     argTypes: {
         items: {
             control: 'object',
-            description: 'Tab Item',
+            description: 'Items in tab',
             table: {
                 type: {
                     summary: 'TabItemFields[]',
@@ -50,7 +51,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for tab',
             table: {
                 type: {
                     summary: 'TabsClasses',
@@ -68,7 +69,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for tab',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -84,7 +85,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for tab. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -103,7 +104,10 @@ export default {
             },
         },
     },
-}
+};
+/**
+ * Default tab
+ */
 export const Default = {
     render: (args: any) => <Tab
         items={[
@@ -116,19 +120,28 @@ export const Default = {
         {...args}
     />,
 };
-export const Left = {
+/**
+ * Tab positioned left
+ */
+export const PositionLeft = {
     ...Default,
     args: {
         position: 'left',
     },
 };
-export const Right = {
+/**
+ * Tab positioned right
+ */
+export const PositionRight = {
     ...Default,
     args: {
         position: 'right',
     },
 };
-export const Icons = {
+/**
+ * Tab with icons
+ */
+export const WithIcons = {
     ...Default,
     args: {
         items: [
@@ -167,6 +180,21 @@ export const Icons = {
         ],
     },
 };
+/**
+ * Tab with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: {
+            wrap: ['test-wrap'],
+            item: ['test-item'],
+        },
+    },
+};
+/**
+ * Tab with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -194,6 +222,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Tab with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

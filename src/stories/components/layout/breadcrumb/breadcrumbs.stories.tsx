@@ -12,8 +12,8 @@ export default {
         componentSubtitle: 'Breadcrumb to improve navigation experience',
         docs: {
             description: {
-                component: 'This component shows breadcumbs to let users know where they are now.<br>'
-                    + 'See: https://en.wikipedia.org/wiki/Breadcrumb_navigation<br>'
+                component: 'This component renders breadcumbs to let users know where they are now.<br />'
+                    + 'See: https://en.wikipedia.org/wiki/Breadcrumb_navigation<br />'
                     + 'In Bulma doc: https://bulma.io/documentation/components/breadcrumb/',
             },
         },
@@ -46,7 +46,7 @@ export default {
             mapping: {
                 Left: "",
             },
-            description: 'Where to show breadcrumb',
+            description: 'Where breadcrumb rendered',
             table: {
                 type: {
                     summary: HORIZONTAL_POSITIONS.join('|'),
@@ -90,7 +90,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style Classes to apply',
+            description: 'Style classes for breadcrumb',
             table: {
                 type: {
                     summary: 'string[]',
@@ -102,7 +102,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'attributes to add extra. ',
+            description: 'Additional attributes for breadcrumb',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -117,7 +117,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'datasets which start with data-.',
+            description: 'Datasets for breadcrumb. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -137,6 +137,9 @@ export default {
         },
     },
 };
+/**
+ * Default breadcrumb
+ */
 export const Default = {
     render: (args: any) => <Breadcrumbs
         items={[
@@ -150,66 +153,45 @@ export const Default = {
         {...args}
     />,
 };
-export const Left = {
+/**
+ * Breadcrumb with position left
+ */
+export const WithPositionLeft = {
     ...Default,
     args: {
         position: 'left',
     },
 };
-export const Right = {
+/**
+ * Breadcrumb with position right
+ */
+export const WithPositionRight = {
     ...Default,
     args: {
         position: 'right',
     },
 };
-export const Arrow = {
+/**
+ * Breadcrumb with separator
+ */
+export const WithSeparator = {
     ...Default,
     args: {
         separator: 'arrow',
     },
 };
-export const Bullet = {
-    ...Default,
-    args: {
-        separator: 'bullet',
-    },
-};
-export const Dot = {
-    ...Default,
-    args: {
-        separator: 'dot',
-    },
-};
-export const Succeeds = {
-    ...Default,
-    args: {
-        separator: 'succeeds',
-    },
-};
-export const Small = {
+/**
+ * Breadcrumb with Size
+ */
+export const ElementSize = {
     ...Default,
     args: {
         size: 'small',
     },
 };
-export const Normal = {
-    ...Default,
-    args: {
-        size: 'normal',
-    },
-};
-export const Medium = {
-    ...Default,
-    args: {
-        size: 'medium',
-    },
-};
-export const Large = {
-    ...Default,
-    args: {
-        size: 'large',
-    },
-};
+/**
+ * Breadcrumb with icon
+ */
 export const WithIcons = {
     ...Default,
     args: {
@@ -221,6 +203,21 @@ export const WithIcons = {
         ]
     },
 };
+/**
+ * Breadcrumb with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: {
+            wrap: ['test-wrap'],
+            item: ['test-item'],
+        },
+    },
+};
+/**
+ * Breadcrumb with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -237,6 +234,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Breadcrumb with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

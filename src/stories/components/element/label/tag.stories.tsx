@@ -23,7 +23,7 @@ export default {
             description: 'Label for tag',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',

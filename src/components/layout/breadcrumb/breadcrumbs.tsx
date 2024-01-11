@@ -47,14 +47,14 @@ export const Breadcrumbs = (props: BreadcrumbProps) => {
                     case 'separator':
                         pattern = SEPARATORS.join('|');
                         reg = `^has-(${pattern})-separator$`;
-                        if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
+                        if (props[k] && ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                             classes.wrap?.push('has-' + props[k] + '-separator');
                         }
                         break;
                     case 'size':
                         pattern = SIZES.join('|');
                         reg = `^is-(${pattern})$`;
-                        if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
+                        if (props[k] && ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
                             classes.wrap?.push('is-' + props[k]);
                         }
                         break;

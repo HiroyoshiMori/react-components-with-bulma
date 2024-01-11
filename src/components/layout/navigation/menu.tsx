@@ -45,11 +45,13 @@ export const Menu = (
         // Initialize if undefined
         item.attributes = item.attributes ?? {};
         item.datasets = item.datasets ?? new Map();
+        const itemClasses = classes.item
+            ? classes.item.concat(item.classes ?? []) : (item.classes ?? []);
         const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);
         return (
             <Fragment>
                 <li
-                    className={classes.item?.join(' ')}
+                    className={itemClasses.join(' ')}
                     {...item.attributes}
                     {...itemDatasetShown}
                 >
@@ -110,19 +112,27 @@ export const Menu = (
                                     {item.label}
                                 </p>
                                 {
-                                    item.list && item.list.length > 0 && (
-                                        <Fragment>
-                                            <ul className={classes.list?.join(' ')} {...item.attributes?.list}>
-                                                {
-                                                    item.list.map((listItem: MenuItemFields, i: number) => (
-                                                        <Fragment key={"menu-item-" + i}>
-                                                            {renderListItem(listItem)}
-                                                        </Fragment>
-                                                    ))
-                                                }
-                                            </ul>
-                                        </Fragment>
-                                    )
+                                    item.list && item.list.length > 0 && function() {
+                                        item.datasets.list = item.datasets?.list ?? new Map();
+                                        const itemDatasetShown = convertDataSet(item.datasets.list as CommonDataSet);
+                                        return (
+                                            <Fragment>
+                                                <ul
+                                                    className={classes.list?.join(' ')}
+                                                    {...item.attributes?.list}
+                                                    {...itemDatasetShown}
+                                                >
+                                                    {
+                                                        item.list.map((listItem: MenuItemFields, i: number) => (
+                                                            <Fragment key={"menu-item-" + i}>
+                                                                {renderListItem(listItem)}
+                                                            </Fragment>
+                                                        ))
+                                                    }
+                                                </ul>
+                                            </Fragment>
+                                        );
+                                    }()
                                 }
                             </Fragment>
                         );

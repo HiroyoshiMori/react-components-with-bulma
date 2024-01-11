@@ -8,7 +8,7 @@ import {
 import {Button} from "../../element";
 import {initialize, initializeDatasets} from "../../common";
 
-export const Header = (props: DialogHeaderProps) => {
+export const DialogHeader = (props: DialogHeaderProps) => {
     const {
         title,
         onClose,
@@ -61,8 +61,9 @@ export const Header = (props: DialogHeaderProps) => {
                 </div>
                 <Button
                     label=""
-                    classes={["delete"]}
                     onClick={onClose}
+                    noDefaultClasses={true}
+                    classes={["delete"]}
                     attributes={attributes.button}
                     datasets={datasets.button}
                 />

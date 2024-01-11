@@ -7,10 +7,11 @@ export default {
     component: Card,
     tags: ['autodocs'],
     parameters: {
-        componentSubtitle: 'Card Box',
+        componentSubtitle: 'All-around flexible and composable Card box',
         docs: {
             description: {
-                component: "This component shows composable card box.<br>In Bulma doc: https://bulma.io/documentation/components/card/",
+                component: 'This component renders composable card box.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/card/',
             },
         },
     },
@@ -142,7 +143,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes for card',
+            description: 'Style classes for card box',
             table: {
                 type: {
                     summary: "string[]",
@@ -154,7 +155,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for card box',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -169,7 +170,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for card box. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -189,6 +190,9 @@ export default {
         },
     },
 };
+/**
+ * Default card box
+ */
 export const Default = {
     render: (args: any) => <Card
         header={{
@@ -211,7 +215,10 @@ export const Default = {
         {...args}
     />,
 };
-export const ClassesInFooter = {
+/**
+ * Card box with is-active in footer
+ */
+export const IsActiveInFooter = {
     ...Default,
     args: {
         footer: {
@@ -224,6 +231,9 @@ export const ClassesInFooter = {
         },
     },
 };
+/**
+ * Card box with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -268,6 +278,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Card box with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

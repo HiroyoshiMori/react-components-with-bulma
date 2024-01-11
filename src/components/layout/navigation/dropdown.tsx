@@ -1,6 +1,6 @@
 import React, {
     AnchorHTMLAttributes,
-    Fragment,
+    Fragment, HTMLAttributes,
 } from "react";
 import {
     DropdownAttributes,
@@ -10,13 +10,13 @@ import {
     DropdownItemProps,
     DropdownProps,
 } from "../../@types";
-import {convertDataSet} from "../../../utils";
+import {convertDataSet, generateId} from "../../../utils";
 import {Button} from "../../element";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Dropdown = (props: DropdownProps) => {
     const {
-        menuId,
+        menuId = generateId(),
         trigger,
         items,
     } = {...props};
@@ -27,7 +27,7 @@ export const Dropdown = (props: DropdownProps) => {
             'wrap', 'trigger', 'menu', 'content', 'item', 'divider'
         ], {}
     );
-    const {datasetShown} = initializeDatasets(
+    const {datasets, datasetShown} = initializeDatasets(
         props['datasets'] as DropdownDatasets, [
             'wrap', 'trigger', 'menu', 'content', 'item', 'divider'
         ], new Map()
@@ -44,8 +44,6 @@ export const Dropdown = (props: DropdownProps) => {
                 case 'trigger': defaultValue = 'dropdown-trigger'; break;
                 case 'menu': defaultValue = 'dropdown-menu'; break;
                 case 'content': defaultValue = 'dropdown-content'; break;
-                case 'item': defaultValue = 'dropdown-item'; break;
-                case 'divider': defaultValue = 'dropdown-divider'; break;
             }
             return defaultValue;
         }
@@ -96,10 +94,31 @@ export const Dropdown = (props: DropdownProps) => {
                     >
                         {
                             items && items.length > 0 && items.map((item: DropdownContentProps, idx: number) => {
+                                const itemClasses = Object.hasOwn(item, 'isDivider')
+                                    ? classes.divider ? classes.divider.concat(item.classes ?? []) : (item.classes ?? [])
+                                    : classes.item ? classes.item.concat(item.classes ?? []) : (item.classes ?? []);
+                                item.attributes = item.attributes ?? {};
+                                item.datasets = item.datasets ?? new Map();
+                                if (Object.hasOwn(item, 'isDivider')) {
+                                    item.attributes = attributes.divider
+                                        ? {...attributes.divider, ...item.attributes as HTMLAttributes<HTMLHeadingElement>} : item.attributes as HTMLAttributes<HTMLHeadingElement>;
+                                    item.datasets = datasets.divider
+                                        ? new Map([...datasets.divider, ...item.datasets]) : item.datasets;
+                                } else {
+                                    // @ts-ignore
+                                    item.attributes = attributes.item
+                                        ? {
+                                            ...attributes.item,
+                                            ...(item.attributes as HTMLAttributes<HTMLDivElement> | AnchorHTMLAttributes<HTMLAnchorElement>)
+                                        } : (item.attributes as HTMLAttributes<HTMLDivElement> | AnchorHTMLAttributes<HTMLAnchorElement>);
+                                    item.datasets = datasets.item
+                                        ? new Map([...datasets.item, ...item.datasets]) : item.datasets;
+                                }
                                 return (
                                     <DropdownItem
                                         key={idx}
                                         {...item}
+                                        classes={itemClasses}
                                     />
                                 )
                             })

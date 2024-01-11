@@ -69,22 +69,21 @@ export const Table = (props: TableProps) => {
         classes.container?.push('table-container');
     }
 
+    const Tag = inTableContainer ? 'div' : Fragment;
+
     return (
         <Fragment>
             {
-                inTableContainer ? (
-                    <div
-                        className={classes.container?.join(' ')}
-                    >
-                        {renderTable(
-                            body, headers, footers, caption, colgroup,
-                            classes, attributes, datasetShown
-                        )}
-                    </div>
-                ) : (renderTable(
-                    body, headers, footers, caption, colgroup,
-                    classes, attributes, datasetShown
-                ))
+                <Tag
+                    className={classes.container?.join(' ')}
+                    {...attributes.container}
+                    {...datasetShown.container}
+                >
+                    {renderTable(
+                        body, headers, footers, caption, colgroup,
+                        classes, attributes, datasetShown
+                    )}
+                </Tag>
             }
         </Fragment>
     );

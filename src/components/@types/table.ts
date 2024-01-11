@@ -47,7 +47,7 @@ export type TableCellProps = {
     colSpan?: number;
     rowSpan?: number;
     isHeaderCell?: boolean;
-    attributes?: HTMLAttributes<HTMLTableDataCellElement | HTMLTableHeaderCellElement>;
+    attributes?: HTMLAttributes<HTMLTableCellElement>;
     datasets?: CommonDataSet;
 } & CommonStyleClasses;
 /** Type definition for property of table caption */

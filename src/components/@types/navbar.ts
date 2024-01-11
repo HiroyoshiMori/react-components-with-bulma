@@ -52,7 +52,7 @@ export type NavbarItemFields = {
 /** Type definition for property of navbar */
 export type NavbarProps = {
     ariaLabel: string;
-    menuId: string;
+    menuId?: string;
     menus: {
         start?: NavbarItemFields[],
         end?: NavbarItemFields[],

@@ -43,21 +43,6 @@ export const List = (
         ], []
     );
 
-    // Set default values if not already set
-    if (classes.headers === undefined) {
-        classes.headers = {};
-    }
-    if (classes.detail === undefined) {
-        classes.detail = {
-            wrap: [],
-            column: [],
-        };
-    }
-    // Set default values if not already set
-    if (classes.detail.wrap && !classes.detail.wrap.includes('columns')) {
-        classes.detail.wrap.push('columns');
-    }
-
     let ListHeaderTag: React.ElementType<ListHeaderProps> = ListHeader;
     if (headerElement !== undefined) {
         ListHeaderTag = headerElement;
@@ -72,33 +57,25 @@ export const List = (
             >
                 <ListHeaderTag
                     items={headers}
-                    classes={classes.headers}
+                    classes={classes.header}
                     attributes={attributes?.header}
                     datasets={datasets.header}
                 />
                 {
-                    items.data.length > 0
-                    && (items.type === undefined || items.type === '' || items.type === 'default')
-                    && items.data.map((item, idx: number) => {
+                    items.length > 0
+                    && items.map((item, idx: number) => {
                         let ListDetailTag: React.ElementType<ListDetailProps> = ListDetail;
                         if (itemElement !== undefined) {
                             ListDetailTag = itemElement;
                         }
-                        item.attributes = item.attributes ?? {};
-                        item.datasets = item.datasets ?? new Map();
-                        const itemDatasetShown = convertDataSet(item.datasets as CommonDataSet);
                         return (
                             <Fragment key={idx}>
-                                <div
-                                    className={classes.detail?.wrap?.join(' ')}
-                                    {...item.attributes}
-                                    {...itemDatasetShown}
-                                >
-                                    <ListDetailTag
-                                        item={item.columns as ListColumnFields[]}
-                                        classes={classes?.detail?.column}
-                                    />
-                                </div>
+                                <ListDetailTag
+                                    item={item.columns as ListColumnFields[]}
+                                    classes={classes.detail}
+                                    attributes={item.attributes}
+                                    datasets={item.datasets}
+                                />
                             </Fragment>
                         );
                     })

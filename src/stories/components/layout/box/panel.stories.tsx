@@ -11,13 +11,10 @@ export default {
         componentSubtitle: 'Composable Panel',
         docs: {
             description: {
-                component: "This component shows a composable panel.<br>In Bulma doc: https://bulma.io/documentation/components/panel/",
+                component: 'This component renders a composable panel.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/panel/',
             },
         },
-        actions: {
-            handles: ['onClick', '.panel-block'],
-        },
-        decorators: [withActions],
     },
     argTypes: {
         header: {
@@ -74,7 +71,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for panel',
             table: {
                 type: {
                     summary: 'string[]',
@@ -86,7 +83,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for panel',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -101,7 +98,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for panel. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -121,6 +118,9 @@ export default {
         },
     }
 };
+/**
+ * Default panel
+ */
 export const Default = {
     render: (args: any) => <Panel
         header={{
@@ -142,6 +142,9 @@ export const Default = {
         {...args}
     />,
 };
+/**
+ * Panel with style classes
+ */
 export const WithClasses = {
     ...Default,
     args: {
@@ -165,6 +168,9 @@ export const WithClasses = {
         ],
     },
 };
+/**
+ * Panel with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -188,6 +194,9 @@ export const WithAttributes = {
         ],
     },
 };
+/**
+ * Panel with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

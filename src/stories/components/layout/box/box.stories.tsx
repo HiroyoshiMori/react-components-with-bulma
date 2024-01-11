@@ -9,7 +9,8 @@ export default {
         componentSubtitle: 'White box container',
         docs: {
             description: {
-                component: "This component put a white \"Box\" container.<br>In Bulma doc: https://bulma.io/documentation/elements/box/",
+                component: 'This component renders a white box container.<br >'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/box/',
             },
         },
     },
@@ -19,7 +20,7 @@ export default {
             description: 'Contents in a box',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -28,7 +29,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for box',
             table: {
                 type: {
                     summary: 'string[]',
@@ -40,7 +41,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for box',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -55,7 +56,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for block. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -75,19 +76,47 @@ export default {
         },
     },
 };
+/**
+ * Default box
+ */
 export const Default = {
     render: (args: any) => <Box {...args}>
         Child content
     </Box>,
 };
-export const Additionals = {
+/**
+ * Box with style classes
+ */
+export const WithClasses = {
     ...Default,
     render: (args: any) => <Box {...args}>
         <a href="#">TEST</a>
     </Box>,
     args: {
         classes: ['class1', 'class2'],
+    },
+};
+/**
+ * Box with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    render: (args: any) => <Box {...args}>
+        <a href="#">TEST</a>
+    </Box>,
+    args: {
         attributes: {'aria-label': 'BOX LABEL'},
+    },
+};
+/**
+ * Box with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    render: (args: any) => <Box {...args}>
+        <a href="#">TEST</a>
+    </Box>,
+    args: {
         datasets: new Map([
             ['id', 'box-id'], ['name', 'BOX'],
         ]),

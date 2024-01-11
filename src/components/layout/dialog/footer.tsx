@@ -8,7 +8,7 @@ import {
 import {Button} from "../../element";
 import {initialize, initializeDatasets} from "../../common";
 
-export const Footer = (props: DialogFooterProps) => {
+export const DialogFooter = (props: DialogFooterProps) => {
     const {
         buttonLabel,
         onClose,

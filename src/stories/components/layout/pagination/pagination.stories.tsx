@@ -10,7 +10,8 @@ export default {
         componentSubtitle: 'Pagination - Navigation',
         docs: {
             description: {
-                component: "This component shows pagination link.<br>In Bulma doc: https://bulma.io/documentation/components/pagination/",
+                component: 'This component renders pagination link.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/pagination/',
             },
         },
     },
@@ -74,7 +75,7 @@ export default {
                 },
             },
         },
-        style: {
+        styleRounded: {
             control: 'text',
             description: 'Style of pagination',
             table: {
@@ -103,7 +104,11 @@ export default {
             },
         },
         size: {
-            control: {type: 'range', min: 1, max: 6, step: 1},
+            control: 'select',
+            options: ['default'].concat(SIZES),
+            mapping: {
+                Default: '',
+            },
             description: 'Size of pagination',
             table: {
                 type: {
@@ -116,7 +121,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for pagination',
             table: {
                 type: {
                     summary: 'PaginationClasses',
@@ -138,7 +143,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for pagination',
             table: {
                 type: {
                     summary: 'PaginationAttributes',
@@ -156,7 +161,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for pagination. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'PaginationDatasets',
@@ -174,6 +179,9 @@ export default {
         },
     },
 };
+/**
+ * Default pagination
+ */
 export const Default = {
     render: (args: any) => <Pagination
         itemTotal={1}
@@ -183,12 +191,18 @@ export const Default = {
         {...args}
     />,
 };
+/**
+ * Pagination with 2 pages
+ */
 export const TwoPage = {
     ...Default,
     args: {
         itemTotal: 2,
     },
 };
+/**
+ * Pagination with 2/2
+ */
 export const TwoPageWithCurrent2 = {
     ...Default,
     args: {
@@ -196,12 +210,18 @@ export const TwoPageWithCurrent2 = {
         current: 2,
     },
 };
+/**
+ * Pagination with 3 pages
+ */
 export const ThreePage = {
     ...Default,
     args: {
         itemTotal: 3,
     },
 };
+/**
+ * Pagination with 2/3
+ */
 export const ThreePageWithCurrent2 = {
     ...Default,
     args: {
@@ -209,6 +229,9 @@ export const ThreePageWithCurrent2 = {
         current: 2,
     },
 };
+/**
+ * Pagination with 3/3
+ */
 export const ThreePageWithCurrent3 = {
     ...Default,
     args: {
@@ -216,12 +239,18 @@ export const ThreePageWithCurrent3 = {
         current: 3,
     },
 };
+/**
+ * Pagination with 4 pages
+ */
 export const FourPage = {
     ...Default,
     args: {
         itemTotal: 4,
     },
 };
+/**
+ * Pagination with 2/4
+ */
 export const FourPageWith2 = {
     ...Default,
     args: {
@@ -229,6 +258,9 @@ export const FourPageWith2 = {
         current: 2,
     },
 };
+/**
+ * Pagination with 3/4
+ */
 export const FourPageWith3 = {
     ...Default,
     args: {
@@ -236,6 +268,9 @@ export const FourPageWith3 = {
         current: 3,
     },
 };
+/**
+ * Pagination with 4/4
+ */
 export const FourPageWith4 = {
     ...Default,
     args: {
@@ -243,12 +278,18 @@ export const FourPageWith4 = {
         current: 4,
     },
 };
+/**
+ * Pagination with 10 pages
+ */
 export const TenPage = {
     ...Default,
     args: {
         itemTotal: 10,
     },
 };
+/**
+ * Pagination with 2/10
+ */
 export const TenPageWithCurrent2 = {
     ...Default,
     args: {
@@ -256,6 +297,9 @@ export const TenPageWithCurrent2 = {
         current: 2,
     },
 };
+/**
+ * Pagination with 3/10
+ */
 export const TenPageWithCurrent3 = {
     ...Default,
     args: {
@@ -263,6 +307,9 @@ export const TenPageWithCurrent3 = {
         current: 3,
     },
 };
+/**
+ * Pagination with 4/10
+ */
 export const TenPageWithCurrent4 = {
     ...Default,
     args: {
@@ -270,6 +317,9 @@ export const TenPageWithCurrent4 = {
         current: 4,
     },
 };
+/**
+ * Pagination with 5/10
+ */
 export const TenPageWithCurrent5 = {
     ...Default,
     args: {
@@ -277,6 +327,9 @@ export const TenPageWithCurrent5 = {
         current: 5,
     },
 };
+/**
+ * Pagination with 7/10
+ */
 export const TenPageWithCurrent7 = {
     ...Default,
     args: {
@@ -284,6 +337,9 @@ export const TenPageWithCurrent7 = {
         current: 7,
     },
 };
+/**
+ * Pagination with 8/10
+ */
 export const TenPageWithCurrent8 = {
     ...Default,
     args: {
@@ -291,6 +347,9 @@ export const TenPageWithCurrent8 = {
         current: 8,
     },
 };
+/**
+ * Pagination with 9/10
+ */
 export const TenPageWithCurrent9 = {
     ...Default,
     args: {
@@ -298,6 +357,9 @@ export const TenPageWithCurrent9 = {
         current: 9,
     },
 };
+/**
+ * Pagination with 10/10
+ */
 export const TenPageWithCurrent10 = {
     ...Default,
     args: {
@@ -305,7 +367,10 @@ export const TenPageWithCurrent10 = {
         current: 10,
     },
 };
-export const Left = {
+/**
+ * Pagination positioned left
+ */
+export const PositionLeft = {
     ...Default,
     args: {
         itemTotal: 10,
@@ -313,7 +378,10 @@ export const Left = {
         position: 'left',
     },
 };
-export const Right = {
+/**
+ * Pagination positioned right
+ */
+export const PositionRight = {
     ...Default,
     args: {
         itemTotal: 10,
@@ -321,7 +389,10 @@ export const Right = {
         position: 'right',
     },
 };
-export const Rounded = {
+/**
+ * Paginatin with rounded shape
+ */
+export const WithRoundedShape = {
     ...Default,
     args: {
         itemTotal: 10,
@@ -329,7 +400,10 @@ export const Rounded = {
         style: 'rounded',
     },
 };
-export const Small = {
+/**
+ * Sized pagination
+ */
+export const ElementSize = {
     ...Default,
     args: {
         itemTotal: 10,
@@ -337,30 +411,9 @@ export const Small = {
         size: 'small',
     },
 };
-export const Normal = {
-    ...Default,
-    args: {
-        itemTotal: 10,
-        current: 5,
-        size: 'normal',
-    },
-};
-export const Medium = {
-    ...Default,
-    args: {
-        itemTotal: 10,
-        current: 5,
-        size: 'medium',
-    },
-};
-export const Large = {
-    ...Default,
-    args: {
-        itemTotal: 10,
-        current: 5,
-        size: 'large',
-    },
-};
+/**
+ * Pagination with labels
+ */
 export const Labels = {
     ...Default,
     args: {
@@ -373,6 +426,27 @@ export const Labels = {
         }
     },
 };
+/**
+ * Pagination with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        itemTotal: 10,
+        current: 4,
+        classes: {
+            wrap: ['test-wrap'],
+            previous: ['test-prev'],
+            next: ['test-next'],
+            list: ['test-list'],
+            link: ['test-link'],
+            ellipsis: ['test-ellipsis'],
+        },
+    },
+};
+/**
+ * Pagination with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -386,6 +460,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Pagination with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {

@@ -9,7 +9,8 @@ export default {
         componentSubtitle: 'Basic block',
         docs: {
             description: {
-                component: "This component put a basic spacer block container.<br>In Bulma doc: https://bulma.io/documentation/elements/block/",
+                component: 'This component renders a basic spacer block container.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/elements/block/',
             },
         },
     },
@@ -19,7 +20,7 @@ export default {
             description: 'Contents of block',
             table: {
                 type: {
-                    summary: 'ReactNode',
+                    summary: 'React.ReactNode',
                 },
                 defaultValue: {
                     summary: 'undefined',
@@ -28,7 +29,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for block',
             table: {
                 type: {
                     summary: 'string[]',
@@ -40,7 +41,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for block',
             table: {
                 type: {
                     summary: 'HTMLAttributes<HTMLDivElement>',
@@ -55,7 +56,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for block. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'Map<string, string>',
@@ -75,8 +76,40 @@ export default {
         },
     },
 };
+/**
+ * Default block
+ */
 export const Default = {
     render: (args: any) => <Block {...args}>
         Block children
     </Block>
+};
+/**
+ * Block with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        classes: ['test-classes'],
+    },
+};
+/**
+ * Block with additional attributes
+ */
+export const WithAttributes = {
+    ...Default,
+    args: {
+        attributes: {'aria-label': 'block-id'},
+    },
+};
+/**
+ * Block with datasets
+ */
+export const WithDatasets = {
+    ...Default,
+    args: {
+        datasets: new Map([
+            ['id', 'block-id']
+        ]),
+    },
 };

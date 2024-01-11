@@ -6,7 +6,7 @@ import {
     NavbarItemFields,
     NavbarProps,
 } from "../../@types";
-import {ArrayRegexIncludes, convertDataSet} from "../../../utils";
+import {ArrayRegexIncludes, convertDataSet, generateId} from "../../../utils";
 import {initialize, initializeDatasets} from "../../common";
 
 export const Navbar = (
@@ -14,7 +14,7 @@ export const Navbar = (
 ) => {
     const {
         ariaLabel = '',
-        menuId,
+        menuId = generateId(),
         menus = {
             start: [],
             end: [],

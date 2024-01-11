@@ -12,7 +12,7 @@ import {initialize, initializeDatasets} from "../../common";
 
 export const Notifications = (props: NotificationsProps) => {
     const {
-        color,
+        colorType,
         isLightColor = false,
         children,
     } = props;
@@ -45,11 +45,11 @@ export const Notifications = (props: NotificationsProps) => {
 
     // Set default values if not already set
     if (classes.wrap) {
-        if (color) {
+        if (colorType) {
             const pattern: string = COLOR_TYPES.join('|');
             const reg: string = `^is-(${pattern})$`;
             if (ArrayRegexIncludes(classes.wrap, new RegExp(reg)) === -1) {
-                classes.wrap?.push('is-' + color);
+                classes.wrap?.push('is-' + colorType);
             }
             if (isLightColor && !classes.wrap?.includes('is-light')) {
                 classes.wrap?.push('is-light');

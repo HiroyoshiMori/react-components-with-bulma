@@ -10,7 +10,8 @@ export default {
         componentSubtitle: 'Navbar - Navigation',
         docs: {
             description: {
-                component: "This component shows navbar.<br>In Bulma doc: https://bulma.io/documentation/components/navbar/",
+                component: 'This component renders navbar.<br />'
+                        + 'In Bulma doc: https://bulma.io/documentation/components/navbar/',
             },
         },
     },
@@ -18,14 +19,28 @@ export default {
         ariaLabel: {
             control: 'text',
             description: 'aria-label for navbar',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+            },
         },
         menuId: {
             control: 'text',
             description: 'ID for navbar menu',
+            table: {
+                type: {
+                    summary: 'string',
+                },
+                defaultValue: {
+                    summary: 'undefined',
+                    detail: 'Random string ID will be generated when undefined',
+                },
+            },
         },
         menus: {
             control: 'object',
-            description: 'Menu data in navbar',
+            description: 'Menu Items in navbar',
             table: {
                 type: {
                     summary: deIndent(`
@@ -85,7 +100,7 @@ export default {
         },
         classes: {
             control: 'object',
-            description: 'Style classes',
+            description: 'Style classes for navbar',
             table: {
                 type: {
                     summary: 'NavbarClasses',
@@ -111,7 +126,7 @@ export default {
         },
         attributes: {
             control: 'object',
-            description: 'Additional attributes',
+            description: 'Additional attributes for navbar',
             table: {
                 type: {
                     summary: 'NavbarAttributes',
@@ -133,7 +148,7 @@ export default {
         },
         datasets: {
             control: 'object',
-            description: 'Datasets',
+            description: 'Datasets for navbar. "data-" will be added at the beginning of attributes.',
             table: {
                 type: {
                     summary: 'NavbarDatasets',
@@ -155,6 +170,9 @@ export default {
         },
     }
 };
+/**
+ * Default navbar
+ */
 export const Default = {
     render: (args: any) => <Navbar
         ariaLabel='Navigation'
@@ -174,7 +192,10 @@ export const Default = {
         {...args}
     />,
 };
-export const Brand = {
+/**
+ * Navbar with brand
+ */
+export const WithBrand = {
     ...Default,
     args: {
         brand: {
@@ -183,6 +204,9 @@ export const Brand = {
         },
     },
 };
+/**
+ * Navbar that has children
+ */
 export const HasChildren = {
     ...Default,
     args: {
@@ -201,10 +225,13 @@ export const HasChildren = {
                     ]
                 },
                 {label: 'Menu 4', href: '#4'},
-            ]
-        }
+            ],
+        },
     },
 };
+/**
+ * Navbar that has grand children
+ */
 export const HasGrandChildren = {
     ...Default,
     args: {
@@ -233,18 +260,73 @@ export const HasGrandChildren = {
         }
     },
 };
+/**
+ * Navbar placed fixed top
+ */
 export const FixedTop = {
     ...Default,
     args: {
         fixed: "top",
     },
 };
+/**
+ * Navbar placed fixed bottom
+ */
 export const FixedBottom = {
     ...Default,
     args: {
         fixed: "bottom",
     },
 };
+/**
+ * Navbar with style classes
+ */
+export const WithClasses = {
+    ...Default,
+    args: {
+        brand: {
+            item: <Fragment>Brand</Fragment>,
+            href: './',
+        },
+        menus: {
+            start: [
+                {label: 'Menu 1', href: "#1", classes:['test-menu-1']},
+                {label: 'Menu 2', href: "#2", classes:['test-menu-2']},
+                {label: 'Menu 3', href: "#3", classes:['test-menu-3']},
+                {
+                    label: 'Menu 4',
+                    href: "#4",
+                    classes:['test-menu-4'],
+                    children: [
+                        {label: 'Menu 4-1', href: "#4-1", classes:['test-menu-4-1']},
+                        {label: 'Menu 4-2', href: "#4-2", classes:['test-menu-4-2']},
+                        {isDivider: true},
+                        {label: 'Menu 4-3', href: "#4-3", classes:['test-menu-4-3']},
+                    ],
+                },
+            ],
+            end: [
+                {label: 'Menu End 5', href: "#5", classes:['test-menu-5']},
+                {label: 'Menu End 6', href: "#6", classes:['test-menu-6']},
+            ],
+        },
+        classes: {
+            wrap: ['test-wrap'],
+            brand: ['test-brand'],
+            burger: ['test-burger'],
+            menu: ['test-menu'],
+            menuStart: ['test-menu-start'],
+            menuEnd: ['test-menu-end'],
+            link: ['test-link'],
+            item: ['test-item'],
+            dropdown: ['test-dropdown'],
+            divider: ['test-divider'],
+        },
+    },
+};
+/**
+ * Navbar with additional attributes
+ */
 export const WithAttributes = {
     ...Default,
     args: {
@@ -284,6 +366,9 @@ export const WithAttributes = {
         },
     },
 };
+/**
+ * Navbar with datasets
+ */
 export const WithDatasets = {
     ...Default,
     args: {
