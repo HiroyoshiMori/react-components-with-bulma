@@ -43,7 +43,7 @@ Because Bulma uses [autoprefixer](https://github.com/postcss/autoprefixer) to ma
 
 ## Documentation
 
-The documentation resides in the [GitHub Pages](https://hiroyoshimori.github.io/react-components-bulma/?path=/docs/configure-your-project--docs) directory, and is built with [Storybook](https://storybook.js.org/).
+The documentation resides in the [GitHub Pages](https://hiroyoshimori.github.io/react-components-with-bulma/) directory, and is built with [Storybook](https://storybook.js.org/).
 
 ## Thanks
 
