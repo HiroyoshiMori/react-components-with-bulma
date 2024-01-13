@@ -1,6 +1,6 @@
 {
   "name": "@hiroyoshi-mori/react-components-bulma",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "author": {
     "name": "Hiroyoshi Mori",
     "email": "mori@scriptlab.tokyo"
@@ -83,7 +83,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HiroyoshiMori/react-components-bulma.git"
+    "url": "git+https://github.com/HiroyoshiMori/react-components-with-bulma.git"
   },
   "keywords": [
     "react",
@@ -92,7 +92,7 @@
   ],
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/HiroyoshiMori/react-components-bulma/issues"
+    "url": "https://github.com/HiroyoshiMori/react-components-with-bulma/issues"
   },
   "readme": "README.md",
   "_id": "@hiroyoshi-mori/react-components-bulma@0.0.8"
