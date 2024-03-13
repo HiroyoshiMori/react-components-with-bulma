@@ -106,7 +106,7 @@ export default {
                     detail: deIndent(`
                             {
                                 wrap?: string[],
-                                headers?: {
+                                header?: {
                                     wrap?: string[],
                                     column?: string[],
                                 },
@@ -131,7 +131,7 @@ export default {
                     detail: deIndent(`
                             {
                                 wrap?: HTMLAttributes<HTMLDivElement>,
-                                headers?: HTMLAttributes<HTMLDivElement>,
+                                header?: HTMLAttributes<HTMLDivElement>,
                             }
                         `),
                 },
@@ -149,7 +149,7 @@ export default {
                     detail: deIndent(`
                             {
                                 wrap?: Map<string, string>,
-                                headers?: Map<string, string>,
+                                header?: Map<string, string>,
                             }
                         `),
                 },

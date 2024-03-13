@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import {Fragment} from "react";
 import {BoxProps} from "../../@types";
 import {convertDataSet} from "../../../utils";
 
